@@ -3,6 +3,7 @@ import { getLocale, getTranslations } from "next-intl/server";
 import Image from "next/image";
 import { getPayload } from "payload";
 import Heading from "./Heading";
+import ArrowIcon from "./icons/ArrowIcon";
 import { weaponIcons } from "./icons/weapons";
 
 type Day =
@@ -110,6 +111,23 @@ function ScheduleCard({
   );
 }
 
+function AddressCard({ t, className = "" }: { t: TFunc; className?: string }) {
+  return (
+    <div className={`${className}`}>
+      <a
+        href="https://maps.app.goo.gl/HEMBpPfnXB1XGGXq7"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="relative flex w-full flex-col rounded-lg border border-black/20 bg-transparent p-2 text-night transition-colors hover:bg-black/10"
+      >
+        <ArrowIcon external className="absolute right-2 top-2 text-night" />
+        <span className="text-xl font-medium">{t("addressLine1")}</span>
+        <span className="text-base font-normal">{t("addressLine2")}</span>
+      </a>
+    </div>
+  );
+}
+
 function ScheduleFullRow({
   doc,
   t,
@@ -168,15 +186,7 @@ export default async function Schedule() {
         <Heading size="lg" as="h2" className="w-full lg:w-1/2">
           {t("title")}
         </Heading>
-        <a
-          href="https://maps.app.goo.gl/HEMBpPfnXB1XGGXq7"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex flex-col w-full rounded-lg border border-black/20 p-2 text-night lg:w-1/2"
-        >
-          <span className="text-xl font-medium">{t("addressLine1")}</span>
-          <span className="text-base font-normal">{t("addressLine2")}</span>
-        </a>
+        <AddressCard t={t} className="lg:w-1/2" />
       </div>
 
       {hasSchedule && (
