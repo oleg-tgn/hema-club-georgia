@@ -110,11 +110,21 @@ function ScheduleCard({
   );
 }
 
-function ScheduleFullRow({ doc, t }: { doc: ScheduleGroupDoc; t: TFunc }) {
+function ScheduleFullRow({
+  doc,
+  t,
+  className = "",
+}: {
+  doc: ScheduleGroupDoc;
+  t: TFunc;
+  className?: string;
+}) {
   const rows = (doc.sections ?? []).flatMap((section) => section.rows ?? []);
 
   return (
-    <div className="flex flex-col gap-2 rounded-2xl border border-night/15 p-5 sm:flex-row sm:items-center sm:justify-between">
+    <div
+      className={`flex flex-col gap-2 rounded-2xl border border-night/15 p-5 sm:flex-row sm:items-center sm:justify-between ${className}`}
+    >
       <Heading size="sm" as="h3">
         {doc.title}
       </Heading>
@@ -154,41 +164,41 @@ export default async function Schedule() {
 
   return (
     <div className="w-full rounded-[40px] bg-gold-100 p-10">
-      <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
-        <Heading size="lg" as="h2">
+      <div className="flex flex-col gap-10 mb-20 lg:flex-row">
+        <Heading size="lg" as="h2" className="w-full lg:w-1/2">
           {t("title")}
         </Heading>
         <a
           href="https://maps.app.goo.gl/HEMBpPfnXB1XGGXq7"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex flex-col rounded-xl border border-night/20 bg-paper-100/60 px-4 py-3 text-sm text-night"
+          className="flex flex-col w-full rounded-lg border border-black/20 p-2 text-night lg:w-1/2"
         >
-          <span>{t("addressLine1")}</span>
-          <span className="text-night/60">{t("addressLine2")}</span>
+          <span className="text-xl font-medium">{t("addressLine1")}</span>
+          <span className="text-base font-normal">{t("addressLine2")}</span>
         </a>
       </div>
 
       {hasSchedule && (
-        <div className="mt-8 grid gap-6 lg:grid-cols-[1.2fr_1fr]">
-          <div className="flex flex-col gap-4">
-            <div className="grid grid-cols-2 gap-6">
-              {longsword && (
-                <ScheduleCard doc={longsword} t={t} className="row-span-2" />
-              )}
-              {saber && <ScheduleCard doc={saber} t={t} />}
-              {rapier && <ScheduleCard doc={rapier} t={t} />}
-            </div>
-            {sparrings && <ScheduleFullRow doc={sparrings} t={t} />}
+        <div className="flex flex-col gap-10 lg:flex-row">
+          <div className="grid grid-cols-2 gap-6 w-full lg:w-1/2">
+            {longsword && (
+              <ScheduleCard doc={longsword} t={t} className="row-span-2" />
+            )}
+            {saber && <ScheduleCard doc={saber} t={t} />}
+            {rapier && <ScheduleCard doc={rapier} t={t} />}
+            {sparrings && (
+              <ScheduleFullRow doc={sparrings} t={t} className="col-span-2" />
+            )}
           </div>
 
-          <div className="relative hidden min-h-64 overflow-hidden rounded-2xl border border-night/20 lg:block">
+          <div className="relative min-h-64 w-full overflow-hidden lg:w-1/2">
             <Image
-              src="/images/training1.jpg"
+              src="/images/shedule-bg.png"
               alt=""
               aria-hidden
               fill
-              className="object-cover"
+              className="object-contain object-top-left"
             />
           </div>
         </div>
