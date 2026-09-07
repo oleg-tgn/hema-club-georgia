@@ -4,6 +4,7 @@ import { getLocale, getTranslations } from "next-intl/server";
 import Image from "next/image";
 import { getPayload } from "payload";
 import Heading from "./Heading";
+import { weaponIcons } from "./icons/weapons";
 
 type Day =
   | "monday"
@@ -66,20 +67,15 @@ function ScheduleCard({
   const weapon =
     doc.weapon && typeof doc.weapon === "object" ? doc.weapon : null;
   const sections = doc.sections ?? [];
+  const WeaponIcon = weapon ? weaponIcons[weapon.slug] : undefined;
 
   return (
     <div
       className={`flex flex-col rounded-lg border border-night/25 p-6 ${className}`}
     >
-      {weapon && (
-        <div className="relative h-16 w-full">
-          <Image
-            src={`/images/weapons/${weapon.slug}.png`}
-            alt=""
-            aria-hidden
-            fill
-            className="object-contain object-left"
-          />
+      {WeaponIcon && (
+        <div className="flex h-16 w-full items-center">
+          <WeaponIcon className="h-full w-auto text-night" />
         </div>
       )}
       <Heading size="sm" as="h3" className="mt-2 text-night">
