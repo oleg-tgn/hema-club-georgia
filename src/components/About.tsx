@@ -35,13 +35,9 @@ function JoinTeaser({ join }: { join: AboutJoin }) {
           {join.title && (
             <>
               <div aria-hidden className="h-8" />
-              <Heading
-                size="lg"
-                as="h2"
-                className="pointer-events-none absolute inset-0 z-10 flex items-start bg-paper-100/0 uppercase transition-all duration-300 group-hover:pointer-events-auto group-hover:bg-paper-100 group-hover:text-5xl"
-              >
+              <h3 className="text-3xl pointer-events-none absolute inset-0 z-10 flex items-start bg-paper-100/0 uppercase transition-all duration-300 group-hover:pointer-events-auto group-hover:bg-paper-100 group-hover:text-5xl">
                 {join.title}
-              </Heading>
+              </h3>
             </>
           )}
           {join.text && <p className="text-sm leading-5 ">{join.text}</p>}
