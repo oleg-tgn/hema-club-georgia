@@ -8,9 +8,9 @@ import {
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import { ActiveSectionProvider } from "@/components/ActiveSectionProvider";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+import { ActiveSectionProvider } from "@/components/layout/ActiveSectionProvider";
 import "../globals.css";
 
 const manrope = Manrope({

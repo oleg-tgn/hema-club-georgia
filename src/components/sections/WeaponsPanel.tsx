@@ -2,7 +2,7 @@ import config from "@payload-config";
 import { getLocale, getTranslations } from "next-intl/server";
 import { getPayload } from "payload";
 import type { Locale } from "@/i18n/routing";
-import { weaponIcons } from "./icons/weapons";
+import { weaponIcons } from "../icons/weapons";
 
 export default async function WeaponsPanel() {
   const locale = await getLocale();

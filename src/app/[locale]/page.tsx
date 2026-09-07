@@ -1,10 +1,10 @@
 import { Fragment } from "react";
 import { setRequestLocale, getTranslations } from "next-intl/server";
-import Gallery from "@/components/Gallery";
-import Hero from "@/components/Hero";
-import Instructors from "@/components/Instructors";
-import About from "@/components/About";
-import Schedule from "@/components/Schedule";
+import Gallery from "@/components/sections/Gallery";
+import Hero from "@/components/sections/Hero";
+import Instructors from "@/components/sections/Instructors";
+import About from "@/components/sections/About";
+import Schedule from "@/components/sections/Schedule";
 
 type Schedule = {
   day: string;

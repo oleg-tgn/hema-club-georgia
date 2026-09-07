@@ -4,7 +4,7 @@ import Image from "next/image";
 import { getPayload } from "payload";
 import type { Locale } from "@/i18n/routing";
 import type { About as AboutGlobal } from "@/payload-types";
-import Heading from "./Heading";
+import Heading from "../ui/Heading";
 
 type AboutJoin = NonNullable<AboutGlobal["join"]>;
 
