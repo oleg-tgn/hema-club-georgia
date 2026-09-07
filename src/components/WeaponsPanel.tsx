@@ -1,13 +1,8 @@
 import config from "@payload-config";
 import { getLocale, getTranslations } from "next-intl/server";
 import { getPayload } from "payload";
+import type { Locale } from "@/i18n/routing";
 import { weaponIcons } from "./icons/weapons";
-
-type WeaponDoc = {
-  id: string;
-  name: string;
-  slug: string;
-};
 
 export default async function WeaponsPanel() {
   const locale = await getLocale();
@@ -15,15 +10,13 @@ export default async function WeaponsPanel() {
   const tNav = await getTranslations("Nav");
   const payload = await getPayload({ config });
 
-  const { docs } = await payload.find({
+  const { docs: weapons } = await payload.find({
     collection: "weapons",
-    depth: 1,
-    limit: 50,
-    locale: locale as "en" | "ka" | "ru",
+    depth: 0,
+    limit: 10,
+    locale: locale as Locale,
     sort: "order",
   });
-
-  const weapons = docs as WeaponDoc[];
 
   if (weapons.length === 0) {
     return null;

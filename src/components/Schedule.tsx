@@ -2,20 +2,11 @@ import config from "@payload-config";
 import { getLocale, getTranslations } from "next-intl/server";
 import Image from "next/image";
 import { getPayload } from "payload";
+import type { Locale } from "@/i18n/routing";
+import type { Address, ScheduleGroup } from "@/payload-types";
 import Heading from "./Heading";
 import ArrowIcon from "./icons/ArrowIcon";
 import { weaponIcons } from "./icons/weapons";
-
-type Day =
-  | "monday"
-  | "tuesday"
-  | "wednesday"
-  | "thursday"
-  | "friday"
-  | "saturday"
-  | "sunday";
-
-type Level = "beginners" | "advanced";
 
 type TFunc = Awaited<ReturnType<typeof getTranslations>>;
 
@@ -30,43 +21,12 @@ function formatTime(value: string): string {
   return timeFormatter.format(new Date(value));
 }
 
-type WeaponRef = {
-  id: string;
-  name: string;
-  slug: string;
-};
-
-type ScheduleRow = {
-  day: Day;
-  startTime: string;
-  endTime: string;
-};
-
-type ScheduleSection = {
-  level?: Level | null;
-  rows?: ScheduleRow[] | null;
-};
-
-type ScheduleGroupDoc = {
-  id: string;
-  slug: string;
-  weapon?: WeaponRef | string | null;
-  title?: string | null;
-  sections?: ScheduleSection[] | null;
-};
-
-type AddressGlobal = {
-  addressLine: string;
-  description: string;
-  googleMap: string;
-};
-
 function ScheduleCard({
   doc,
   t,
   className = "",
 }: {
-  doc: ScheduleGroupDoc;
+  doc: ScheduleGroup;
   t: TFunc;
   className?: string;
 }) {
@@ -122,7 +82,7 @@ function AddressCard({
   address,
 }: {
   className?: string;
-  address: AddressGlobal;
+  address: Address;
 }) {
   return (
     <div className={`${className}`}>
@@ -145,7 +105,7 @@ function ScheduleFullRow({
   t,
   className = "",
 }: {
-  doc: ScheduleGroupDoc;
+  doc: ScheduleGroup;
   t: TFunc;
   className?: string;
 }) {
@@ -177,14 +137,13 @@ export default async function Schedule() {
   const t = await getTranslations("Schedule");
   const payload = await getPayload({ config });
 
-  const { docs } = await payload.find({
+  const { docs: groups } = await payload.find({
     collection: "schedule-groups",
-    depth: 2,
-    limit: 100,
-    locale: locale as "en" | "ka" | "ru",
+    depth: 1,
+    limit: 10,
+    locale: locale as Locale,
   });
 
-  const groups = docs as ScheduleGroupDoc[];
   const longsword = groups.find((doc) => doc.slug === "longsword");
   const saber = groups.find((doc) => doc.slug === "saber");
   const rapier = groups.find((doc) => doc.slug === "rapier");
@@ -192,10 +151,10 @@ export default async function Schedule() {
 
   const hasSchedule = Boolean(longsword || saber || rapier || sparrings);
 
-  const address = (await payload.findGlobal({
+  const address = await payload.findGlobal({
     slug: "address",
-    locale: locale as "en" | "ka" | "ru",
-  })) as AddressGlobal;
+    locale: locale as Locale,
+  });
 
   return (
     <div className="w-full rounded-[40px] bg-gold-100 p-10">
