@@ -198,7 +198,7 @@ export default async function Schedule() {
               alt=""
               aria-hidden
               fill
-              className="object-contain object-top-left"
+              className="object-contain object-top-left mix-blend-multiply"
             />
           </div>
         </div>
