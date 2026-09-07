@@ -53,7 +53,7 @@ export default async function CtaTile({
         />
       </span>
       <span
-        className={`relative mb-3 w-max self-start px-2.5 lining-nums proportional-nums ${sizeClass}`}
+        className={`relative mb-3 w-full self-start px-2.5 lining-nums proportional-nums ${sizeClass}`}
       >
         {children}
       </span>
