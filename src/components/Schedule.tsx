@@ -55,6 +55,12 @@ type ScheduleGroupDoc = {
   sections?: ScheduleSection[] | null;
 };
 
+type AddressGlobal = {
+  addressLine: string;
+  description: string;
+  googleMap: string;
+};
+
 function ScheduleCard({
   doc,
   t,
@@ -111,18 +117,24 @@ function ScheduleCard({
   );
 }
 
-function AddressCard({ t, className = "" }: { t: TFunc; className?: string }) {
+function AddressCard({
+  className = "",
+  address,
+}: {
+  className?: string;
+  address: AddressGlobal;
+}) {
   return (
     <div className={`${className}`}>
       <a
-        href="https://maps.app.goo.gl/HEMBpPfnXB1XGGXq7"
+        href={address.googleMap}
         target="_blank"
         rel="noopener noreferrer"
         className="relative flex w-full flex-col rounded-lg border border-black/20 bg-transparent p-2 text-night transition-colors hover:bg-black/10"
       >
         <ArrowIcon external className="absolute right-2 top-2 text-night" />
-        <span className="text-xl font-medium">{t("addressLine1")}</span>
-        <span className="text-base font-normal">{t("addressLine2")}</span>
+        <span className="text-xl font-medium">{address.addressLine}</span>
+        <span className="text-base font-normal">{address.description}</span>
       </a>
     </div>
   );
@@ -180,13 +192,18 @@ export default async function Schedule() {
 
   const hasSchedule = Boolean(longsword || saber || rapier || sparrings);
 
+  const address = (await payload.findGlobal({
+    slug: "address",
+    locale: locale as "en" | "ka" | "ru",
+  })) as AddressGlobal;
+
   return (
     <div className="w-full rounded-[40px] bg-gold-100 p-10">
       <div className="flex flex-col gap-10 mb-20 lg:flex-row">
         <Heading size="lg" as="h2" className="w-full lg:w-1/2">
           {t("title")}
         </Heading>
-        <AddressCard t={t} className="lg:w-1/2" />
+        <AddressCard className="lg:w-1/2" address={address} />
       </div>
 
       {hasSchedule && (

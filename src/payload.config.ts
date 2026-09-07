@@ -13,6 +13,7 @@ import { Weapons } from "./collections/Weapons";
 import { ScheduleGroups } from "./collections/ScheduleGroups";
 import { Instructors } from "./collections/Instructors";
 import { About } from "./globals/About";
+import { Address } from "./globals/Address";
 import { seedUsers } from "./seed";
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -28,7 +29,7 @@ export default buildConfig({
     user: Users.slug,
   },
   collections: [Users, Media, Weapons, ScheduleGroups, Instructors],
-  globals: [About],
+  globals: [About, Address],
   editor: lexicalEditor(),
   graphQL: {
     disable: true,
