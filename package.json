@@ -2,11 +2,15 @@
   "name": "hema-club-georgia",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
+    "predev": "payload generate:types",
     "dev": "next dev",
+    "prebuild": "payload generate:types",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "generate:types": "payload generate:types"
   },
   "dependencies": {
     "@payloadcms/db-mongodb": "^3.88.0",
