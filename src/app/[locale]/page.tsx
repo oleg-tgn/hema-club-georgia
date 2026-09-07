@@ -1,10 +1,10 @@
-import { Fragment } from "react";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import Gallery from "@/components/sections/Gallery";
 import Hero from "@/components/sections/Hero";
 import Instructors from "@/components/sections/Instructors";
 import About from "@/components/sections/About";
 import Schedule from "@/components/sections/Schedule";
+import Weapons from "@/components/sections/Weapons";
 
 type Schedule = {
   day: string;
@@ -31,17 +31,8 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
         <Schedule />
       </section>
 
-      <section id="weapons" className="w-full py-16">
-        <div className="text-center gap-6 py-10">
-          <h2 className="text-3xl font-bold">Weapons</h2>
-          <p className="text-xl">
-            Our club provides all training steel — longswords, rapiers, sabres,
-            and sword & buckler.
-          </p>
-          <p className="text-xl">
-            We also provide protective gear — armor and fencing masks.
-          </p>
-        </div>
+      <section id="weapons">
+        <Weapons />
       </section>
 
       <section id="instructors">

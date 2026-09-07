@@ -96,10 +96,12 @@ export interface Config {
   globals: {
     about: About;
     address: Address;
+    'weapons-section': WeaponsSection;
   };
   globalsSelect: {
     about: AboutSelect<false> | AboutSelect<true>;
     address: AddressSelect<false> | AddressSelect<true>;
+    'weapons-section': WeaponsSectionSelect<false> | WeaponsSectionSelect<true>;
   };
   locale: 'en' | 'ka' | 'ru';
   widgets: {
@@ -533,6 +535,25 @@ export interface Address {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "weapons-section".
+ */
+export interface WeaponsSection {
+  id: string;
+  /**
+   * 1-2 lines shown in the Weapons section, e.g. training steel and protective gear. The second row is optional.
+   */
+  provisions?:
+    | {
+        intro: string;
+        highlight: string;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "about_select".
  */
 export interface AboutSelect<T extends boolean = true> {
@@ -557,6 +578,22 @@ export interface AddressSelect<T extends boolean = true> {
   addressLine?: T;
   description?: T;
   googleMap?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "weapons-section_select".
+ */
+export interface WeaponsSectionSelect<T extends boolean = true> {
+  provisions?:
+    | T
+    | {
+        intro?: T;
+        highlight?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

@@ -12,7 +12,8 @@ import { Media } from "./collections/Media";
 import { Weapons } from "./collections/Weapons";
 import { ScheduleGroups } from "./collections/ScheduleGroups";
 import { Instructors } from "./collections/Instructors";
-import { About } from "./globals/About";
+import { AboutSection } from "./globals/AboutSection";
+import { WeaponsSection } from "./globals/WeaponsSection";
 import { Address } from "./globals/Address";
 import { seedUsers } from "./seed";
 
@@ -29,7 +30,7 @@ export default buildConfig({
     user: Users.slug,
   },
   collections: [Users, Media, Weapons, ScheduleGroups, Instructors],
-  globals: [About, Address],
+  globals: [AboutSection, Address, WeaponsSection],
   editor: lexicalEditor(),
   graphQL: {
     disable: true,

@@ -1,7 +1,11 @@
 import type { GlobalConfig } from "payload";
 
-export const About: GlobalConfig = {
+export const AboutSection: GlobalConfig = {
   slug: "about",
+  label: "About Section",
+  admin: {
+    group: "Sections",
+  },
   access: {
     read: () => true,
     update: ({ req }) => Boolean(req.user),
