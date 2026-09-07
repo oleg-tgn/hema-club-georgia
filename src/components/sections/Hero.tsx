@@ -42,6 +42,7 @@ export default async function Hero() {
             </CtaTile>
           </div>
         </div>
+
         <WeaponsPanel />
       </div>
     </section>
