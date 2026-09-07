@@ -36,7 +36,8 @@ function JoinTeaser({ join }: { join: AboutJoin }) {
             <>
               <div aria-hidden className="h-8" />
               <Heading
-                variant="h3"
+                size="lg"
+                as="h2"
                 className="pointer-events-none absolute inset-0 z-10 flex items-start bg-paper-100/0 uppercase transition-all duration-300 group-hover:pointer-events-auto group-hover:bg-paper-100 group-hover:text-5xl"
               >
                 {join.title}
@@ -82,7 +83,7 @@ export default async function About() {
         </div>
 
         <div className="[grid-area:content] flex flex-col text-center gap-6">
-          <Heading variant="h1" as="h2">
+          <Heading size="lg" as="h2">
             {about.title}
           </Heading>
           <p className="text-justify font-serif text-lg font-medium whitespace-pre-line">

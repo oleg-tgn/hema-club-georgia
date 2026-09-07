@@ -82,7 +82,7 @@ function ScheduleCard({
           />
         </div>
       )}
-      <Heading variant="h3" className="mt-2 text-night">
+      <Heading size="sm" as="h3" className="mt-2 text-night">
         {weapon?.name}
       </Heading>
       <div className="mt-4 flex flex-col divide-y divide-night/20 border-t border-night/20">
@@ -115,7 +115,7 @@ function ScheduleFullRow({ doc, t }: { doc: ScheduleGroupDoc; t: TFunc }) {
 
   return (
     <div className="flex flex-col gap-2 rounded-2xl border border-night/15 p-5 sm:flex-row sm:items-center sm:justify-between">
-      <Heading variant="h3" className="text-night">
+      <Heading size="sm" as="h3">
         {doc.title}
       </Heading>
       <div className="flex flex-col gap-1 text-sm text-night sm:items-end">
@@ -155,7 +155,7 @@ export default async function Schedule() {
   return (
     <div className="w-full rounded-[40px] bg-gold-100 p-10">
       <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
-        <Heading variant="h1" as="h2" className="text-night">
+        <Heading size="lg" as="h2">
           {t("title")}
         </Heading>
         <a
