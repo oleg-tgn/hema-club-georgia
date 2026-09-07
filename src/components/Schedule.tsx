@@ -1,4 +1,3 @@
-import { Fragment } from "react";
 import config from "@payload-config";
 import { getLocale, getTranslations } from "next-intl/server";
 import Image from "next/image";
@@ -71,32 +70,37 @@ function ScheduleCard({
 
   return (
     <div
-      className={`flex flex-col rounded-lg border border-night/25 p-6 ${className}`}
+      className={`flex flex-col rounded-lg border gap-5 border-black/20 p-4 text-night ${className}`}
     >
-      {WeaponIcon && (
-        <div className="flex h-16 w-full items-center">
-          <WeaponIcon className="h-full w-auto text-night" />
-        </div>
-      )}
-      <Heading size="sm" as="h3" className="mt-2 text-night">
-        {weapon?.name}
-      </Heading>
-      <div className="mt-4 flex flex-col divide-y divide-night/20 border-t border-night/20">
+      <div className="flex flex-col gap-1.5">
+        {WeaponIcon && (
+          <div className="flex h-10 w-full items-center">
+            <WeaponIcon className="h-full w-auto" />
+          </div>
+        )}
+        <Heading size="sm" as="h3">
+          {weapon?.name}
+        </Heading>
+      </div>
+      <div className="flex flex-col divide-y divide-night/20">
         {sections.map((section, i) => (
-          <div key={section.level ?? i} className="flex flex-col gap-2 py-4">
+          <div
+            key={section.level ?? i}
+            className="flex flex-col gap-2 py-5 first:pt-0 last:pb-0"
+          >
             {section.level && (
-              <span className="font-semibold text-night">
+              <span className="text-xl font-medium leading-none">
                 {t(`levels.${section.level}`)}
               </span>
             )}
-            <div className="grid grid-cols-[1fr_auto] gap-x-6 gap-y-1 text-night">
+            <div className="flex flex-col gap-1 text-night">
               {(section.rows ?? []).map((row, idx) => (
-                <Fragment key={idx}>
-                  <span className="text-md">{t(`days.${row.day}`)}</span>
-                  <span className="text-right font-semibold tabular-nums">
+                <div key={idx} className="flex justify-between gap-2">
+                  <span className="text-base">{t(`days.${row.day}`)}</span>
+                  <span className="text-base text-right font-semibold tabular-nums">
                     {formatTime(row.startTime)} – {formatTime(row.endTime)}
                   </span>
-                </Fragment>
+                </div>
               ))}
             </div>
           </div>
@@ -119,15 +123,15 @@ function ScheduleFullRow({
 
   return (
     <div
-      className={`flex flex-col gap-2 rounded-2xl border border-night/15 p-5 sm:flex-row sm:items-center sm:justify-between ${className}`}
+      className={`flex flex-row gap-2 rounded-2xl border items-center border-night/15 p-5  justify-between ${className}`}
     >
       <Heading size="sm" as="h3">
         {doc.title}
       </Heading>
-      <div className="flex flex-col gap-1 text-sm text-night sm:items-end">
+      <div className="flex flex-col gap-1 text-night sm:items-end">
         {rows.map((row, idx) => (
-          <div key={idx} className="flex gap-4">
-            <span className="text-md">{t(`days.${row.day}`)}</span>
+          <div key={idx} className="flex flex-row gap-15">
+            <span className="text-base">{t(`days.${row.day}`)}</span>
             <span className="text-right font-semibold tabular-nums">
               {formatTime(row.startTime)} – {formatTime(row.endTime)}
             </span>
