@@ -221,7 +221,7 @@ export default async function Schedule() {
 
           <div className="relative min-h-64 w-full overflow-hidden lg:w-1/2">
             <Image
-              src="/images/shedule-bg.png"
+              src="/images/shedule-bg.webp"
               alt=""
               aria-hidden
               fill
