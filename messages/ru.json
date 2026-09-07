@@ -41,6 +41,24 @@
       "Меч и щит (баклер) XIII века"
     ]
   },
+  "Schedule": {
+    "title": "Адрес и расписание",
+    "addressLine1": "ул. Гиорги Читая, 1-3, Тбилиси, Грузия",
+    "addressLine2": "Рядом с магазином Ori Nabiji",
+    "days": {
+      "monday": "Понедельник",
+      "tuesday": "Вторник",
+      "wednesday": "Среда",
+      "thursday": "Четверг",
+      "friday": "Пятница",
+      "saturday": "Суббота",
+      "sunday": "Воскресенье"
+    },
+    "levels": {
+      "beginners": "Начинающие",
+      "advanced": "Продвинутые"
+    }
+  },
   "Instructors": {
     "title": "Инструкторы"
   },

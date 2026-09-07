@@ -6,7 +6,7 @@ import { Link, usePathname } from "@/i18n/navigation";
 import { useActiveSectionObserver } from "@/hooks/useActiveSectionObserver";
 import { useActiveSection } from "./ActiveSectionProvider";
 import LocaleSwitcher from "./LocaleSwitcher";
-import Logo from "./Logo";
+import Logo from "./icons/Logo";
 
 const menuLinks = [
   { href: "/#about", labelKey: "about", section: "about" },

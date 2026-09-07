@@ -41,6 +41,24 @@
       "Sword and shield (buckler) of the 13th century"
     ]
   },
+  "Schedule": {
+    "title": "Address and schedule",
+    "addressLine1": "1-3 Giorgi Chitaia St, Tbilisi, Georgia",
+    "addressLine2": "Next to Ori Nabiji Shop",
+    "days": {
+      "monday": "Monday",
+      "tuesday": "Tuesday",
+      "wednesday": "Wednesday",
+      "thursday": "Thursday",
+      "friday": "Friday",
+      "saturday": "Saturday",
+      "sunday": "Sunday"
+    },
+    "levels": {
+      "beginners": "Beginners",
+      "advanced": "Advanced"
+    }
+  },
   "Instructors": {
     "title": "Instructors"
   },

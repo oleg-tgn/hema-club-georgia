@@ -30,15 +30,6 @@ export const Weapons: CollectionConfig = {
       },
     },
     {
-      name: "image",
-      type: "upload",
-      relationTo: "media",
-      admin: {
-        description:
-          "Displayed in the weapons panel on the homepage. Any size works — it's scaled to fit the layout.",
-      },
-    },
-    {
       name: "order",
       type: "number",
       defaultValue: 0,

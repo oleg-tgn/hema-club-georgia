@@ -10,9 +10,10 @@ import sharp from "sharp";
 import { Users } from "./collections/Users";
 import { Media } from "./collections/Media";
 import { Weapons } from "./collections/Weapons";
-import { ScheduleEntries } from "./collections/ScheduleEntries";
+import { ScheduleGroups } from "./collections/ScheduleGroups";
 import { Instructors } from "./collections/Instructors";
 import { About } from "./globals/About";
+import { Address } from "./globals/Address";
 import { seedUsers } from "./seed";
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -27,8 +28,8 @@ export default buildConfig({
   admin: {
     user: Users.slug,
   },
-  collections: [Users, Media, Weapons, ScheduleEntries, Instructors],
-  globals: [About],
+  collections: [Users, Media, Weapons, ScheduleGroups, Instructors],
+  globals: [About, Address],
   editor: lexicalEditor(),
   graphQL: {
     disable: true,

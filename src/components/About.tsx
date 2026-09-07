@@ -2,18 +2,11 @@ import config from "@payload-config";
 import { getLocale } from "next-intl/server";
 import Image from "next/image";
 import { getPayload } from "payload";
+import type { Locale } from "@/i18n/routing";
+import type { About as AboutGlobal } from "@/payload-types";
+import Heading from "./Heading";
 
-type AboutJoin = {
-  title?: string | null;
-  text?: string | null;
-  buttonLabel?: string | null;
-};
-
-type AboutGlobal = {
-  title: string;
-  text: string;
-  join?: AboutJoin | null;
-};
+type AboutJoin = NonNullable<AboutGlobal["join"]>;
 
 function AboutImage({ src }: { src: string }) {
   return (
@@ -34,7 +27,7 @@ function JoinTeaser({ join }: { join: AboutJoin }) {
           {join.title && (
             <>
               <div aria-hidden className="h-8" />
-              <h3 className="pointer-events-none absolute inset-0 z-10 flex items-start bg-paper-100/0 font-serif text-3xl leading-none font-normal uppercase tracking-tight transition-all duration-300 group-hover:pointer-events-auto group-hover:bg-paper-100 group-hover:text-5xl">
+              <h3 className="text-3xl pointer-events-none absolute inset-0 z-10 flex items-start bg-paper-100/0 uppercase transition-all duration-300 group-hover:pointer-events-auto group-hover:bg-paper-100 group-hover:text-5xl">
                 {join.title}
               </h3>
             </>
@@ -64,13 +57,13 @@ export default async function About() {
   const locale = await getLocale();
   const payload = await getPayload({ config });
 
-  const about = (await payload.findGlobal({
+  const about = await payload.findGlobal({
     slug: "about",
-    locale: locale as "en" | "ka" | "ru",
-  })) as AboutGlobal;
+    locale: locale as Locale,
+  });
 
   return (
-    <div className="w-full py-16">
+    <div className="w-full py-10">
       <div className="grid gap-8 [grid-template-areas:'left'_'content'_'right'] md:grid-cols-[1fr_minmax(0,32rem)_1fr] md:[grid-template-areas:'left_content_right']">
         <div className="[grid-area:left] flex gap-4 md:flex-col">
           <AboutImage src="/images/about-1.svg" />
@@ -78,9 +71,9 @@ export default async function About() {
         </div>
 
         <div className="[grid-area:content] flex flex-col text-center gap-6">
-          <h2 className="font-serif text-7xl leading-16 font-normal tracking-tight">
+          <Heading size="lg" as="h2">
             {about.title}
-          </h2>
+          </Heading>
           <p className="text-justify font-serif text-lg font-medium whitespace-pre-line">
             {about.text}
           </p>

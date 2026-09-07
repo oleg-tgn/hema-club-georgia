@@ -1,29 +1,7 @@
 import config from "@payload-config";
 import { getLocale, getTranslations } from "next-intl/server";
 import { getPayload } from "payload";
-
-type SocialLink = {
-  platform: string;
-  url: string;
-};
-
-type InstructorPhoto = {
-  alt?: string | null;
-  sizes?: {
-    thumbnail?: {
-      url?: string | null;
-    } | null;
-  } | null;
-  url?: string | null;
-};
-
-type InstructorDoc = {
-  description?: string | null;
-  id: string;
-  name: string;
-  photo?: InstructorPhoto | string | null;
-  socialLinks?: SocialLink[] | null;
-};
+import type { Locale } from "@/i18n/routing";
 
 const platformLabels: Record<string, string> = {
   facebook: "Facebook",
@@ -38,15 +16,13 @@ export default async function Instructors() {
   const t = await getTranslations("Instructors");
   const payload = await getPayload({ config });
 
-  const { docs } = await payload.find({
+  const { docs: instructors } = await payload.find({
     collection: "instructors",
     depth: 1,
     limit: 50,
-    locale: locale as "en" | "ka" | "ru",
+    locale: locale as Locale,
     sort: "order",
   });
-
-  const instructors = docs as InstructorDoc[];
 
   if (instructors.length === 0) {
     return null;
