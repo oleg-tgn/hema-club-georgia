@@ -5,8 +5,8 @@ import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 import { useActiveSectionObserver } from "@/hooks/useActiveSectionObserver";
 import { useActiveSection } from "./ActiveSectionProvider";
-import LocaleSwitcher from "./LocaleSwitcher";
-import Logo from "./icons/Logo";
+import LocaleSwitcher from "../ui/LocaleSwitcher";
+import Logo from "../icons/Logo";
 
 const menuLinks = [
   { href: "/#about", labelKey: "about", section: "about" },

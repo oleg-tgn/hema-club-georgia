@@ -1,5 +1,5 @@
 import { getLocale } from "next-intl/server";
-import ArrowIcon from "./icons/ArrowIcon";
+import ArrowIcon from "../icons/ArrowIcon";
 
 type CtaTileProps = {
   href: string;

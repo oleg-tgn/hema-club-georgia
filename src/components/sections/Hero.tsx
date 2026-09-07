@@ -1,6 +1,6 @@
 import { getTranslations } from "next-intl/server";
-import CtaTile from "./CtaTile";
-import HeroLogo from "./icons/HeroLogo";
+import CtaTile from "../ui/CtaTile";
+import HeroLogo from "../icons/HeroLogo";
 import WeaponsPanel from "./WeaponsPanel";
 
 export default async function Hero() {

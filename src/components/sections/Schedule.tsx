@@ -4,9 +4,9 @@ import Image from "next/image";
 import { getPayload } from "payload";
 import type { Locale } from "@/i18n/routing";
 import type { Address, ScheduleGroup } from "@/payload-types";
-import Heading from "./Heading";
-import ArrowIcon from "./icons/ArrowIcon";
-import { weaponIcons } from "./icons/weapons";
+import Heading from "../ui/Heading";
+import ArrowIcon from "../icons/ArrowIcon";
+import { weaponIcons } from "../icons/weapons";
 
 type TFunc = Awaited<ReturnType<typeof getTranslations>>;
 
