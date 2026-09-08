@@ -63,7 +63,8 @@
     "title": "Instructors"
   },
   "Gallery": {
-    "title": "Photo"
+    "title": "Gallery",
+    "instagramCta": "More photos on Instagram"
   },
   "Contact": {
     "title": "Contact us",

@@ -63,7 +63,8 @@
     "title": "Инструкторы"
   },
   "Gallery": {
-    "title": "Фото"
+    "title": "Галлерея",
+    "instagramCta": "Больше фото в Instagram"
   },
   "Contact": {
     "title": "Связаться с нами",

@@ -72,6 +72,7 @@ export interface Config {
     weapons: Weapon;
     'schedule-groups': ScheduleGroup;
     instructors: Instructor;
+    'gallery-photos': GalleryPhoto;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -84,6 +85,7 @@ export interface Config {
     weapons: WeaponsSelect<false> | WeaponsSelect<true>;
     'schedule-groups': ScheduleGroupsSelect<false> | ScheduleGroupsSelect<true>;
     instructors: InstructorsSelect<false> | InstructorsSelect<true>;
+    'gallery-photos': GalleryPhotosSelect<false> | GalleryPhotosSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -94,13 +96,15 @@ export interface Config {
   };
   fallbackLocale: ('false' | 'none' | 'null') | false | null | ('en' | 'ka' | 'ru') | ('en' | 'ka' | 'ru')[];
   globals: {
-    about: About;
     address: Address;
+    contacts: Contact;
+    about: About;
     'weapons-section': WeaponsSection;
   };
   globalsSelect: {
-    about: AboutSelect<false> | AboutSelect<true>;
     address: AddressSelect<false> | AddressSelect<true>;
+    contacts: ContactsSelect<false> | ContactsSelect<true>;
+    about: AboutSelect<false> | AboutSelect<true>;
     'weapons-section': WeaponsSectionSelect<false> | WeaponsSectionSelect<true>;
   };
   locale: 'en' | 'ka' | 'ru';
@@ -269,6 +273,28 @@ export interface Instructor {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "gallery-photos".
+ */
+export interface GalleryPhoto {
+  id: string;
+  photo: string | Media;
+  /**
+   * Stable identifier, e.g. 'training-1'. Not localized.
+   */
+  slug: string;
+  /**
+   * Optional caption shown with the photo.
+   */
+  caption?: string | null;
+  /**
+   * Controls display order in the gallery.
+   */
+  order?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -310,6 +336,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'instructors';
         value: string | Instructor;
+      } | null)
+    | ({
+        relationTo: 'gallery-photos';
+        value: string | GalleryPhoto;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -464,6 +494,18 @@ export interface InstructorsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "gallery-photos_select".
+ */
+export interface GalleryPhotosSelect<T extends boolean = true> {
+  photo?: T;
+  slug?: T;
+  caption?: T;
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv_select".
  */
 export interface PayloadKvSelect<T extends boolean = true> {
@@ -504,6 +546,31 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "address".
+ */
+export interface Address {
+  id: string;
+  addressLine: string;
+  description: string;
+  googleMap: string;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contacts".
+ */
+export interface Contact {
+  id: string;
+  instagram: string;
+  instagramDirect?: string | null;
+  facebook?: string | null;
+  email?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "about".
  */
 export interface About {
@@ -518,18 +585,6 @@ export interface About {
     text?: string | null;
     buttonLabel?: string | null;
   };
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "address".
- */
-export interface Address {
-  id: string;
-  addressLine: string;
-  description: string;
-  googleMap: string;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -554,6 +609,31 @@ export interface WeaponsSection {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "address_select".
+ */
+export interface AddressSelect<T extends boolean = true> {
+  addressLine?: T;
+  description?: T;
+  googleMap?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contacts_select".
+ */
+export interface ContactsSelect<T extends boolean = true> {
+  instagram?: T;
+  instagramDirect?: T;
+  facebook?: T;
+  email?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "about_select".
  */
 export interface AboutSelect<T extends boolean = true> {
@@ -566,18 +646,6 @@ export interface AboutSelect<T extends boolean = true> {
         text?: T;
         buttonLabel?: T;
       };
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "address_select".
- */
-export interface AddressSelect<T extends boolean = true> {
-  addressLine?: T;
-  description?: T;
-  googleMap?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

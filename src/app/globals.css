@@ -10,6 +10,7 @@
   --color-paper-200: #dbd6ca;
   --color-asphalt: #777571;
   --color-night: #141413;
+  --color-night-hover: color-mix(in srgb, var(--color-night) 5%, transparent);
   --color-gold-100: #c4a043;
   --color-gold-200: #9d7d2b;
   --color-off-white: #e4e4e4;
@@ -28,20 +29,42 @@ html {
 
 body {
   font-family: var(--font-sans);
+  overflow-x: hidden;
 }
 
-.gallery-swiper .swiper-button-next::after,
-.gallery-swiper .swiper-button-prev::after {
-  color: white;
-  font-size: 2rem;
+/*
+ * Leading/trailing space for full-bleed carousels, matching the offset
+ * of `main`'s content edge (`container mx-auto px-10`) from the viewport
+ * edge, so the first slide lines up with the page content at rest.
+ * Mirrors Tailwind's default `.container` breakpoints/max-widths.
+ */
+.full-bleed-inset {
+  --inset: 2.5rem;
+  padding-left: var(--inset);
+  padding-right: var(--inset);
 }
-
-.gallery-swiper .swiper-pagination-bullet {
-  background: white !important;
-  opacity: 0.6;
+@media (min-width: 40rem) {
+  .full-bleed-inset {
+    --inset: calc((100vw - 40rem) / 2 + 2.5rem);
+  }
 }
-
-.gallery-swiper .swiper-pagination-bullet-active {
-  opacity: 1 !important;
-  background: white !important;
+@media (min-width: 48rem) {
+  .full-bleed-inset {
+    --inset: calc((100vw - 48rem) / 2 + 2.5rem);
+  }
+}
+@media (min-width: 64rem) {
+  .full-bleed-inset {
+    --inset: calc((100vw - 64rem) / 2 + 2.5rem);
+  }
+}
+@media (min-width: 80rem) {
+  .full-bleed-inset {
+    --inset: calc((100vw - 80rem) / 2 + 2.5rem);
+  }
+}
+@media (min-width: 96rem) {
+  .full-bleed-inset {
+    --inset: calc((100vw - 96rem) / 2 + 2.5rem);
+  }
 }
