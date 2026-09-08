@@ -7,10 +7,10 @@ import { getPayload } from "payload";
 import Image from "next/image";
 import Heading from "../ui/Heading";
 import { Carousel, CarouselViewport, CarouselControls } from "../ui/Carousel";
-import ArrowIcon from "../icons/ArrowIcon";
 import InstagramIcon from "../icons/InstagramIcon";
 import TelegramIcon from "../icons/TelegramIcon";
 import FacebookIcon from "../icons/FacebookIcon";
+import ExternalIcon from "../icons/externalIcon";
 
 const socialIcons: Record<string, ComponentType<{ className?: string }>> = {
   instagram: InstagramIcon,
@@ -118,9 +118,9 @@ export default async function Instructors() {
                           target="_blank"
                           rel="noopener noreferrer"
                           aria-label={link.platform}
-                          className="flex h-8 w-8 items-center justify-center rounded-full border border-black/20 text-night transition-colors hover:bg-night-hover"
+                          className="flex items-center justify-center text-night transition-colors hover:text-gold-200"
                         >
-                          <Icon className="h-4 w-4" />
+                          <Icon className="h-8 w-8" />
                         </a>
                       );
                     })}
@@ -131,10 +131,10 @@ export default async function Instructors() {
                       href={instructor.hemaRatingUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex shrink-0 items-center gap-1 text-sm font-medium text-night hover:underline"
+                      className="flex items-center gap-2 text-sm font-normal text-night hover:text-gold-200"
                     >
                       {t("hemaRating")}
-                      <ArrowIcon direction="up-right" className="h-4 w-4" />
+                      <ExternalIcon className="w-4 h4" />
                     </a>
                   )}
                 </div>
