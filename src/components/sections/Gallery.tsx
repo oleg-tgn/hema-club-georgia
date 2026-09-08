@@ -1,4 +1,5 @@
 import type { Locale } from "@/i18n/routing";
+import type { GalleryPhoto, Media } from "@/payload-types";
 import { getLocale, getTranslations } from "next-intl/server";
 import config from "@payload-config";
 import { getPayload } from "payload";
@@ -7,14 +8,6 @@ import Heading from "../ui/Heading";
 import { Carousel, CarouselViewport, CarouselControls } from "../ui/Carousel";
 
 const INSTAGRAM_URL = "#";
-
-type GalleryPhoto = {
-  id: string;
-  src: string;
-  width: number;
-  height: number;
-  caption?: string | null;
-};
 
 function InstagramIcon({ className }: { className?: string }) {
   return (
@@ -47,19 +40,10 @@ export default async function Gallery() {
     sort: "order",
   });
 
-  const photos: GalleryPhoto[] = docs
-    .filter((doc) => doc.photo && typeof doc.photo === "object")
-    .map((doc) => {
-      const photo = doc.photo as { url?: string | null; width?: number | null; height?: number | null };
-      return {
-        id: doc.id,
-        src: photo.url || "",
-        width: photo.width || 1280,
-        height: photo.height || 720,
-        caption: doc.caption,
-      };
-    })
-    .filter((photo) => photo.src);
+  const photos = docs.filter(
+    (doc): doc is GalleryPhoto & { photo: Media & { url: string } } =>
+      typeof doc.photo === "object" && Boolean(doc.photo.url),
+  );
 
   if (photos.length === 0) {
     return null;
@@ -87,16 +71,16 @@ export default async function Gallery() {
 
       <CarouselViewport>
         <div className="flex gap-3">
-          {photos.map((photo) => (
+          {photos.map(({ id, photo, caption }) => (
             <div
-              key={photo.id}
+              key={id}
               className="h-168 rounded-lg overflow-hidden flex-none"
             >
               <Image
-                src={photo.src}
-                alt={photo.caption || ""}
-                width={photo.width}
-                height={photo.height}
+                src={photo.url}
+                alt={caption || ""}
+                width={photo.width || 1280}
+                height={photo.height || 720}
                 className="h-full w-auto"
               />
             </div>
