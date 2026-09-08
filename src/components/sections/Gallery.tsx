@@ -8,8 +8,6 @@ import Heading from "../ui/Heading";
 import { Carousel, CarouselViewport, CarouselControls } from "../ui/Carousel";
 import InstagramIcon from "../icons/InstagramIcon";
 
-const INSTAGRAM_URL = "#";
-
 export default async function Gallery() {
   const locale = await getLocale();
   const t = await getTranslations("Gallery");
@@ -28,6 +26,10 @@ export default async function Gallery() {
       typeof doc.photo === "object" && Boolean(doc.photo.url),
   );
 
+  const contacts = await payload.findGlobal({
+    slug: "contacts",
+  });
+
   if (photos.length === 0) {
     return null;
   }
@@ -36,7 +38,7 @@ export default async function Gallery() {
     <Carousel options={{ loop: false, align: "start" }}>
       <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-4 mb-4">
         <a
-          href={INSTAGRAM_URL}
+          href={contacts.instagram}
           target="_blank"
           rel="noopener noreferrer"
           className="group justify-self-start flex items-center gap-4 cursor-pointer text-night"
