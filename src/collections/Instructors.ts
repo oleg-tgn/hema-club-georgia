@@ -5,7 +5,7 @@ export const Instructors: CollectionConfig = {
   defaultSort: "order",
   admin: {
     useAsTitle: "name",
-    defaultColumns: ["name", "order"],
+    defaultColumns: ["name", "isActive", "order"],
   },
   access: {
     read: () => true,
@@ -77,6 +77,15 @@ export const Instructors: CollectionConfig = {
       name: "order",
       type: "number",
       defaultValue: 0,
+    },
+    {
+      name: "isActive",
+      type: "checkbox",
+      defaultValue: true,
+      admin: {
+        description:
+          "Uncheck to hide this instructor from the site, e.g. if they no longer teach.",
+      },
     },
   ],
 };

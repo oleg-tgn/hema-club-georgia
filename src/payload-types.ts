@@ -276,6 +276,10 @@ export interface Instructor {
    */
   hemaRatingUrl?: string | null;
   order?: number | null;
+  /**
+   * Uncheck to hide this instructor from the site, e.g. if they no longer teach.
+   */
+  isActive?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -499,6 +503,7 @@ export interface InstructorsSelect<T extends boolean = true> {
       };
   hemaRatingUrl?: T;
   order?: T;
+  isActive?: T;
   updatedAt?: T;
   createdAt?: T;
 }

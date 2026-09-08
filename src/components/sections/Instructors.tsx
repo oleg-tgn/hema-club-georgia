@@ -29,6 +29,9 @@ export default async function Instructors() {
     limit: 50,
     locale: locale as Locale,
     sort: "order",
+    where: {
+      isActive: { equals: true },
+    },
   });
 
   const instructors = allInstructors.filter(
