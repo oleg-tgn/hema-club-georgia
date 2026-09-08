@@ -6,26 +6,9 @@ import { getPayload } from "payload";
 import Image from "next/image";
 import Heading from "../ui/Heading";
 import { Carousel, CarouselViewport, CarouselControls } from "../ui/Carousel";
+import InstagramIcon from "../icons/InstagramIcon";
 
 const INSTAGRAM_URL = "#";
-
-function InstagramIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" className={className}>
-      <rect
-        x="3"
-        y="3"
-        width="18"
-        height="18"
-        rx="5"
-        stroke="currentColor"
-        strokeWidth="1.5"
-      />
-      <circle cx="12" cy="12" r="4.5" stroke="currentColor" strokeWidth="1.5" />
-      <circle cx="17.2" cy="6.8" r="1" fill="currentColor" />
-    </svg>
-  );
-}
 
 export default async function Gallery() {
   const locale = await getLocale();
@@ -56,10 +39,12 @@ export default async function Gallery() {
           href={INSTAGRAM_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="justify-self-start flex items-center gap-2 text-sm"
+          className="group justify-self-start flex items-center gap-4 cursor-pointer text-night transition-colors duration-200 hover:text-night"
         >
-          <InstagramIcon className="w-6 h-6" />
-          {t("instagramCta")}
+          <span className="flex w-10 h-10 border border-black/20 rounded-full items-center justify-center transition-colors duration-200 group-hover:bg-night/5">
+            <InstagramIcon className="w-6 h-6" />
+          </span>
+          <span className="text-xl font-medium">{t("instagramCta")}</span>
         </a>
 
         <Heading size="lg" as="h2" className="justify-self-center">
