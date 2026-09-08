@@ -260,13 +260,21 @@ export interface Instructor {
   name: string;
   photo?: (string | null) | Media;
   description?: string | null;
+  /**
+   * Weapons this instructor teaches.
+   */
+  weapons?: (string | Weapon)[] | null;
   socialLinks?:
     | {
-        platform: 'instagram' | 'facebook' | 'youtube' | 'tiktok' | 'website';
+        platform: 'instagram' | 'telegram' | 'facebook' | 'youtube' | 'tiktok' | 'website';
         url: string;
         id?: string | null;
       }[]
     | null;
+  /**
+   * Link to this instructor's HEMA Rating profile.
+   */
+  hemaRatingUrl?: string | null;
   order?: number | null;
   updatedAt: string;
   createdAt: string;
@@ -481,6 +489,7 @@ export interface InstructorsSelect<T extends boolean = true> {
   name?: T;
   photo?: T;
   description?: T;
+  weapons?: T;
   socialLinks?:
     | T
     | {
@@ -488,6 +497,7 @@ export interface InstructorsSelect<T extends boolean = true> {
         url?: T;
         id?: T;
       };
+  hemaRatingUrl?: T;
   order?: T;
   updatedAt?: T;
   createdAt?: T;

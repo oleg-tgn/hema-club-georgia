@@ -33,6 +33,15 @@ export const Instructors: CollectionConfig = {
       localized: true,
     },
     {
+      name: "weapons",
+      type: "relationship",
+      relationTo: "weapons",
+      hasMany: true,
+      admin: {
+        description: "Weapons this instructor teaches.",
+      },
+    },
+    {
       name: "socialLinks",
       type: "array",
       fields: [
@@ -42,6 +51,7 @@ export const Instructors: CollectionConfig = {
           required: true,
           options: [
             { label: "Instagram", value: "instagram" },
+            { label: "Telegram", value: "telegram" },
             { label: "Facebook", value: "facebook" },
             { label: "YouTube", value: "youtube" },
             { label: "TikTok", value: "tiktok" },
@@ -54,6 +64,13 @@ export const Instructors: CollectionConfig = {
           required: true,
         },
       ],
+    },
+    {
+      name: "hemaRatingUrl",
+      type: "text",
+      admin: {
+        description: "Link to this instructor's HEMA Rating profile.",
+      },
     },
     {
       name: "order",
