@@ -64,9 +64,7 @@
   },
   "Gallery": {
     "title": "Галлерея",
-    "instagramCta": "Больше фото в Instagram",
-    "previous": "Предыдущее фото",
-    "next": "Следующее фото"
+    "instagramCta": "Больше фото в Instagram"
   },
   "Contact": {
     "title": "Связаться с нами",

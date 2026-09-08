@@ -64,9 +64,7 @@
   },
   "Gallery": {
     "title": "გალერეა",
-    "instagramCta": "მეტი ფოტო Instagram",
-    "previous": "წინა ფოტო",
-    "next": "შემდეგი ფოტო"
+    "instagramCta": "მეტი ფოტო Instagram"
   },
   "Contact": {
     "title": "დაგვიკავშირდით",

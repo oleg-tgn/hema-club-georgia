@@ -6,7 +6,6 @@ import {
   useContext,
   useEffect,
   useState,
-  type ComponentPropsWithoutRef,
   type ReactNode,
 } from "react";
 import useEmblaCarousel from "embla-carousel-react";
@@ -73,43 +72,24 @@ export function Carousel({
   );
 }
 
-export function CarouselViewport({
-  className,
-  children,
-}: {
-  className?: string;
-  children: ReactNode;
-}) {
+export function CarouselViewport({ children }: { children: ReactNode }) {
   const { viewportRef } = useCarouselContext();
   return (
-    <div className={className} ref={viewportRef}>
+    <div
+      className="full-bleed-inset w-screen ml-[calc(50%-50vw)] overflow-hidden"
+      ref={viewportRef}
+    >
       {children}
     </div>
   );
 }
 
-export function CarouselTrack({
-  className,
-  children,
-}: {
-  className?: string;
-  children: ReactNode;
-}) {
-  return <div className={className}>{children}</div>;
-}
-
-export function CarouselArrowIcon({
-  className,
-  direction,
-}: {
-  className?: string;
-  direction: "left" | "right";
-}) {
+function CarouselArrowIcon({ direction }: { direction: "left" | "right" }) {
   return (
     <svg
       viewBox="0 0 24 24"
       fill="none"
-      className={className}
+      className="w-4 h-4"
       style={{ transform: direction === "left" ? "scaleX(-1)" : undefined }}
     >
       <path
@@ -123,40 +103,32 @@ export function CarouselArrowIcon({
   );
 }
 
-export function CarouselPrevButton({
-  className,
-  children,
-  ...props
-}: ComponentPropsWithoutRef<"button">) {
-  const { scrollPrev, canScrollPrev } = useCarouselContext();
-  return (
-    <button
-      type="button"
-      onClick={scrollPrev}
-      disabled={!canScrollPrev}
-      className={className}
-      {...props}
-    >
-      {children ?? <CarouselArrowIcon direction="left" className="w-4 h-4" />}
-    </button>
-  );
-}
+const carouselButtonClassName =
+  "w-10 h-10 rounded-full border border-black/40 flex items-center justify-center disabled:opacity-30 cursor-pointer";
 
-export function CarouselNextButton({
-  className,
-  children,
-  ...props
-}: ComponentPropsWithoutRef<"button">) {
-  const { scrollNext, canScrollNext } = useCarouselContext();
+export function CarouselControls({ className }: { className?: string }) {
+  const { scrollPrev, scrollNext, canScrollPrev, canScrollNext } =
+    useCarouselContext();
   return (
-    <button
-      type="button"
-      onClick={scrollNext}
-      disabled={!canScrollNext}
-      className={className}
-      {...props}
-    >
-      {children ?? <CarouselArrowIcon direction="right" className="w-4 h-4" />}
-    </button>
+    <div className={`flex gap-3 ${className ?? ""}`.trim()}>
+      <button
+        type="button"
+        onClick={scrollPrev}
+        disabled={!canScrollPrev}
+        className={carouselButtonClassName}
+        aria-label="Previous"
+      >
+        <CarouselArrowIcon direction="left" />
+      </button>
+      <button
+        type="button"
+        onClick={scrollNext}
+        disabled={!canScrollNext}
+        className={carouselButtonClassName}
+        aria-label="Next"
+      >
+        <CarouselArrowIcon direction="right" />
+      </button>
+    </div>
   );
 }
