@@ -96,13 +96,15 @@ export interface Config {
   };
   fallbackLocale: ('false' | 'none' | 'null') | false | null | ('en' | 'ka' | 'ru') | ('en' | 'ka' | 'ru')[];
   globals: {
-    about: About;
     address: Address;
+    contacts: Contact;
+    about: About;
     'weapons-section': WeaponsSection;
   };
   globalsSelect: {
-    about: AboutSelect<false> | AboutSelect<true>;
     address: AddressSelect<false> | AddressSelect<true>;
+    contacts: ContactsSelect<false> | ContactsSelect<true>;
+    about: AboutSelect<false> | AboutSelect<true>;
     'weapons-section': WeaponsSectionSelect<false> | WeaponsSectionSelect<true>;
   };
   locale: 'en' | 'ka' | 'ru';
@@ -544,6 +546,31 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "address".
+ */
+export interface Address {
+  id: string;
+  addressLine: string;
+  description: string;
+  googleMap: string;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contacts".
+ */
+export interface Contact {
+  id: string;
+  instagram: string;
+  instagramDirect?: string | null;
+  facebook?: string | null;
+  email?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "about".
  */
 export interface About {
@@ -558,18 +585,6 @@ export interface About {
     text?: string | null;
     buttonLabel?: string | null;
   };
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "address".
- */
-export interface Address {
-  id: string;
-  addressLine: string;
-  description: string;
-  googleMap: string;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -594,6 +609,31 @@ export interface WeaponsSection {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "address_select".
+ */
+export interface AddressSelect<T extends boolean = true> {
+  addressLine?: T;
+  description?: T;
+  googleMap?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contacts_select".
+ */
+export interface ContactsSelect<T extends boolean = true> {
+  instagram?: T;
+  instagramDirect?: T;
+  facebook?: T;
+  email?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "about_select".
  */
 export interface AboutSelect<T extends boolean = true> {
@@ -606,18 +646,6 @@ export interface AboutSelect<T extends boolean = true> {
         text?: T;
         buttonLabel?: T;
       };
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "address_select".
- */
-export interface AddressSelect<T extends boolean = true> {
-  addressLine?: T;
-  description?: T;
-  googleMap?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

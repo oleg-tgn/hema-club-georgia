@@ -16,6 +16,7 @@ import { GalleryPhotos } from "./collections/GalleryPhotos";
 import { AboutSection } from "./globals/AboutSection";
 import { WeaponsSection } from "./globals/WeaponsSection";
 import { Address } from "./globals/Address";
+import { Contacts } from "./globals/Contacts";
 import { seedUsers } from "./seed";
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -30,8 +31,15 @@ export default buildConfig({
   admin: {
     user: Users.slug,
   },
-  collections: [Users, Media, Weapons, ScheduleGroups, Instructors, GalleryPhotos],
-  globals: [AboutSection, Address, WeaponsSection],
+  collections: [
+    Users,
+    Media,
+    Weapons,
+    ScheduleGroups,
+    Instructors,
+    GalleryPhotos,
+  ],
+  globals: [Address, Contacts, AboutSection, WeaponsSection],
   editor: lexicalEditor(),
   graphQL: {
     disable: true,
