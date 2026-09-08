@@ -72,6 +72,7 @@ export interface Config {
     weapons: Weapon;
     'schedule-groups': ScheduleGroup;
     instructors: Instructor;
+    'gallery-photos': GalleryPhoto;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -84,6 +85,7 @@ export interface Config {
     weapons: WeaponsSelect<false> | WeaponsSelect<true>;
     'schedule-groups': ScheduleGroupsSelect<false> | ScheduleGroupsSelect<true>;
     instructors: InstructorsSelect<false> | InstructorsSelect<true>;
+    'gallery-photos': GalleryPhotosSelect<false> | GalleryPhotosSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -269,6 +271,28 @@ export interface Instructor {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "gallery-photos".
+ */
+export interface GalleryPhoto {
+  id: string;
+  photo: string | Media;
+  /**
+   * Stable identifier, e.g. 'training-1'. Not localized.
+   */
+  slug: string;
+  /**
+   * Optional caption shown with the photo.
+   */
+  caption?: string | null;
+  /**
+   * Controls display order in the gallery.
+   */
+  order?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -310,6 +334,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'instructors';
         value: string | Instructor;
+      } | null)
+    | ({
+        relationTo: 'gallery-photos';
+        value: string | GalleryPhoto;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -458,6 +486,18 @@ export interface InstructorsSelect<T extends boolean = true> {
         url?: T;
         id?: T;
       };
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "gallery-photos_select".
+ */
+export interface GalleryPhotosSelect<T extends boolean = true> {
+  photo?: T;
+  slug?: T;
+  caption?: T;
   order?: T;
   updatedAt?: T;
   createdAt?: T;
