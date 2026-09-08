@@ -4,6 +4,7 @@ import { useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
+import { useContainerInset } from "@/hooks/useContainerInset";
 
 const INSTAGRAM_URL = "#";
 
@@ -17,14 +18,28 @@ const photos = [
 function InstagramIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="none" className={className}>
-      <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" strokeWidth="1.5" />
+      <rect
+        x="3"
+        y="3"
+        width="18"
+        height="18"
+        rx="5"
+        stroke="currentColor"
+        strokeWidth="1.5"
+      />
       <circle cx="12" cy="12" r="4.5" stroke="currentColor" strokeWidth="1.5" />
       <circle cx="17.2" cy="6.8" r="1" fill="currentColor" />
     </svg>
   );
 }
 
-function ArrowIcon({ className, direction }: { className?: string; direction: "left" | "right" }) {
+function ArrowIcon({
+  className,
+  direction,
+}: {
+  className?: string;
+  direction: "left" | "right";
+}) {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -32,7 +47,13 @@ function ArrowIcon({ className, direction }: { className?: string; direction: "l
       className={className}
       style={{ transform: direction === "left" ? "scaleX(-1)" : undefined }}
     >
-      <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      <path
+        d="M5 12h14M13 6l6 6-6 6"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
   );
 }
@@ -40,13 +61,17 @@ function ArrowIcon({ className, direction }: { className?: string; direction: "l
 export default function Gallery() {
   const t = useTranslations("Gallery");
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "start" });
+  const { ref: insetRef, inset } = useContainerInset<HTMLDivElement>();
 
   const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
   const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
 
   return (
     <div>
-      <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-4 mb-6">
+      <div
+        ref={insetRef}
+        className="grid grid-cols-[1fr_auto_1fr] items-center gap-4 mb-6"
+      >
         <a
           href={INSTAGRAM_URL}
           target="_blank"
@@ -79,7 +104,11 @@ export default function Gallery() {
         </div>
       </div>
 
-      <div className="w-[calc(50vw+50%)] overflow-hidden" ref={emblaRef}>
+      <div
+        className="w-screen ml-[calc(50%-50vw)] overflow-hidden"
+        style={{ paddingLeft: inset }}
+        ref={emblaRef}
+      >
         <div className="flex gap-4">
           {photos.map((src) => (
             <div
