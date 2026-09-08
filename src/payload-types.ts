@@ -258,7 +258,7 @@ export interface Instructor {
    * Not localized - proper name.
    */
   name: string;
-  photo?: (string | null) | Media;
+  photo: string | Media;
   description?: string | null;
   /**
    * Weapons this instructor teaches.

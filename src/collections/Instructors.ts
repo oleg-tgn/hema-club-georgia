@@ -26,6 +26,7 @@ export const Instructors: CollectionConfig = {
       name: "photo",
       type: "upload",
       relationTo: "media",
+      required: true,
     },
     {
       name: "description",

@@ -1,6 +1,6 @@
 import type { ComponentType } from "react";
 import type { Locale } from "@/i18n/routing";
-import type { Weapon } from "@/payload-types";
+import type { Instructor, Media, Weapon } from "@/payload-types";
 import { getLocale, getTranslations } from "next-intl/server";
 import config from "@payload-config";
 import { getPayload } from "payload";
@@ -23,13 +23,19 @@ export default async function Instructors() {
   const t = await getTranslations("Instructors");
   const payload = await getPayload({ config });
 
-  const { docs: instructors } = await payload.find({
+  const { docs: allInstructors } = await payload.find({
     collection: "instructors",
     depth: 1,
     limit: 50,
     locale: locale as Locale,
     sort: "order",
   });
+
+  const instructors = allInstructors.filter(
+    (instructor): instructor is Instructor & { photo: Media } =>
+      typeof instructor.photo === "object" &&
+      Boolean(instructor.photo.sizes?.thumbnail?.url || instructor.photo.url),
+  );
 
   if (instructors.length === 0) {
     return null;
@@ -46,13 +52,10 @@ export default async function Instructors() {
       </div>
 
       <CarouselViewport>
-        <div className="flex gap-6">
+        <div className="flex gap-10">
           {instructors.map((instructor) => {
-            const photo =
-              instructor.photo && typeof instructor.photo === "object"
-                ? instructor.photo
-                : null;
-            const photoUrl = photo?.sizes?.thumbnail?.url || photo?.url;
+            const photo = instructor.photo;
+            const photoUrl = photo.sizes?.thumbnail?.url || photo.url;
 
             const weapons = (instructor.weapons ?? []).filter(
               (weapon): weapon is Weapon => typeof weapon === "object",
@@ -65,15 +68,13 @@ export default async function Instructors() {
                 className="flex w-64 flex-none flex-col gap-4 sm:w-72"
               >
                 <div className="aspect-square w-full overflow-hidden rounded-lg bg-paper-200">
-                  {photoUrl && (
-                    <Image
-                      src={photoUrl}
-                      alt={photo?.alt || instructor.name}
-                      width={400}
-                      height={400}
-                      className="h-full w-full object-cover"
-                    />
-                  )}
+                  <Image
+                    src={photoUrl!}
+                    alt={photo.alt || instructor.name}
+                    width={400}
+                    height={400}
+                    className="h-full w-full object-cover"
+                  />
                 </div>
 
                 <div className="flex flex-col gap-2">
