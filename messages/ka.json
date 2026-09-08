@@ -60,7 +60,8 @@
     }
   },
   "Instructors": {
-    "title": "ინსტრუქტორები"
+    "title": "ინსტრუქტორები",
+    "hemaRating": "Hema rating"
   },
   "Gallery": {
     "title": "გალერეა",

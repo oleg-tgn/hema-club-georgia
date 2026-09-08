@@ -33,7 +33,7 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
         <Weapons />
       </section>
 
-      <section id="instructors">
+      <section id="instructors" className="w-full py-16">
         <Instructors />
       </section>
 

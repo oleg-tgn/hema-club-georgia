@@ -5,7 +5,7 @@ export const Instructors: CollectionConfig = {
   defaultSort: "order",
   admin: {
     useAsTitle: "name",
-    defaultColumns: ["name", "order"],
+    defaultColumns: ["name", "isActive", "order"],
   },
   access: {
     read: () => true,
@@ -18,19 +18,27 @@ export const Instructors: CollectionConfig = {
       name: "name",
       type: "text",
       required: true,
-      admin: {
-        description: "Not localized - proper name.",
-      },
+      localized: true,
     },
     {
       name: "photo",
       type: "upload",
       relationTo: "media",
+      required: true,
     },
     {
       name: "description",
       type: "textarea",
       localized: true,
+    },
+    {
+      name: "weapons",
+      type: "relationship",
+      relationTo: "weapons",
+      hasMany: true,
+      admin: {
+        description: "Weapons this instructor teaches.",
+      },
     },
     {
       name: "socialLinks",
@@ -42,6 +50,7 @@ export const Instructors: CollectionConfig = {
           required: true,
           options: [
             { label: "Instagram", value: "instagram" },
+            { label: "Telegram", value: "telegram" },
             { label: "Facebook", value: "facebook" },
             { label: "YouTube", value: "youtube" },
             { label: "TikTok", value: "tiktok" },
@@ -56,9 +65,25 @@ export const Instructors: CollectionConfig = {
       ],
     },
     {
+      name: "hemaRatingUrl",
+      type: "text",
+      admin: {
+        description: "Link to this instructor's HEMA Rating profile.",
+      },
+    },
+    {
       name: "order",
       type: "number",
       defaultValue: 0,
+    },
+    {
+      name: "isActive",
+      type: "checkbox",
+      defaultValue: true,
+      admin: {
+        description:
+          "Uncheck to hide this instructor from the site, e.g. if they no longer teach.",
+      },
     },
   ],
 };

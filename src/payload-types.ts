@@ -254,20 +254,29 @@ export interface ScheduleGroup {
  */
 export interface Instructor {
   id: string;
-  /**
-   * Not localized - proper name.
-   */
   name: string;
-  photo?: (string | null) | Media;
+  photo: string | Media;
   description?: string | null;
+  /**
+   * Weapons this instructor teaches.
+   */
+  weapons?: (string | Weapon)[] | null;
   socialLinks?:
     | {
-        platform: 'instagram' | 'facebook' | 'youtube' | 'tiktok' | 'website';
+        platform: 'instagram' | 'telegram' | 'facebook' | 'youtube' | 'tiktok' | 'website';
         url: string;
         id?: string | null;
       }[]
     | null;
+  /**
+   * Link to this instructor's HEMA Rating profile.
+   */
+  hemaRatingUrl?: string | null;
   order?: number | null;
+  /**
+   * Uncheck to hide this instructor from the site, e.g. if they no longer teach.
+   */
+  isActive?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -481,6 +490,7 @@ export interface InstructorsSelect<T extends boolean = true> {
   name?: T;
   photo?: T;
   description?: T;
+  weapons?: T;
   socialLinks?:
     | T
     | {
@@ -488,7 +498,9 @@ export interface InstructorsSelect<T extends boolean = true> {
         url?: T;
         id?: T;
       };
+  hemaRatingUrl?: T;
   order?: T;
+  isActive?: T;
   updatedAt?: T;
   createdAt?: T;
 }
