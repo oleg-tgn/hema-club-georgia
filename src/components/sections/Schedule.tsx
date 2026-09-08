@@ -92,7 +92,10 @@ function AddressCard({
         rel="noopener noreferrer"
         className="relative flex w-full flex-col rounded-lg border border-black/20 bg-transparent p-2 text-night transition-colors hover:bg-black/10"
       >
-        <ArrowIcon external className="absolute right-2 top-2 text-night" />
+        <ArrowIcon
+          direction="up-right"
+          className="absolute right-2 top-2 text-night"
+        />
         <span className="text-xl font-medium">{address.addressLine}</span>
         <span className="text-base font-normal">{address.description}</span>
       </a>

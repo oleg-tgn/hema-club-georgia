@@ -10,6 +10,7 @@ import {
 } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import type { EmblaOptionsType } from "embla-carousel";
+import ArrowIcon from "../icons/ArrowIcon";
 
 type CarouselContextValue = {
   viewportRef: ReturnType<typeof useEmblaCarousel>[0];
@@ -84,25 +85,6 @@ export function CarouselViewport({ children }: { children: ReactNode }) {
   );
 }
 
-function CarouselArrowIcon({ direction }: { direction: "left" | "right" }) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      className="w-4 h-4"
-      style={{ transform: direction === "left" ? "scaleX(-1)" : undefined }}
-    >
-      <path
-        d="M5 12h14M13 6l6 6-6 6"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
 const carouselButtonClassName =
   "w-10 h-10 rounded-full border border-black/40 flex items-center justify-center disabled:opacity-30 transition-colors hover:bg-night-hover cursor-pointer";
 
@@ -118,7 +100,7 @@ export function CarouselControls({ className }: { className?: string }) {
         className={carouselButtonClassName}
         aria-label="Previous"
       >
-        <CarouselArrowIcon direction="left" />
+        <ArrowIcon direction="left" className="w-6 h-6" />
       </button>
       <button
         type="button"
@@ -127,7 +109,7 @@ export function CarouselControls({ className }: { className?: string }) {
         className={carouselButtonClassName}
         aria-label="Next"
       >
-        <CarouselArrowIcon direction="right" />
+        <ArrowIcon direction="right" className="w-6 h-6" />
       </button>
     </div>
   );

@@ -48,7 +48,7 @@ export default async function CtaTile({
       />
       <span className="relative mt-1 mr-1">
         <ArrowIcon
-          external={external}
+          direction={external ? "up-right" : "right"}
           className={`text-gold-200 transition-transform duration-300 group-hover:text-gold-100 ${external ? "group-hover:translate-x-1 group-hover:-translate-y-1" : "group-hover:translate-x-1"}`}
         />
       </span>
