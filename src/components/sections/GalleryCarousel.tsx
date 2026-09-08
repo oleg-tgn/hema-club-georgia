@@ -1,7 +1,8 @@
 "use client";
 
-import { useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
+import type { EmblaCarouselType } from "embla-carousel";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import Heading from "../ui/Heading";
@@ -59,6 +60,36 @@ function ArrowIcon({
   );
 }
 
+function usePrevNextButtons(emblaApi: EmblaCarouselType | undefined) {
+  const [, forceRender] = useState(0);
+
+  const onPrevButtonClick = useCallback(() => {
+    emblaApi?.scrollPrev();
+  }, [emblaApi]);
+
+  const onNextButtonClick = useCallback(() => {
+    emblaApi?.scrollNext();
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+
+    const onChange = () => forceRender((n) => n + 1);
+    emblaApi.on("reInit", onChange).on("select", onChange);
+
+    return () => {
+      emblaApi.off("reInit", onChange).off("select", onChange);
+    };
+  }, [emblaApi]);
+
+  return {
+    prevBtnDisabled: !emblaApi?.canScrollPrev(),
+    nextBtnDisabled: !emblaApi?.canScrollNext(),
+    onPrevButtonClick,
+    onNextButtonClick,
+  };
+}
+
 export default function GalleryCarousel({
   photos,
 }: {
@@ -69,8 +100,12 @@ export default function GalleryCarousel({
     loop: false,
     align: "start",
   });
-  const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
-  const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
+  const {
+    prevBtnDisabled,
+    nextBtnDisabled,
+    onPrevButtonClick,
+    onNextButtonClick,
+  } = usePrevNextButtons(emblaApi);
 
   return (
     <div>
@@ -92,17 +127,19 @@ export default function GalleryCarousel({
         <div className="justify-self-end flex gap-3">
           <button
             type="button"
-            onClick={scrollPrev}
+            onClick={onPrevButtonClick}
+            disabled={prevBtnDisabled}
             aria-label={t("previous")}
-            className="w-10 h-10 rounded-full border border-current flex items-center justify-center"
+            className="w-10 h-10 rounded-full border border-black/40 flex items-center justify-center disabled:opacity-30 cursor-pointer"
           >
             <ArrowIcon direction="left" className="w-4 h-4" />
           </button>
           <button
             type="button"
-            onClick={scrollNext}
+            onClick={onNextButtonClick}
+            disabled={nextBtnDisabled}
             aria-label={t("next")}
-            className="w-10 h-10 rounded-full border border-current flex items-center justify-center"
+            className="w-10 h-10 rounded-full border border-black/40 flex items-center justify-center disabled:opacity-30 cursor-pointer"
           >
             <ArrowIcon direction="right" className="w-4 h-4" />
           </button>
