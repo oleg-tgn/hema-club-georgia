@@ -160,8 +160,8 @@ export default function Header() {
   }, [isHome, handleNavigate]);
 
   return (
-    <header className="sticky top-0 z-50 container mx-auto bg-paper-100 px-10">
-      <div className="py-4 flex items-center justify-between">
+    <header className="sticky top-0 z-50 bg-paper-100">
+      <div className="py-4 mx-auto flex items-center justify-between container px-10">
         <MenuLink href="/" section="" isHome={isHome} className="group">
           <Logo className="h-5 w-auto" />
         </MenuLink>

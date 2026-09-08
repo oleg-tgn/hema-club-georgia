@@ -30,3 +30,40 @@ body {
   font-family: var(--font-sans);
   overflow-x: hidden;
 }
+
+/*
+ * Leading/trailing space for full-bleed carousels, matching the offset
+ * of `main`'s content edge (`container mx-auto px-10`) from the viewport
+ * edge, so the first slide lines up with the page content at rest.
+ * Mirrors Tailwind's default `.container` breakpoints/max-widths.
+ */
+.full-bleed-inset {
+  --inset: 2.5rem;
+  padding-left: var(--inset);
+  padding-right: var(--inset);
+}
+@media (min-width: 40rem) {
+  .full-bleed-inset {
+    --inset: calc((100vw - 40rem) / 2 + 2.5rem);
+  }
+}
+@media (min-width: 48rem) {
+  .full-bleed-inset {
+    --inset: calc((100vw - 48rem) / 2 + 2.5rem);
+  }
+}
+@media (min-width: 64rem) {
+  .full-bleed-inset {
+    --inset: calc((100vw - 64rem) / 2 + 2.5rem);
+  }
+}
+@media (min-width: 80rem) {
+  .full-bleed-inset {
+    --inset: calc((100vw - 80rem) / 2 + 2.5rem);
+  }
+}
+@media (min-width: 96rem) {
+  .full-bleed-inset {
+    --inset: calc((100vw - 96rem) / 2 + 2.5rem);
+  }
+}

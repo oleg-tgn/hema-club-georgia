@@ -4,7 +4,6 @@ import { useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { useContainerInset } from "@/hooks/useContainerInset";
 import Heading from "../ui/Heading";
 
 const INSTAGRAM_URL = "#";
@@ -70,17 +69,12 @@ export default function GalleryCarousel({
     loop: false,
     align: "start",
   });
-  const { ref: insetRef, inset } = useContainerInset<HTMLDivElement>();
-
   const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
   const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
 
   return (
     <div>
-      <div
-        ref={insetRef}
-        className="grid grid-cols-[1fr_auto_1fr] items-center gap-4 mb-4"
-      >
+      <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-4 mb-4">
         <a
           href={INSTAGRAM_URL}
           target="_blank"
@@ -116,8 +110,7 @@ export default function GalleryCarousel({
       </div>
 
       <div
-        className="w-screen ml-[calc(50%-50vw)] overflow-hidden"
-        style={{ paddingLeft: inset, paddingRight: inset }}
+        className="full-bleed-inset w-screen ml-[calc(50%-50vw)] overflow-hidden"
         ref={emblaRef}
       >
         <div className="flex gap-3">
