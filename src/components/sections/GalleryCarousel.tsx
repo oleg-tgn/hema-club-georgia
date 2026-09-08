@@ -1,11 +1,15 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
-import useEmblaCarousel from "embla-carousel-react";
-import type { EmblaCarouselType } from "embla-carousel";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import Heading from "../ui/Heading";
+import {
+  Carousel,
+  CarouselViewport,
+  CarouselTrack,
+  CarouselPrevButton,
+  CarouselNextButton,
+} from "../ui/Carousel";
 
 const INSTAGRAM_URL = "#";
 
@@ -35,60 +39,8 @@ function InstagramIcon({ className }: { className?: string }) {
   );
 }
 
-function ArrowIcon({
-  className,
-  direction,
-}: {
-  className?: string;
-  direction: "left" | "right";
-}) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      className={className}
-      style={{ transform: direction === "left" ? "scaleX(-1)" : undefined }}
-    >
-      <path
-        d="M5 12h14M13 6l6 6-6 6"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function usePrevNextButtons(emblaApi: EmblaCarouselType | undefined) {
-  const [, forceRender] = useState(0);
-
-  const onPrevButtonClick = useCallback(() => {
-    emblaApi?.scrollPrev();
-  }, [emblaApi]);
-
-  const onNextButtonClick = useCallback(() => {
-    emblaApi?.scrollNext();
-  }, [emblaApi]);
-
-  useEffect(() => {
-    if (!emblaApi) return;
-
-    const onChange = () => forceRender((n) => n + 1);
-    emblaApi.on("reInit", onChange).on("select", onChange);
-
-    return () => {
-      emblaApi.off("reInit", onChange).off("select", onChange);
-    };
-  }, [emblaApi]);
-
-  return {
-    prevBtnDisabled: !emblaApi?.canScrollPrev(),
-    nextBtnDisabled: !emblaApi?.canScrollNext(),
-    onPrevButtonClick,
-    onNextButtonClick,
-  };
-}
+const buttonClassName =
+  "w-10 h-10 rounded-full border border-black/40 flex items-center justify-center disabled:opacity-30 cursor-pointer";
 
 export default function GalleryCarousel({
   photos,
@@ -96,19 +48,9 @@ export default function GalleryCarousel({
   photos: GalleryPhoto[];
 }) {
   const t = useTranslations("Gallery");
-  const [emblaRef, emblaApi] = useEmblaCarousel({
-    loop: false,
-    align: "start",
-  });
-  const {
-    prevBtnDisabled,
-    nextBtnDisabled,
-    onPrevButtonClick,
-    onNextButtonClick,
-  } = usePrevNextButtons(emblaApi);
 
   return (
-    <div>
+    <Carousel options={{ loop: false, align: "start" }}>
       <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-4 mb-4">
         <a
           href={INSTAGRAM_URL}
@@ -125,32 +67,19 @@ export default function GalleryCarousel({
         </Heading>
 
         <div className="justify-self-end flex gap-3">
-          <button
-            type="button"
-            onClick={onPrevButtonClick}
-            disabled={prevBtnDisabled}
+          <CarouselPrevButton
             aria-label={t("previous")}
-            className="w-10 h-10 rounded-full border border-black/40 flex items-center justify-center disabled:opacity-30 cursor-pointer"
-          >
-            <ArrowIcon direction="left" className="w-4 h-4" />
-          </button>
-          <button
-            type="button"
-            onClick={onNextButtonClick}
-            disabled={nextBtnDisabled}
+            className={buttonClassName}
+          />
+          <CarouselNextButton
             aria-label={t("next")}
-            className="w-10 h-10 rounded-full border border-black/40 flex items-center justify-center disabled:opacity-30 cursor-pointer"
-          >
-            <ArrowIcon direction="right" className="w-4 h-4" />
-          </button>
+            className={buttonClassName}
+          />
         </div>
       </div>
 
-      <div
-        className="full-bleed-inset w-screen ml-[calc(50%-50vw)] overflow-hidden"
-        ref={emblaRef}
-      >
-        <div className="flex gap-3">
+      <CarouselViewport className="full-bleed-inset w-screen ml-[calc(50%-50vw)] overflow-hidden">
+        <CarouselTrack className="flex gap-3">
           {photos.map((photo) => (
             <div
               key={photo.id}
@@ -165,8 +94,8 @@ export default function GalleryCarousel({
               />
             </div>
           ))}
-        </div>
-      </div>
-    </div>
+        </CarouselTrack>
+      </CarouselViewport>
+    </Carousel>
   );
 }
