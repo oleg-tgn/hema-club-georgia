@@ -68,15 +68,15 @@ export default async function Instructors() {
             return (
               <div
                 key={instructor.id}
-                className="flex w-64 flex-none flex-col gap-4 sm:w-72"
+                className="flex w-80 flex-none flex-col gap-4"
               >
-                <div className="aspect-square w-full overflow-hidden rounded-lg bg-paper-200">
+                <div className="relative aspect-square w-full overflow-hidden rounded-lg bg-paper-200">
                   <Image
                     src={photoUrl!}
                     alt={photo.alt || instructor.name}
-                    width={400}
-                    height={400}
-                    className="h-full w-full object-cover"
+                    fill
+                    sizes="(min-width: 640px) 288px, 320px"
+                    className="object-cover"
                   />
                 </div>
 
