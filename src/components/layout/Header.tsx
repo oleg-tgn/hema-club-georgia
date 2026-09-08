@@ -179,7 +179,7 @@ export default function Header() {
             section="join"
             isHome={isHome}
             onNavigate={handleNavigate}
-            className="flex h-8.5 items-center justify-center rounded-3xl border border-asphalt px-4 text-base leading-6 font-semibold text-night transition-colors hover:bg-night/5"
+            className="flex h-8.5 items-center justify-center rounded-3xl border border-asphalt px-4 text-base leading-6 font-semibold text-night transition-colors hover:bg-night-hover"
           >
             {t("join")}
           </MenuLink>

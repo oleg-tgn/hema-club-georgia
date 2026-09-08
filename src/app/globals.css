@@ -10,6 +10,7 @@
   --color-paper-200: #dbd6ca;
   --color-asphalt: #777571;
   --color-night: #141413;
+  --color-night-hover: color-mix(in srgb, var(--color-night) 5%, transparent);
   --color-gold-100: #c4a043;
   --color-gold-200: #9d7d2b;
   --color-off-white: #e4e4e4;

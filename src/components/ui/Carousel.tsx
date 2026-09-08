@@ -104,7 +104,7 @@ function CarouselArrowIcon({ direction }: { direction: "left" | "right" }) {
 }
 
 const carouselButtonClassName =
-  "w-10 h-10 rounded-full border border-black/40 flex items-center justify-center disabled:opacity-30 hover:bg-night/5 cursor-pointer";
+  "w-10 h-10 rounded-full border border-black/40 flex items-center justify-center disabled:opacity-30 transition-colors hover:bg-night-hover cursor-pointer";
 
 export function CarouselControls({ className }: { className?: string }) {
   const { scrollPrev, scrollNext, canScrollPrev, canScrollNext } =

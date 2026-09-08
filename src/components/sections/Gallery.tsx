@@ -39,9 +39,9 @@ export default async function Gallery() {
           href={INSTAGRAM_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="group justify-self-start flex items-center gap-4 cursor-pointer text-night transition-colors duration-200 hover:text-night"
+          className="group justify-self-start flex items-center gap-4 cursor-pointer text-night"
         >
-          <span className="flex w-10 h-10 border border-black/20 rounded-full items-center justify-center transition-colors duration-200 group-hover:bg-night/5">
+          <span className="flex w-10 h-10 border border-black/20 rounded-full items-center justify-center transition-colors group-hover:bg-night-hover">
             <InstagramIcon className="w-6 h-6" />
           </span>
           <span className="text-xl font-medium">{t("instagramCta")}</span>
