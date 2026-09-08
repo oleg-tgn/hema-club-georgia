@@ -254,9 +254,6 @@ export interface ScheduleGroup {
  */
 export interface Instructor {
   id: string;
-  /**
-   * Not localized - proper name.
-   */
   name: string;
   photo: string | Media;
   description?: string | null;

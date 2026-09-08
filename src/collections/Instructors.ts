@@ -18,9 +18,7 @@ export const Instructors: CollectionConfig = {
       name: "name",
       type: "text",
       required: true,
-      admin: {
-        description: "Not localized - proper name.",
-      },
+      localized: true,
     },
     {
       name: "photo",
