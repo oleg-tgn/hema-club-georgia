@@ -68,9 +68,9 @@ export default async function Instructors() {
             return (
               <div
                 key={instructor.id}
-                className="flex w-80 flex-none flex-col gap-4"
+                className="flex w-80 flex-none flex-col gap-4 text-night"
               >
-                <div className="relative aspect-square w-full overflow-hidden rounded-lg bg-paper-200">
+                <div className="relative aspect-square w-full overflow-hidden rounded-lg">
                   <Image
                     src={photoUrl!}
                     alt={photo.alt || instructor.name}
@@ -80,27 +80,32 @@ export default async function Instructors() {
                   />
                 </div>
 
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-3">
                   {weapons.length > 0 && (
-                    <div className="flex flex-wrap gap-x-2 text-sm text-asphalt">
+                    <div className="flex flex-wrap gap-x-6 text-sm">
                       {weapons.map((weapon) => (
-                        <span key={weapon.id}>{weapon.name}</span>
+                        <span
+                          key={weapon.id}
+                          className="text-base font-semibold"
+                        >
+                          {weapon.name}
+                        </span>
                       ))}
                     </div>
                   )}
 
-                  <Heading size="sm" as="h3">
+                  <div className="text-4xl font-normal leading-8 ">
                     {instructor.name}
-                  </Heading>
+                  </div>
 
                   {instructor.description && (
-                    <p className="line-clamp-3 text-sm text-asphalt">
+                    <p className="line-clamp-3 text-sm">
                       {instructor.description}
                     </p>
                   )}
                 </div>
 
-                <div className="mt-auto flex items-center justify-between gap-4 pt-2">
+                <div className="mt-auto flex items-center justify-between gap-4 pt-3">
                   <div className="flex gap-2">
                     {socialLinks.map((link) => {
                       const Icon = socialIcons[link.platform];
