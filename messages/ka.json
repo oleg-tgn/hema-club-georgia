@@ -63,7 +63,10 @@
     "title": "ინსტრუქტორები"
   },
   "Gallery": {
-    "title": "ფოტო"
+    "title": "ფოტო",
+    "instagramCta": "მეტი ფოტო Instagram-ში",
+    "previous": "წინა ფოტო",
+    "next": "შემდეგი ფოტო"
   },
   "Contact": {
     "title": "დაგვიკავშირდით",

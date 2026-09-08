@@ -1,4 +1,4 @@
-import { setRequestLocale, getTranslations } from "next-intl/server";
+import { setRequestLocale } from "next-intl/server";
 import Gallery from "@/components/sections/Gallery";
 import Hero from "@/components/sections/Hero";
 import Instructors from "@/components/sections/Instructors";
@@ -16,8 +16,6 @@ export const revalidate = 60;
 export default async function HomePage({ params }: PageProps<"/[locale]">) {
   const { locale } = await params;
   setRequestLocale(locale);
-
-  const tGallery = await getTranslations("Gallery");
 
   return (
     <div className="flex flex-col gap-20">
@@ -40,10 +38,7 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
       </section>
 
       <section id="gallery" className="w-full py-16">
-        <div className="text-center">
-          <h2 className="text-3xl font-bold mb-6">{tGallery("title")}</h2>
-          <Gallery />
-        </div>
+        <Gallery />
       </section>
 
       <section id="join" className="w-full py-16">
