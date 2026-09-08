@@ -60,7 +60,10 @@ function ArrowIcon({
 
 export default function Gallery() {
   const t = useTranslations("Gallery");
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "start" });
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: false,
+    align: "start",
+  });
   const { ref: insetRef, inset } = useContainerInset<HTMLDivElement>();
 
   const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
