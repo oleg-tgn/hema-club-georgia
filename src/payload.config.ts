@@ -13,11 +13,11 @@ import { Weapons } from "./collections/Weapons";
 import { ScheduleGroups } from "./collections/ScheduleGroups";
 import { Instructors } from "./collections/Instructors";
 import { GalleryPhotos } from "./collections/GalleryPhotos";
+import { SocialLinks } from "./collections/SocialLinks";
 import { AboutSection } from "./globals/AboutSection";
 import { WeaponsSection } from "./globals/WeaponsSection";
 import { JoinSection } from "./globals/JoinSection";
 import { Address } from "./globals/Address";
-import { Contacts } from "./globals/Contacts";
 import { seedUsers } from "./seed";
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -39,8 +39,9 @@ export default buildConfig({
     ScheduleGroups,
     Instructors,
     GalleryPhotos,
+    SocialLinks,
   ],
-  globals: [Address, Contacts, AboutSection, WeaponsSection, JoinSection],
+  globals: [Address, AboutSection, WeaponsSection, JoinSection],
   editor: lexicalEditor(),
   graphQL: {
     disable: true,

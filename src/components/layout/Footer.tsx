@@ -4,13 +4,15 @@ import { getPayload } from "payload";
 import type { Locale } from "@/i18n/routing";
 
 import LogoFooter from "../icons/LogoFooter";
+import SocialLinks from "../ui/SocialLinks";
 
 export default async function Footer() {
   const locale = await getLocale();
   const payload = await getPayload({ config });
 
-  const contacts = await payload.findGlobal({
-    slug: "about",
+  const { docs: socialLinks } = await payload.find({
+    collection: "social-links",
+    sort: "order",
     locale: locale as Locale,
   });
 
@@ -20,13 +22,13 @@ export default async function Footer() {
   });
 
   return (
-    <footer className="container mx-auto px-10 mt-20">
+    <footer className="container mx-auto px-10 py-5 mt-20">
       <div className="flex flex-row justify-between">
         <LogoFooter className="w-48" />
         <span className="text-base leading-6 font-semibold text-asphalt">
           {address.addressLine}
         </span>
-        <div className="flex flex-row"></div>
+        <SocialLinks links={socialLinks} className="gap-6" />
       </div>
     </footer>
   );

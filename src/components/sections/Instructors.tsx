@@ -1,4 +1,3 @@
-import type { ComponentType } from "react";
 import type { Locale } from "@/i18n/routing";
 import type { Instructor, Media, Weapon } from "@/payload-types";
 import { getLocale, getTranslations } from "next-intl/server";
@@ -7,17 +6,8 @@ import { getPayload } from "payload";
 import Image from "next/image";
 import Heading from "../ui/Heading";
 import { Carousel, CarouselViewport, CarouselControls } from "../ui/Carousel";
-import SocialLink from "../ui/SocialLink";
-import InstagramIcon from "../icons/InstagramIcon";
-import TelegramIcon from "../icons/TelegramIcon";
-import FacebookIcon from "../icons/FacebookIcon";
+import SocialLinks from "../ui/SocialLinks";
 import ExternalIcon from "../icons/externalIcon";
-
-const socialIcons: Record<string, ComponentType<{ className?: string }>> = {
-  instagram: InstagramIcon,
-  telegram: TelegramIcon,
-  facebook: FacebookIcon,
-};
 
 export default async function Instructors() {
   const locale = await getLocale();
@@ -64,7 +54,6 @@ export default async function Instructors() {
             const weapons = (instructor.weapons ?? []).filter(
               (weapon): weapon is Weapon => typeof weapon === "object",
             );
-            const socialLinks = instructor.socialLinks ?? [];
 
             return (
               <div
@@ -107,21 +96,7 @@ export default async function Instructors() {
                 </div>
 
                 <div className="mt-auto flex items-center justify-between gap-4 pt-3">
-                  <div className="flex gap-2">
-                    {socialLinks.map((link) => {
-                      const Icon = socialIcons[link.platform];
-                      if (!Icon) return null;
-
-                      return (
-                        <SocialLink
-                          key={link.id ?? link.url}
-                          href={link.url}
-                          icon={Icon}
-                          label={link.platform}
-                        />
-                      );
-                    })}
-                  </div>
+                  <SocialLinks links={instructor.socialLinks ?? []} />
 
                   {instructor.hemaRatingUrl && (
                     <a
