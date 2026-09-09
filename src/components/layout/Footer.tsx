@@ -1,14 +1,34 @@
-import { getTranslations } from "next-intl/server";
+import config from "@payload-config";
+import { getLocale } from "next-intl/server";
+import { getPayload } from "payload";
+import type { Locale } from "@/i18n/routing";
+
+import LogoFooter from "../icons/LogoFooter";
+import SocialLinks from "../ui/SocialLinks";
 
 export default async function Footer() {
-  const t = await getTranslations("Contact");
+  const locale = await getLocale();
+  const payload = await getPayload({ config });
+
+  const { docs: socialLinks } = await payload.find({
+    collection: "social-links",
+    sort: "order",
+    locale: locale as Locale,
+  });
+
+  const address = await payload.findGlobal({
+    slug: "address",
+    locale: locale as Locale,
+  });
 
   return (
-    <footer className="container mx-auto px-10">
-      <div className="py-4 flex items-center justify-center text-center">
+    <footer className="container mx-auto px-10 py-5 mt-20">
+      <div className="flex flex-row justify-between">
+        <LogoFooter className="w-48" />
         <span className="text-base leading-6 font-semibold text-asphalt">
-          {t("address")}
+          {address.addressLine}
         </span>
+        <SocialLinks links={socialLinks} className="gap-6" />
       </div>
     </footer>
   );

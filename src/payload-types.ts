@@ -73,6 +73,7 @@ export interface Config {
     'schedule-groups': ScheduleGroup;
     instructors: Instructor;
     'gallery-photos': GalleryPhoto;
+    'social-links': SocialLink;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -86,6 +87,7 @@ export interface Config {
     'schedule-groups': ScheduleGroupsSelect<false> | ScheduleGroupsSelect<true>;
     instructors: InstructorsSelect<false> | InstructorsSelect<true>;
     'gallery-photos': GalleryPhotosSelect<false> | GalleryPhotosSelect<true>;
+    'social-links': SocialLinksSelect<false> | SocialLinksSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -97,15 +99,15 @@ export interface Config {
   fallbackLocale: ('false' | 'none' | 'null') | false | null | ('en' | 'ka' | 'ru') | ('en' | 'ka' | 'ru')[];
   globals: {
     address: Address;
-    contacts: Contact;
     about: About;
     'weapons-section': WeaponsSection;
+    join: Join;
   };
   globalsSelect: {
     address: AddressSelect<false> | AddressSelect<true>;
-    contacts: ContactsSelect<false> | ContactsSelect<true>;
     about: AboutSelect<false> | AboutSelect<true>;
     'weapons-section': WeaponsSectionSelect<false> | WeaponsSectionSelect<true>;
+    join: JoinSelect<false> | JoinSelect<true>;
   };
   locale: 'en' | 'ka' | 'ru';
   widgets: {
@@ -304,6 +306,18 @@ export interface GalleryPhoto {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "social-links".
+ */
+export interface SocialLink {
+  id: string;
+  platform: 'instagram' | 'telegram' | 'facebook' | 'youtube' | 'tiktok' | 'website';
+  url: string;
+  order?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -349,6 +363,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'gallery-photos';
         value: string | GalleryPhoto;
+      } | null)
+    | ({
+        relationTo: 'social-links';
+        value: string | SocialLink;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -518,6 +536,17 @@ export interface GalleryPhotosSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "social-links_select".
+ */
+export interface SocialLinksSelect<T extends boolean = true> {
+  platform?: T;
+  url?: T;
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv_select".
  */
 export interface PayloadKvSelect<T extends boolean = true> {
@@ -570,19 +599,6 @@ export interface Address {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "contacts".
- */
-export interface Contact {
-  id: string;
-  instagram: string;
-  instagramDirect?: string | null;
-  facebook?: string | null;
-  email?: string | null;
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "about".
  */
 export interface About {
@@ -621,25 +637,52 @@ export interface WeaponsSection {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "join".
+ */
+export interface Join {
+  id: string;
+  /**
+   * Section title
+   */
+  title: string;
+  description: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  /**
+   * For example: 180 GEL/Month
+   */
+  topLeftText?: string | null;
+  /**
+   * For example: Classes in RU/EN/GE
+   */
+  topRightText?: string | null;
+  /**
+   * For example: We provide training gear and steel weapons
+   */
+  bottomText?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "address_select".
  */
 export interface AddressSelect<T extends boolean = true> {
   addressLine?: T;
   description?: T;
   googleMap?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "contacts_select".
- */
-export interface ContactsSelect<T extends boolean = true> {
-  instagram?: T;
-  instagramDirect?: T;
-  facebook?: T;
-  email?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -674,6 +717,20 @@ export interface WeaponsSectionSelect<T extends boolean = true> {
         highlight?: T;
         id?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "join_select".
+ */
+export interface JoinSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  topLeftText?: T;
+  topRightText?: T;
+  bottomText?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

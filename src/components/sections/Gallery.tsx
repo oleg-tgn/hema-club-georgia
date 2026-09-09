@@ -26,9 +26,13 @@ export default async function Gallery() {
       typeof doc.photo === "object" && Boolean(doc.photo.url),
   );
 
-  const contacts = await payload.findGlobal({
-    slug: "contacts",
+  const { docs: socialLinks } = await payload.find({
+    collection: "social-links",
+    where: { platform: { equals: "instagram" } },
+    limit: 1,
   });
+
+  const instagramUrl = socialLinks[0]?.url;
 
   if (photos.length === 0) {
     return null;
@@ -37,17 +41,21 @@ export default async function Gallery() {
   return (
     <Carousel options={{ loop: false, align: "start" }}>
       <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-4 mb-4">
-        <a
-          href={contacts.instagram}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group justify-self-start flex items-center gap-4 cursor-pointer text-night"
-        >
-          <span className="flex w-10 h-10 border border-black/20 rounded-full items-center justify-center transition-colors group-hover:bg-night-hover">
-            <InstagramIcon className="w-6 h-6" />
-          </span>
-          <span className="text-xl font-medium">{t("instagramCta")}</span>
-        </a>
+        {instagramUrl ? (
+          <a
+            href={instagramUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group justify-self-start flex items-center gap-4 cursor-pointer text-night"
+          >
+            <span className="flex w-10 h-10 border border-black/20 rounded-full items-center justify-center transition-colors group-hover:bg-night-hover">
+              <InstagramIcon className="w-6 h-6" />
+            </span>
+            <span className="text-xl font-medium">{t("instagramCta")}</span>
+          </a>
+        ) : (
+          <span />
+        )}
 
         <Heading size="lg" as="h2" className="justify-self-center">
           {t("title")}

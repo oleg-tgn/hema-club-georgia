@@ -2,13 +2,10 @@ import type { ElementType, ReactNode } from "react";
 
 type HeadingSize = "lg" | "md" | "sm";
 
-const baseStyles =
-  "font-serif font-normal leading-none tracking-tight text-night";
-
 const sizeStyles: Record<HeadingSize, string> = {
-  lg: "text-7xl",
-  md: "text-6xl",
-  sm: "text-3xl",
+  lg: "text-7xl leading-16",
+  md: "text-6xl leading-none",
+  sm: "text-3xl leading-none",
 };
 
 type HeadingProps = {
@@ -25,7 +22,9 @@ export default function Heading({
   children,
 }: HeadingProps) {
   return (
-    <Tag className={`${baseStyles} ${sizeStyles[size]} ${className}`}>
+    <Tag
+      className={`font-serif font-normal tracking-[-0.03em] text-night ${sizeStyles[size]} ${className}`}
+    >
       {children}
     </Tag>
   );
