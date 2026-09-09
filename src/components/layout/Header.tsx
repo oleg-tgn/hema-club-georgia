@@ -79,7 +79,7 @@ function Nav({
   const t = useTranslations("Nav");
 
   return (
-    <nav className={className}>
+    <nav className={`items-center gap-6 xl:gap-8 ${className}`}>
       {menuLinks.map(({ href, labelKey, section }) => {
         const isActive = section
           ? currentSection === section
@@ -92,7 +92,7 @@ function Nav({
             section={section}
             isHome={isHome}
             onNavigate={onNavigate}
-            className={`group relative text-base leading-6 font-semibold text-asphalt hover:text-night ${
+            className={`group relative text-center text-xl xl:text-base leading-6 font-semibold text-black/40 hover:text-black w-full xl:w-auto ${
               isActive ? "text-night" : ""
             }`}
           >
@@ -128,16 +128,16 @@ function MobileNav({
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
       <Dialog.Trigger
-        className="group relative flex h-8 w-8 items-center justify-center text-night xl:hidden"
+        className="group relative flex h-9 w-16.5 items-center justify-center rounded-[20px] border border-black/40 px-4 text-night transition-colors hover:bg-night-hover xl:hidden "
         aria-label={open ? t("closeMenu") : t("openMenu")}
       >
-        <BurgerIcon className="group-data-[popup-open]:hidden" />
-        <CloseIcon className="hidden group-data-[popup-open]:block" />
+        <BurgerIcon className="h-2.5 group-data-popup-open:hidden" />
+        <CloseIcon className="h-3.75 hidden group-data-popup-open:block" />
       </Dialog.Trigger>
 
       <Dialog.Portal>
-        <Dialog.Backdrop className="fixed inset-x-0 top-[var(--header-height)] bottom-0 z-40 bg-night/40 transition-opacity duration-200 data-[ending-style]:opacity-0 data-[starting-style]:opacity-0" />
-        <Dialog.Popup className="fixed inset-x-0 top-[var(--header-height)] z-40 flex flex-col gap-6 border-t border-black/10 bg-paper-100 px-10 py-6 shadow-lg transition-[transform,opacity] duration-200 ease-out data-[ending-style]:-translate-y-2 data-[ending-style]:opacity-0 data-[starting-style]:-translate-y-2 data-[starting-style]:opacity-0">
+        <Dialog.Backdrop className="fixed inset-x-0 top-(--header-height) bottom-0 z-40 bg-black/40 backdrop-blur-md transition-opacity duration-200 data-ending-style:opacity-0 data-starting-style:opacity-0" />
+        <Dialog.Popup className="fixed inset-x-0 top-(--header-height) z-40 flex flex-col gap-4 bg-paper-100 px-2 py-7.5 rounded-b-[20px] transition-[transform,opacity] duration-200 ease-out data-ending-style:-translate-y-2 data-ending-style:opacity-0 data-starting-style:-translate-y-2 data-starting-style:opacity-0">
           <div onClick={() => setOpen(false)}>
             <Nav
               pathname={pathname}
@@ -148,21 +148,8 @@ function MobileNav({
             />
           </div>
 
-          <div className="flex items-center justify-between">
+          <div className="flex justify-center mt-7">
             <LocaleSwitcher />
-
-            <MenuLink
-              href="#join"
-              section="join"
-              isHome={isHome}
-              onNavigate={(section) => {
-                onNavigate(section);
-                setOpen(false);
-              }}
-              className="flex h-8.5 items-center justify-center rounded-3xl border border-asphalt px-4 text-base leading-6 font-semibold text-night transition-colors hover:bg-night-hover"
-            >
-              {t("join")}
-            </MenuLink>
           </div>
         </Dialog.Popup>
       </Dialog.Portal>
@@ -225,7 +212,7 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 bg-paper-100">
-      <div className="py-4 mx-auto flex items-center justify-between container px-10">
+      <div className="mx-auto flex h-(--header-height) items-center justify-between container px-2 sm:px-10 md:">
         <MenuLink href="/" section="" isHome={isHome} className="group">
           <div className="flex sm:hidden">
             <Logo className="h-7 w-auto" variant="mobile" />
@@ -239,22 +226,22 @@ export default function Header() {
           currentSection={currentSection}
           isHome={isHome}
           onNavigate={handleNavigate}
-          className="hidden items-center gap-8 xl:flex"
+          className="hidden xl:flex"
         />
-        <div className="flex items-center gap-4">
-          <div className="hidden items-center gap-4 xl:flex">
+        <div className="flex items-center gap-2 sm:gap-4">
+          <div className="hidden xl:flex">
             <LocaleSwitcher />
-
-            <MenuLink
-              href="#join"
-              section="join"
-              isHome={isHome}
-              onNavigate={handleNavigate}
-              className="flex h-8.5 items-center justify-center rounded-3xl border border-asphalt px-4 text-base leading-6 font-semibold text-night transition-colors hover:bg-night-hover"
-            >
-              {t("join")}
-            </MenuLink>
           </div>
+
+          <MenuLink
+            href="#join"
+            section="join"
+            isHome={isHome}
+            onNavigate={handleNavigate}
+            className="flex h-9 items-center justify-center rounded-[20px] border border-black/40 px-4 text-base leading-6 font-semibold text-night transition-colors hover:bg-night-hover"
+          >
+            {t("join")}
+          </MenuLink>
 
           <MobileNav
             pathname={pathname}

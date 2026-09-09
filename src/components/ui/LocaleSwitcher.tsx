@@ -19,7 +19,7 @@ export default function LocaleSwitcher() {
   return (
     <Menu.Root>
       <Menu.Trigger
-        className="flex items-center gap-1 text-sm font-semibold text-black/40 outline-none hover:text-black"
+        className="flex items-center gap-1 text-base font-semibold text-black/40 outline-none hover:text-black"
         aria-label="Change language"
       >
         {labels[locale]}
@@ -32,13 +32,13 @@ export default function LocaleSwitcher() {
       </Menu.Trigger>
 
       <Menu.Portal>
-        <Menu.Positioner align="end" sideOffset={8} className="z-60">
+        <Menu.Positioner align="center" sideOffset={8} className="z-60">
           <Menu.Popup className="rounded-md border border-black/40 bg-paper-100 py-1 px-2 shadow-lg">
             {routing.locales.map((loc) => (
               <Menu.Item
                 key={loc}
                 onClick={() => router.replace(pathname, { locale: loc })}
-                className={`cursor-pointer px-3 py-1.5 text-sm font-semibold outline-none transition-colors ${
+                className={`cursor-pointer px-3 py-1.5 text-base font-semibold outline-none transition-colors ${
                   loc === locale
                     ? "text-black"
                     : "text-black/40 hover:text-black"
