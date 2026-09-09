@@ -14,7 +14,7 @@ const menuLinks = [
   { href: "/#weapons", labelKey: "weapons", section: "weapons" },
   { href: "/#instructors", labelKey: "instructors", section: "instructors" },
   { href: "/#gallery", labelKey: "gallery", section: "gallery" },
-  { href: "/tournament", labelKey: "tournaments", section: null },
+  { href: "/tournaments", labelKey: "tournaments", section: null },
 ] as const;
 
 const sectionIds = menuLinks
@@ -163,7 +163,12 @@ export default function Header() {
     <header className="sticky top-0 z-50 bg-paper-100">
       <div className="py-4 mx-auto flex items-center justify-between container px-10">
         <MenuLink href="/" section="" isHome={isHome} className="group">
-          <Logo className="h-5 w-auto" />
+          <div className="flex sm:hidden">
+            <Logo className="h-7 w-auto" variant="mobile" />
+          </div>
+          <div className="hidden sm:flex">
+            <Logo className="h-5 w-auto" variant="header" />
+          </div>
         </MenuLink>
         <Nav
           pathname={pathname}

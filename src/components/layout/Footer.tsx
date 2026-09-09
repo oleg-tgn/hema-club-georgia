@@ -3,7 +3,7 @@ import { getLocale } from "next-intl/server";
 import { getPayload } from "payload";
 import type { Locale } from "@/i18n/routing";
 
-import LogoFooter from "../icons/LogoFooter";
+import Logo from "../icons/Logo";
 import SocialLinks from "../ui/SocialLinks";
 
 export default async function Footer() {
@@ -24,7 +24,7 @@ export default async function Footer() {
   return (
     <footer className="container mx-auto px-10 py-5 mt-20">
       <div className="flex flex-row justify-between">
-        <LogoFooter className="w-48" />
+        <Logo className="w-48" variant="footer" />
         <span className="text-base leading-6 font-semibold text-asphalt">
           {address.addressLine}
         </span>

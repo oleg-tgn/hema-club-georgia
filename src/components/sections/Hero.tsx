@@ -1,6 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import CtaTile from "../ui/CtaTile";
-import HeroLogo from "../icons/HeroLogo";
+import Logo from "../icons/Logo";
 import WeaponsPanel from "./WeaponsPanel";
 
 export default async function Hero() {
@@ -25,7 +25,7 @@ export default async function Hero() {
       />
 
       <div className="relative h-48 w-auto self-start">
-        <HeroLogo className="h-full w-auto" />
+        <Logo className="h-full w-auto" variant="hero" />
       </div>
 
       <div className="relative flex w-full items-end justify-between gap-10">
