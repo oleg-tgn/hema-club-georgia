@@ -7,6 +7,7 @@ import { getPayload } from "payload";
 import Image from "next/image";
 import Heading from "../ui/Heading";
 import { Carousel, CarouselViewport, CarouselControls } from "../ui/Carousel";
+import SocialLink from "../ui/SocialLink";
 import InstagramIcon from "../icons/InstagramIcon";
 import TelegramIcon from "../icons/TelegramIcon";
 import FacebookIcon from "../icons/FacebookIcon";
@@ -112,16 +113,12 @@ export default async function Instructors() {
                       if (!Icon) return null;
 
                       return (
-                        <a
+                        <SocialLink
                           key={link.id ?? link.url}
                           href={link.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label={link.platform}
-                          className="flex items-center justify-center text-night transition-colors hover:text-gold-200"
-                        >
-                          <Icon className="h-8 w-8" />
-                        </a>
+                          icon={Icon}
+                          label={link.platform}
+                        />
                       );
                     })}
                   </div>
