@@ -100,12 +100,14 @@ export interface Config {
     contacts: Contact;
     about: About;
     'weapons-section': WeaponsSection;
+    join: Join;
   };
   globalsSelect: {
     address: AddressSelect<false> | AddressSelect<true>;
     contacts: ContactsSelect<false> | ContactsSelect<true>;
     about: AboutSelect<false> | AboutSelect<true>;
     'weapons-section': WeaponsSectionSelect<false> | WeaponsSectionSelect<true>;
+    join: JoinSelect<false> | JoinSelect<true>;
   };
   locale: 'en' | 'ka' | 'ru';
   widgets: {
@@ -621,6 +623,46 @@ export interface WeaponsSection {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "join".
+ */
+export interface Join {
+  id: string;
+  /**
+   * Section title
+   */
+  title: string;
+  description: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  /**
+   * For example: 180 GEL/Month
+   */
+  topLeftText?: string | null;
+  /**
+   * For example: Classes in RU/EN/GE
+   */
+  topRightText?: string | null;
+  /**
+   * For example: We provide training gear and steel weapons
+   */
+  bottomText?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "address_select".
  */
 export interface AddressSelect<T extends boolean = true> {
@@ -674,6 +716,20 @@ export interface WeaponsSectionSelect<T extends boolean = true> {
         highlight?: T;
         id?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "join_select".
+ */
+export interface JoinSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  topLeftText?: T;
+  topRightText?: T;
+  bottomText?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

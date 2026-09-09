@@ -15,6 +15,7 @@ import { Instructors } from "./collections/Instructors";
 import { GalleryPhotos } from "./collections/GalleryPhotos";
 import { AboutSection } from "./globals/AboutSection";
 import { WeaponsSection } from "./globals/WeaponsSection";
+import { JoinSection } from "./globals/JoinSection";
 import { Address } from "./globals/Address";
 import { Contacts } from "./globals/Contacts";
 import { seedUsers } from "./seed";
@@ -39,7 +40,7 @@ export default buildConfig({
     Instructors,
     GalleryPhotos,
   ],
-  globals: [Address, Contacts, AboutSection, WeaponsSection],
+  globals: [Address, Contacts, AboutSection, WeaponsSection, JoinSection],
   editor: lexicalEditor(),
   graphQL: {
     disable: true,
