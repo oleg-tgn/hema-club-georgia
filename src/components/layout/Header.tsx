@@ -1,12 +1,15 @@
 "use client";
 
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
+import { Dialog } from "@base-ui/react/dialog";
 import { Link, usePathname } from "@/i18n/navigation";
 import { useActiveSectionObserver } from "@/hooks/useActiveSectionObserver";
 import { useActiveSection } from "./ActiveSectionProvider";
 import LocaleSwitcher from "../ui/LocaleSwitcher";
 import Logo from "../icons/Logo";
+import BurgerIcon from "../icons/BurgerIcon";
+import CloseIcon from "../icons/CloseIcon";
 
 const menuLinks = [
   { href: "/#about", labelKey: "about", section: "about" },
@@ -74,7 +77,7 @@ function Nav({
   const t = useTranslations("Nav");
 
   return (
-    <nav className="flex items-center gap-8">
+    <nav className="hidden items-center gap-8 xl:flex">
       {menuLinks.map(({ href, labelKey, section }) => {
         const isActive = section
           ? currentSection === section
@@ -103,6 +106,81 @@ function Nav({
         );
       })}
     </nav>
+  );
+}
+
+function MobileNav({
+  pathname,
+  currentSection,
+  isHome,
+  onNavigate,
+}: {
+  pathname: string;
+  currentSection: string | null;
+  isHome: boolean;
+  onNavigate: (section: string) => void;
+}) {
+  const t = useTranslations("Nav");
+  const [open, setOpen] = useState(false);
+
+  return (
+    <Dialog.Root open={open} onOpenChange={setOpen}>
+      <Dialog.Trigger
+        className="group relative flex h-8 w-8 items-center justify-center text-night xl:hidden"
+        aria-label={open ? t("closeMenu") : t("openMenu")}
+      >
+        <BurgerIcon className="group-data-[popup-open]:hidden" />
+        <CloseIcon className="hidden group-data-[popup-open]:block" />
+      </Dialog.Trigger>
+
+      <Dialog.Portal>
+        <Dialog.Backdrop className="fixed inset-x-0 top-[var(--header-height)] bottom-0 z-40 bg-night/40 transition-opacity duration-200 data-[ending-style]:opacity-0 data-[starting-style]:opacity-0" />
+        <Dialog.Popup className="fixed inset-x-0 top-[var(--header-height)] z-40 flex flex-col gap-6 border-t border-black/10 bg-paper-100 px-10 py-6 shadow-lg transition-[transform,opacity] duration-200 ease-out data-[ending-style]:-translate-y-2 data-[ending-style]:opacity-0 data-[starting-style]:-translate-y-2 data-[starting-style]:opacity-0">
+          <nav
+            className="flex flex-col divide-y divide-black/10"
+            onClick={() => setOpen(false)}
+          >
+            {menuLinks.map(({ href, labelKey, section }) => {
+              const isActive = section
+                ? currentSection === section
+                : pathname === href;
+
+              return (
+                <MenuLink
+                  key={href}
+                  href={href}
+                  section={section}
+                  isHome={isHome}
+                  onNavigate={onNavigate}
+                  className={`py-3 text-lg font-semibold ${
+                    isActive ? "text-night" : "text-asphalt"
+                  }`}
+                >
+                  {t(labelKey)}
+                </MenuLink>
+              );
+            })}
+          </nav>
+
+          <div className="flex items-center justify-between">
+            <LocaleSwitcher />
+
+            <MenuLink
+              href="#join"
+              section="join"
+              isHome={isHome}
+              onNavigate={(section) => {
+                onNavigate(section);
+                setOpen(false);
+              }}
+              className="flex h-8.5 items-center justify-center rounded-3xl border border-asphalt px-4 text-base leading-6 font-semibold text-night transition-colors hover:bg-night-hover"
+            >
+              {t("join")}
+            </MenuLink>
+          </div>
+        </Dialog.Popup>
+      </Dialog.Portal>
+    </Dialog.Root>
   );
 }
 
@@ -177,17 +255,26 @@ export default function Header() {
           onNavigate={handleNavigate}
         />
         <div className="flex items-center gap-4">
-          <LocaleSwitcher />
+          <div className="hidden items-center gap-4 xl:flex">
+            <LocaleSwitcher />
 
-          <MenuLink
-            href="#join"
-            section="join"
+            <MenuLink
+              href="#join"
+              section="join"
+              isHome={isHome}
+              onNavigate={handleNavigate}
+              className="flex h-8.5 items-center justify-center rounded-3xl border border-asphalt px-4 text-base leading-6 font-semibold text-night transition-colors hover:bg-night-hover"
+            >
+              {t("join")}
+            </MenuLink>
+          </div>
+
+          <MobileNav
+            pathname={pathname}
+            currentSection={currentSection}
             isHome={isHome}
             onNavigate={handleNavigate}
-            className="flex h-8.5 items-center justify-center rounded-3xl border border-asphalt px-4 text-base leading-6 font-semibold text-night transition-colors hover:bg-night-hover"
-          >
-            {t("join")}
-          </MenuLink>
+          />
         </div>
       </div>
     </header>
