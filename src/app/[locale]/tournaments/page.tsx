@@ -1,11 +1,6 @@
-import { setRequestLocale, getTranslations } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 
-export default async function TournamentPage({
-  params,
-}: PageProps<"/[locale]/tournament">) {
-  const { locale } = await params;
-  setRequestLocale(locale);
-
+export default async function TournamentsPage() {
   const t = await getTranslations("TournamentPage");
 
   return (
