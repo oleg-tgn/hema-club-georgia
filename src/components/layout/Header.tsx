@@ -68,16 +68,18 @@ function Nav({
   currentSection,
   isHome,
   onNavigate,
+  className = "",
 }: {
   pathname: string;
   currentSection: string | null;
   isHome: boolean;
   onNavigate: (section: string) => void;
+  className?: string;
 }) {
   const t = useTranslations("Nav");
 
   return (
-    <nav className="hidden items-center gap-8 xl:flex">
+    <nav className={className}>
       {menuLinks.map(({ href, labelKey, section }) => {
         const isActive = section
           ? currentSection === section
@@ -136,31 +138,15 @@ function MobileNav({
       <Dialog.Portal>
         <Dialog.Backdrop className="fixed inset-x-0 top-[var(--header-height)] bottom-0 z-40 bg-night/40 transition-opacity duration-200 data-[ending-style]:opacity-0 data-[starting-style]:opacity-0" />
         <Dialog.Popup className="fixed inset-x-0 top-[var(--header-height)] z-40 flex flex-col gap-6 border-t border-black/10 bg-paper-100 px-10 py-6 shadow-lg transition-[transform,opacity] duration-200 ease-out data-[ending-style]:-translate-y-2 data-[ending-style]:opacity-0 data-[starting-style]:-translate-y-2 data-[starting-style]:opacity-0">
-          <nav
-            className="flex flex-col divide-y divide-black/10"
-            onClick={() => setOpen(false)}
-          >
-            {menuLinks.map(({ href, labelKey, section }) => {
-              const isActive = section
-                ? currentSection === section
-                : pathname === href;
-
-              return (
-                <MenuLink
-                  key={href}
-                  href={href}
-                  section={section}
-                  isHome={isHome}
-                  onNavigate={onNavigate}
-                  className={`py-3 text-lg font-semibold ${
-                    isActive ? "text-night" : "text-asphalt"
-                  }`}
-                >
-                  {t(labelKey)}
-                </MenuLink>
-              );
-            })}
-          </nav>
+          <div onClick={() => setOpen(false)}>
+            <Nav
+              pathname={pathname}
+              currentSection={currentSection}
+              isHome={isHome}
+              onNavigate={onNavigate}
+              className="flex flex-col items-center gap-6"
+            />
+          </div>
 
           <div className="flex items-center justify-between">
             <LocaleSwitcher />
@@ -253,6 +239,7 @@ export default function Header() {
           currentSection={currentSection}
           isHome={isHome}
           onNavigate={handleNavigate}
+          className="hidden items-center gap-8 xl:flex"
         />
         <div className="flex items-center gap-4">
           <div className="hidden items-center gap-4 xl:flex">
