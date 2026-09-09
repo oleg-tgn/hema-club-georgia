@@ -10,7 +10,6 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import { ActiveSectionProvider } from "@/components/layout/ActiveSectionProvider";
 import "../globals.css";
 
 const manrope = Manrope({
@@ -62,11 +61,9 @@ export default async function LocaleLayout({
     >
       <body className="min-h-full flex flex-col bg-paper-100 text-black">
         <NextIntlClientProvider>
-          <ActiveSectionProvider>
-            <Header />
-            <main className="container mx-auto px-10 flex-1">{children}</main>
-            <Footer />
-          </ActiveSectionProvider>
+          <Header />
+          <main className="container mx-auto px-10 flex-1">{children}</main>
+          <Footer />
         </NextIntlClientProvider>
       </body>
     </html>

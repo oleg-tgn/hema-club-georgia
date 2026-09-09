@@ -40,8 +40,8 @@ export default function LocaleSwitcher() {
                 onClick={() => router.replace(pathname, { locale: loc })}
                 className={`cursor-pointer px-3 py-1.5 text-base font-semibold outline-none transition-colors ${
                   loc === locale
-                    ? "text-black"
-                    : "text-black/40 hover:text-black"
+                    ? "text-black bg-night-hover"
+                    : "text-black/40 hover:text-black hover:bg-night-hover"
                 }`}
               >
                 {labels[loc]}

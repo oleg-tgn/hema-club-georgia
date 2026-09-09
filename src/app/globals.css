@@ -35,6 +35,104 @@ html {
 body {
   font-family: var(--font-sans);
   overflow-x: hidden;
+  timeline-scope: --about-visible, --schedule-visible, --weapons-visible,
+    --instructors-visible, --gallery-visible;
+}
+
+/*
+ * Scroll-driven nav highlighting: each tracked section exposes a named
+ * view-timeline (scoped up to `body` so the nav, a sibling of `main`, can
+ * read it), and the matching nav link/dot animates off that timeline
+ * instead of a JS IntersectionObserver. Where unsupported (e.g. Firefox
+ * stable), the timeline never activates and links just sit at the 0%/100%
+ * keyframe — asphalt text, transparent dot — with hover still working.
+ */
+#about {
+  view-timeline-name: --about-visible;
+  view-timeline-inset: var(--header-height) 0;
+}
+#schedule {
+  view-timeline-name: --schedule-visible;
+  view-timeline-inset: var(--header-height) 0;
+}
+#weapons {
+  view-timeline-name: --weapons-visible;
+  view-timeline-inset: var(--header-height) 0;
+}
+#instructors {
+  view-timeline-name: --instructors-visible;
+  view-timeline-inset: var(--header-height) 0;
+}
+#gallery {
+  view-timeline-name: --gallery-visible;
+  view-timeline-inset: var(--header-height) 0;
+}
+
+@keyframes nav-link-active {
+  0%,
+  100% {
+    color: rgb(0 0 0 / 0.4);
+  }
+  25%,
+  75% {
+    color: var(--color-night);
+  }
+}
+@keyframes nav-dot-active {
+  0%,
+  100% {
+    background-color: transparent;
+  }
+  25%,
+  75% {
+    background-color: var(--color-gold-100);
+  }
+}
+
+nav a[data-section] {
+  animation-name: nav-link-active;
+  animation-timing-function: linear;
+  animation-fill-mode: both;
+  animation-duration: 1ms;
+}
+nav a[data-section] > span {
+  animation-name: nav-dot-active;
+  animation-timing-function: linear;
+  animation-fill-mode: both;
+  animation-duration: 1ms;
+}
+
+/*
+ * A running CSS animation's computed value wins over any non-!important
+ * author style on the same property, :hover included — so hover needs
+ * !important here to still show through the "inactive" keyframe.
+ */
+nav a[data-section]:hover {
+  color: #000 !important;
+}
+nav a[data-section]:hover > span {
+  background-color: var(--color-gold-100) !important;
+}
+
+nav a[data-section="about"],
+nav a[data-section="about"] > span {
+  animation-timeline: --about-visible;
+}
+nav a[data-section="schedule"],
+nav a[data-section="schedule"] > span {
+  animation-timeline: --schedule-visible;
+}
+nav a[data-section="weapons"],
+nav a[data-section="weapons"] > span {
+  animation-timeline: --weapons-visible;
+}
+nav a[data-section="instructors"],
+nav a[data-section="instructors"] > span {
+  animation-timeline: --instructors-visible;
+}
+nav a[data-section="gallery"],
+nav a[data-section="gallery"] > span {
+  animation-timeline: --gallery-visible;
 }
 
 /*
