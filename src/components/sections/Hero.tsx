@@ -7,7 +7,7 @@ export default async function Hero() {
   const t = await getTranslations("Hero");
 
   return (
-    <section className="relative mb-4 flex h-[calc(100dvh-var(--header-height)-16px)] flex-col justify-between overflow-hidden rounded-[40px] p-10 text-white">
+    <section className="relative mb-4 flex h-[calc(100dvh-var(--header-height)-16px)] flex-col justify-between overflow-hidden text-white p-5 rounded-[20px] md:p-10 md:rounded-[40px]">
       <video
         className="absolute inset-0 h-full w-full object-cover"
         src="/videos/hema-intro.webm"
@@ -24,7 +24,7 @@ export default async function Hero() {
         }}
       />
 
-      <div className="relative h-48 w-auto self-start">
+      <div className="relative h-19 sm:h-33 md:h-37 xl:h-47 w-auto max-w-full self-start">
         <Logo className="h-full w-auto" variant="hero" />
       </div>
 
