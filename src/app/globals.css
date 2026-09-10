@@ -19,6 +19,21 @@
 html[lang="ka"] {
   --font-sans: var(--font-noto-sans-georgian), sans-serif;
   --font-serif: var(--font-noto-serif-georgian), serif;
+  /* Georgian script reads larger than Latin/Cyrillic at the same font-size,
+     so scale every text-* utility down 10% for this locale. */
+  --text-xs: 0.675rem;
+  --text-sm: 0.7875rem;
+  --text-base: 0.9rem;
+  --text-lg: 1.0125rem;
+  --text-xl: 1.125rem;
+  --text-2xl: 1.35rem;
+  --text-3xl: 1.6875rem;
+  --text-4xl: 2.025rem;
+  --text-5xl: 2.7rem;
+  --text-6xl: 3.375rem;
+  --text-7xl: 4.05rem;
+  --text-8xl: 5.4rem;
+  --text-9xl: 7.2rem;
 }
 
 html {
