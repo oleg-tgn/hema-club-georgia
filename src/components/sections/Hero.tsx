@@ -24,16 +24,16 @@ export default async function Hero() {
         </div>
 
         <div className="relative flex w-full items-end justify-between gap-10">
-          <div className="max-w-91">
+          <div className="flex flex-col w-full gap-3 xl:max-w-91">
             <p className="text-base font-normal text-off-white">
               {t("description")}
             </p>
-            <div className="mt-6 flex h-22 gap-2">
-              <CtaTile href="#schedule" size="lg" className="flex-[6.5_0_0]">
+            <div className="flex flex-row h-22 gap-2">
+              <CtaTile href="#schedule" className="flex-[1_0_0] text-xl">
                 {t.rich("ctaJoin", { br: () => <br /> })}
               </CtaTile>
-              <CtaTile href="#about" size="sm" className="flex-[3.5_0_0]">
-                {t.rich("ctaAbout", { br: () => <br /> })}
+              <CtaTile href="#about" className="flex-[1_0_0] text-xl">
+                {t.rich("ctaSchedule", { br: () => <br /> })}
               </CtaTile>
             </div>
           </div>
