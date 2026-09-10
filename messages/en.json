@@ -13,7 +13,8 @@
   "Hero": {
     "title": "Saint George's HEMA School",
     "description": "We study and practice the fighting systems recorded in historical treatises, guided by the same manuals used by masters of old.",
-    "ctaJoin": "Join Club",
+    "ctaJoinMobile": "Join",
+    "ctaJoin": "Join<br></br>Club",
     "ctaAbout": "About<br></br>HEMA",
     "ctaSchedule": "Schedule"
   },

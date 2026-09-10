@@ -197,11 +197,26 @@ export interface Media {
  */
 export interface Weapon {
   id: string;
-  name: string;
   /**
    * Stable identifier, e.g. 'longsword'. Not localized.
    */
   slug: string;
+  name: string;
+  label?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
   /**
    * Controls display order in the weapons panel.
    */
@@ -469,8 +484,9 @@ export interface MediaSelect<T extends boolean = true> {
  * via the `definition` "weapons_select".
  */
 export interface WeaponsSelect<T extends boolean = true> {
-  name?: T;
   slug?: T;
+  name?: T;
+  label?: T;
   order?: T;
   updatedAt?: T;
   createdAt?: T;
