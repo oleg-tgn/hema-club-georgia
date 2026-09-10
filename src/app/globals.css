@@ -23,6 +23,10 @@ html[lang="ka"] {
 
 html {
   --header-height: 52px;
+  /* How far below the header a section must scroll before its nav link
+     takes over as active — see the scroll-driven nav highlighting block
+     below. */
+  --nav-active-offset: 200px;
   scroll-padding-top: var(--header-height);
   scroll-behavior: smooth;
 }
@@ -35,7 +39,8 @@ html {
 body {
   font-family: var(--font-sans);
   overflow-x: hidden;
-  timeline-scope: --about-visible, --schedule-visible, --weapons-visible,
+  timeline-scope:
+    --about-visible, --schedule-visible, --weapons-visible,
     --instructors-visible, --gallery-visible;
 }
 
@@ -43,29 +48,43 @@ body {
  * Scroll-driven nav highlighting: each tracked section exposes a named
  * view-timeline (scoped up to `body` so the nav, a sibling of `main`, can
  * read it), and the matching nav link/dot animates off that timeline
- * instead of a JS IntersectionObserver. Where unsupported (e.g. Firefox
- * stable), the timeline never activates and links just sit at the 0%/100%
- * keyframe — asphalt text, transparent dot — with hover still working.
+ * instead of a JS IntersectionObserver.
+ *
+ * `view-timeline-inset` moves the timeline's top edge down to a single
+ * fixed line, `--nav-active-offset` below the sticky header. The
+ * `exit-crossing` range (see MDN's view-timeline-inset /
+ * Timeline_range_names docs) spans exactly from the instant a section's
+ * top edge reaches that line to the instant its bottom edge does — i.e.
+ * the whole time THIS section owns the line, regardless of its height.
+ * Sections sit back-to-back in the document, so one section's window
+ * ends exactly when the next one's begins: they can never overlap, so
+ * at most one nav link is ever active.
+ *
+ * Where unsupported (e.g. Firefox stable), the timeline never activates
+ * and links just sit at the 0%/100% keyframe — asphalt text, transparent
+ * dot — with hover still working.
  */
+#about,
+#schedule,
+#weapons,
+#instructors,
+#gallery {
+  view-timeline-inset: calc(var(--header-height) + var(--nav-active-offset)) 0;
+}
 #about {
   view-timeline-name: --about-visible;
-  view-timeline-inset: var(--header-height) 0;
 }
 #schedule {
   view-timeline-name: --schedule-visible;
-  view-timeline-inset: var(--header-height) 0;
 }
 #weapons {
   view-timeline-name: --weapons-visible;
-  view-timeline-inset: var(--header-height) 0;
 }
 #instructors {
   view-timeline-name: --instructors-visible;
-  view-timeline-inset: var(--header-height) 0;
 }
 #gallery {
   view-timeline-name: --gallery-visible;
-  view-timeline-inset: var(--header-height) 0;
 }
 
 @keyframes nav-link-active {
@@ -73,8 +92,8 @@ body {
   100% {
     color: rgb(0 0 0 / 0.4);
   }
-  25%,
-  75% {
+  1%,
+  99% {
     color: var(--color-night);
   }
 }
@@ -83,8 +102,8 @@ body {
   100% {
     background-color: transparent;
   }
-  25%,
-  75% {
+  1%,
+  99% {
     background-color: var(--color-gold-100);
   }
 }
@@ -94,12 +113,14 @@ nav a[data-section] {
   animation-timing-function: linear;
   animation-fill-mode: both;
   animation-duration: 1ms;
+  animation-range: exit-crossing;
 }
 nav a[data-section] > span {
   animation-name: nav-dot-active;
   animation-timing-function: linear;
   animation-fill-mode: both;
   animation-duration: 1ms;
+  animation-range: exit-crossing;
 }
 
 /*

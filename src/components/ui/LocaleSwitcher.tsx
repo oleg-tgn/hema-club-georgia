@@ -33,15 +33,17 @@ export default function LocaleSwitcher() {
 
       <Menu.Portal>
         <Menu.Positioner align="center" sideOffset={8} className="z-60">
-          <Menu.Popup className="rounded-md border border-black/40 bg-paper-100 py-1 px-2 shadow-lg">
+          <Menu.Popup className="rounded-md border border-black/40 bg-paper-100  shadow-lg">
             {routing.locales.map((loc) => (
               <Menu.Item
                 key={loc}
-                onClick={() => router.replace(pathname, { locale: loc })}
-                className={`cursor-pointer px-3 py-1.5 text-base font-semibold outline-none transition-colors ${
+                onClick={() =>
+                  router.replace(pathname, { locale: loc, scroll: false })
+                }
+                className={`cursor-pointer text-base font-semibold outline-none transition-colors py-2 px-3 ${
                   loc === locale
-                    ? "text-black bg-night-hover"
-                    : "text-black/40 hover:text-black hover:bg-night-hover"
+                    ? "text-black bg-night/10 hover:bg-night/10"
+                    : "text-black/40 hover:text-black/60 hover:bg-night/5"
                 }`}
               >
                 {labels[loc]}
