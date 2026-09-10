@@ -17,13 +17,7 @@ export default async function Hero() {
           loop
           playsInline
         />
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(72deg, rgba(0, 0, 0, 0.90) 0.35%, rgba(0, 0, 0, 0.77) 22.81%, rgba(0, 0, 0, 0.00) 54.77%)",
-          }}
-        />
+        <div className="absolute inset-0 bg-hero-gradient" />
 
         <div className="relative h-19 sm:h-33 md:h-37 xl:h-47 w-auto max-w-full self-start">
           <Logo className="h-full w-auto" variant="hero" />
