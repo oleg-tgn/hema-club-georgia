@@ -62,7 +62,9 @@ export default async function LocaleLayout({
       <body className="min-h-full flex flex-col bg-paper-100 text-black">
         <NextIntlClientProvider>
           <Header />
-          <main className="container mx-auto px-10 flex-1">{children}</main>
+          <main className="container mx-auto px-2 sm:px-5 md:px-10 flex-1">
+            {children}
+          </main>
           <Footer />
         </NextIntlClientProvider>
       </body>

@@ -10,26 +10,29 @@ export const revalidate = 60;
 
 export default function HomePage() {
   return (
-    <div className="flex flex-col gap-20">
+    <div className="flex flex-col">
       <Hero />
 
-      <section id="about">
+      {/* padding instead of a flex gap: the nav highlight (globals.css)
+          keys off each section's own box, and a gap belongs to neither
+          neighbor. */}
+      <section id="about" className="pt-20 pb-20">
         <About />
       </section>
 
-      <section id="schedule">
+      <section id="schedule" className="pb-20">
         <Schedule />
       </section>
 
-      <section id="weapons">
+      <section id="weapons" className="pb-20">
         <Weapons />
       </section>
 
-      <section id="instructors">
+      <section id="instructors" className="pb-20">
         <Instructors />
       </section>
 
-      <section id="gallery">
+      <section id="gallery" className="pb-20">
         <Gallery />
       </section>
 

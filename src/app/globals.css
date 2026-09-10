@@ -23,9 +23,7 @@ html[lang="ka"] {
 
 html {
   --header-height: 52px;
-  /* How far below the header a section must scroll before its nav link
-     takes over as active — see the scroll-driven nav highlighting block
-     below. */
+  /* how far past the header a section must scroll before its nav link activates */
   --nav-active-offset: 200px;
   scroll-padding-top: var(--header-height);
   scroll-behavior: smooth;
@@ -45,24 +43,16 @@ body {
 }
 
 /*
- * Scroll-driven nav highlighting: each tracked section exposes a named
- * view-timeline (scoped up to `body` so the nav, a sibling of `main`, can
- * read it), and the matching nav link/dot animates off that timeline
- * instead of a JS IntersectionObserver.
+ * Scroll-driven nav highlighting: each section gets a named view-timeline
+ * (scoped to `body` so the nav can read it), and the matching nav link
+ * animates off it instead of a JS IntersectionObserver.
  *
- * `view-timeline-inset` moves the timeline's top edge down to a single
- * fixed line, `--nav-active-offset` below the sticky header. The
- * `exit-crossing` range (see MDN's view-timeline-inset /
- * Timeline_range_names docs) spans exactly from the instant a section's
- * top edge reaches that line to the instant its bottom edge does — i.e.
- * the whole time THIS section owns the line, regardless of its height.
- * Sections sit back-to-back in the document, so one section's window
- * ends exactly when the next one's begins: they can never overlap, so
- * at most one nav link is ever active.
+ * `view-timeline-inset` puts a line `--nav-active-offset` below the
+ * header; `exit-crossing` is active exactly while a section's box spans
+ * that line. Sections are back-to-back, so these windows never overlap.
  *
- * Where unsupported (e.g. Firefox stable), the timeline never activates
- * and links just sit at the 0%/100% keyframe — asphalt text, transparent
- * dot — with hover still working.
+ * Unsupported browsers (e.g. Firefox) just stay at the 0%/100% keyframe —
+ * asphalt text, transparent dot, hover still works.
  */
 #about,
 #schedule,
@@ -123,11 +113,7 @@ nav a[data-section] > span {
   animation-range: exit-crossing;
 }
 
-/*
- * A running CSS animation's computed value wins over any non-!important
- * author style on the same property, :hover included — so hover needs
- * !important here to still show through the "inactive" keyframe.
- */
+/* animation always wins over :hover, so hover needs !important here */
 nav a[data-section]:hover {
   color: #000 !important;
 }

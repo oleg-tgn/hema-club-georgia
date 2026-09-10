@@ -140,7 +140,7 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 bg-paper-100">
-      <div className="mx-auto flex h-(--header-height) items-center justify-between container px-2 sm:px-10 md:">
+      <div className="mx-auto flex h-(--header-height) items-center justify-between container px-2 sm:px-5 md:px-10">
         <MenuLink href="/" section="" isHome={isHome} className="group">
           <div className="flex sm:hidden">
             <Logo className="h-7 w-auto" variant="mobile" />
