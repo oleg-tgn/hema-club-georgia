@@ -106,7 +106,7 @@ export default async function Hero() {
           <Logo className="h-full w-auto" variant="hero" />
         </div>
 
-        <div className="relative flex flex-col w-full justify-between sm:flex-col-reverse sm:gap-10 md:max-w-77 lg:max-w-full lg:mt-auto lg:flex-row">
+        <div className="relative flex flex-col w-full justify-between sm:flex-col-reverse sm:gap-10 md:max-w-77 lg:max-w-full lg:mt-auto lg:flex-row lg:items-end">
           <div className="flex w-full md:max-w-77 lg:mt-auto xl:max-w-91">
             <DescriptionPanel t={t} />
           </div>
