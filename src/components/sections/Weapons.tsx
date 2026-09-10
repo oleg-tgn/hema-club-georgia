@@ -43,7 +43,6 @@ export default async function Weapons() {
           <div className="h-40 w-full md:h-56 md:max-w-44 md:shrink-0">
             <CtaTile
               href="https://docs.google.com/document/d/1v5YkBME_fWG1vdxpjDT1uqGH_Tiis3cSz2iiYRITwUU/edit?tab=t.0"
-              size="lg"
               external
             >
               Equip Guide
