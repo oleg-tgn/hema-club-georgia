@@ -6,12 +6,13 @@ import { getPayload } from "payload";
 import type { Locale } from "@/i18n/routing";
 import { weaponIcons } from "../icons/weapons";
 import { Weapon } from "@/payload-types";
+import { RichText } from "@payloadcms/richtext-lexical/react";
 
 type TFunc = Awaited<ReturnType<typeof getTranslations>>;
 
 function DescriptionPanel({ t }: { t: TFunc }) {
   return (
-    <>
+    <div className="flex flex-col w-full gap-3 sm:flex-row md:flex-col md:max-w-77 xl:max-w-91">
       <p className="text-base font-normal text-off-white sm:flex-1/2">
         {t("description")}
       </p>
@@ -22,17 +23,18 @@ function DescriptionPanel({ t }: { t: TFunc }) {
         >
           {t.rich("ctaJoinMobile")}
         </CtaTile>
+
         <CtaTile
           href="#schedule"
           className="flex-[3_0_0] text-xl hidden sm:flex"
         >
           {t.rich("ctaJoin", { br: () => <br /> })}
         </CtaTile>
-        <CtaTile href="#about" className="flex-[6_0_0] text-xl">
+        <CtaTile href="#about" className="flex-[6_0_0] text-xl sm:text-[34px]">
           {t.rich("ctaSchedule")}
         </CtaTile>
       </div>
-    </>
+    </div>
   );
 }
 
@@ -42,28 +44,32 @@ function WeaponsPanel({ weapons }: { weapons: Weapon[] }) {
   }
 
   return (
-    <div className="flex flex-col gap-4 rounded-lg border border-off-white/30 bg-black/20 py-4 px-4 backdrop-blur-md">
-      <div className="flex divide-x divide-off-white/20">
-        {weapons.map((weapon) => {
-          const WeaponIcon = weaponIcons[weapon.slug];
+    <div className="flex flex-col w-full gap-2 md:gap-4">
+      {weapons.map((weapon) => {
+        const WeaponIcon = weaponIcons[weapon.slug];
 
-          return (
-            <div
-              key={weapon.id}
-              className="flex w-60 flex-col align-center gap-2 px-2 first:pl-0 last:pr-0"
-            >
-              <div className="flex h-20 w-full items-center justify-center">
-                {WeaponIcon && (
-                  <WeaponIcon className="h-full w-auto text-paper-100" />
-                )}
-              </div>
-              <span className="text-center font-serif text-3xl leading-8 font-light tracking-tight text-paper-100">
-                {weapon.name}
-              </span>
+        return (
+          <div
+            key={weapon.id}
+            className="flex flex-col w-full align-center gap-2 p-4 rounded-[20px] bg-gold-100 sm:bg-transparent sm:backdrop-blur-md sm:w-60"
+          >
+            <div className="flex h-10.5 w-full Ssm:h-20">
+              {WeaponIcon && (
+                <WeaponIcon className="h-full w-auto text-night sm:text-paper-100" />
+              )}
             </div>
-          );
-        })}
-      </div>
+            <span className="font-serif text-[32px] leading-none font-light tracking-tight text-night sm:text-paper-100">
+              {weapon.name}
+            </span>
+            {weapon.label && (
+              <RichText
+                data={weapon.label}
+                className="text-base leading-none text-night [&_strong]:text-semibold sm:text-paper-100"
+              />
+            )}
+          </div>
+        );
+      })}
     </div>
   );
 }
@@ -98,16 +104,15 @@ export default async function Hero() {
           <Logo className="h-full w-auto" variant="hero" />
         </div>
 
-        <div className="relative flex w-full items-end justify-between gap-10">
-          <div className="flex flex-col w-full gap-3 sm:flex-row xl:max-w-91">
-            <DescriptionPanel t={t} />
-          </div>
+        <div className="relative flex flex-col w-full justify-between gap-10 portrait:sm:flex-col-reverse lg:flex-row">
+          <DescriptionPanel t={t} />
+
           <div className="hidden portrait:sm:flex lg:flex">
             <WeaponsPanel weapons={weapons} />
           </div>
         </div>
       </section>
-      <section className="flex portrait:sm:hidden lg:hidden">
+      <section className="flex mt-2 portrait:sm:hidden lg:hidden">
         <WeaponsPanel weapons={weapons} />
       </section>
     </>

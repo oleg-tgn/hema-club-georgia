@@ -15,12 +15,6 @@ export const Weapons: CollectionConfig = {
   },
   fields: [
     {
-      name: "name",
-      type: "text",
-      required: true,
-      localized: true,
-    },
-    {
       name: "slug",
       type: "text",
       required: true,
@@ -28,6 +22,17 @@ export const Weapons: CollectionConfig = {
       admin: {
         description: "Stable identifier, e.g. 'longsword'. Not localized.",
       },
+    },
+    {
+      name: "name",
+      type: "text",
+      required: true,
+      localized: true,
+    },
+    {
+      name: "label",
+      type: "richText",
+      localized: true,
     },
     {
       name: "order",
