@@ -25,6 +25,7 @@ export const JoinSection: GlobalConfig = {
     {
       name: "topLeftText",
       type: "text",
+      localized: true,
       admin: {
         description: "For example: 180 GEL/Month",
       },
@@ -32,6 +33,7 @@ export const JoinSection: GlobalConfig = {
     {
       name: "topRightText",
       type: "text",
+      localized: true,
       admin: {
         description: "For example: Classes in RU/EN/GE",
       },

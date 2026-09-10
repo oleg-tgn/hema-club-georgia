@@ -19,17 +19,142 @@
 html[lang="ka"] {
   --font-sans: var(--font-noto-sans-georgian), sans-serif;
   --font-serif: var(--font-noto-serif-georgian), serif;
+  /* Georgian script reads larger than Latin/Cyrillic at the same font-size,
+     so scale every text-* utility down 10% for this locale. */
+  --text-xs: 0.675rem;
+  --text-sm: 0.7875rem;
+  --text-base: 0.9rem;
+  --text-lg: 1.0125rem;
+  --text-xl: 1.125rem;
+  --text-2xl: 1.35rem;
+  --text-3xl: 1.6875rem;
+  --text-4xl: 2.025rem;
+  --text-5xl: 2.7rem;
+  --text-6xl: 3.375rem;
+  --text-7xl: 4.05rem;
+  --text-8xl: 5.4rem;
+  --text-9xl: 7.2rem;
 }
 
 html {
-  --header-height: 66px;
+  --header-height: 52px;
+  /* how far past the header a section must scroll before its nav link activates */
+  --nav-active-offset: 200px;
   scroll-padding-top: var(--header-height);
   scroll-behavior: smooth;
+}
+@media (min-width: 40rem) {
+  html {
+    --header-height: 68px;
+  }
 }
 
 body {
   font-family: var(--font-sans);
   overflow-x: hidden;
+  timeline-scope:
+    --about-visible, --schedule-visible, --weapons-visible,
+    --instructors-visible, --gallery-visible;
+}
+
+/*
+ * Scroll-driven nav highlighting: each section gets a named view-timeline
+ * (scoped to `body` so the nav can read it), and the matching nav link
+ * animates off it instead of a JS IntersectionObserver.
+ *
+ * `view-timeline-inset` puts a line `--nav-active-offset` below the
+ * header; `exit-crossing` is active exactly while a section's box spans
+ * that line. Sections are back-to-back, so these windows never overlap.
+ *
+ * Unsupported browsers (e.g. Firefox) just stay at the 0%/100% keyframe —
+ * asphalt text, transparent dot, hover still works.
+ */
+#about,
+#schedule,
+#weapons,
+#instructors,
+#gallery {
+  view-timeline-inset: calc(var(--header-height) + var(--nav-active-offset)) 0;
+}
+#about {
+  view-timeline-name: --about-visible;
+}
+#schedule {
+  view-timeline-name: --schedule-visible;
+}
+#weapons {
+  view-timeline-name: --weapons-visible;
+}
+#instructors {
+  view-timeline-name: --instructors-visible;
+}
+#gallery {
+  view-timeline-name: --gallery-visible;
+}
+
+@keyframes nav-link-active {
+  0%,
+  100% {
+    color: rgb(0 0 0 / 0.4);
+  }
+  1%,
+  99% {
+    color: var(--color-night);
+  }
+}
+@keyframes nav-dot-active {
+  0%,
+  100% {
+    background-color: transparent;
+  }
+  1%,
+  99% {
+    background-color: var(--color-gold-100);
+  }
+}
+
+nav a[data-section] {
+  animation-name: nav-link-active;
+  animation-timing-function: linear;
+  animation-fill-mode: both;
+  animation-duration: 1ms;
+  animation-range: exit-crossing;
+}
+nav a[data-section] > span {
+  animation-name: nav-dot-active;
+  animation-timing-function: linear;
+  animation-fill-mode: both;
+  animation-duration: 1ms;
+  animation-range: exit-crossing;
+}
+
+/* animation always wins over :hover, so hover needs !important here */
+nav a[data-section]:hover {
+  color: #000 !important;
+}
+nav a[data-section]:hover > span {
+  background-color: var(--color-gold-100) !important;
+}
+
+nav a[data-section="about"],
+nav a[data-section="about"] > span {
+  animation-timeline: --about-visible;
+}
+nav a[data-section="schedule"],
+nav a[data-section="schedule"] > span {
+  animation-timeline: --schedule-visible;
+}
+nav a[data-section="weapons"],
+nav a[data-section="weapons"] > span {
+  animation-timeline: --weapons-visible;
+}
+nav a[data-section="instructors"],
+nav a[data-section="instructors"] > span {
+  animation-timeline: --instructors-visible;
+}
+nav a[data-section="gallery"],
+nav a[data-section="gallery"] > span {
+  animation-timeline: --gallery-visible;
 }
 
 /*

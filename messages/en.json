@@ -6,7 +6,9 @@
     "instructors": "Instructors",
     "gallery": "Gallery",
     "tournaments": "Tournaments",
-    "join": "Join"
+    "join": "Join",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
   },
   "Hero": {
     "title": "Saint George's HEMA School",

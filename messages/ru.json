@@ -6,7 +6,9 @@
     "instructors": "Инструкторы",
     "gallery": "Галерея",
     "tournaments": "Турниры",
-    "join": "Присоединиться"
+    "join": "Присоединиться",
+    "openMenu": "Открыть меню",
+    "closeMenu": "Закрыть меню"
   },
   "Hero": {
     "title": "Saint George's HEMA School",

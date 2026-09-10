@@ -63,7 +63,7 @@ export default async function About() {
   });
 
   return (
-    <div className="w-full py-10">
+    <div className="w-full">
       <div className="grid gap-8 [grid-template-areas:'left'_'content'_'right'] md:grid-cols-[1fr_minmax(0,32rem)_1fr] md:[grid-template-areas:'left_content_right']">
         <div className="[grid-area:left] flex gap-4 md:flex-col">
           <AboutImage src="/images/about-1.svg" />
