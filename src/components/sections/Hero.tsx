@@ -8,7 +8,7 @@ export default async function Hero() {
 
   return (
     <>
-      <section className="relative mb-4 flex h-[calc(100dvh-var(--header-height)-16px)] flex-col justify-between overflow-hidden text-white p-5 rounded-[20px] md:p-10 md:rounded-[40px]">
+      <section className="relative mb-1 flex h-[calc(100dvh-var(--header-height)-1rem)] min-h-100 min-w-76 flex-col justify-between overflow-hidden text-white p-5 rounded-[20px] md:p-10 md:rounded-[40px]">
         <video
           className="absolute inset-0 h-full w-full object-cover"
           src="/videos/hema-intro.webm"
