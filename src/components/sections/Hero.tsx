@@ -12,7 +12,7 @@ type TFunc = Awaited<ReturnType<typeof getTranslations>>;
 
 function DescriptionPanel({ t }: { t: TFunc }) {
   return (
-    <div className="flex flex-col w-full gap-3 sm:flex-row md:flex-col md:max-w-77 lg:mt-auto xl:max-w-91">
+    <div className="flex flex-col w-full gap-3 sm:flex-row md:flex-col">
       <p className="flex w-full text-base font-normal text-off-white">
         {t("description")}
       </p>
@@ -44,14 +44,14 @@ function WeaponsPanel({ weapons }: { weapons: Weapon[] }) {
   }
 
   return (
-    <div className="flex flex-col w-full gap-2 md:gap-4">
+    <div className="flex flex-col w-full gap-2 md:gap-4 xl:flex-row">
       {weapons.map((weapon) => {
         const WeaponIcon = weaponIcons[weapon.slug];
 
         return (
           <div
             key={weapon.id}
-            className="flex flex-col w-full align-center gap-2 p-4 rounded-[20px] bg-gold-100 border border-gold-100 sm:bg-transparent sm:backdrop-blur-md sm:w-[256px] sm:gap-4 sm:border sm:border-off-white/30 sm:rounded-lg lg:flex-row lg:w-110 lg:justify-between xl:flex-col"
+            className="flex flex-col w-full align-center gap-2 p-4 rounded-[20px] bg-gold-100 border border-gold-100 sm:bg-transparent sm:backdrop-blur-md sm:gap-4 sm:border sm:border-off-white/30 sm:rounded-lg lg:flex-row lg:justify-between xl:flex-col"
           >
             <div className="flex h-10.5 w-full lg:w-auto xl:w-full">
               {WeaponIcon && (
@@ -106,15 +106,17 @@ export default async function Hero() {
           <Logo className="h-full w-auto" variant="hero" />
         </div>
 
-        <div className="relative flex flex-col w-full justify-between sm:flex-col-reverse sm:gap-10 lg:mt-auto lg:flex-row">
-          <DescriptionPanel t={t} />
+        <div className="relative flex flex-col w-full justify-between sm:flex-col-reverse sm:gap-10 md:max-w-77 lg:max-w-full lg:mt-auto lg:flex-row">
+          <div className="flex w-full md:max-w-77 lg:mt-auto xl:max-w-91">
+            <DescriptionPanel t={t} />
+          </div>
 
-          <div className="hidden sm:flex lg:flex">
+          <div className="hidden w-full sm:flex sm:max-w-[256px] md:max-w-77 lg:max-w-1/2 xl:max-w-none">
             <WeaponsPanel weapons={weapons} />
           </div>
         </div>
       </section>
-      <section className="flex mt-2 sm:hidden lg:hidden">
+      <section className="flex mt-2 sm:hidden">
         <WeaponsPanel weapons={weapons} />
       </section>
     </>
