@@ -12,11 +12,11 @@ type TFunc = Awaited<ReturnType<typeof getTranslations>>;
 
 function DescriptionPanel({ t }: { t: TFunc }) {
   return (
-    <div className="flex flex-col w-full gap-3 sm:flex-row md:flex-col md:max-w-77 xl:max-w-91">
-      <p className="text-base font-normal text-off-white sm:flex-1/2">
+    <div className="flex flex-col w-full gap-3 sm:flex-row md:flex-col md:max-w-77 lg:mt-auto xl:max-w-91">
+      <p className="flex w-full text-base font-normal text-off-white">
         {t("description")}
       </p>
-      <div className="flex flex-row h-10.5 gap-2 sm:h-22 sm:flex-1/2">
+      <div className="flex flex-row w-full h-10.5 gap-2 sm:h-22">
         <CtaTile
           href="#schedule"
           className="flex-[4_0_0] text-xl flex sm:hidden"
@@ -106,7 +106,7 @@ export default async function Hero() {
           <Logo className="h-full w-auto" variant="hero" />
         </div>
 
-        <div className="relative flex flex-col w-full justify-between sm:flex-col-reverse sm:gap-10 lg:flex-row">
+        <div className="relative flex flex-col w-full justify-between sm:flex-col-reverse sm:gap-10 lg:mt-auto lg:flex-row">
           <DescriptionPanel t={t} />
 
           <div className="hidden sm:flex lg:flex">
