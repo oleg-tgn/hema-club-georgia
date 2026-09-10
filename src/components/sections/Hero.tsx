@@ -53,7 +53,7 @@ function WeaponsPanel({ weapons }: { weapons: Weapon[] }) {
             key={weapon.id}
             className="flex flex-col w-full align-center gap-2 p-4 rounded-[20px] bg-gold-100 border border-gold-100 sm:bg-transparent sm:backdrop-blur-md sm:w-[256px] sm:gap-4 sm:border sm:border-off-white/30 sm:rounded-lg"
           >
-            <div className="flex h-10.5 w-full sm:mb-4">
+            <div className="flex h-10.5 w-full">
               {WeaponIcon && (
                 <WeaponIcon className="h-full w-auto text-night sm:text-paper-100" />
               )}
@@ -91,7 +91,7 @@ export default async function Hero() {
 
   return (
     <>
-      <section className="relative mb-1 flex h-[calc(100dvh-var(--header-height)-1rem)] min-h-100 min-w-76 flex-col justify-between overflow-hidden text-white p-5 rounded-[20px] sm:min-h-220 sm:gap-10 md:p-10 md:rounded-[40px]">
+      <section className="relative flex flex-col min-h-[calc(100dvh-var(--header-height)-1rem)] mb-4 w-full justify-between overflow-hidden text-white p-5 rounded-[20px] sm:gap-10 md:p-10 md:rounded-[40px]">
         <video
           className="absolute inset-0 h-full w-full object-cover"
           src="/videos/hema-intro.webm"
@@ -106,7 +106,7 @@ export default async function Hero() {
           <Logo className="h-full w-auto" variant="hero" />
         </div>
 
-        <div className="relative flex flex-col w-full justify-between portrait:sm:flex-col-reverse sm:gap-10 lg:flex-row">
+        <div className="relative flex flex-col w-full justify-between sm:flex-col-reverse sm:gap-10 lg:flex-row">
           <DescriptionPanel t={t} />
 
           <div className="hidden sm:flex lg:flex">
