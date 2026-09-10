@@ -51,14 +51,14 @@ function WeaponsPanel({ weapons }: { weapons: Weapon[] }) {
         return (
           <div
             key={weapon.id}
-            className="flex flex-col w-full align-center gap-2 p-4 rounded-[20px] bg-gold-100 border border-gold-100 sm:bg-transparent sm:backdrop-blur-md sm:w-[256px] sm:gap-4 sm:border sm:border-off-white/30 sm:rounded-lg"
+            className="flex flex-col w-full align-center gap-2 p-4 rounded-[20px] bg-gold-100 border border-gold-100 sm:bg-transparent sm:backdrop-blur-md sm:w-[256px] sm:gap-4 sm:border sm:border-off-white/30 sm:rounded-lg lg:flex-row lg:w-110 lg:justify-between xl:flex-col"
           >
-            <div className="flex h-10.5 w-full">
+            <div className="flex h-10.5 w-full lg:w-auto xl:w-full">
               {WeaponIcon && (
                 <WeaponIcon className="h-full w-auto text-night sm:text-paper-100" />
               )}
             </div>
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 lg:w-43 xl:w-full">
               <span className="font-serif text-[32px] leading-none font-light tracking-tight text-night sm:text-paper-100">
                 {weapon.name}
               </span>
