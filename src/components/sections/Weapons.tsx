@@ -3,7 +3,7 @@ import { getLocale } from "next-intl/server";
 import Image from "next/image";
 import config from "@payload-config";
 import { getPayload } from "payload";
-import WeaponsIcon from "../icons/WeaponsIcon";
+import WeaponsTitleIcon from "../icons/WeaponsTitleIcon";
 import CtaTile from "../ui/CtaTile";
 
 export default async function Weapons() {
@@ -28,7 +28,7 @@ export default async function Weapons() {
       </div>
 
       <div className="relative z-10 flex flex-col gap-20">
-        <WeaponsIcon aria-hidden className="w-full text-gold-100/80" />
+        <WeaponsTitleIcon aria-hidden className="w-full text-gold-100/80" />
 
         <div className="flex flex-col gap-12 md:flex-row md:items-end md:justify-between">
           <div className="flex flex-col gap-12 md:max-w-44">
