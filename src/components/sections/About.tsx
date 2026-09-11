@@ -28,7 +28,7 @@ function VomTag({ className }: { className: string }) {
 function Pflug({ className }: { className: string }) {
   return (
     <div
-      className={`relative w-[332px] h-[183px] xl:w-[332px] xl:h-[183px] 2xl:w-[385px] 2xl:h-[212px] ${className}`}
+      className={`relative w-[332px] h-[183px] 2xl:w-[385px] 2xl:h-[212px] ${className}`}
     >
       <Image
         src="/images/about-pflug.svg"
@@ -60,7 +60,7 @@ function Alber({ className }: { className: string }) {
 function Ochs({ className }: { className: string }) {
   return (
     <div
-      className={`relative w-[243px] h-[209px] xl:w-[274px] xl:h-[241px] xl:w-[317px] xl:h-[280px] ${className}`}
+      className={`relative w-[243px] h-[209px] xl:w-[274px] xl:h-[241px] 2xl:w-[317px] 2xl:h-[280px] ${className}`}
     >
       <Image
         src="/images/about-ochs.svg"
@@ -83,7 +83,7 @@ function JoinTeaser({ join }: { join: AboutJoin }) {
         <div className="flex flex-col gap-2 w-63 sm:w-110 xl:w-63">
           <div className="relative flex flex-col gap-2.5">
             <div aria-hidden className="h-8" />
-            <h3 className="font-serif text-[32px] leading-none pointer-events-none absolute inset-0 z-10 flex items-start justify-center bg-paper-100/0 uppercase transition-all duration-300 group-hover:pointer-events-auto group-hover:bg-paper-100 group-hover:text-6xl sm:justify-start">
+            <h3 className="font-serif text-[32px] leading-none pointer-events-none absolute inset-0 z-10 flex items-start justify-center bg-paper-100/0 uppercase transition-[background-color,font-size] duration-300 group-hover:pointer-events-auto group-hover:bg-paper-100 group-hover:text-6xl sm:justify-start">
               {join.title}
             </h3>
             <p className="text-sm leading-5">{join.text}</p>
@@ -130,7 +130,7 @@ export default async function About() {
           </Heading>
           <RichText
             data={about.description}
-            className="text-justify font-(family-name:--font-literata) text-[18px] "
+            className="text-justify font-(family-name:--font-literata) text-[18px]"
           />
 
           {about.join?.text && <JoinTeaser join={about.join} />}
