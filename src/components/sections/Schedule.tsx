@@ -6,7 +6,7 @@ import type { Locale } from "@/i18n/routing";
 import type { Address, ScheduleGroup } from "@/payload-types";
 import Heading from "../ui/Heading";
 import ArrowIcon from "../icons/ArrowIcon";
-import { weaponIcons } from "../icons/weapons";
+import WeaponIcon from "../icons/WeaponIcon";
 
 type TFunc = Awaited<ReturnType<typeof getTranslations>>;
 
@@ -33,16 +33,15 @@ function ScheduleCard({
   const weapon =
     doc.weapon && typeof doc.weapon === "object" ? doc.weapon : null;
   const sections = doc.sections ?? [];
-  const WeaponIcon = weapon ? weaponIcons[weapon.slug] : undefined;
 
   return (
     <div
       className={`flex flex-col rounded-lg border gap-5 border-black/20 p-4 text-night ${className}`}
     >
       <div className="flex flex-col gap-1.5">
-        {WeaponIcon && (
+        {weapon && (
           <div className="flex h-10 w-full items-center">
-            <WeaponIcon className="h-full w-auto" />
+            <WeaponIcon slug={weapon.slug} className="h-full w-auto" />
           </div>
         )}
         <Heading size="sm" as="h3">
