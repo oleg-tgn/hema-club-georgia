@@ -620,7 +620,21 @@ export interface Address {
 export interface About {
   id: string;
   title: string;
-  text: string;
+  text: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
   /**
    * Teaser block shown inside the About section, linking to the Join section further down the page.
    */

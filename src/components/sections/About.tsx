@@ -2,6 +2,7 @@ import config from "@payload-config";
 import { getLocale } from "next-intl/server";
 import Image from "next/image";
 import { getPayload } from "payload";
+import { RichText } from "@payloadcms/richtext-lexical/react";
 import type { Locale } from "@/i18n/routing";
 import type { About as AboutGlobal } from "@/payload-types";
 import Heading from "../ui/Heading";
@@ -77,9 +78,10 @@ export default async function About() {
           <Heading size="lg" as="h2">
             {about.title}
           </Heading>
-          <p className="text-justify font-serif text-lg font-medium whitespace-pre-line">
-            {about.text}
-          </p>
+          <RichText
+            data={about.text}
+            className="text-justify font-(family-name:--font-literata) font-normal text-lg"
+          />
 
           {about.join?.text && <JoinTeaser join={about.join} />}
         </div>

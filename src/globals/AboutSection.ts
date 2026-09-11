@@ -20,11 +20,9 @@ export const AboutSection: GlobalConfig = {
     },
     {
       name: "text",
-      type: "textarea",
+      type: "richText",
       required: true,
       localized: true,
-      defaultValue:
-        "We practice Historical European Martial Arts (HEMA). Historical fencing is a type of martial art distinguished by its specificity - the use of replicas of historical weaponry, similar in size, weight, and other characteristics to the originals, as well as the study of techniques from European martial arts passed down to us by masters of Medieval, Renaissance, and Modern times, such as Johannes Liechtenauer, Fiore dei Liberi, Camillo Agrippa, Alfred Hutton, and many others.",
     },
     {
       name: "join",
