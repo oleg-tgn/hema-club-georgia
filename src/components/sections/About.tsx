@@ -11,65 +11,53 @@ type AboutJoin = NonNullable<AboutGlobal["join"]>;
 
 function VomTag({ className }: { className: string }) {
   return (
-    <div
-      className={`relative w-[200px] h-[257px] sm:w-[222px] sm:h-[285px] 2xl:w-[259px] 2xl:h-[330px] ${className}`}
-    >
-      <Image
-        src="/images/about-vom-tag.svg"
-        alt="Vom Tag"
-        title="Vom Tag"
-        fill
-        className="object-contain"
-      />
-    </div>
+    <Image
+      src="/images/about-vom-tag.svg"
+      alt="Vom Tag"
+      title="Vom Tag"
+      width={222}
+      height={285}
+      className={`h-auto w-[200px] sm:w-[222px] 2xl:w-[259px] ${className}`}
+    />
   );
 }
 
 function Pflug({ className }: { className: string }) {
   return (
-    <div
-      className={`relative w-[332px] h-[183px] 2xl:w-[385px] 2xl:h-[212px] ${className}`}
-    >
-      <Image
-        src="/images/about-pflug.svg"
-        alt="Pflug"
-        title="Pflug"
-        fill
-        className="object-contain"
-      />
-    </div>
+    <Image
+      src="/images/about-pflug.svg"
+      alt="Pflug"
+      title="Pflug"
+      width={332}
+      height={183}
+      className={`h-auto w-[332px] 2xl:w-[385px] ${className}`}
+    />
   );
 }
 
 function Alber({ className }: { className: string }) {
   return (
-    <div
-      className={`relative w-[304px] h-[188px] 2xl:w-[353px] 2xl:h-[218px] ${className}`}
-    >
-      <Image
-        src="/images/about-alber.svg"
-        alt="Alber"
-        title="Alber"
-        fill
-        className="object-contain"
-      />
-    </div>
+    <Image
+      src="/images/about-alber.svg"
+      alt="Alber"
+      title="Alber"
+      width={304}
+      height={188}
+      className={`h-auto w-[304px] 2xl:w-[353px] ${className}`}
+    />
   );
 }
 
 function Ochs({ className }: { className: string }) {
   return (
-    <div
-      className={`relative w-[243px] h-[209px] xl:w-[274px] xl:h-[241px] 2xl:w-[317px] 2xl:h-[280px] ${className}`}
-    >
-      <Image
-        src="/images/about-ochs.svg"
-        alt="Ochs"
-        title="Ochs"
-        fill
-        className="object-contain"
-      />
-    </div>
+    <Image
+      src="/images/about-ochs.svg"
+      alt="Ochs"
+      title="Ochs"
+      width={274}
+      height={241}
+      className={`h-auto w-[243px] xl:w-[274px] 2xl:w-[317px] ${className}`}
+    />
   );
 }
 
