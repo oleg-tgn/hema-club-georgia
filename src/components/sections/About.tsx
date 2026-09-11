@@ -12,7 +12,7 @@ type AboutJoin = NonNullable<AboutGlobal["join"]>;
 function VomTag({ className }: { className: string }) {
   return (
     <div
-      className={`relative w-[200px] h-[257px] sm:w-[222px] h-[285px] ${className}`}
+      className={`relative w-[200px] h-[257px] sm:w-[222px] sm:h-[285px] 2xl:w-[259px] 2xl:h-[330px] ${className}`}
     >
       <Image
         src="/images/about-vom-tag.svg"
@@ -27,7 +27,9 @@ function VomTag({ className }: { className: string }) {
 
 function Pflug({ className }: { className: string }) {
   return (
-    <div className={`relative w-[332px] h-[183px] ${className}`}>
+    <div
+      className={`relative w-[332px] h-[183px] xl:w-[332px] xl:h-[183px] 2xl:w-[385px] 2xl:h-[212px] ${className}`}
+    >
       <Image
         src="/images/about-pflug.svg"
         alt="Pflug"
@@ -41,7 +43,9 @@ function Pflug({ className }: { className: string }) {
 
 function Alber({ className }: { className: string }) {
   return (
-    <div className={`relative w-[304px] h-[188px] ${className}`}>
+    <div
+      className={`relative w-[304px] h-[188px] 2xl:w-[353px] 2xl:h-[218px] ${className}`}
+    >
       <Image
         src="/images/about-alber.svg"
         alt="Alber"
@@ -55,7 +59,9 @@ function Alber({ className }: { className: string }) {
 
 function Ochs({ className }: { className: string }) {
   return (
-    <div className={`relative w-[243px] h-[209px] ${className}`}>
+    <div
+      className={`relative w-[243px] h-[209px] xl:w-[274px] xl:h-[241px] xl:w-[317px] xl:h-[280px] ${className}`}
+    >
       <Image
         src="/images/about-ochs.svg"
         alt="Ochs"
@@ -110,14 +116,15 @@ export default async function About() {
   });
 
   return (
-    <div className="w-full">
-      <div className="flex flex-wrap w-full gap-8 md:max-w-167">
-        <div className="flex flex-row w-full gap-8 justify-center items-end">
+    <div className="flex w-full justify-center xl:w-auto xl:-mx-10">
+      <div className="flex flex-col w-full gap-8 md:max-w-167 md:mx-auto xl:flex-row xl:max-w-none xl:gap-10.5">
+        <div className="flex flex-row w-full gap-8 justify-center items-end xl:flex-col xl:justify-between xl:items-center">
           <VomTag className="flex" />
-          <Pflug className="hidden sm:flex" />
+          <Pflug className="hidden sm:flex xl:hidden" />
+          <Ochs className="hidden xl:flex" />
         </div>
 
-        <div className="flex flex-col text-center gap-6 w-full">
+        <div className="flex flex-col text-center gap-6 w-full xl:max-w-lg">
           <Heading size="lg" as="h2">
             {about.title}
           </Heading>
@@ -129,8 +136,9 @@ export default async function About() {
           {about.join?.text && <JoinTeaser join={about.join} />}
         </div>
 
-        <div className="flex flex-row w-full gap-8 justify-center items-end">
-          <Ochs className="hidden sm:flex" />
+        <div className="flex flex-row w-full gap-8 justify-center items-end xl:flex-col xl:py-22.5 xl:justify-between xl:items-center">
+          <Pflug className="hidden xl:flex" />
+          <Ochs className="hidden sm:flex xl:hidden" />
           <Alber className="flex" />
         </div>
       </div>
