@@ -9,10 +9,60 @@ import Heading from "../ui/Heading";
 
 type AboutJoin = NonNullable<AboutGlobal["join"]>;
 
-function AboutImage({ src }: { src: string }) {
+function VomTag({ className }: { className: string }) {
   return (
-    <div className="relative aspect-square">
-      <Image src={src} alt="" aria-hidden fill className="object-contain" />
+    <div
+      className={`relative w-[200px] h-[257px] sm:w-[222px] h-[285px] ${className}`}
+    >
+      <Image
+        src="/images/about-vom-tag.svg"
+        alt="Vom Tag"
+        title="Vom Tag"
+        fill
+        className="object-contain"
+      />
+    </div>
+  );
+}
+
+function Pflug({ className }: { className: string }) {
+  return (
+    <div className={`relative w-[332px] h-[183px] ${className}`}>
+      <Image
+        src="/images/about-pflug.svg"
+        alt="Pflug"
+        title="Pflug"
+        fill
+        className="object-contain"
+      />
+    </div>
+  );
+}
+
+function Alber({ className }: { className: string }) {
+  return (
+    <div className={`relative w-[304px] h-[188px] ${className}`}>
+      <Image
+        src="/images/about-alber.svg"
+        alt="Alber"
+        title="Alber"
+        fill
+        className="object-contain"
+      />
+    </div>
+  );
+}
+
+function Ochs({ className }: { className: string }) {
+  return (
+    <div className={`relative w-[243px] h-[209px] ${className}`}>
+      <Image
+        src="/images/about-ochs.svg"
+        alt="Ochs"
+        title="Ochs"
+        fill
+        className="object-contain"
+      />
     </div>
   );
 }
@@ -23,8 +73,8 @@ function JoinTeaser({ join }: { join: AboutJoin }) {
       href="#join"
       className="group flex w-full rounded-lg border border-black/20 p-4 text-night text-center sm:text-left hover:border-black/80"
     >
-      <div className="flex w-full flex-col items-center gap-2 sm:flex-row sm:items-start">
-        <div className="flex flex-col gap-2 w-63">
+      <div className="flex w-full flex-col items-center gap-2 sm:flex-row sm:items-start sm:justify-between">
+        <div className="flex flex-col gap-2 w-63 sm:w-110">
           <div className="relative flex flex-col gap-2.5">
             <div aria-hidden className="h-8" />
             <h3 className="font-serif text-[32px] leading-none pointer-events-none absolute inset-0 z-10 flex items-start justify-center bg-paper-100/0 uppercase transition-all duration-300 group-hover:pointer-events-auto group-hover:bg-paper-100 group-hover:text-6xl sm:justify-start">
@@ -61,16 +111,13 @@ export default async function About() {
 
   return (
     <div className="w-full">
-      <div className="grid grid-cols-1 gap-8 [grid-template-areas:'img1'_'content'_'img4'] sm:grid-cols-2 sm:[grid-template-areas:'img1_img3'_'content_content'_'img2_img4'] md:grid-cols-[1fr_minmax(0,32rem)_1fr] md:[grid-template-areas:'img1_content_img3'_'img2_content_img4']">
-        <div className="[grid-area:img1]">
-          <AboutImage src="/images/about-1.svg" />
+      <div className="flex flex-wrap w-full gap-8 md:max-w-167">
+        <div className="flex flex-row w-full gap-8 justify-center items-end">
+          <VomTag className="flex" />
+          <Pflug className="hidden sm:flex" />
         </div>
 
-        <div className="hidden [grid-area:img3] sm:block">
-          <AboutImage src="/images/about-3.svg" />
-        </div>
-
-        <div className="[grid-area:content] flex flex-col text-center gap-6">
+        <div className="flex flex-col text-center gap-6 w-full">
           <Heading size="lg" as="h2">
             {about.title}
           </Heading>
@@ -82,12 +129,9 @@ export default async function About() {
           {about.join?.text && <JoinTeaser join={about.join} />}
         </div>
 
-        <div className="hidden [grid-area:img2] sm:block">
-          <AboutImage src="/images/about-2.svg" />
-        </div>
-
-        <div className="[grid-area:img4]">
-          <AboutImage src="/images/about-4.svg" />
+        <div className="flex flex-row w-full gap-8 justify-center items-end">
+          <Ochs className="hidden sm:flex" />
+          <Alber className="flex" />
         </div>
       </div>
     </div>
