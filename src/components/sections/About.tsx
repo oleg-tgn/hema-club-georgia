@@ -10,7 +10,7 @@ type AboutJoin = NonNullable<AboutGlobal["join"]>;
 
 function AboutImage({ src }: { src: string }) {
   return (
-    <div className="relative aspect-square flex-1 md:aspect-auto">
+    <div className="relative aspect-square">
       <Image src={src} alt="" aria-hidden fill className="object-contain" />
     </div>
   );
@@ -64,10 +64,13 @@ export default async function About() {
 
   return (
     <div className="w-full">
-      <div className="grid gap-8 [grid-template-areas:'left'_'content'_'right'] md:grid-cols-[1fr_minmax(0,32rem)_1fr] md:[grid-template-areas:'left_content_right']">
-        <div className="[grid-area:left] flex gap-4 md:flex-col">
+      <div className="grid grid-cols-1 gap-8 [grid-template-areas:'img1'_'content'_'img4'] sm:grid-cols-2 sm:[grid-template-areas:'img1_img3'_'content_content'_'img2_img4'] md:grid-cols-[1fr_minmax(0,32rem)_1fr] md:[grid-template-areas:'img1_content_img3'_'img2_content_img4']">
+        <div className="[grid-area:img1]">
           <AboutImage src="/images/about-1.svg" />
-          <AboutImage src="/images/about-2.svg" />
+        </div>
+
+        <div className="hidden [grid-area:img3] sm:block">
+          <AboutImage src="/images/about-3.svg" />
         </div>
 
         <div className="[grid-area:content] flex flex-col text-center gap-6">
@@ -81,8 +84,11 @@ export default async function About() {
           {about.join?.text && <JoinTeaser join={about.join} />}
         </div>
 
-        <div className="[grid-area:right] flex gap-4 md:flex-col">
-          <AboutImage src="/images/about-3.svg" />
+        <div className="hidden [grid-area:img2] sm:block">
+          <AboutImage src="/images/about-2.svg" />
+        </div>
+
+        <div className="[grid-area:img4]">
           <AboutImage src="/images/about-4.svg" />
         </div>
       </div>
