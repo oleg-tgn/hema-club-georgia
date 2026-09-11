@@ -620,7 +620,7 @@ export interface Address {
 export interface About {
   id: string;
   title: string;
-  text: {
+  description: {
     root: {
       type: string;
       children: {
@@ -638,9 +638,9 @@ export interface About {
   /**
    * Teaser block shown inside the About section, linking to the Join section further down the page.
    */
-  join?: {
-    title?: string | null;
-    text?: string | null;
+  join: {
+    title: string;
+    text: string;
     buttonLabel?: string | null;
   };
   updatedAt?: string | null;
@@ -723,7 +723,7 @@ export interface AddressSelect<T extends boolean = true> {
  */
 export interface AboutSelect<T extends boolean = true> {
   title?: T;
-  text?: T;
+  description?: T;
   join?:
     | T
     | {

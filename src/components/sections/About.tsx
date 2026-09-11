@@ -21,34 +21,30 @@ function JoinTeaser({ join }: { join: AboutJoin }) {
   return (
     <a
       href="#join"
-      className="group flex w-full items-stretch gap-2 rounded-lg border border-black/20 p-4 text-night text-left hover:border-black/80"
+      className="group flex w-full rounded-lg border border-black/20 p-4 text-night text-center sm:text-left hover:border-black/80"
     >
-      <div className="flex flex-1 flex-col gap-2">
-        <div className="relative flex flex-col gap-2">
-          {join.title && (
-            <>
-              <div aria-hidden className="h-8" />
-              <h3 className="text-3xl pointer-events-none absolute inset-0 z-10 flex items-start bg-paper-100/0 uppercase transition-all duration-300 group-hover:pointer-events-auto group-hover:bg-paper-100 group-hover:text-5xl">
-                {join.title}
-              </h3>
-            </>
+      <div className="flex w-full flex-col items-center gap-2 sm:flex-row sm:items-start">
+        <div className="flex flex-col gap-2 w-63">
+          <div className="relative flex flex-col gap-2.5">
+            <div aria-hidden className="h-8" />
+            <h3 className="font-serif text-[32px] leading-8 pointer-events-none absolute inset-0 z-10 flex items-start justify-center bg-paper-100/0 uppercase transition-all duration-300 group-hover:pointer-events-auto group-hover:bg-paper-100 group-hover:text-6xl sm:justify-start">
+              {join.title}
+            </h3>
+            <p className="text-sm leading-5">{join.text}</p>
+          </div>
+          {join.buttonLabel && (
+            <span className="text-base font-semibold">{join.buttonLabel}</span>
           )}
-          {join.text && <p className="text-sm leading-5 ">{join.text}</p>}
         </div>
-        {join.buttonLabel && (
-          <span className="text-base leading-6 font-semibold">
-            {join.buttonLabel}
-          </span>
-        )}
-      </div>
-      <div className="relative w-48 shrink-0">
-        <Image
-          src="/images/About-join.svg"
-          alt=""
-          aria-hidden
-          fill
-          className="object-contain"
-        />
+        <div className="relative w-48 h-26.75 sm:w-48">
+          <Image
+            src="/images/About-join.svg"
+            alt=""
+            aria-hidden
+            fill
+            className="object-contain"
+          />
+        </div>
       </div>
     </a>
   );
@@ -79,8 +75,8 @@ export default async function About() {
             {about.title}
           </Heading>
           <RichText
-            data={about.text}
-            className="text-justify font-(family-name:--font-literata) font-normal text-lg"
+            data={about.description}
+            className="text-justify font-(family-name:--font-literata) text-[18px] "
           />
 
           {about.join?.text && <JoinTeaser join={about.join} />}

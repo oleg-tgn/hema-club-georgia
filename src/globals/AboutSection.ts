@@ -19,7 +19,7 @@ export const AboutSection: GlobalConfig = {
       defaultValue: "About",
     },
     {
-      name: "text",
+      name: "description",
       type: "richText",
       required: true,
       localized: true,
@@ -36,11 +36,13 @@ export const AboutSection: GlobalConfig = {
           name: "title",
           type: "text",
           localized: true,
+          required: true,
           defaultValue: "Want to join?",
         },
         {
           name: "text",
           type: "textarea",
+          required: true,
           localized: true,
           defaultValue:
             "Message us on Instagram or just drop by the gym during any of our scheduled class times.",
