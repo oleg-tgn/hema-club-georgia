@@ -89,14 +89,16 @@ function AddressCard({
         href={address.googleMap}
         target="_blank"
         rel="noopener noreferrer"
-        className="relative flex w-full flex-col rounded-lg border border-black/20 bg-transparent p-2 text-night transition-colors hover:bg-black/10"
-      >
+        className="relative flex w-full flex-col p-2 rounded-lg border border-black/20 bg-transparent  text-night transition-colors hover:bg-black/10"
+      > 
         <ArrowIcon
           direction="up-right"
-          className="absolute right-2 top-2 text-night"
+          className="absolute w-8 h-8 right-2 top-2 text-night"
         />
-        <span className="text-xl font-medium">{address.addressLine}</span>
-        <span className="text-base font-normal">{address.description}</span>
+        <div className="flex flex-col w-full max-w-56 gap-1.5">
+          <span className="text-[18px] sm:text-xl font-medium">{address.addressLine}</span>
+          <span className="text-base font-normal">{address.description}</span>
+        </div>
       </a>
     </div>
   );
@@ -115,14 +117,14 @@ function ScheduleFullRow({
 
   return (
     <div
-      className={`flex flex-row gap-2 rounded-2xl border items-center border-night/15 p-5  justify-between ${className}`}
+      className={`flex flex-col gap-5 p-4 rounded-2xl border border-night/15  justify-between sm:flex-row sm:p-5 sm:items-center ${className}`}
     >
       <Heading size="sm" as="h3">
         {doc.title}
       </Heading>
-      <div className="flex flex-col gap-1 text-night sm:items-end">
+      <div className="flex w-full flex-col gap-1 text-night sm:items-end">
         {rows.map((row, idx) => (
-          <div key={idx} className="flex flex-row gap-15">
+          <div key={idx} className="flex flex-row justify-between sm:gap-15">
             <span className="text-base">{t(`days.${row.day}`)}</span>
             <span className="text-right font-semibold tabular-nums">
               {formatTime(row.startTime)} – {formatTime(row.endTime)}
@@ -151,46 +153,43 @@ export default async function Schedule() {
   const rapier = groups.find((doc) => doc.slug === "rapier");
   const sparrings = groups.find((doc) => doc.slug === "sparrings");
 
-  const hasSchedule = Boolean(longsword || saber || rapier || sparrings);
-
   const address = await payload.findGlobal({
     slug: "address",
     locale: locale as Locale,
   });
 
   return (
-    <div className="w-full rounded-[40px] bg-gold-100 p-10">
-      <div className="flex flex-col gap-10 mb-20 lg:flex-row">
-        <Heading size="lg" as="h2" className="w-full lg:w-1/2">
+    <div className="flex flex-col w-full gap-4 rounded-[20px] bg-gold-100 p-2 sm:p-5 md:p-10 md:rounded-[40px] xl:gap-12 2xl:gap-23">
+      <div className="flex flex-col gap-4 sm:gap-10 xl:justify-between xl:flex-row 2xl:gap-10">
+        <Heading size="lg" as="h2" className="w-full xl:w-auto 2xl:w-1/2 ">
           {t("title")}
         </Heading>
-        <AddressCard className="lg:w-1/2" address={address} />
+        <AddressCard className="xl:w-105 2xl:w-1/2" address={address} />
       </div>
-
-      {hasSchedule && (
-        <div className="flex flex-col gap-10 lg:flex-row">
-          <div className="grid grid-cols-2 gap-6 w-full lg:w-1/2">
-            {longsword && (
-              <ScheduleCard doc={longsword} t={t} className="row-span-2" />
-            )}
-            {saber && <ScheduleCard doc={saber} t={t} />}
-            {rapier && <ScheduleCard doc={rapier} t={t} />}
-            {sparrings && (
-              <ScheduleFullRow doc={sparrings} t={t} className="col-span-2" />
-            )}
-          </div>
-
-          <div className="relative min-h-64 w-full overflow-hidden lg:w-1/2">
-            <Image
-              src="/images/shedule-bg.webp"
-              alt=""
-              aria-hidden
-              fill
-              className="object-contain object-top-center mix-blend-multiply"
-            />
-          </div>
+      
+      <div className="flex flex-col gap-4 xl:flex-row xl:gap-10">
+        <div className="grid grid-cols-1 w-full gap-4 sm:grid-cols-2 xl:w-1/2">
+          {longsword && (
+            <ScheduleCard doc={longsword} t={t} className="row-span-1 sm:row-span-2" />
+          )}
+          {saber && <ScheduleCard doc={saber} t={t} />}
+          {rapier && <ScheduleCard doc={rapier} t={t} />}
+          {sparrings && (
+            <ScheduleFullRow doc={sparrings} t={t} className="col-span-1 sm:col-span-2" />
+          )}
         </div>
-      )}
+
+        <div className="w-full xl:w-1/2 xl:mt-auto">
+          <Image
+            src="/images/shedule-bg.webp"
+            alt=""
+            aria-hidden
+            width={1999}
+            height={1318}
+            className="w-full h-auto mix-blend-multiply"
+          />
+        </div>
+      </div>      
     </div>
   );
 }
