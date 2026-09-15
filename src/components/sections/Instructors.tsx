@@ -37,12 +37,15 @@ export default async function Instructors() {
 
   return (
     <Carousel options={{ loop: false, align: "start" }}>
-      <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-4 mb-8">
-        <div />
-        <Heading size="lg" as="h2" className="justify-self-center">
+      <div className="grid grid-cols-2 items-center mb-8 lg:grid-cols-[1fr_auto_1fr]">
+        <Heading
+          size="lg"
+          as="h2"
+          className="justify-self-start lg:col-start-2 lg:justify-self-center"
+        >
           {t("title")}
         </Heading>
-        <CarouselControls className="justify-self-end" />
+        <CarouselControls className="justify-self-end lg:col-start-3" />
       </div>
 
       <CarouselViewport>
