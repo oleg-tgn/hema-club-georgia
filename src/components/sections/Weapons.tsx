@@ -1,5 +1,5 @@
 import type { Locale } from "@/i18n/routing";
-import { getLocale } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import Image from "next/image";
 import config from "@payload-config";
 import { getPayload } from "payload";
@@ -8,6 +8,7 @@ import CtaTile from "../ui/CtaTile";
 
 export default async function Weapons() {
   const locale = await getLocale();
+  const t = await getTranslations("Training");
   const payload = await getPayload({ config });
 
   const weapons = await payload.findGlobal({
@@ -36,7 +37,10 @@ export default async function Weapons() {
               external
               className="h-full text-xl leading-none font-medium sm:text-[34px]"
             >
-              Equip Guide
+              <span className="sm:hidden">{t.rich("equipGuideCtaMobile")}</span>
+              <span className="hidden sm:inline">
+                {t.rich("equipGuideCta", { br: () => <br /> })}
+              </span>
             </CtaTile>
           </div>
         </div>
