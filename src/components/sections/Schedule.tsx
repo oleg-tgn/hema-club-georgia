@@ -117,14 +117,14 @@ function ScheduleFullRow({
 
   return (
     <div
-      className={`flex flex-row gap-2 rounded-2xl border items-center border-night/15 p-5  justify-between ${className}`}
+      className={`flex flex-col gap-5 p-4 rounded-2xl border border-night/15  justify-between sm:flex-row sm:p-5 sm:items-center ${className}`}
     >
       <Heading size="sm" as="h3">
         {doc.title}
       </Heading>
-      <div className="flex flex-col gap-1 text-night sm:items-end">
+      <div className="flex w-full flex-col gap-1 text-night sm:items-end">
         {rows.map((row, idx) => (
-          <div key={idx} className="flex flex-row gap-15">
+          <div key={idx} className="flex flex-row justify-between sm:gap-15">
             <span className="text-base">{t(`days.${row.day}`)}</span>
             <span className="text-right font-semibold tabular-nums">
               {formatTime(row.startTime)} – {formatTime(row.endTime)}
@@ -159,7 +159,7 @@ export default async function Schedule() {
   });
 
   return (
-    <div className="flex flex-col w-full rounded-[40px] gap-4 bg-gold-100 p-2 sm:p-10 sm:gap-20">
+    <div className="flex flex-col w-full gap-4 rounded-[20px] bg-gold-100 p-2 sm:p-10 sm:rounded-[40px] sm:gap-20">
       <div className="flex flex-col gap-4 sm:gap-10 lg:flex-row">
         <Heading size="lg" as="h2" className="w-full lg:w-1/2">
           {t("title")}
@@ -167,7 +167,7 @@ export default async function Schedule() {
         <AddressCard className="lg:w-1/2" address={address} />
       </div>
       
-      <div className="flex flex-col gap-10 lg:flex-row">
+      <div className="flex flex-col gap-4 sm:gap-10 lg:flex-row">
         <div className="grid grid-cols-1 gap-6 w-full sm:grid-cols-2 lg:w-1/2">
           {longsword && (
             <ScheduleCard doc={longsword} t={t} className="row-span-1 sm:row-span-2" />
@@ -179,13 +179,14 @@ export default async function Schedule() {
           )}
         </div>
 
-        <div className="relative min-h-64 w-full overflow-hidden lg:w-1/2">
+        <div className="w-full lg:w-1/2 lg:min-h-64">
           <Image
             src="/images/shedule-bg.webp"
             alt=""
             aria-hidden
-            fill
-            className="object-contain object-top-center mix-blend-multiply"
+            width={1999}
+            height={1318}
+            className="w-full h-auto mix-blend-multiply"
           />
         </div>
       </div>      
