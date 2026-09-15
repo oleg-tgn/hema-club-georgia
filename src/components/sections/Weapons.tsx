@@ -18,11 +18,11 @@ export default async function Weapons() {
 
   return (
     <div className="relative w-full overflow-hidden p-0  bg-paper-200 rounded-[20px] xl:rounded-[40px]">
-      <div className="relative z-10 flex flex-col py-8 px-5 gap-1 sm:gap-5 md:pt-14 md:pb-5 md:px-10 lg:items-end xl:gap-20">
+      <div className="relative z-10 flex flex-col py-8 px-5 gap-1 sm:gap-5 md:pt-14 md:pb-5 md:px-10 lg:gap-0 xl:items-end xl:gap-20">
         <WeaponsTitleIcon aria-hidden className="w-full text-gold-100/80" />
 
-        <div className="flex flex-col gap-6 sm:flex-row sm:gap-8 md:gap-8 lg:justify-between lg:items-end xl:gap-12">
-          <div className="flex flex-col gap-6 w-full sm:w-auto md:flex-row md:justify-between xl:max-w-44 xl:gap-12">
+        <div className="flex flex-col gap-6 sm:flex-row sm:gap-8 md:gap-8 lg:justify-between lg:-mt-10 xl:gap-12">
+          <div className="flex flex-col gap-6 w-full sm:w-auto md:flex-row md:justify-between lg:max-w-100 xl:max-w-44 xl:gap-12">
             {weapons.provisions?.map((row) => (
               <div key={row.id}>
                 <div className="text-base font-normal">{row.intro}</div>
@@ -31,7 +31,7 @@ export default async function Weapons() {
             ))}
           </div>
 
-          <div className="w-full h-10.5 sm:w-43.5 sm:h-auto sm:shrink-0 lg:h-40 xl:h-56 xl:max-w-44">
+          <div className="w-full h-10.5 sm:w-43.5 sm:h-auto sm:shrink-0 xl:w-44">
             <CtaTile
               href="https://docs.google.com/document/d/1v5YkBME_fWG1vdxpjDT1uqGH_Tiis3cSz2iiYRITwUU/edit?tab=t.0"
               external
