@@ -159,16 +159,16 @@ export default async function Schedule() {
   });
 
   return (
-    <div className="flex flex-col w-full gap-4 rounded-[20px] bg-gold-100 p-2 sm:p-5 md:p-10 md:rounded-[40px] lg:gap-20">
-      <div className="flex flex-col gap-4 sm:gap-10 lg:flex-row">
-        <Heading size="lg" as="h2" className="w-full lg:w-1/2">
+    <div className="flex flex-col w-full gap-4 rounded-[20px] bg-gold-100 p-2 sm:p-5 md:p-10 md:rounded-[40px] xl:gap-20">
+      <div className="flex flex-col gap-4 sm:gap-10 xl:flex-row">
+        <Heading size="lg" as="h2" className="w-full xl:w-1/2">
           {t("title")}
         </Heading>
-        <AddressCard className="lg:w-1/2" address={address} />
+        <AddressCard className="xl:w-1/2" address={address} />
       </div>
       
-      <div className="flex flex-col gap-4 lg:gap-10 lg:flex-row">
-        <div className="grid grid-cols-1 w-full gap-4 sm:grid-cols-2 lg:gap-6 lg:w-1/2">
+      <div className="flex flex-col gap-4 lg:gap-10 xl:flex-row">
+        <div className="grid grid-cols-1 w-full gap-4 sm:grid-cols-2 lg:gap-6 xl:w-1/2">
           {longsword && (
             <ScheduleCard doc={longsword} t={t} className="row-span-1 sm:row-span-2" />
           )}
@@ -179,7 +179,7 @@ export default async function Schedule() {
           )}
         </div>
 
-        <div className="w-full lg:w-1/2 lg:min-h-64">
+        <div className="w-full xl:w-1/2">
           <Image
             src="/images/shedule-bg.webp"
             alt=""
