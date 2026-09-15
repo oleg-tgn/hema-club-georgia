@@ -159,16 +159,16 @@ export default async function Schedule() {
   });
 
   return (
-    <div className="flex flex-col w-full gap-4 rounded-[20px] bg-gold-100 p-2 sm:p-5 md:p-10 md:rounded-[40px] xl:gap-12 2xl:gap-20">
-      <div className="flex flex-col gap-4 sm:gap-10 xl:justify-between xl:flex-row">
-        <Heading size="lg" as="h2" className="w-full xl:w-auto xl:flex-1 2xl:w-1/2 2xl:flex-none">
+    <div className="flex flex-col w-full gap-4 rounded-[20px] bg-gold-100 p-2 sm:p-5 md:p-10 md:rounded-[40px] xl:gap-12 2xl:gap-23">
+      <div className="flex flex-col gap-4 sm:gap-10 xl:justify-between xl:flex-row 2xl:gap-10">
+        <Heading size="lg" as="h2" className="w-full xl:w-auto 2xl:w-1/2 ">
           {t("title")}
         </Heading>
-        <AddressCard className="xl:w-105 xl:shrink-0 2xl:w-1/2 2xl:shrink" address={address} />
+        <AddressCard className="xl:w-105 2xl:w-1/2" address={address} />
       </div>
       
       <div className="flex flex-col gap-4 xl:flex-row xl:gap-10">
-        <div className="grid grid-cols-1 w-full gap-4 sm:grid-cols-2 xl:w-1/2 2xl:gap-6">
+        <div className="grid grid-cols-1 w-full gap-4 sm:grid-cols-2 xl:w-1/2">
           {longsword && (
             <ScheduleCard doc={longsword} t={t} className="row-span-1 sm:row-span-2" />
           )}
