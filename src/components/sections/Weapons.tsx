@@ -18,11 +18,11 @@ export default async function Weapons() {
 
   return (
     <div className="relative w-full overflow-hidden p-0  bg-paper-200 rounded-[20px] xl:rounded-[40px]">
-      <div className="relative z-10 flex flex-col py-8 px-5 gap-1 sm:gap-5 md:pt-14 md:pb-5 md:px-10 lg:gap-0 xl:items-end xl:gap-20">
+      <div className="relative z-10 flex flex-col py-8 px-5 gap-1 sm:gap-5 md:pt-14 md:pb-5 md:px-10 lg:gap-0 xl:pb-10">
         <WeaponsTitleIcon aria-hidden className="w-full text-gold-100/80" />
 
-        <div className="flex flex-col gap-6 sm:flex-row sm:gap-8 md:gap-8 lg:justify-between lg:-mt-10 xl:gap-12">
-          <div className="flex flex-col gap-6 w-full sm:w-auto md:flex-row md:justify-between lg:gap-12 lg:max-w-105 xl:max-w-44 xl:gap-12">
+        <div className="flex w-full flex-col gap-6 sm:flex-row sm:gap-8 md:gap-8 lg:justify-between lg:-mt-10 xl:-mt-5">
+          <div className="flex flex-col gap-6 w-full sm:w-auto md:flex-row md:justify-between lg:gap-12 lg:max-w-105 xl:flex-col xl:max-w-44 xl:gap-12.5 ">
             {weapons.provisions?.map((row) => (
               <div key={row.id}>
                 <div className="text-base font-normal">{row.intro}</div>
@@ -46,7 +46,7 @@ export default async function Weapons() {
         </div>
       </div>
 
-      <div className="relative pointer-events-none w-full mx-auto aspect-168/95 xl:absolute xl:inset-x-0 xl:bottom-0 xl:max-w-239">
+      <div className="relative pointer-events-none w-full mx-auto aspect-168/95 xl:absolute xl:inset-x-0 xl:bottom-0 xl:w-208 2xl:w-239">
         <Image
           src="/images/weapons.png"
           alt=""
