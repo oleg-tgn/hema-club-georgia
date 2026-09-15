@@ -26,7 +26,7 @@ export default async function CtaTile({
         />
       </span>
       <span
-        className={`relative w-max px-2.5 leading-none sm:self-start transition-transform duration-300 group-hover:translate-x-[calc(100cqw-100%-1.5rem)] sm:group-hover:translate-x-[calc(100cqw-100%)]`}
+        className={`relative max-w-full px-2.5 leading-none sm:self-start transition-transform duration-300 group-hover:translate-x-[calc(100cqw-100%-1.5rem)] sm:group-hover:translate-x-[calc(100cqw-100%)]`}
       >
         {children}
       </span>

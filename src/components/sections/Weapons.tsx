@@ -17,11 +17,11 @@ export default async function Weapons() {
 
   return (
     <div className="relative w-full overflow-hidden p-0  bg-paper-200 rounded-[20px] xl:rounded-[40px]">
-      <div className="relative z-10 flex flex-col py-8 px-5 gap-1 xl:gap-20">
+      <div className="relative z-10 flex flex-col py-8 px-5 gap-1 sm:gap-5 xl:gap-20">
         <WeaponsTitleIcon aria-hidden className="w-full text-gold-100/80" />
 
-        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between xl:gap-12">
-          <div className="flex flex-col gap-6 w-full md:max-w-44 xl:gap-12">
+        <div className="flex flex-col gap-6 sm:flex-row sm:gap-8 md:items-end md:justify-between xl:gap-12">
+          <div className="flex flex-col gap-6 w-full sm:w-auto xl:max-w-44 xl:gap-12">
             {weapons.provisions?.map((row) => (
               <div key={row.id}>
                 <div className="text-base font-normal">{row.intro}</div>
@@ -30,11 +30,11 @@ export default async function Weapons() {
             ))}
           </div>
 
-          <div className="w-full h-10.5 lg:h-40 xl:h-56 xl:max-w-44 xl:shrink-0">
+          <div className="w-full h-10.5 sm:w-43.5 sm:h-auto sm:shrink-0 lg:h-40 xl:h-56 xl:max-w-44">
             <CtaTile
               href="https://docs.google.com/document/d/1v5YkBME_fWG1vdxpjDT1uqGH_Tiis3cSz2iiYRITwUU/edit?tab=t.0"
               external
-              className="text-xl leading-none font-medium"
+              className="h-full text-xl leading-none font-medium sm:text-[34px]"
             >
               Equip Guide
             </CtaTile>
