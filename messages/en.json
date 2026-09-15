@@ -42,7 +42,9 @@
       "Italian rapier, as well as rapier and dagger (dagger for the off-hand)",
       "Military saber of the 19th century",
       "Sword and shield (buckler) of the 13th century"
-    ]
+    ],
+    "equipGuideCtaMobile": "Equip Guide",
+    "equipGuideCta": "Equip<br></br>Guide"
   },
   "Schedule": {
     "title": "Address and schedule",

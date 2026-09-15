@@ -1,5 +1,5 @@
 import type { Locale } from "@/i18n/routing";
-import { getLocale } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import Image from "next/image";
 import config from "@payload-config";
 import { getPayload } from "payload";
@@ -8,6 +8,7 @@ import CtaTile from "../ui/CtaTile";
 
 export default async function Weapons() {
   const locale = await getLocale();
+  const t = await getTranslations("Training");
   const payload = await getPayload({ config });
 
   const weapons = await payload.findGlobal({
@@ -16,22 +17,12 @@ export default async function Weapons() {
   });
 
   return (
-    <div className="relative w-full overflow-hidden rounded-[40px] bg-paper-200 p-10">
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 mx-auto aspect-168/95 w-full max-w-239">
-        <Image
-          src="/images/weapons.png"
-          alt=""
-          aria-hidden
-          fill
-          className="object-cover object-bottom"
-        />
-      </div>
-
-      <div className="relative z-10 flex flex-col gap-20">
+    <div className="relative w-full overflow-hidden p-0  bg-paper-200 rounded-[20px] xl:rounded-[40px]">
+      <div className="relative z-10 flex flex-col py-8 px-5 gap-1 sm:gap-5 md:pt-14 md:pb-5 md:px-10 lg:gap-0 xl:pb-10">
         <WeaponsTitleIcon aria-hidden className="w-full text-gold-100/80" />
 
-        <div className="flex flex-col gap-12 md:flex-row md:items-end md:justify-between">
-          <div className="flex flex-col gap-12 md:max-w-44">
+        <div className="flex w-full flex-col gap-6 sm:flex-row sm:gap-8 md:gap-8 lg:justify-between lg:-mt-10 xl:-mt-5 2xl:mt-12">
+          <div className="flex flex-col gap-6 w-full sm:w-auto md:flex-row md:justify-between lg:gap-12 lg:max-w-41.5 xl:flex-col xl:gap-12.5 ">
             {weapons.provisions?.map((row) => (
               <div key={row.id}>
                 <div className="text-base font-normal">{row.intro}</div>
@@ -40,15 +31,29 @@ export default async function Weapons() {
             ))}
           </div>
 
-          <div className="h-40 w-full md:h-56 md:max-w-44 md:shrink-0">
+          <div className="w-full h-10.5 sm:w-43.5 sm:h-auto sm:shrink-0 xl:w-44">
             <CtaTile
               href="https://docs.google.com/document/d/1v5YkBME_fWG1vdxpjDT1uqGH_Tiis3cSz2iiYRITwUU/edit?tab=t.0"
               external
+              className="h-full text-xl leading-none font-medium sm:text-[34px]"
             >
-              Equip Guide
+              <span className="sm:hidden">{t.rich("equipGuideCtaMobile")}</span>
+              <span className="hidden sm:inline">
+                {t.rich("equipGuideCta", { br: () => <br /> })}
+              </span>
             </CtaTile>
           </div>
         </div>
+      </div>
+
+      <div className="relative pointer-events-none w-full mx-auto aspect-168/95 xl:absolute xl:inset-x-0 xl:bottom-0 xl:w-208 2xl:w-239">
+        <Image
+          src="/images/weapons.png"
+          alt=""
+          aria-hidden
+          fill
+          className="object-cover object-bottom"
+        />
       </div>
     </div>
   );
