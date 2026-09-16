@@ -90,7 +90,7 @@ export default async function Instructors() {
                     </div>
                   )}
 
-                  <div className="text-[34px] font-normal leading-8">
+                  <div className="text-[34px] font-normal leading-8.5">
                     {firstName}<br/>
                     {lastName}
                   </div>
@@ -113,7 +113,7 @@ export default async function Instructors() {
                       className="flex items-center gap-2 text-sm font-normal text-night hover:text-gold-200"
                     >
                       {t("hemaRating")}
-                      <ExternalIcon className="w-4 h4" />
+                      <ExternalIcon className="w-4 h-4" />
                     </a>
                   )}
                 </div>
