@@ -116,7 +116,7 @@ export default async function Hero() {
             <DescriptionPanel t={t} description={hero.description} />
           </div>
 
-          <div className="hidden w-full sm:flex sm:max-w-[256px] md:max-w-77 lg:max-w-1/2 xl:max-w-none">
+          <div className="hidden w-full sm:flex sm:max-w-[256px] md:max-w-77 lg:max-w-110 xl:max-w-none">
             <WeaponsPanel weapons={weapons} />
           </div>
         </div>
