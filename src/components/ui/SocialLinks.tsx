@@ -23,7 +23,7 @@ export default function SocialLinks({
   className?: string;
 }) {
   return (
-    <div className={`flex gap-2 ${className}`}>
+    <div className={`flex ${className}`}>
       {links.map((link) => {
         const Icon = socialIcons[link.platform];
         if (!Icon) return null;
@@ -35,7 +35,7 @@ export default function SocialLinks({
             target="_blank"
             rel="noopener noreferrer"
             aria-label={link.platform}
-            className="flex items-center justify-center text-night transition-colors hover:text-gold-200"
+            className="text-night hover:text-gold-200 flex items-center justify-center transition-colors"
           >
             <Icon className="h-8 w-8" />
           </a>
