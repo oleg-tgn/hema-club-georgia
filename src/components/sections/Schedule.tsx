@@ -119,9 +119,9 @@ function ScheduleFullRow({
 
   return (
     <div
-      className={`flex flex-col justify-between gap-5 rounded-lg border border-black/20 p-4 sm:flex-row sm:items-center sm:p-5 ${className}`}
+      className={`flex flex-col justify-between gap-5 rounded-lg border border-black/20 p-4 sm:flex-row sm:items-center ${className}`}
     >
-      <Heading size="sm" as="h3">
+      <Heading size="sm" as="h3" className="opacity-80">
         {doc.title}
       </Heading>
       <div className="text-night flex w-full flex-col gap-1 sm:items-end lg:w-61.5">

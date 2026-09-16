@@ -21,7 +21,7 @@ export default async function Weapons() {
       <div className="relative z-10 flex flex-col gap-1 px-5 py-8 sm:gap-5 md:px-10 md:pt-14 md:pb-5 lg:gap-0 lg:pb-12 xl:pb-10">
         <WeaponsTitleIcon aria-hidden className="text-gold-100/80 w-full" />
 
-        <div className="flex w-full flex-col gap-6 sm:flex-row sm:gap-8 md:justify-between md:gap-8 lg:-mt-10 xl:-mt-5 2xl:mt-12">
+        <div className="flex w-full flex-col gap-6 sm:flex-row sm:gap-8 md:justify-between md:gap-8 lg:-mt-10 xl:-mt-5 2xl:mt-25.5">
           <div className="flex w-full flex-col gap-6 sm:w-auto md:flex-row md:justify-between lg:gap-12 xl:flex-col xl:gap-12.5">
             {weapons.provisions?.map((row) => (
               <div key={row.id} className="lg:w-47 xl:w-41.5">
