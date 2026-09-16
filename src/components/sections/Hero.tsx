@@ -49,7 +49,7 @@ function WeaponsPanel({ weapons }: { weapons: Weapon[] }) {
         return (
           <div
             key={weapon.id}
-            className="flex flex-col w-full align-center gap-2 p-4 rounded-[20px] bg-gold-100 border border-gold-100 sm:bg-transparent sm:backdrop-blur-md sm:gap-4 sm:border sm:border-off-white/30 sm:rounded-lg lg:flex-row lg:justify-between xl:flex-col xl:max-w-59 2xl:max-w-68.5"
+            className="flex flex-col w-full h-38 align-center justify-between p-4 rounded-[20px] bg-gold-100 border border-gold-100 sm:h-auto sm:justify-baseline sm:bg-transparent sm:backdrop-blur-md sm:gap-4 sm:border sm:border-off-white/30 sm:rounded-lg lg:flex-row lg:justify-between xl:flex-col xl:max-w-59 2xl:max-w-68.5"
           >
             <div className="flex h-10.5 w-full lg:w-auto xl:w-full">
               <WeaponIcon
@@ -58,13 +58,13 @@ function WeaponsPanel({ weapons }: { weapons: Weapon[] }) {
               />
             </div>
             <div className="flex flex-col gap-2 lg:w-43 xl:w-full">
-              <span className="font-serif text-[32px] leading-none font-light tracking-tight text-night sm:text-paper-100">
+              <span className="font-serif text-[32px] leading-none tracking-tight text-night sm:text-paper-100">
                 {weapon.name}
               </span>
               {weapon.label && (
                 <RichText
                   data={weapon.label}
-                  className="text-base leading-none text-night [&_strong]:text-semibold sm:text-gold-100"
+                  className="text-base leading-6 text-night/80 [&_strong]:text-semibold sm:text-gold-100"
                 />
               )}
             </div>
@@ -90,7 +90,7 @@ export default async function Hero() {
 
   return (
     <>
-      <section className="relative flex flex-col min-h-[calc(100dvh-var(--header-height)-1rem)] mb-4 w-full justify-between overflow-hidden text-white p-5 rounded-[20px] sm:gap-10 md:p-10 md:rounded-[40px]">
+      <section className="relative flex flex-col min-h-[calc(100dvh-var(--header-height)-var(--hero-gap))] mb-(--hero-gap) w-full justify-between overflow-hidden text-white p-5 rounded-[20px] sm:gap-10 md:p-10 md:rounded-[40px]">
         <video
           className="absolute inset-0 h-full w-full object-cover"
           src="/videos/hema-intro.webm"
@@ -115,7 +115,7 @@ export default async function Hero() {
           </div>
         </div>
       </section>
-      <section className="flex mt-2 sm:hidden">
+      <section className="flex sm:hidden">
         <WeaponsPanel weapons={weapons} />
       </section>
     </>

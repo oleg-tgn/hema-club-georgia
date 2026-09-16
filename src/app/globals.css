@@ -46,12 +46,14 @@ html {
   --header-height: 52px;
   /* how far past the header a section must scroll before its nav link activates */
   --nav-active-offset: 200px;
+  --hero-gap: 0.5rem;
   scroll-padding-top: var(--header-height);
   scroll-behavior: smooth;
 }
 @media (min-width: 40rem) {
   html {
     --header-height: 68px;
+    --hero-gap: 1rem;
   }
 }
 
