@@ -36,7 +36,7 @@ function ScheduleCard({
 
   return (
     <div
-      className={`text-night flex flex-col gap-5 rounded-lg border border-black/20 p-4 md:gap-12.5 ${className}`}
+      className={`text-night flex flex-col gap-5 rounded-lg border border-black/20 p-4 ${className}`}
     >
       <div className="flex flex-col gap-1.5">
         {weapon && (
