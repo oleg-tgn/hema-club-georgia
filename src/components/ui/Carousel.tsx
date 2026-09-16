@@ -86,7 +86,7 @@ export function CarouselViewport({ children }: { children: ReactNode }) {
 }
 
 const carouselButtonClasses =
-  "w-8 h-8 sm:w-12.5 sm:h-12.5 rounded-full border border-black/40 flex items-center justify-center disabled:opacity-30 transition-colors hover:bg-night-hover cursor-pointer";
+  "w-9 h-9 sm:w-12.5 sm:h-12.5 rounded-full border border-black/40 flex items-center justify-center disabled:opacity-30 transition-colors hover:bg-night-hover cursor-pointer";
 
 export function CarouselControls({ className }: { className?: string }) {
   const { scrollPrev, scrollNext, canScrollPrev, canScrollNext } =
@@ -100,7 +100,7 @@ export function CarouselControls({ className }: { className?: string }) {
         className={carouselButtonClasses}
         aria-label="Previous"
       >
-        <ArrowIcon direction="left" className="w-6 h-6" />
+        <ArrowIcon direction="left" className="w-8 h-8" />
       </button>
       <button
         type="button"
@@ -109,7 +109,7 @@ export function CarouselControls({ className }: { className?: string }) {
         className={carouselButtonClasses}
         aria-label="Next"
       >
-        <ArrowIcon direction="right" className="w-6 h-6" />
+        <ArrowIcon direction="right" className="w-8 h-8" />
       </button>
     </div>
   );

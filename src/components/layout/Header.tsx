@@ -139,7 +139,7 @@ export default function Header() {
   const isHome = pathname === "/";
 
   return (
-    <header className="sticky top-0 z-50 bg-paper-100">
+    <header className="sticky top-0 z-50 bg-paper-100/90 backdrop-blur-[10px]">
       <div className="mx-auto flex h-(--header-height) items-center justify-between container px-2 sm:px-5 md:px-10">
         <MenuLink href="/" section="" isHome={isHome} className="group">
           <div className="flex sm:hidden">
