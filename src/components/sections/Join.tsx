@@ -18,7 +18,7 @@ export default async function Join() {
   });
 
   return (
-    <div className="flex flex-col items-center gap-4 sm:gap-10 lg:flex-row xl:gap-24">
+    <div className="flex flex-col items-center gap-4 sm:gap-10 lg:flex-row">
       <div className="flex aspect-600/404 w-full lg:max-w-118.25 lg:flex-1 xl:max-w-159.5 2xl:max-w-233">
         <Image
           src={joinImage}
