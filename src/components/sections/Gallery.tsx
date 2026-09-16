@@ -8,6 +8,23 @@ import Heading from "../ui/Heading";
 import { Carousel, CarouselViewport, CarouselControls } from "../ui/Carousel";
 import InstagramIcon from "../icons/InstagramIcon";
 
+function InstagramLink({href, label, className}: {href: string,  label: string, className: string}) {
+  if (!href) return;
+  return (  
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`group justify-self-start flex items-center gap-4 cursor-pointer text-night ${className}`}
+    >
+      <span className="flex w-12 h-12 border border-black/20 rounded-full items-center justify-center transition-colors group-hover:bg-night-hover">
+        <InstagramIcon className="w-6 h-6" />
+      </span>
+      <span className="text-xl font-medium">{label}</span>
+    </a>
+  )
+}
+
 export default async function Gallery() {
   const locale = await getLocale();
   const t = await getTranslations("Gallery");
@@ -40,28 +57,14 @@ export default async function Gallery() {
 
   return (
     <Carousel options={{ loop: false, align: "start" }}>
-      <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-4 mb-4">
-        {instagramUrl ? (
-          <a
-            href={instagramUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group justify-self-start flex items-center gap-4 cursor-pointer text-night"
-          >
-            <span className="flex w-10 h-10 border border-black/20 rounded-full items-center justify-center transition-colors group-hover:bg-night-hover">
-              <InstagramIcon className="w-6 h-6" />
-            </span>
-            <span className="text-xl font-medium">{t("instagramCta")}</span>
-          </a>
-        ) : (
-          <span />
-        )}
+      <div className="grid grid-cols-2 items-center mb-5 lg:grid-cols-[1fr_auto_1fr]">
+        <InstagramLink href={instagramUrl} label={t("instagramCta")} className="hidden lg:flex" />
 
-        <Heading size="lg" as="h2" className="justify-self-center">
+        <Heading size="lg" as="h2" className="justify-self-start lg:col-start-2 lg:justify-self-center">
           {t("title")}
         </Heading>
 
-        <CarouselControls className="justify-self-end" />
+        <CarouselControls className="justify-self-end lg:col-start-3" />
       </div>
 
       <CarouselViewport>
@@ -69,7 +72,7 @@ export default async function Gallery() {
           {photos.map(({ id, photo, caption }) => (
             <div
               key={id}
-              className="h-168 rounded-lg overflow-hidden flex-none"
+              className="h-65.5  rounded-lg overflow-hidden flex-none sm:h-99.75 md:h-106.5 lg:h-124 2xl:h-166.5"
             >
               <Image
                 src={photo.url}
@@ -82,6 +85,10 @@ export default async function Gallery() {
           ))}
         </div>
       </CarouselViewport>
+
+      <div className="flex mt-5">
+        <InstagramLink href={instagramUrl} label={t("instagramCta")} className="flex lg:hidden" />
+      </div>
     </Carousel>
   );
 }
