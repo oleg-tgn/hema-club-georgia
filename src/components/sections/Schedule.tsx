@@ -161,7 +161,7 @@ export default async function Schedule() {
   });
 
   return (
-    <div className="bg-gold-100 flex w-full flex-col gap-4 rounded-[20px] p-4 sm:p-5 md:rounded-[40px] md:p-10 xl:gap-12 2xl:gap-23">
+    <div className="bg-gold-100 flex w-full flex-col gap-4 rounded-[20px] p-2 sm:p-5 md:rounded-[40px] md:p-10 xl:gap-12 2xl:gap-23">
       <div className="flex flex-col gap-4 sm:gap-10 xl:flex-row xl:justify-between 2xl:gap-10">
         <Heading size="lg" as="h2" className="w-full xl:w-auto 2xl:w-1/2">
           {t("title")}

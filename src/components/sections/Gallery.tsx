@@ -25,7 +25,7 @@ function InstagramLink({
       rel="noopener noreferrer"
       className={`group text-night flex cursor-pointer items-center gap-4 justify-self-start ${className}`}
     >
-      <span className="group-hover:bg-night-hover flex h-12.5 w-12.5 items-center justify-center rounded-full border border-black/40 transition-colors">
+      <span className="group-hover:bg-night-hover flex h-12 w-12 items-center justify-center rounded-full border border-black/40 transition-colors sm:h-12.5 sm:w-12.5">
         <InstagramIcon className="h-8 w-8" />
       </span>
       <span className="text-xl font-medium">{label}</span>

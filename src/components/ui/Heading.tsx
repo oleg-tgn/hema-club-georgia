@@ -4,7 +4,7 @@ type HeadingSize = "lg" | "sm";
 
 const sizeStyles: Record<HeadingSize, string> = {
   lg: "text-[42px] leading-9.5 sm:text-7xl sm:leading-16",
-  sm: "text-3xl leading-9.5",
+  sm: "text-3xl leading-8",
 };
 
 type HeadingProps = {
@@ -22,7 +22,7 @@ export default function Heading({
 }: HeadingProps) {
   return (
     <Tag
-      className={`font-serif font-normal tracking-[-0.03em] text-night ${sizeStyles[size]} ${className}`}
+      className={`text-night font-serif font-normal tracking-[-0.03em] ${sizeStyles[size]} ${className}`}
     >
       {children}
     </Tag>

@@ -71,7 +71,7 @@ function JoinTeaser({ join }: { join: AboutJoin }) {
         <div className="flex w-63 flex-col gap-2 sm:w-88 xl:w-63">
           <div className="relative flex flex-col gap-2.5">
             <div aria-hidden className="h-8" />
-            <h3 className="bg-paper-100/0 group-hover:bg-paper-100 pointer-events-none absolute inset-0 z-10 flex items-start justify-center font-serif text-[32px] leading-9.5 uppercase transition-[background-color,font-size] duration-300 group-hover:pointer-events-auto group-hover:text-6xl sm:justify-start">
+            <h3 className="bg-paper-100/0 group-hover:bg-paper-100 pointer-events-none absolute inset-0 z-10 flex items-start justify-center font-serif text-[32px] leading-none uppercase transition-[background-color,font-size] duration-300 group-hover:pointer-events-auto group-hover:text-6xl sm:justify-start">
               {join.title}
             </h3>
             <p className="text-sm leading-5">{join.text}</p>
