@@ -77,7 +77,7 @@ export function CarouselViewport({ children }: { children: ReactNode }) {
   const { viewportRef } = useCarouselContext();
   return (
     <div
-      className="full-bleed-inset w-screen ml-[calc(50%-50vw)] overflow-hidden select-none"
+      className="full-bleed-inset sm:w-screen sm:ml-[calc(50%-50vw)] overflow-hidden select-none"
       ref={viewportRef}
     >
       {children}

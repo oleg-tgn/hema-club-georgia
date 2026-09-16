@@ -165,18 +165,33 @@ nav a[data-section="gallery"] > span {
 
 /*
  * Leading/trailing space for full-bleed carousels, matching the offset
- * of `main`'s content edge (`container mx-auto px-10`) from the viewport
- * edge, so the first slide lines up with the page content at rest.
- * Mirrors Tailwind's default `.container` breakpoints/max-widths.
+ * of `main`'s content edge (`container mx-auto px-2 sm:px-5 md:px-10`)
+ * from the viewport edge, so the first slide lines up with the page
+ * content at rest. Mirrors Tailwind's default `.container`
+ * breakpoints/max-widths.
+ *
+ * Below `sm`, `main` already spans the full viewport width, so bleeding
+ * out only needs to cancel `main`'s own padding - done with a plain
+ * negative margin, no `vw` involved. `vw` (used from `sm` up, where the
+ * container's max-width is narrower than the viewport) is intentionally
+ * avoided here: Chrome sizes `100vw` to include the scrollbar gutter,
+ * which is only off by a few px, but at this tier `--inset` is small
+ * enough for that error to be visible.
  */
 .full-bleed-inset {
-  --inset: 2.5rem;
+  --inset: 0.5rem;
+  width: 100%;
+  margin-left: calc(-1 * var(--inset));
+  margin-right: calc(-1 * var(--inset));
   padding-left: var(--inset);
   padding-right: var(--inset);
 }
 @media (min-width: 40rem) {
   .full-bleed-inset {
-    --inset: calc((100vw - 40rem) / 2 + 2.5rem);
+    --inset: calc((100vw - 40rem) / 2 + 1.25rem);
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
   }
 }
 @media (min-width: 48rem) {
