@@ -47,7 +47,7 @@ function WeaponsPanel({ weapons }: { weapons: Weapon[] }) {
   }
 
   return (
-    <div className="flex w-full flex-col gap-2 md:gap-4 lg:gap-2 xl:flex-row xl:justify-end">
+    <div className="flex w-full flex-col gap-2 md:gap-4 lg:gap-2 xl:flex-row xl:justify-end xl:gap-4">
       {weapons.map((weapon) => {
         return (
           <div

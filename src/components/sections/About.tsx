@@ -120,7 +120,7 @@ export default async function About() {
           </Heading>
           <RichText
             data={about.description}
-            className="text-justify font-(family-name:--font-literata) text-[18px]"
+            className="text-justify font-(family-name:--font-literata) text-[18px] leading-7"
           />
 
           {about.join?.text && <JoinTeaser join={about.join} />}
