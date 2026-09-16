@@ -6,7 +6,7 @@ import { RichText } from "@payloadcms/richtext-lexical/react";
 
 import type { Locale } from "@/i18n/routing";
 import Heading from "../ui/Heading";
-import joinImage from "@public/images/join.png";
+import joinImage from "@public/images/join.webp";
 
 export default async function Join() {
   const locale = await getLocale();
@@ -18,8 +18,8 @@ export default async function Join() {
   });
 
   return (
-    <div className="flex flex-col md:flex-row md:items-center gap-24">
-      <div className="flex-1">
+    <div className="flex flex-col gap-4 items-center sm:gap-10 lg:flex-row lg:gap-24">
+      <div className="flex w-full lg:flex-1 lg:max-w-118.25 xl:max-w-159.5 2xl:max-w-233">
         <Image
           src={joinImage}
           alt=""
@@ -27,13 +27,13 @@ export default async function Join() {
           className="h-auto w-full object-contain"
         />
       </div>
-      <div className="flex flex-col w-84 gap-4">
+      <div className="flex flex-col w-full max-w-84 mx-auto gap-4 ">
         <div className="flex flex-row justify-between border-t-2 border-b-2 border-night text-base font-semibold">
           <span>{join.topLeftText}</span>
           <span>{join.topRightText}</span>
         </div>
 
-        <Heading size="lg" as="h2">
+        <Heading size="lg" as="h2" className="text-center">
           {join.title}
         </Heading>
 
