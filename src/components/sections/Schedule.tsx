@@ -124,7 +124,7 @@ function ScheduleFullRow({
       <Heading size="sm" as="h3">
         {doc.title}
       </Heading>
-      <div className="text-night flex w-full flex-col gap-1 sm:items-end">
+      <div className="text-night flex w-full flex-col gap-1 sm:items-end lg:w-61.5">
         {rows.map((row, idx) => (
           <div key={idx} className="flex flex-row justify-between sm:gap-15">
             <span className="text-base">{t(`days.${row.day}`)}</span>

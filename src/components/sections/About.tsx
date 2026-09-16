@@ -68,7 +68,7 @@ function JoinTeaser({ join }: { join: AboutJoin }) {
       className="group text-night flex w-full rounded-[9px] border border-black/20 p-4 text-center hover:border-black/80 sm:text-left"
     >
       <div className="flex w-full flex-col items-center gap-2 sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex w-63 flex-col gap-2 sm:w-88 xl:w-63">
+        <div className="flex w-63 flex-col gap-2 sm:min-w-0 sm:flex-1">
           <div className="relative flex flex-col gap-2.5">
             <div aria-hidden className="h-8" />
             <h3 className="bg-paper-100/0 group-hover:bg-paper-100 pointer-events-none absolute inset-0 z-10 flex items-start justify-center transition-colors duration-300 group-hover:pointer-events-auto sm:justify-start">
@@ -82,7 +82,7 @@ function JoinTeaser({ join }: { join: AboutJoin }) {
             <span className="text-base font-semibold">{join.buttonLabel}</span>
           )}
         </div>
-        <div className="relative h-26.75 w-48">
+        <div className="relative h-26.75 w-48 shrink-0">
           <Image
             src="/images/About-join.svg"
             alt=""
@@ -107,7 +107,7 @@ export default async function About() {
 
   return (
     <div className="flex w-full justify-center xl:-mx-10 xl:w-auto">
-      <div className="flex w-full flex-col gap-8 md:mx-auto md:max-w-172 xl:max-w-none xl:flex-row xl:gap-10.5">
+      <div className="flex w-full flex-col gap-8 md:mx-auto md:max-w-172 lg:max-w-167 xl:max-w-none xl:flex-row xl:gap-10.5">
         <div className="flex w-full flex-row items-end justify-center gap-8 xl:flex-col xl:items-center xl:justify-between">
           <VomTag className="flex" />
           <Pflug className="hidden sm:flex xl:hidden" />
