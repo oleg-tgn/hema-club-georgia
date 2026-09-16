@@ -64,7 +64,7 @@ function ScheduleCard({
                 <div key={idx} className="flex justify-between gap-2">
                   <span className="text-base">{t(`days.${row.day}`)}</span>
                   <span className="text-base text-right font-semibold tabular-nums">
-                    {formatTime(row.startTime)} – {formatTime(row.endTime)}
+                    {formatTime(row.startTime)} — {formatTime(row.endTime)}
                   </span>
                 </div>
               ))}
@@ -89,16 +89,16 @@ function AddressCard({
         href={address.googleMap}
         target="_blank"
         rel="noopener noreferrer"
-        className="relative flex w-full flex-col p-2 rounded-lg border border-black/20 bg-transparent  text-night transition-colors hover:bg-black/10"
-      > 
-        <ArrowIcon
-          direction="up-right"
-          className="absolute w-8 h-8 right-2 top-2 text-night"
-        />
-        <div className="flex flex-col w-full max-w-56 gap-1.5">
+        className="flex w-full flex-row items-start justify-between gap-2 p-2 rounded-lg border border-black/20 bg-transparent text-night transition-colors hover:bg-black/10"
+      >
+        <div className="flex flex-col min-w-0 gap-1.5">
           <span className="text-[18px] sm:text-xl font-medium">{address.addressLine}</span>
           <span className="text-base font-normal">{address.description}</span>
         </div>
+        <ArrowIcon
+          direction="up-right"
+          className="w-8 h-8 shrink-0 text-night"
+        />
       </a>
     </div>
   );
@@ -117,7 +117,7 @@ function ScheduleFullRow({
 
   return (
     <div
-      className={`flex flex-col gap-5 p-4 rounded-2xl border border-night/15  justify-between sm:flex-row sm:p-5 sm:items-center ${className}`}
+      className={`flex flex-col gap-5 p-4 rounded-lg border border-black/20  justify-between sm:flex-row sm:p-5 sm:items-center ${className}`}
     >
       <Heading size="sm" as="h3">
         {doc.title}
@@ -127,7 +127,7 @@ function ScheduleFullRow({
           <div key={idx} className="flex flex-row justify-between sm:gap-15">
             <span className="text-base">{t(`days.${row.day}`)}</span>
             <span className="text-right font-semibold tabular-nums">
-              {formatTime(row.startTime)} – {formatTime(row.endTime)}
+              {formatTime(row.startTime)} — {formatTime(row.endTime)}
             </span>
           </div>
         ))}
@@ -159,7 +159,7 @@ export default async function Schedule() {
   });
 
   return (
-    <div className="flex flex-col w-full gap-4 rounded-[20px] bg-gold-100 p-2 sm:p-5 md:p-10 md:rounded-[40px] xl:gap-12 2xl:gap-23">
+    <div className="flex flex-col w-full gap-4 rounded-[20px] bg-gold-100 p-4 sm:p-5 md:p-10 md:rounded-[40px] xl:gap-12 2xl:gap-23">
       <div className="flex flex-col gap-4 sm:gap-10 xl:justify-between xl:flex-row 2xl:gap-10">
         <Heading size="lg" as="h2" className="w-full xl:w-auto 2xl:w-1/2 ">
           {t("title")}

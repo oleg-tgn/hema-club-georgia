@@ -4,7 +4,7 @@ type HeadingSize = "lg" | "sm";
 
 const sizeStyles: Record<HeadingSize, string> = {
   lg: "text-[42px] sm:text-7xl leading-none ",
-  sm: "text-3xl leading-none",
+  sm: "text-3xl leading-9.5",
 };
 
 type HeadingProps = {
