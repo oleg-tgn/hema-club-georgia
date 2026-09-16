@@ -18,19 +18,19 @@ function DescriptionPanel({ t }: { t: TFunc }) {
       </p>
       <div className="flex flex-row w-full h-10.5 gap-2 sm:h-22">
         <CtaTile
-          href="#schedule"
+          href="##join"
           className="flex-[4_0_0] text-xl flex sm:hidden"
         >
           {t.rich("ctaJoinMobile")}
         </CtaTile>
 
         <CtaTile
-          href="#schedule"
+          href="#join"
           className="flex-[3_0_0] text-xl hidden sm:flex"
         >
           {t.rich("ctaJoin", { br: () => <br /> })}
         </CtaTile>
-        <CtaTile href="#about" className="flex-[6_0_0] text-xl sm:text-[34px]">
+        <CtaTile href="#schedule" className="flex-[6_0_0] text-xl sm:text-[34px]">
           {t.rich("ctaSchedule")}
         </CtaTile>
       </div>
@@ -49,12 +49,12 @@ function WeaponsPanel({ weapons }: { weapons: Weapon[] }) {
         return (
           <div
             key={weapon.id}
-            className="flex flex-col w-full h-38 align-center justify-between p-4 rounded-[20px] bg-gold-100 border border-gold-100 sm:h-auto sm:justify-baseline sm:bg-transparent sm:backdrop-blur-md sm:gap-4 sm:border sm:border-off-white/30 sm:rounded-lg lg:flex-row lg:justify-between xl:flex-col xl:max-w-59 2xl:max-w-68.5"
+            className="flex flex-col w-full h-38 align-center justify-between p-4 rounded-[20px] bg-gold-100 border border-gold-100 sm:h-auto sm:justify-none sm:bg-black/40 sm:backdrop-blur-md sm:gap-4 sm:border sm:border-off-white/30 sm:rounded-lg lg:flex-row lg:justify-between xl:flex-col xl:max-w-59 2xl:max-w-68.5"
           >
             <div className="flex h-10.5 w-full lg:w-auto xl:w-full">
               <WeaponIcon
                 slug={weapon.slug}
-                className="h-full w-auto text-night sm:text-paper-100"
+                className="h-full w-auto text-night sm:text-off-white"
               />
             </div>
             <div className="flex flex-col gap-2 lg:w-43 xl:w-full">

@@ -39,7 +39,7 @@ export default async function Join() {
 
         <RichText
           data={join.description}
-          className="text-night text-center [&_a]:text-gold-200 [&_a]:transition-colors [&_a]:hover:text-gold-100"
+          className="font-serif text-night text-center text-[18px] leading-7 [&_a]:text-gold-200 [&_a]:transition-colors [&_a]:hover:text-gold-100"
         />
 
         <div className="flex flex-row justify-center border-t border-b border-night text-base font-semibold text-center">

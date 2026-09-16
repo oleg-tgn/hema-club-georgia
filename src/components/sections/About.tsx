@@ -56,7 +56,7 @@ function Ochs({ className }: { className: string }) {
       title="Ochs"
       width={274}
       height={241}
-      className={`h-auto w-[243px] xl:w-[274px] 2xl:w-[317px] ${className}`}
+      className={`h-auto w-[243px] sm:w-[274px] 2xl:w-[317px] ${className}`}
     />
   );
 }
@@ -67,8 +67,8 @@ function JoinTeaser({ join }: { join: AboutJoin }) {
       href="#join"
       className="group flex w-full rounded-[9px] border border-black/20 p-4 text-night text-center sm:text-left hover:border-black/80"
     >
-      <div className="flex w-full flex-col items-center gap-2 sm:flex-row sm:items-start sm:justify-between">
-        <div className="flex flex-col gap-2 w-63 sm:w-110 xl:w-63">
+      <div className="flex w-full flex-col items-center gap-2 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-2 w-63 sm:w-88 xl:w-63">
           <div className="relative flex flex-col gap-2.5">
             <div aria-hidden className="h-8" />
             <h3 className="font-serif text-[32px] leading-9.5 pointer-events-none absolute inset-0 z-10 flex items-start justify-center bg-paper-100/0 uppercase transition-[background-color,font-size] duration-300 group-hover:pointer-events-auto group-hover:bg-paper-100 group-hover:text-6xl sm:justify-start">
