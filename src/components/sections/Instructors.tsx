@@ -37,7 +37,7 @@ export default async function Instructors() {
 
   return (
     <Carousel options={{ loop: false, align: "start" }}>
-      <div className="grid grid-cols-2 items-center mb-5 lg:grid-cols-[1fr_auto_1fr]">
+      <div className="mb-5 grid grid-cols-2 items-center lg:grid-cols-[1fr_auto_1fr]">
         <Heading
           size="lg"
           as="h2"
@@ -64,9 +64,9 @@ export default async function Instructors() {
             return (
               <div
                 key={instructor.id}
-                className="flex w-62.5 flex-none flex-col gap-4 text-night md:w-65 xl:w-80"
+                className="text-night flex w-62.5 flex-none flex-col gap-4 md:w-65 xl:w-80"
               >
-                <div className="relative aspect-square w-full rounded-sm overflow-hidden sm:rounded-lg">
+                <div className="relative aspect-square w-full overflow-hidden rounded-sm">
                   <Image
                     src={photoUrl!}
                     alt={photo.alt || instructor.name}
@@ -90,8 +90,9 @@ export default async function Instructors() {
                     </div>
                   )}
 
-                  <div className="text-[34px] font-normal leading-8.5">
-                    {firstName}<br/>
+                  <div className="text-[34px] leading-8.5 font-normal">
+                    {firstName}
+                    <br />
                     {lastName}
                   </div>
 
@@ -110,10 +111,10 @@ export default async function Instructors() {
                       href={instructor.hemaRatingUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-sm font-normal text-night hover:text-gold-200"
+                      className="text-night hover:text-gold-200 flex items-center gap-2 text-sm font-normal"
                     >
                       {t("hemaRating")}
-                      <ExternalIcon className="w-4 h-4" />
+                      <ExternalIcon className="h-4 w-4" />
                     </a>
                   )}
                 </div>

@@ -36,7 +36,7 @@ function ScheduleCard({
 
   return (
     <div
-      className={`flex flex-col rounded-lg border gap-5 border-black/20 p-4 text-night ${className}`}
+      className={`text-night flex flex-col gap-5 rounded-lg border border-black/20 p-4 md:gap-12.5 ${className}`}
     >
       <div className="flex flex-col gap-1.5">
         {weapon && (
@@ -48,22 +48,22 @@ function ScheduleCard({
           {weapon?.name}
         </Heading>
       </div>
-      <div className="flex flex-col divide-y divide-night/20">
+      <div className="divide-night/20 flex flex-col divide-y">
         {sections.map((section, i) => (
           <div
             key={section.level ?? i}
             className="flex flex-col gap-2 py-5 first:pt-0 last:pb-0"
           >
             {section.level && (
-              <span className="text-xl font-medium leading-none">
+              <span className="text-xl leading-none font-medium">
                 {t(`levels.${section.level}`)}
               </span>
             )}
-            <div className="flex flex-col gap-1 text-night">
+            <div className="text-night flex flex-col gap-1">
               {(section.rows ?? []).map((row, idx) => (
                 <div key={idx} className="flex justify-between gap-2">
                   <span className="text-base">{t(`days.${row.day}`)}</span>
-                  <span className="text-base text-right font-semibold tabular-nums">
+                  <span className="text-right text-base font-semibold tabular-nums">
                     {formatTime(row.startTime)} — {formatTime(row.endTime)}
                   </span>
                 </div>
@@ -89,15 +89,17 @@ function AddressCard({
         href={address.googleMap}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex w-full flex-row items-start justify-between gap-2 p-2 rounded-lg border border-black/20 bg-transparent text-night transition-colors hover:bg-black/10"
+        className="text-night flex w-full flex-row items-start justify-between gap-2 rounded-lg border border-black/20 bg-transparent p-2 transition-colors hover:bg-black/10"
       >
-        <div className="flex flex-col min-w-0 gap-1.5">
-          <span className="text-[18px] sm:text-xl font-medium">{address.addressLine}</span>
+        <div className="flex min-w-0 flex-col gap-1.5">
+          <span className="text-[18px] font-medium sm:text-xl">
+            {address.addressLine}
+          </span>
           <span className="text-base font-normal">{address.description}</span>
         </div>
         <ArrowIcon
           direction="up-right"
-          className="w-8 h-8 shrink-0 text-night"
+          className="text-night h-8 w-8 shrink-0"
         />
       </a>
     </div>
@@ -117,12 +119,12 @@ function ScheduleFullRow({
 
   return (
     <div
-      className={`flex flex-col gap-5 p-4 rounded-lg border border-black/20  justify-between sm:flex-row sm:p-5 sm:items-center ${className}`}
+      className={`flex flex-col justify-between gap-5 rounded-lg border border-black/20 p-4 sm:flex-row sm:items-center sm:p-5 ${className}`}
     >
       <Heading size="sm" as="h3">
         {doc.title}
       </Heading>
-      <div className="flex w-full flex-col gap-1 text-night sm:items-end">
+      <div className="text-night flex w-full flex-col gap-1 sm:items-end">
         {rows.map((row, idx) => (
           <div key={idx} className="flex flex-row justify-between sm:gap-15">
             <span className="text-base">{t(`days.${row.day}`)}</span>
@@ -159,37 +161,45 @@ export default async function Schedule() {
   });
 
   return (
-    <div className="flex flex-col w-full gap-4 rounded-[20px] bg-gold-100 p-4 sm:p-5 md:p-10 md:rounded-[40px] xl:gap-12 2xl:gap-23">
-      <div className="flex flex-col gap-4 sm:gap-10 xl:justify-between xl:flex-row 2xl:gap-10">
-        <Heading size="lg" as="h2" className="w-full xl:w-auto 2xl:w-1/2 ">
+    <div className="bg-gold-100 flex w-full flex-col gap-4 rounded-[20px] p-4 sm:p-5 md:rounded-[40px] md:p-10 xl:gap-12 2xl:gap-23">
+      <div className="flex flex-col gap-4 sm:gap-10 xl:flex-row xl:justify-between 2xl:gap-10">
+        <Heading size="lg" as="h2" className="w-full xl:w-auto 2xl:w-1/2">
           {t("title")}
         </Heading>
         <AddressCard className="xl:w-105 2xl:w-1/2" address={address} />
       </div>
-      
+
       <div className="flex flex-col gap-4 xl:flex-row xl:gap-10">
-        <div className="grid grid-cols-1 w-full gap-4 sm:grid-cols-2 xl:w-1/2">
+        <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 xl:w-1/2">
           {longsword && (
-            <ScheduleCard doc={longsword} t={t} className="row-span-1 sm:row-span-2" />
+            <ScheduleCard
+              doc={longsword}
+              t={t}
+              className="row-span-1 sm:row-span-2"
+            />
           )}
           {saber && <ScheduleCard doc={saber} t={t} />}
           {rapier && <ScheduleCard doc={rapier} t={t} />}
           {sparrings && (
-            <ScheduleFullRow doc={sparrings} t={t} className="col-span-1 sm:col-span-2" />
+            <ScheduleFullRow
+              doc={sparrings}
+              t={t}
+              className="col-span-1 sm:col-span-2"
+            />
           )}
         </div>
 
-        <div className="w-full xl:w-1/2 xl:mt-auto">
+        <div className="w-full xl:mt-auto xl:w-1/2">
           <Image
             src="/images/shedule-bg.webp"
             alt=""
             aria-hidden
             width={1999}
             height={1318}
-            className="w-full h-auto mix-blend-multiply"
+            className="h-auto w-full mix-blend-multiply"
           />
         </div>
-      </div>      
+      </div>
     </div>
   );
 }
