@@ -17,7 +17,7 @@ function InstagramLink({href, label, className}: {href: string,  label: string, 
       rel="noopener noreferrer"
       className={`group justify-self-start flex items-center gap-4 cursor-pointer text-night ${className}`}
     >
-      <span className="flex w-12 h-12 border border-black/20 rounded-full items-center justify-center transition-colors group-hover:bg-night-hover">
+      <span className="flex w-12 h-12 border border-black/40 rounded-full items-center justify-center transition-colors group-hover:bg-night-hover">
         <InstagramIcon className="w-6 h-6" />
       </span>
       <span className="text-xl font-medium">{label}</span>
@@ -72,7 +72,7 @@ export default async function Gallery() {
           {photos.map(({ id, photo, caption }) => (
             <div
               key={id}
-              className="h-65.5  rounded-lg overflow-hidden flex-none sm:h-99.75 md:h-106.5 lg:h-124 2xl:h-166.5"
+              className="h-49.25 rounded-lg overflow-hidden flex-none sm:h-99.75 md:h-106.5 lg:h-124 2xl:h-166.5"
             >
               <Image
                 src={photo.url}
