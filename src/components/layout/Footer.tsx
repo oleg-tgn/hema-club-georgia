@@ -23,7 +23,7 @@ export default async function Footer() {
 
   return (
     <footer className="container mx-auto px-10 py-5 mt-20">
-      <div className="flex flex-row justify-between">
+      <div className="flex flex-col gap-5 items-center md:flex-row md:justify-between">
         <Logo className="w-48" variant="footer" />
         <span className="text-base leading-6 font-semibold text-asphalt">
           {address.addressLine}
