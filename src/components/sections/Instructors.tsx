@@ -104,7 +104,10 @@ export default async function Instructors() {
                 </div>
 
                 <div className="mt-auto flex items-center justify-between gap-4 pt-3">
-                  <SocialLinks links={instructor.socialLinks ?? []} />
+                  <SocialLinks
+                    links={instructor.socialLinks ?? []}
+                    className="gap-2"
+                  />
 
                   {instructor.hemaRatingUrl && (
                     <a

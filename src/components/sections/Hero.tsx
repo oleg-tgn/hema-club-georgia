@@ -47,12 +47,12 @@ function WeaponsPanel({ weapons }: { weapons: Weapon[] }) {
   }
 
   return (
-    <div className="flex w-full flex-col gap-2 md:gap-4 lg:gap-2 xl:flex-row xl:justify-end">
+    <div className="flex w-full flex-col gap-2 md:gap-4 lg:gap-2 xl:flex-row xl:justify-end xl:gap-4">
       {weapons.map((weapon) => {
         return (
           <div
             key={weapon.id}
-            className="bg-gold-100 border-gold-100 sm:border-off-white/30 flex h-38 w-full flex-col items-center justify-between rounded-[20px] border p-4 sm:h-auto sm:justify-normal sm:gap-4 sm:rounded-lg sm:border sm:bg-black/40 sm:backdrop-blur-md lg:flex-row lg:justify-between xl:max-w-59 xl:flex-col 2xl:max-w-68.5"
+            className="bg-gold-100 border-gold-100 sm:border-off-white/30 flex h-38 w-full flex-col items-start justify-between rounded-[20px] border p-4 sm:h-auto sm:justify-normal sm:gap-4 sm:rounded-lg sm:border sm:bg-black/40 sm:backdrop-blur-md lg:flex-row lg:justify-between xl:max-w-59 xl:flex-col 2xl:max-w-68.5"
           >
             <div className="flex h-10.5 w-full lg:w-auto xl:w-full">
               <WeaponIcon

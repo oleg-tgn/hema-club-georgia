@@ -67,7 +67,7 @@ function JoinTeaser({ join }: { join: AboutJoin }) {
       href="#join"
       className="group text-night flex w-full rounded-[9px] border border-black/20 p-4 text-center hover:border-black/80 sm:text-left"
     >
-      <div className="flex w-full flex-col items-center gap-2 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex w-full flex-col items-center gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
         <div className="flex w-63 flex-col gap-2 sm:min-w-0 sm:flex-1">
           <div className="relative flex flex-col gap-2.5">
             <div aria-hidden className="h-8" />
@@ -120,7 +120,7 @@ export default async function About() {
           </Heading>
           <RichText
             data={about.description}
-            className="text-justify font-(family-name:--font-literata) text-[18px]"
+            className="text-justify font-(family-name:--font-literata) text-[18px] leading-7"
           />
 
           {about.join?.text && <JoinTeaser join={about.join} />}

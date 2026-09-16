@@ -74,7 +74,7 @@ function Nav({
             href={href}
             section={section}
             isHome={isHome}
-            className={`group relative text-center text-xl xl:text-base leading-5 font-medium text-black/40 hover:text-black w-full xl:w-auto ${
+            className={`group relative w-full text-center text-xl leading-5 font-medium text-black/40 hover:text-black xl:w-auto xl:text-base xl:leading-6 xl:font-semibold ${
               isActive ? "text-night" : ""
             }`}
           >
@@ -83,7 +83,7 @@ function Nav({
               className={`absolute -bottom-1 left-1/2 h-px w-5 -translate-x-1/2 ${
                 isActive
                   ? "bg-gold-100"
-                  : "bg-transparent group-hover:bg-gold-100"
+                  : "group-hover:bg-gold-100 bg-transparent"
               }`}
             />
           </MenuLink>
@@ -106,16 +106,16 @@ function MobileNav({
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
       <Dialog.Trigger
-        className="group relative flex h-9 w-16.5 items-center justify-center rounded-[20px] border border-black/40 px-4 text-night transition-colors hover:bg-night-hover xl:hidden "
+        className="group text-night hover:bg-night-hover relative flex h-9 w-16.5 items-center justify-center rounded-[20px] border border-black/40 px-4 transition-colors xl:hidden"
         aria-label={open ? t("closeMenu") : t("openMenu")}
       >
         <BurgerIcon className="h-2.5 group-data-popup-open:hidden" />
-        <CloseIcon className="h-3.75 hidden group-data-popup-open:block" />
+        <CloseIcon className="hidden h-3.75 group-data-popup-open:block" />
       </Dialog.Trigger>
 
       <Dialog.Portal>
         <Dialog.Backdrop className="fixed inset-x-0 top-0 bottom-0 z-40 bg-black/40 backdrop-blur-[10px] transition-opacity duration-200 data-ending-style:opacity-0 data-starting-style:opacity-0" />
-        <Dialog.Popup className="fixed inset-x-0 top-(--header-height) z-40 flex flex-col gap-12 bg-paper-100/90 backdrop-blur-[10px] py-10 px-2 rounded-b-[20px] transition-[transform,opacity] duration-200 ease-out data-ending-style:-translate-y-2 data-ending-style:opacity-0 data-starting-style:-translate-y-2 data-starting-style:opacity-0">
+        <Dialog.Popup className="bg-paper-100/90 fixed inset-x-0 top-(--header-height) z-40 flex flex-col gap-12 rounded-b-[20px] px-2 py-10 backdrop-blur-[10px] transition-[transform,opacity] duration-200 ease-out data-ending-style:-translate-y-2 data-ending-style:opacity-0 data-starting-style:-translate-y-2 data-starting-style:opacity-0">
           <div onClick={() => setOpen(false)}>
             <Nav
               pathname={pathname}
@@ -139,8 +139,8 @@ export default function Header() {
   const isHome = pathname === "/";
 
   return (
-    <header className="fixed w-full top-0 z-50 bg-paper-100/90 backdrop-blur-[10px]">
-      <div className="mx-auto flex h-(--header-height) items-center justify-between container px-2 sm:px-5 md:px-10">
+    <header className="bg-paper-100/90 fixed top-0 z-50 w-full backdrop-blur-[10px]">
+      <div className="container mx-auto flex h-(--header-height) items-center justify-between px-2 sm:px-5 md:px-10">
         <MenuLink href="/" section="" isHome={isHome} className="group">
           <div className="flex sm:hidden">
             <Logo className="h-7 w-auto" variant="mobile" />
@@ -159,7 +159,7 @@ export default function Header() {
             href="#join"
             section="join"
             isHome={isHome}
-            className="flex h-9 items-center justify-center rounded-[20px] border border-black/40 px-4 text-base leading-none font-semibold text-night transition-colors hover:bg-night-hover"
+            className="text-night hover:bg-night-hover flex h-9 items-center justify-center rounded-[20px] border border-black/40 px-4 text-base leading-none font-semibold transition-colors"
           >
             {t("join")}
           </MenuLink>

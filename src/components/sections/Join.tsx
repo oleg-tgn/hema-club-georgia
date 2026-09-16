@@ -18,7 +18,7 @@ export default async function Join() {
   });
 
   return (
-    <div className="flex flex-col items-center gap-4 sm:gap-10 lg:flex-row xl:gap-24">
+    <div className="flex flex-col items-center gap-4 sm:gap-10 lg:flex-row">
       <div className="flex aspect-600/404 w-full lg:max-w-118.25 lg:flex-1 xl:max-w-159.5 2xl:max-w-233">
         <Image
           src={joinImage}
@@ -42,7 +42,7 @@ export default async function Join() {
           className="text-night [&_a]:text-gold-200 [&_a]:hover:text-gold-100 text-center font-(family-name:--font-literata) text-[18px] leading-7 [&_a]:transition-colors"
         />
 
-        <div className="border-night flex flex-row justify-center border-t border-b py-1 text-center text-base font-semibold">
+        <div className="border-night flex flex-row justify-center border-t border-b py-1 text-center text-base font-semibold xl:items-start xl:text-left">
           <span>{join.bottomText}</span>
         </div>
       </div>
