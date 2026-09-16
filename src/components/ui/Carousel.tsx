@@ -77,7 +77,7 @@ export function CarouselViewport({ children }: { children: ReactNode }) {
   const { viewportRef } = useCarouselContext();
   return (
     <div
-      className="full-bleed-inset w-screen ml-[calc(50%-50vw)] overflow-hidden select-none"
+      className="full-bleed-inset sm:w-screen sm:ml-[calc(50%-50vw)] overflow-hidden select-none"
       ref={viewportRef}
     >
       {children}
@@ -85,19 +85,19 @@ export function CarouselViewport({ children }: { children: ReactNode }) {
   );
 }
 
-const carouselButtonClassName =
-  "w-10 h-10 rounded-full border border-black/40 flex items-center justify-center disabled:opacity-30 transition-colors hover:bg-night-hover cursor-pointer";
+const carouselButtonClasses =
+  "w-8 h-8 sm:w-12.5 sm:h-12.5 rounded-full border border-black/40 flex items-center justify-center disabled:opacity-30 transition-colors hover:bg-night-hover cursor-pointer";
 
 export function CarouselControls({ className }: { className?: string }) {
   const { scrollPrev, scrollNext, canScrollPrev, canScrollNext } =
     useCarouselContext();
   return (
-    <div className={`flex gap-3 ${className ?? ""}`.trim()}>
+    <div className={`flex gap-4 ${className ?? ""}`.trim()}>
       <button
         type="button"
         onClick={scrollPrev}
         disabled={!canScrollPrev}
-        className={carouselButtonClassName}
+        className={carouselButtonClasses}
         aria-label="Previous"
       >
         <ArrowIcon direction="left" className="w-6 h-6" />
@@ -106,7 +106,7 @@ export function CarouselControls({ className }: { className?: string }) {
         type="button"
         onClick={scrollNext}
         disabled={!canScrollNext}
-        className={carouselButtonClassName}
+        className={carouselButtonClasses}
         aria-label="Next"
       >
         <ArrowIcon direction="right" className="w-6 h-6" />

@@ -37,12 +37,15 @@ export default async function Instructors() {
 
   return (
     <Carousel options={{ loop: false, align: "start" }}>
-      <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-4 mb-8">
-        <div />
-        <Heading size="lg" as="h2" className="justify-self-center">
+      <div className="grid grid-cols-2 items-center mb-5 lg:grid-cols-[1fr_auto_1fr] sm:mb-8">
+        <Heading
+          size="lg"
+          as="h2"
+          className="justify-self-start lg:col-start-2 lg:justify-self-center"
+        >
           {t("title")}
         </Heading>
-        <CarouselControls className="justify-self-end" />
+        <CarouselControls className="justify-self-end lg:col-start-3" />
       </div>
 
       <CarouselViewport>
@@ -55,12 +58,15 @@ export default async function Instructors() {
               (weapon): weapon is Weapon => typeof weapon === "object",
             );
 
+            const [firstName, ...lastNameParts] = instructor.name.split(" ");
+            const lastName = lastNameParts.join(" ");
+
             return (
               <div
                 key={instructor.id}
-                className="flex w-80 flex-none flex-col gap-4 text-night"
+                className="flex w-62.5 flex-none flex-col gap-4 text-night md:w-65 xl:w-80"
               >
-                <div className="relative aspect-square w-full overflow-hidden rounded-lg">
+                <div className="relative aspect-square w-full rounded-sm overflow-hidden sm:rounded-lg">
                   <Image
                     src={photoUrl!}
                     alt={photo.alt || instructor.name}
@@ -84,8 +90,9 @@ export default async function Instructors() {
                     </div>
                   )}
 
-                  <div className="text-4xl font-normal leading-8 ">
-                    {instructor.name}
+                  <div className="text-[34px] font-normal leading-8">
+                    {firstName}<br/>
+                    {lastName}
                   </div>
 
                   {instructor.description && (
