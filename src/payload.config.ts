@@ -14,6 +14,7 @@ import { ScheduleGroups } from "./collections/ScheduleGroups";
 import { Instructors } from "./collections/Instructors";
 import { GalleryPhotos } from "./collections/GalleryPhotos";
 import { SocialLinks } from "./collections/SocialLinks";
+import { HeroSection } from "./globals/HeroSection";
 import { AboutSection } from "./globals/AboutSection";
 import { WeaponsSection } from "./globals/WeaponsSection";
 import { JoinSection } from "./globals/JoinSection";
@@ -41,7 +42,7 @@ export default buildConfig({
     GalleryPhotos,
     SocialLinks,
   ],
-  globals: [Address, AboutSection, WeaponsSection, JoinSection],
+  globals: [Address, HeroSection, AboutSection, WeaponsSection, JoinSection],
   editor: lexicalEditor(),
   graphQL: {
     disable: true,
