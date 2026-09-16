@@ -99,12 +99,14 @@ export interface Config {
   fallbackLocale: ('false' | 'none' | 'null') | false | null | ('en' | 'ka' | 'ru') | ('en' | 'ka' | 'ru')[];
   globals: {
     address: Address;
+    hero: Hero;
     about: About;
     'weapons-section': WeaponsSection;
     join: Join;
   };
   globalsSelect: {
     address: AddressSelect<false> | AddressSelect<true>;
+    hero: HeroSelect<false> | HeroSelect<true>;
     about: AboutSelect<false> | AboutSelect<true>;
     'weapons-section': WeaponsSectionSelect<false> | WeaponsSectionSelect<true>;
     join: JoinSelect<false> | JoinSelect<true>;
@@ -615,6 +617,16 @@ export interface Address {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "hero".
+ */
+export interface Hero {
+  id: string;
+  description: string;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "about".
  */
 export interface About {
@@ -713,6 +725,16 @@ export interface AddressSelect<T extends boolean = true> {
   addressLine?: T;
   description?: T;
   googleMap?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "hero_select".
+ */
+export interface HeroSelect<T extends boolean = true> {
+  description?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

@@ -74,7 +74,7 @@ function Nav({
             href={href}
             section={section}
             isHome={isHome}
-            className={`group relative text-center text-xl xl:text-base leading-6 font-semibold text-black/40 hover:text-black w-full xl:w-auto ${
+            className={`group relative text-center text-xl xl:text-base leading-5 font-medium text-black/40 hover:text-black w-full xl:w-auto ${
               isActive ? "text-night" : ""
             }`}
           >
@@ -114,8 +114,8 @@ function MobileNav({
       </Dialog.Trigger>
 
       <Dialog.Portal>
-        <Dialog.Backdrop className="fixed inset-x-0 top-(--header-height) bottom-0 z-40 bg-black/40 backdrop-blur-md transition-opacity duration-200 data-ending-style:opacity-0 data-starting-style:opacity-0" />
-        <Dialog.Popup className="fixed inset-x-0 top-(--header-height) z-40 flex flex-col gap-4 bg-paper-100 px-2 py-7.5 rounded-b-[20px] transition-[transform,opacity] duration-200 ease-out data-ending-style:-translate-y-2 data-ending-style:opacity-0 data-starting-style:-translate-y-2 data-starting-style:opacity-0">
+        <Dialog.Backdrop className="fixed inset-x-0 top-0 bottom-0 z-40 bg-black/40 backdrop-blur-[10px] transition-opacity duration-200 data-ending-style:opacity-0 data-starting-style:opacity-0" />
+        <Dialog.Popup className="fixed inset-x-0 top-(--header-height) z-40 flex flex-col gap-12 bg-paper-100/90 backdrop-blur-[10px] py-10 px-2 rounded-b-[20px] transition-[transform,opacity] duration-200 ease-out data-ending-style:-translate-y-2 data-ending-style:opacity-0 data-starting-style:-translate-y-2 data-starting-style:opacity-0">
           <div onClick={() => setOpen(false)}>
             <Nav
               pathname={pathname}
@@ -124,7 +124,7 @@ function MobileNav({
             />
           </div>
 
-          <div className="flex justify-center mt-7">
+          <div className="flex justify-center">
             <LocaleSwitcher />
           </div>
         </Dialog.Popup>
@@ -139,7 +139,7 @@ export default function Header() {
   const isHome = pathname === "/";
 
   return (
-    <header className="sticky top-0 z-50 bg-paper-100">
+    <header className="fixed w-full top-0 z-50 bg-paper-100/90 backdrop-blur-[10px]">
       <div className="mx-auto flex h-(--header-height) items-center justify-between container px-2 sm:px-5 md:px-10">
         <MenuLink href="/" section="" isHome={isHome} className="group">
           <div className="flex sm:hidden">

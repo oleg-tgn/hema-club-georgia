@@ -10,27 +10,30 @@ import { RichText } from "@payloadcms/richtext-lexical/react";
 
 type TFunc = Awaited<ReturnType<typeof getTranslations>>;
 
-function DescriptionPanel({ t }: { t: TFunc }) {
+function DescriptionPanel({
+  t,
+  description,
+}: {
+  t: TFunc;
+  description: string;
+}) {
   return (
-    <div className="flex flex-col w-full gap-3 sm:flex-row md:flex-col">
-      <p className="flex w-full text-base font-normal text-off-white">
-        {t("description")}
+    <div className="flex w-full flex-col gap-3 sm:flex-row md:flex-col">
+      <p className="text-off-white flex w-full text-base font-normal">
+        {description}
       </p>
-      <div className="flex flex-row w-full h-10.5 gap-2 sm:h-22">
-        <CtaTile
-          href="#schedule"
-          className="flex-[4_0_0] text-xl flex sm:hidden"
-        >
+      <div className="flex h-10.5 w-full flex-row gap-2 sm:h-22">
+        <CtaTile href="#join" className="flex flex-[4_0_0] text-xl sm:hidden">
           {t.rich("ctaJoinMobile")}
         </CtaTile>
 
-        <CtaTile
-          href="#schedule"
-          className="flex-[3_0_0] text-xl hidden sm:flex"
-        >
+        <CtaTile href="#join" className="hidden flex-[3_0_0] text-xl sm:flex">
           {t.rich("ctaJoin", { br: () => <br /> })}
         </CtaTile>
-        <CtaTile href="#about" className="flex-[6_0_0] text-xl sm:text-[34px]">
+        <CtaTile
+          href="#schedule"
+          className="flex-[6_0_0] text-xl sm:text-[34px]"
+        >
           {t.rich("ctaSchedule")}
         </CtaTile>
       </div>
@@ -44,27 +47,27 @@ function WeaponsPanel({ weapons }: { weapons: Weapon[] }) {
   }
 
   return (
-    <div className="flex flex-col w-full gap-2 md:gap-4 xl:flex-row xl:justify-end">
+    <div className="flex w-full flex-col gap-2 md:gap-4 lg:gap-2 xl:flex-row xl:justify-end">
       {weapons.map((weapon) => {
         return (
           <div
             key={weapon.id}
-            className="flex flex-col w-full align-center gap-2 p-4 rounded-[20px] bg-gold-100 border border-gold-100 sm:bg-transparent sm:backdrop-blur-md sm:gap-4 sm:border sm:border-off-white/30 sm:rounded-lg lg:flex-row lg:justify-between xl:flex-col xl:max-w-59 2xl:max-w-68.5"
+            className="bg-gold-100 border-gold-100 sm:border-off-white/30 flex h-38 w-full flex-col items-center justify-between rounded-[20px] border p-4 sm:h-auto sm:justify-normal sm:gap-4 sm:rounded-lg sm:border sm:bg-black/40 sm:backdrop-blur-md lg:flex-row lg:justify-between xl:max-w-59 xl:flex-col 2xl:max-w-68.5"
           >
             <div className="flex h-10.5 w-full lg:w-auto xl:w-full">
               <WeaponIcon
                 slug={weapon.slug}
-                className="h-full w-auto text-night sm:text-paper-100"
+                className="text-night sm:text-off-white h-full w-auto"
               />
             </div>
             <div className="flex flex-col gap-2 lg:w-43 xl:w-full">
-              <span className="font-serif text-[32px] leading-none font-light tracking-tight text-night sm:text-paper-100">
+              <span className="text-night sm:text-paper-100 font-serif text-[32px] leading-none tracking-tight">
                 {weapon.name}
               </span>
               {weapon.label && (
                 <RichText
                   data={weapon.label}
-                  className="text-base leading-none text-night [&_strong]:text-semibold sm:text-gold-100"
+                  className="text-night/80 [&_strong]:text-semibold sm:text-gold-100 text-base leading-6"
                 />
               )}
             </div>
@@ -80,17 +83,20 @@ export default async function Hero() {
   const locale = await getLocale();
   const payload = await getPayload({ config });
 
-  const { docs: weapons } = await payload.find({
-    collection: "weapons",
-    depth: 0,
-    limit: 10,
-    locale: locale as Locale,
-    sort: "order",
-  });
+  const [{ docs: weapons }, hero] = await Promise.all([
+    payload.find({
+      collection: "weapons",
+      depth: 0,
+      limit: 10,
+      locale: locale as Locale,
+      sort: "order",
+    }),
+    payload.findGlobal({ slug: "hero", locale: locale as Locale }),
+  ]);
 
   return (
     <>
-      <section className="relative flex flex-col min-h-[calc(100dvh-var(--header-height)-1rem)] mb-4 w-full justify-between overflow-hidden text-white p-5 rounded-[20px] sm:gap-10 md:p-10 md:rounded-[40px]">
+      <section className="relative mb-(--hero-gap) flex min-h-[calc(100dvh-var(--header-height)-var(--hero-gap))] w-full flex-col justify-between overflow-hidden rounded-[20px] p-5 text-white sm:gap-10 md:rounded-[40px] md:p-10">
         <video
           className="absolute inset-0 h-full w-full object-cover"
           src="/videos/hema-intro.webm"
@@ -99,23 +105,23 @@ export default async function Hero() {
           loop
           playsInline
         />
-        <div className="absolute inset-0 bg-hero-gradient" />
+        <div className="bg-hero-gradient absolute inset-0" />
 
-        <div className="relative h-19 sm:h-33 md:h-37 xl:h-47 w-auto max-w-full self-start">
+        <div className="relative h-19 w-auto max-w-full self-start sm:h-33 md:h-37 xl:h-47">
           <Logo className="h-full w-auto" variant="hero" />
         </div>
 
-        <div className="relative flex flex-col w-full justify-between sm:flex-col-reverse sm:gap-10 md:max-w-77 lg:max-w-full lg:mt-auto lg:flex-row lg:items-end">
+        <div className="relative flex w-full flex-col justify-between sm:flex-col-reverse sm:gap-10 md:max-w-77 lg:mt-auto lg:max-w-full lg:flex-row lg:items-end">
           <div className="flex w-full md:max-w-77 lg:mt-auto xl:max-w-91">
-            <DescriptionPanel t={t} />
+            <DescriptionPanel t={t} description={hero.description} />
           </div>
 
-          <div className="hidden w-full sm:flex sm:max-w-[256px] md:max-w-77 lg:max-w-1/2 xl:max-w-none">
+          <div className="hidden w-full sm:flex sm:max-w-[256px] md:max-w-77 lg:max-w-110 xl:max-w-none">
             <WeaponsPanel weapons={weapons} />
           </div>
         </div>
       </section>
-      <section className="flex mt-2 sm:hidden">
+      <section className="flex sm:hidden">
         <WeaponsPanel weapons={weapons} />
       </section>
     </>
