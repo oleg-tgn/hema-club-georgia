@@ -37,7 +37,7 @@ export default async function Instructors() {
 
   return (
     <Carousel options={{ loop: false, align: "start" }}>
-      <div className="grid grid-cols-2 items-center mb-5 lg:grid-cols-[1fr_auto_1fr] sm:mb-8">
+      <div className="grid grid-cols-2 items-center mb-5 lg:grid-cols-[1fr_auto_1fr]">
         <Heading
           size="lg"
           as="h2"
