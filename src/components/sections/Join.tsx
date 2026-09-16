@@ -19,16 +19,16 @@ export default async function Join() {
 
   return (
     <div className="flex flex-col gap-4 items-center sm:gap-10 lg:flex-row lg:gap-24">
-      <div className="flex w-full lg:flex-1 lg:max-w-118.25 xl:max-w-159.5 2xl:max-w-233">
+      <div className="flex w-full lg:flex-1 lg:max-w-118.25 xl:max-w-159.5 2xl:max-w-233 aspect-600/404">
         <Image
           src={joinImage}
           alt=""
           aria-hidden
-          className="h-auto w-full object-contain"
+          className="h-auto w-full object-bottom"
         />
       </div>
       <div className="flex flex-col w-full max-w-84 mx-auto gap-4 ">
-        <div className="flex flex-row justify-between border-t-2 border-b-2 border-night text-base font-semibold">
+        <div className="flex flex-row justify-between border-t border-b border-night text-base font-semibold">
           <span>{join.topLeftText}</span>
           <span>{join.topRightText}</span>
         </div>
@@ -39,10 +39,10 @@ export default async function Join() {
 
         <RichText
           data={join.description}
-          className="text-night text-center [&_a]:text-gold-100 [&_a]:transition-colors [&_a]:hover:text-gold-200"
+          className="text-night text-center [&_a]:text-gold-200 [&_a]:transition-colors [&_a]:hover:text-gold-100"
         />
 
-        <div className="flex flex-row justify-center border-t-2 border-b-2 border-night text-base font-semibold text-center">
+        <div className="flex flex-row justify-center border-t border-b border-night text-base font-semibold text-center">
           <span>{join.bottomText}</span>
         </div>
       </div>
