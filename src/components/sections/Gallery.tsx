@@ -17,7 +17,7 @@ function InstagramLink({href, label, className}: {href: string,  label: string, 
       rel="noopener noreferrer"
       className={`group justify-self-start flex items-center gap-4 cursor-pointer text-night ${className}`}
     >
-      <span className="flex w-12 h-12 border border-black/40 rounded-full items-center justify-center transition-colors group-hover:bg-night-hover">
+      <span className="flex w-12.5 h-12.5 border border-black/40 rounded-full items-center justify-center transition-colors group-hover:bg-night-hover">
         <InstagramIcon className="w-6 h-6" />
       </span>
       <span className="text-xl font-medium">{label}</span>

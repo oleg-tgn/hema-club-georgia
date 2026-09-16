@@ -37,7 +37,7 @@ export default function SocialLinks({
             aria-label={link.platform}
             className="flex items-center justify-center text-night transition-colors hover:text-gold-200"
           >
-            <Icon className="h-6 w-6" />
+            <Icon className="h-8 w-8" />
           </a>
         );
       })}

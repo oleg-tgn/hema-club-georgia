@@ -18,7 +18,7 @@ function DescriptionPanel({ t }: { t: TFunc }) {
       </p>
       <div className="flex flex-row w-full h-10.5 gap-2 sm:h-22">
         <CtaTile
-          href="##join"
+          href="#join"
           className="flex-[4_0_0] text-xl flex sm:hidden"
         >
           {t.rich("ctaJoinMobile")}
@@ -49,7 +49,7 @@ function WeaponsPanel({ weapons }: { weapons: Weapon[] }) {
         return (
           <div
             key={weapon.id}
-            className="flex flex-col w-full h-38 align-center justify-between p-4 rounded-[20px] bg-gold-100 border border-gold-100 sm:h-auto sm:justify-none sm:bg-black/40 sm:backdrop-blur-md sm:gap-4 sm:border sm:border-off-white/30 sm:rounded-lg lg:flex-row lg:justify-between xl:flex-col xl:max-w-59 2xl:max-w-68.5"
+            className="flex flex-col w-full h-38 align-center justify-between p-4 rounded-[20px] bg-gold-100 border border-gold-100 sm:h-auto sm:justify-normal sm:bg-black/40 sm:backdrop-blur-md sm:gap-4 sm:border sm:border-off-white/30 sm:rounded-lg lg:flex-row lg:justify-between xl:flex-col xl:max-w-59 2xl:max-w-68.5"
           >
             <div className="flex h-10.5 w-full lg:w-auto xl:w-full">
               <WeaponIcon
