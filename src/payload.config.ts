@@ -2,6 +2,7 @@ import dns from "dns";
 import path from "path";
 import { fileURLToPath } from "url";
 import { mongooseAdapter } from "@payloadcms/db-mongodb";
+import { resendAdapter } from "@payloadcms/email-resend";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import { s3Storage } from "@payloadcms/storage-s3";
 import { buildConfig } from "payload";
@@ -48,6 +49,17 @@ export default buildConfig({
   },
   onInit: seedUsers,
   secret: process.env.PAYLOAD_SECRET || "",
+  // Required so emailed links (invite/reset-password) point at the right host.
+  // Without it, Payload can't safely trust the request's Host header and
+  // falls back to an empty origin. Set SERVER_URL per Vercel environment
+  // (dev.hemageogia.com for Preview, hemageogia.com for Production).
+  serverURL: process.env.SERVER_URL || "http://localhost:3000",
+  email: resendAdapter({
+    apiKey: process.env.RESEND_API_KEY || "",
+    defaultFromAddress:
+      process.env.EMAIL_FROM_ADDRESS || "no-reply@hemageogia.com",
+    defaultFromName: "HEMA Club Georgia",
+  }),
   typescript: {
     outputFile: path.resolve(dirname, "payload-types.ts"),
   },
