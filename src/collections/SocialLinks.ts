@@ -1,5 +1,8 @@
 import type { CollectionConfig } from "payload";
 
+import { isAdminOrModerator } from "@/access/isAdminOrModerator";
+import { isAdmin } from "@/access/isAdmin";
+
 export const SocialLinks: CollectionConfig = {
   slug: "social-links",
   labels: {
@@ -13,9 +16,9 @@ export const SocialLinks: CollectionConfig = {
   },
   access: {
     read: () => true,
-    create: ({ req }) => Boolean(req.user),
-    update: ({ req }) => Boolean(req.user),
-    delete: ({ req }) => Boolean(req.user),
+    create: isAdminOrModerator,
+    update: isAdminOrModerator,
+    delete: isAdmin,
   },
   fields: [
     {

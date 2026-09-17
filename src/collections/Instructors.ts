@@ -1,5 +1,8 @@
 import type { CollectionConfig } from "payload";
 
+import { isAdmin } from "@/access/isAdmin";
+import { isAdminOrModerator } from "@/access/isAdminOrModerator";
+
 export const Instructors: CollectionConfig = {
   slug: "instructors",
   defaultSort: "order",
@@ -9,9 +12,9 @@ export const Instructors: CollectionConfig = {
   },
   access: {
     read: () => true,
-    create: ({ req }) => Boolean(req.user),
-    update: ({ req }) => Boolean(req.user),
-    delete: ({ req }) => Boolean(req.user),
+    create: isAdminOrModerator,
+    update: isAdminOrModerator,
+    delete: isAdmin,
   },
   fields: [
     {
