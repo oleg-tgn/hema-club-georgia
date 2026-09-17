@@ -1,5 +1,8 @@
 import type { CollectionConfig, TextFieldSingleValidation } from "payload";
 
+import { isAdmin } from "@/access/isAdmin";
+import { isAdminOrModerator } from "@/access/isAdminOrModerator";
+
 const validateTitle: TextFieldSingleValidation = (value, { siblingData }) => {
   const data = siblingData as { weapon?: unknown };
   if (!data?.weapon && !value) {
@@ -20,9 +23,9 @@ export const ScheduleGroups: CollectionConfig = {
   },
   access: {
     read: () => true,
-    create: ({ req }) => Boolean(req.user),
-    update: ({ req }) => Boolean(req.user),
-    delete: ({ req }) => Boolean(req.user),
+    create: isAdmin,
+    update: isAdminOrModerator,
+    delete: isAdmin,
   },
   fields: [
     {

@@ -1,5 +1,7 @@
 import type { CollectionConfig } from "payload";
 
+import { isAdminOrModerator } from "@/access/isAdminOrModerator";
+
 export const GalleryPhotos: CollectionConfig = {
   slug: "gallery-photos",
   labels: {
@@ -13,9 +15,9 @@ export const GalleryPhotos: CollectionConfig = {
   },
   access: {
     read: () => true,
-    create: ({ req }) => Boolean(req.user),
-    update: ({ req }) => Boolean(req.user),
-    delete: ({ req }) => Boolean(req.user),
+    create: isAdminOrModerator,
+    update: isAdminOrModerator,
+    delete: isAdminOrModerator,
   },
   fields: [
     {

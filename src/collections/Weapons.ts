@@ -1,5 +1,8 @@
 import type { CollectionConfig } from "payload";
 
+import { isAdmin } from "@/access/isAdmin";
+import { isAdminOrModerator } from "@/access/isAdminOrModerator";
+
 export const Weapons: CollectionConfig = {
   slug: "weapons",
   defaultSort: "order",
@@ -9,9 +12,9 @@ export const Weapons: CollectionConfig = {
   },
   access: {
     read: () => true,
-    create: ({ req }) => Boolean(req.user),
-    update: ({ req }) => Boolean(req.user),
-    delete: ({ req }) => Boolean(req.user),
+    create: isAdmin,
+    update: isAdminOrModerator,
+    delete: isAdmin,
   },
   fields: [
     {

@@ -4,15 +4,17 @@ const seedAccounts = [
   {
     email: process.env.SEED_ADMIN_EMAIL,
     password: process.env.SEED_ADMIN_PASSWORD,
+    role: "admin" as const,
   },
   {
     email: process.env.SEED_COACH_EMAIL,
     password: process.env.SEED_COACH_PASSWORD,
+    role: "moderator" as const,
   },
 ];
 
 export async function seedUsers(payload: Payload) {
-  for (const { email, password } of seedAccounts) {
+  for (const { email, password, role } of seedAccounts) {
     if (!email || !password) continue;
 
     const existing = await payload.find({
@@ -25,7 +27,7 @@ export async function seedUsers(payload: Payload) {
 
     await payload.create({
       collection: "users",
-      data: { email, password },
+      data: { email, password, role },
     });
 
     payload.logger.info(`Seeded user: ${email}`);
