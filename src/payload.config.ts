@@ -52,12 +52,12 @@ export default buildConfig({
   // Required so emailed links (invite/reset-password) point at the right host.
   // Without it, Payload can't safely trust the request's Host header and
   // falls back to an empty origin. Set SERVER_URL per Vercel environment
-  // (dev.hemageogia.com for Preview, hemageogia.com for Production).
+  // (dev.hemageorgia.com for Preview, hemageorgia.com for Production).
   serverURL: process.env.SERVER_URL || "http://localhost:3000",
   email: resendAdapter({
     apiKey: process.env.RESEND_API_KEY || "",
     defaultFromAddress:
-      process.env.EMAIL_FROM_ADDRESS || "no-reply@hemageogia.com",
+      process.env.EMAIL_FROM_ADDRESS || "no-reply@hemageorgia.com",
     defaultFromName: "HEMA Club Georgia",
   }),
   typescript: {
