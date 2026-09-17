@@ -11,6 +11,10 @@ export const Users: CollectionConfig = {
   },
   admin: {
     useAsTitle: "email",
+    // Moderators only ever have read/update access to their own account
+    // (via the Account page in the top-right menu), so a browsable "Users"
+    // list in the sidebar isn't useful to them.
+    hidden: ({ user }) => user?.role !== "admin",
   },
   access: {
     create: isAdmin,
