@@ -5,41 +5,37 @@ import { RichText } from "@payloadcms/richtext-lexical/react";
 
 import type { Locale } from "@/i18n/routing";
 import type { Address } from "@/payload-types";
-import ArrowIcon from "../icons/ArrowIcon";
 import Heading from "../ui/Heading";
 
-function AddressCard({ address }: { address: Address }) {
+function AddressText({ address }: { address: Address }) {
   return (
-    <a
-      href={address.googleMap}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="text-night flex w-full flex-row items-start justify-between gap-2 rounded-lg p-2 transition-colors hover:bg-black/5"
-    >
-      <div className="flex min-w-0 flex-col gap-1.5">
-        <span className="text-[18px] font-medium sm:text-xl">
-          {address.addressLine}
-        </span>
-        <span className="text-base font-normal">{address.description}</span>
-      </div>
-      <ArrowIcon direction="up-right" className="text-night h-8 w-8 shrink-0" />
-    </a>
+    <div className="text-night flex flex-col gap-1.5 px-2">
+      <span className="text-[18px] font-medium sm:text-xl">
+        {address.addressLine}
+      </span>
+      <span className="text-base font-normal">{address.description}</span>
+    </div>
   );
 }
 
-// Coordinates of the "St.George HEMA School" place behind the address's
-// Google Maps share link (share links themselves can't be embedded).
-const MAP_EMBED_COORDS = "41.7105187,44.8040199";
+// "Share → Embed a map" link for the "St.George HEMA School" place, so Google
+// shows its own place card with an "Open in Google Maps" link. The interface
+// language is the `!1s<lang>` part of the two `!3m2`/`!5m2` blocks.
+function mapEmbedSrc(locale: string) {
+  return `https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d186.15390386235114!2d44.8038282!3d41.7105386!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40440d6994838d65%3A0x4cfa18708fa533a7!2sSt.George%20HEMA%20School!5e0!3m2!1s${locale}!2sge!4v1790714162460!5m2!1s${locale}!2sge`;
+}
 
 function MapEmbed({ locale, title }: { locale: string; title: string }) {
   return (
     <iframe
       title={title}
-      src={`https://www.google.com/maps?q=${MAP_EMBED_COORDS}&z=17&hl=${locale}&output=embed`}
+      src={mapEmbedSrc(locale)}
       loading="lazy"
-      referrerPolicy="no-referrer-when-downgrade"
-      // Muted to a warm grey so the map blends into the page background.
-      className="aspect-16/9 w-full rounded-lg border-0 mix-blend-multiply contrast-90 grayscale sepia-[.3]"
+      referrerPolicy="strict-origin-when-cross-origin"
+      allowFullScreen
+      // Greyscale with a light sepia warmth, multiplied onto the paper
+      // background so the map's whites take the page colour.
+      className="aspect-16/9 w-full rounded-lg border-0 mix-blend-multiply contrast-90 grayscale sepia-[.15]"
     />
   );
 }
@@ -62,8 +58,8 @@ export default async function Join() {
     <div className="flex flex-col items-center gap-4 sm:gap-10 lg:flex-row">
       {/* On mobile the invitation comes first, then where to find us. */}
       <div className="order-last flex w-full flex-col gap-2.5 lg:order-first lg:max-w-118.25 lg:flex-1 xl:max-w-159.5 2xl:max-w-233">
-        <AddressCard address={address} />
         <MapEmbed locale={locale} title={address.addressLine} />
+        <AddressText address={address} />
       </div>
       <div className="mx-auto flex w-full max-w-84 flex-col gap-4">
         <div className="border-night flex flex-row justify-between border-t border-b py-1 text-base font-semibold">
