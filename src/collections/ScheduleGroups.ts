@@ -79,19 +79,16 @@ export const ScheduleGroups: CollectionConfig = {
       },
       admin: {
         description:
-          'One row per group. A section with no Level is labelled "All levels" (e.g. Saber, Sparrings); add one section per level for split groups (e.g. Longsword: Beginners / Advanced).',
+          'One row per group, e.g. Longsword: "Beginners" and "Advanced". A section with an empty Label is shown as "All levels".',
       },
       fields: [
         {
-          name: "level",
-          type: "select",
-          options: [
-            { label: "Beginners", value: "beginners" },
-            { label: "Advanced", value: "advanced" },
-          ],
+          name: "label",
+          type: "text",
+          localized: true,
           admin: {
             description:
-              'Group label shown next to this section\'s time slots. Leave empty to show "All levels".',
+              'Group name shown next to this section\'s time slots, e.g. "Beginners". Leave empty to show "All levels".',
           },
         },
         {

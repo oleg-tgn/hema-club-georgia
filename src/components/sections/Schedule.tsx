@@ -44,12 +44,8 @@ function ScheduleCard({ doc, t }: { doc: ScheduleGroup; t: TFunc }) {
           key={section.id ?? i}
           className="border-night/20 grid grid-cols-1 gap-1.5 border-t pt-3 @md:grid-cols-[10rem_minmax(0,1fr)] @md:gap-5"
         >
-          <span
-            className={
-              section.level ? "text-lg font-medium" : "text-base opacity-80"
-            }
-          >
-            {t(`levels.${section.level ?? "all"}`)}
+          <span className="text-base font-medium">
+            {section.label || t("levels.all")}
           </span>
           <div className="flex flex-col gap-1">
             {(section.rows ?? []).map((row, idx) => (

@@ -250,14 +250,14 @@ export interface ScheduleGroup {
    */
   title?: string | null;
   /**
-   * One row per group. A section with no Level is labelled "All levels" (e.g. Saber, Sparrings); add one section per level for split groups (e.g. Longsword: Beginners / Advanced).
+   * One row per group, e.g. Longsword: "Beginners" and "Advanced". A section with an empty Label is shown as "All levels".
    */
   sections?:
     | {
         /**
-         * Group label shown next to this section's time slots. Leave empty to show "All levels".
+         * Group name shown next to this section's time slots, e.g. "Beginners". Leave empty to show "All levels".
          */
-        level?: ('beginners' | 'advanced') | null;
+        label?: string | null;
         rows?:
           | {
               day: 'monday' | 'tuesday' | 'wednesday' | 'thursday' | 'friday' | 'saturday' | 'sunday';
@@ -511,7 +511,7 @@ export interface ScheduleGroupsSelect<T extends boolean = true> {
   sections?:
     | T
     | {
-        level?: T;
+        label?: T;
         rows?:
           | T
           | {
