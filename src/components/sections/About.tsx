@@ -5,61 +5,10 @@ import { getPayload } from "payload";
 import { RichText } from "@payloadcms/richtext-lexical/react";
 import type { Locale } from "@/i18n/routing";
 import type { About as AboutGlobal } from "@/payload-types";
+import Guard from "../ui/Guards";
 import Heading from "../ui/Heading";
 
 type AboutJoin = NonNullable<AboutGlobal["join"]>;
-
-function VomTag({ className }: { className: string }) {
-  return (
-    <Image
-      src="/images/about-vom-tag.svg"
-      alt="Vom Tag"
-      title="Vom Tag"
-      width={222}
-      height={285}
-      className={`h-auto w-[200px] sm:w-[222px] 2xl:w-[259px] ${className}`}
-    />
-  );
-}
-
-function Pflug({ className }: { className: string }) {
-  return (
-    <Image
-      src="/images/about-pflug.svg"
-      alt="Pflug"
-      title="Pflug"
-      width={332}
-      height={183}
-      className={`h-auto w-[332px] 2xl:w-[385px] ${className}`}
-    />
-  );
-}
-
-function Alber({ className }: { className: string }) {
-  return (
-    <Image
-      src="/images/about-alber.svg"
-      alt="Alber"
-      title="Alber"
-      width={304}
-      height={188}
-      className={`h-auto w-[304px] 2xl:w-[353px] ${className}`}
-    />
-  );
-}
-
-function Ochs({ className }: { className: string }) {
-  return (
-    <Image
-      src="/images/about-ochs.svg"
-      alt="Ochs"
-      title="Ochs"
-      width={274}
-      height={241}
-      className={`h-auto w-[243px] sm:w-[274px] 2xl:w-[317px] ${className}`}
-    />
-  );
-}
 
 function JoinTeaser({ join }: { join: AboutJoin }) {
   return (
@@ -106,12 +55,10 @@ export default async function About() {
   });
 
   return (
-    <div className="flex w-full justify-center xl:-mx-10 xl:w-auto">
+    <div className="flex w-full justify-center">
       <div className="flex w-full flex-col gap-8 md:mx-auto md:max-w-172 lg:max-w-167 xl:max-w-none xl:flex-row xl:gap-10.5">
-        <div className="flex w-full flex-row items-end justify-center gap-8 xl:flex-col xl:items-center xl:justify-between">
-          <VomTag className="flex" />
-          <Pflug className="hidden sm:flex xl:hidden" />
-          <Ochs className="hidden xl:flex" />
+        <div className="flex w-full flex-row items-end justify-center gap-8 xl:flex-col xl:items-center xl:justify-start">
+          <Guard name="vom-tag" className="flex w-64 sm:w-68 2xl:w-80" />
         </div>
 
         <div className="flex w-full flex-col gap-6 text-center xl:max-w-lg">
@@ -122,14 +69,10 @@ export default async function About() {
             data={about.description}
             className="text-justify font-(family-name:--font-literata) text-[18px] leading-7"
           />
-
-          {about.join?.text && <JoinTeaser join={about.join} />}
         </div>
 
-        <div className="flex w-full flex-row items-end justify-center gap-8 xl:flex-col xl:items-center xl:justify-between xl:py-22.5">
-          <Pflug className="hidden xl:flex" />
-          <Ochs className="hidden sm:flex xl:hidden" />
-          <Alber className="flex" />
+        <div className="flex w-full flex-row items-end justify-center gap-8 xl:flex-col xl:items-center xl:justify-end">
+          <Guard name="alber" className="flex w-64 sm:w-68 2xl:w-80" />
         </div>
       </div>
     </div>

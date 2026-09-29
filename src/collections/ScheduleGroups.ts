@@ -19,8 +19,9 @@ export const ScheduleGroups: CollectionConfig = {
   },
   admin: {
     useAsTitle: "slug",
-    defaultColumns: ["slug", "weapon", "title"],
+    defaultColumns: ["slug", "order", "weapon", "title"],
   },
+  defaultSort: "order",
   access: {
     read: () => true,
     create: isAdmin,
@@ -35,7 +36,17 @@ export const ScheduleGroups: CollectionConfig = {
       unique: true,
       admin: {
         description:
-          "Stable identifier that determines where this card is placed in the schedule layout, e.g. 'longsword', 'sparrings'. Not localized.",
+          "Stable identifier for this card, e.g. 'longsword', 'sparrings'. Not localized.",
+      },
+    },
+    {
+      name: "order",
+      type: "number",
+      defaultValue: 0,
+      admin: {
+        position: "sidebar",
+        description:
+          "Cards are listed in ascending order (lower numbers first).",
       },
     },
     {
@@ -68,19 +79,16 @@ export const ScheduleGroups: CollectionConfig = {
       },
       admin: {
         description:
-          "One section with no Level for a plain card (e.g. Saber, Rapier, Sparrings), or two sections (Beginners / Advanced) for a split card (e.g. Longsword).",
+          'One row per group, e.g. Longsword: "Beginners" and "Advanced". A section with an empty Label is shown as "All levels".',
       },
       fields: [
         {
-          name: "level",
-          type: "select",
-          options: [
-            { label: "Beginners", value: "beginners" },
-            { label: "Advanced", value: "advanced" },
-          ],
+          name: "label",
+          type: "text",
+          localized: true,
           admin: {
             description:
-              "Sub-heading shown above this section's rows. Leave empty for a section with no subheading.",
+              'Group name shown next to this section\'s time slots, e.g. "Beginners". Leave empty to show "All levels".',
           },
         },
         {

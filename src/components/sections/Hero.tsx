@@ -1,5 +1,5 @@
 import CtaTile from "../ui/CtaTile";
-import Logo from "../icons/Logo";
+import Image from "next/image";
 import config from "@payload-config";
 import { getLocale, getTranslations } from "next-intl/server";
 import { getPayload } from "payload";
@@ -108,7 +108,15 @@ export default async function Hero() {
         <div className="bg-hero-gradient absolute inset-0" />
 
         <div className="relative h-19 w-auto max-w-full self-start sm:h-33 md:h-37 xl:h-47">
-          <Logo className="h-full w-auto" variant="hero" />
+          <Image
+            src="/images/hero-logo.svg"
+            alt="St. George HEMA School"
+            width={364}
+            height={189}
+            loading="eager"
+            fetchPriority="high"
+            className="h-full w-auto"
+          />
         </div>
 
         <div className="relative flex w-full flex-col justify-between sm:flex-col-reverse sm:gap-10 md:max-w-77 lg:mt-auto lg:max-w-full lg:flex-row lg:items-end">

@@ -1,7 +1,7 @@
 {
   "Nav": {
     "about": "About",
-    "schedule": "Schedule and address",
+    "schedule": "Schedule",
     "weapons": "Weapons",
     "instructors": "Instructors",
     "gallery": "Gallery",
@@ -20,7 +20,7 @@
     "equipGuideCta": "Equip<br></br>Guide"
   },
   "Schedule": {
-    "title": "Address and schedule",
+    "title": "Schedule",
     "days": {
       "monday": "Monday",
       "tuesday": "Tuesday",
@@ -31,8 +31,7 @@
       "sunday": "Sunday"
     },
     "levels": {
-      "beginners": "Beginners",
-      "advanced": "Advanced"
+      "all": "All levels"
     }
   },
   "Instructors": {
