@@ -5,9 +5,9 @@ export default async function TournamentsPage() {
 
   return (
     <section className="py-16">
-      <div className="container mx-auto px-4 text-center">
-        <h1 className="text-3xl font-bold mb-4">{t("title")}</h1>
-        <p className="text-lg max-w-2xl mx-auto">{t("comingSoon")}</p>
+      <div className="mx-auto w-full max-w-384 px-4 text-center">
+        <h1 className="mb-4 text-3xl font-bold">{t("title")}</h1>
+        <p className="mx-auto max-w-2xl text-lg">{t("comingSoon")}</p>
       </div>
     </section>
   );

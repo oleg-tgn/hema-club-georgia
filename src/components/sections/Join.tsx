@@ -35,7 +35,7 @@ function MapEmbed({ locale, title }: { locale: string; title: string }) {
       allowFullScreen
       // Greyscale with a light sepia warmth, multiplied onto the paper
       // background so the map's whites take the page colour.
-      className="aspect-16/9 w-full rounded-lg border-0 mix-blend-multiply contrast-90 grayscale sepia-[.15]"
+      className="aspect-16/9 w-full rounded-lg border-0 mix-blend-multiply contrast-90 grayscale sepia-[.1]"
     />
   );
 }

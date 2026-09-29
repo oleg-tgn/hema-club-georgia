@@ -140,7 +140,7 @@ export default function Header() {
 
   return (
     <header className="bg-paper-100/90 fixed top-0 z-50 w-full backdrop-blur-[10px]">
-      <div className="container mx-auto flex h-(--header-height) items-center justify-between px-2 sm:px-5 md:px-10">
+      <div className="mx-auto flex h-(--header-height) w-full max-w-384 items-center justify-between px-2 sm:px-5 md:px-10">
         <MenuLink href="/" section="" isHome={isHome} className="group">
           <div className="flex sm:hidden">
             <Logo className="h-7 w-auto" variant="mobile" />

@@ -67,10 +67,10 @@ export default async function LocaleLayout({
       lang={locale}
       className={`${manrope.variable} ${libertinusSerifDisplay.variable} ${literata.variable} ${notoSansGeorgian.variable} ${notoSerifGeorgian.variable} h-full`}
     >
-      <body className="min-h-full flex flex-col bg-paper-100 text-black">
+      <body className="bg-paper-100 flex min-h-full flex-col text-black">
         <NextIntlClientProvider>
           <Header />
-          <main className="container mx-auto px-2 sm:px-5 md:px-10 pt-(--header-height) flex-1">
+          <main className="mx-auto w-full max-w-384 flex-1 px-2 pt-(--header-height) sm:px-5 md:px-10">
             {children}
           </main>
           <Footer />
