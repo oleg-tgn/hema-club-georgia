@@ -18,6 +18,7 @@ import { SocialLinks } from "./collections/SocialLinks";
 import { HeroSection } from "./globals/HeroSection";
 import { AboutSection } from "./globals/AboutSection";
 import { WeaponsSection } from "./globals/WeaponsSection";
+import { FaqSection } from "./globals/FaqSection";
 import { JoinSection } from "./globals/JoinSection";
 import { Address } from "./globals/Address";
 import { seedUsers } from "./seed";
@@ -43,7 +44,14 @@ export default buildConfig({
     GalleryPhotos,
     SocialLinks,
   ],
-  globals: [Address, HeroSection, AboutSection, WeaponsSection, JoinSection],
+  globals: [
+    Address,
+    HeroSection,
+    AboutSection,
+    WeaponsSection,
+    FaqSection,
+    JoinSection,
+  ],
   editor: lexicalEditor(),
   graphQL: {
     disable: true,

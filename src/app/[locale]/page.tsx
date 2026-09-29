@@ -3,7 +3,7 @@ import Hero from "@/components/sections/Hero";
 import Instructors from "@/components/sections/Instructors";
 import About from "@/components/sections/About";
 import Schedule from "@/components/sections/Schedule";
-import Weapons from "@/components/sections/Weapons";
+import Faq from "@/components/sections/Faq";
 import Join from "@/components/sections/Join";
 
 export const revalidate = 60;
@@ -27,8 +27,8 @@ export default function HomePage() {
         <Schedule />
       </section>
 
-      <section id="weapons" className="py-10 sm:py-15 md:py-20">
-        <Weapons />
+      <section id="faq" className="py-10 sm:py-15 md:py-20">
+        <Faq />
       </section>
 
       <section id="instructors" className="py-10 sm:py-15 md:py-20">
