@@ -3,7 +3,7 @@ import { getLocale, getTranslations } from "next-intl/server";
 import { getPayload } from "payload";
 import type { Locale } from "@/i18n/routing";
 import type { ScheduleGroup } from "@/payload-types";
-import { Ochs, Pflug } from "../ui/Guards";
+import Guard from "../ui/Guards";
 import Heading from "../ui/Heading";
 import WeaponIcon from "../icons/WeaponIcon";
 
@@ -84,13 +84,19 @@ export default async function Schedule() {
           smaller screens keep the schedule on its own. They sit on a
           diagonal (left low, right high) - the mirror of About's. */}
       <div className="flex w-full justify-center xl:gap-10">
-        <Ochs className="hidden w-50! shrink-0 self-end xl:flex 2xl:w-60!" />
+        <Guard
+          name="ochs"
+          className="hidden w-60 shrink-0 self-end xl:flex 2xl:w-72"
+        />
         <div className="@container flex w-full max-w-120 flex-col gap-2.5">
           {groups.map((doc) => (
             <ScheduleCard key={doc.id} doc={doc} t={t} />
           ))}
         </div>
-        <Pflug className="hidden w-60! shrink-0 self-start xl:flex 2xl:w-72.5!" />
+        <Guard
+          name="pflug"
+          className="hidden w-60 shrink-0 self-start xl:flex 2xl:w-72"
+        />
       </div>
     </div>
   );

@@ -5,7 +5,7 @@ import { getPayload } from "payload";
 import { RichText } from "@payloadcms/richtext-lexical/react";
 import type { Locale } from "@/i18n/routing";
 import type { About as AboutGlobal } from "@/payload-types";
-import { Alber, VomTag } from "../ui/Guards";
+import Guard from "../ui/Guards";
 import Heading from "../ui/Heading";
 
 type AboutJoin = NonNullable<AboutGlobal["join"]>;
@@ -58,7 +58,7 @@ export default async function About() {
     <div className="flex w-full justify-center xl:-mx-10 xl:w-auto">
       <div className="flex w-full flex-col gap-8 md:mx-auto md:max-w-172 lg:max-w-167 xl:max-w-none xl:flex-row xl:gap-10.5">
         <div className="flex w-full flex-row items-end justify-center gap-8 xl:flex-col xl:items-center xl:justify-start">
-          <VomTag className="flex" />
+          <Guard name="vom-tag" className="flex w-72 sm:w-80 2xl:w-100" />
         </div>
 
         <div className="flex w-full flex-col gap-6 text-center xl:max-w-lg">
@@ -69,12 +69,10 @@ export default async function About() {
             data={about.description}
             className="text-justify font-(family-name:--font-literata) text-[18px] leading-7"
           />
-
-          {about.join?.text && <JoinTeaser join={about.join} />}
         </div>
 
         <div className="flex w-full flex-row items-end justify-center gap-8 xl:flex-col xl:items-center xl:justify-end">
-          <Alber className="flex" />
+          <Guard name="alber" className="flex w-72 sm:w-80 2xl:w-100" />
         </div>
       </div>
     </div>

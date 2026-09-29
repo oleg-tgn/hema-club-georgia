@@ -108,7 +108,6 @@ export default async function Hero() {
         <div className="bg-hero-gradient absolute inset-0" />
 
         <div className="relative h-19 w-auto max-w-full self-start sm:h-33 md:h-37 xl:h-47">
-          {/* Edit the source in design/heroLogo.svg, then re-export with svgo. */}
           <Image
             src="/images/hero-logo.svg"
             alt="St. George HEMA School"
