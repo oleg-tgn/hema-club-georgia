@@ -1,7 +1,7 @@
 {
   "Nav": {
     "about": "О нас",
-    "schedule": "Расписание и адрес",
+    "schedule": "Расписание",
     "weapons": "Оружие",
     "instructors": "Инструкторы",
     "gallery": "Галерея",
@@ -20,7 +20,7 @@
     "equipGuideCta": "Гайд по<br></br>экипировке"
   },
   "Schedule": {
-    "title": "Адрес и расписание",
+    "title": "Расписание",
     "days": {
       "monday": "Понедельник",
       "tuesday": "Вторник",
