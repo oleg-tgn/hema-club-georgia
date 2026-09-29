@@ -2,7 +2,7 @@
   "Nav": {
     "about": "About",
     "schedule": "Schedule",
-    "weapons": "Weapons",
+    "faq": "FAQ",
     "instructors": "Instructors",
     "gallery": "Gallery",
     "tournaments": "Tournaments",
@@ -33,6 +33,9 @@
     "levels": {
       "all": "All levels"
     }
+  },
+  "Faq": {
+    "title": "Frequently Asked Questions"
   },
   "Instructors": {
     "title": "Instructors",

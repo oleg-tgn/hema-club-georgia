@@ -61,8 +61,8 @@ body {
   font-family: var(--font-sans);
   overflow-x: hidden;
   timeline-scope:
-    --about-visible, --schedule-visible, --weapons-visible,
-    --instructors-visible, --gallery-visible;
+    --about-visible, --schedule-visible, --faq-visible, --instructors-visible,
+    --gallery-visible;
 }
 
 /*
@@ -79,7 +79,7 @@ body {
  */
 #about,
 #schedule,
-#weapons,
+#faq,
 #instructors,
 #gallery {
   view-timeline-inset: calc(var(--header-height) + var(--nav-active-offset)) 0;
@@ -90,8 +90,8 @@ body {
 #schedule {
   view-timeline-name: --schedule-visible;
 }
-#weapons {
-  view-timeline-name: --weapons-visible;
+#faq {
+  view-timeline-name: --faq-visible;
 }
 #instructors {
   view-timeline-name: --instructors-visible;
@@ -152,9 +152,9 @@ nav a[data-section="schedule"],
 nav a[data-section="schedule"] > span {
   animation-timeline: --schedule-visible;
 }
-nav a[data-section="weapons"],
-nav a[data-section="weapons"] > span {
-  animation-timeline: --weapons-visible;
+nav a[data-section="faq"],
+nav a[data-section="faq"] > span {
+  animation-timeline: --faq-visible;
 }
 nav a[data-section="instructors"],
 nav a[data-section="instructors"] > span {

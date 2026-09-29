@@ -102,6 +102,7 @@ export interface Config {
     hero: Hero;
     about: About;
     'weapons-section': WeaponsSection;
+    'faq-section': FaqSection;
     join: Join;
   };
   globalsSelect: {
@@ -109,6 +110,7 @@ export interface Config {
     hero: HeroSelect<false> | HeroSelect<true>;
     about: AboutSelect<false> | AboutSelect<true>;
     'weapons-section': WeaponsSectionSelect<false> | WeaponsSectionSelect<true>;
+    'faq-section': FaqSectionSelect<false> | FaqSectionSelect<true>;
     join: JoinSelect<false> | JoinSelect<true>;
   };
   locale: 'en' | 'ka' | 'ru';
@@ -686,6 +688,28 @@ export interface WeaponsSection {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faq-section".
+ */
+export interface FaqSection {
+  id: string;
+  /**
+   * Shown as an accordion, in this order.
+   */
+  items?:
+    | {
+        question: string;
+        /**
+         * Line breaks are kept.
+         */
+        answer: string;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "join".
  */
 export interface Join {
@@ -774,6 +798,22 @@ export interface WeaponsSectionSelect<T extends boolean = true> {
     | {
         intro?: T;
         highlight?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faq-section_select".
+ */
+export interface FaqSectionSelect<T extends boolean = true> {
+  items?:
+    | T
+    | {
+        question?: T;
+        answer?: T;
         id?: T;
       };
   updatedAt?: T;

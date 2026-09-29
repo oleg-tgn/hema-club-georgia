@@ -12,7 +12,7 @@ import CloseIcon from "../icons/CloseIcon";
 const menuLinks = [
   { href: "/#about", labelKey: "about", section: "about" },
   { href: "/#schedule", labelKey: "schedule", section: "schedule" },
-  { href: "/#weapons", labelKey: "weapons", section: "weapons" },
+  { href: "/#faq", labelKey: "faq", section: "faq" },
   { href: "/#instructors", labelKey: "instructors", section: "instructors" },
   { href: "/#gallery", labelKey: "gallery", section: "gallery" },
   { href: "/tournaments", labelKey: "tournaments", section: null },
