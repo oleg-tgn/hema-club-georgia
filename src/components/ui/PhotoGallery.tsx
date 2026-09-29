@@ -11,6 +11,8 @@ import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/captions.css";
 import "yet-another-react-lightbox/plugins/counter.css";
 
+import ArrowIcon from "../icons/ArrowIcon";
+
 export type GalleryImage = {
   id: string;
   url: string;
@@ -92,6 +94,13 @@ export default function PhotoGallery({
         zoom={{ maxZoomPixelRatio: 2, scrollToZoom: true }}
         captions={{ descriptionTextAlign: "center" }}
         controller={{ closeOnBackdropClick: true }}
+        // Circled arrows in the site's style; the circle itself is drawn in
+        // globals.css (.gallery-lightbox).
+        className="gallery-lightbox"
+        render={{
+          iconPrev: () => <ArrowIcon direction="left" className="h-8 w-8" />,
+          iconNext: () => <ArrowIcon direction="right" className="h-8 w-8" />,
+        }}
         labels={{
           Lightbox: title,
           "Photo gallery": title,
