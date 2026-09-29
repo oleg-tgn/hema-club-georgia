@@ -34,9 +34,7 @@ function ScheduleCard({ doc, t }: { doc: ScheduleGroup; t: TFunc }) {
         <Heading size="sm" as="h3">
           {weapon?.name ?? doc.title}
         </Heading>
-        {weapon && (
-          <WeaponIcon slug={weapon.slug} className="h-9 w-auto opacity-85" />
-        )}
+        {weapon && <WeaponIcon slug={weapon.slug} className="h-10 w-auto" />}
       </div>
       {sections.map((section, i) => (
         <div
@@ -83,19 +81,19 @@ export default async function Schedule() {
       {/* Guard figures flank the cards only where there's room beside them;
           smaller screens keep the schedule on its own. They sit on a
           diagonal (left low, right high) - the mirror of About's. */}
-      <div className="flex w-full justify-center xl:gap-10">
+      <div className="flex w-full justify-center xl:gap-6 2xl:gap-10">
         <Guard
           name="ochs"
-          className="hidden w-60 shrink-0 self-end xl:flex 2xl:w-72"
+          className="hidden w-68 shrink-0 self-end xl:flex 2xl:w-80"
         />
-        <div className="@container flex w-full max-w-120 flex-col gap-2.5">
+        <div className="border-off-white/30 @container flex w-full max-w-120 flex-col gap-2.5 rounded-lg">
           {groups.map((doc) => (
             <ScheduleCard key={doc.id} doc={doc} t={t} />
           ))}
         </div>
         <Guard
           name="pflug"
-          className="hidden w-60 shrink-0 self-start xl:flex 2xl:w-72"
+          className="hidden w-68 shrink-0 self-start xl:flex 2xl:w-80"
         />
       </div>
     </div>
