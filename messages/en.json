@@ -39,11 +39,17 @@
   },
   "Instructors": {
     "title": "Instructors",
-    "hemaRating": "Hema rating"
+    "hemaRating": "Hema rating",
+    "metaDescription": "Meet the instructors of Saint George's HEMA School in Tbilisi"
   },
   "Gallery": {
     "title": "Gallery",
-    "instagramCta": "More photos on Instagram"
+    "metaDescription": "Photos from trainings and tournaments of Saint George's HEMA School",
+    "openPhoto": "Open photo {index}",
+    "close": "Close",
+    "previous": "Previous photo",
+    "next": "Next photo",
+    "counter": "{current} / {total}"
   },
   "TournamentPage": {
     "title": "Tournament",

@@ -39,11 +39,17 @@
   },
   "Instructors": {
     "title": "Инструкторы",
-    "hemaRating": "Hema rating"
+    "hemaRating": "Hema rating",
+    "metaDescription": "Инструкторы школы HEMA Святого Георгия в Тбилиси"
   },
   "Gallery": {
-    "title": "Галлерея",
-    "instagramCta": "Больше фото в Instagram"
+    "title": "Галерея",
+    "metaDescription": "Фото с тренировок и турниров школы HEMA Святого Георгия",
+    "openPhoto": "Открыть фото {index}",
+    "close": "Закрыть",
+    "previous": "Предыдущее фото",
+    "next": "Следующее фото",
+    "counter": "{current} / {total}"
   },
   "TournamentPage": {
     "title": "Турнир",

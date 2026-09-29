@@ -1,6 +1,4 @@
-import Gallery from "@/components/sections/Gallery";
 import Hero from "@/components/sections/Hero";
-import Instructors from "@/components/sections/Instructors";
 import About from "@/components/sections/About";
 import Schedule from "@/components/sections/Schedule";
 import Faq from "@/components/sections/Faq";
@@ -29,14 +27,6 @@ export default function HomePage() {
 
       <section id="faq" className="py-10 sm:py-15 md:py-20">
         <Faq />
-      </section>
-
-      <section id="instructors" className="py-10 sm:py-15 md:py-20">
-        <Instructors />
-      </section>
-
-      <section id="gallery" className="py-10 sm:py-15 md:py-20">
-        <Gallery />
       </section>
 
       <section id="join">
