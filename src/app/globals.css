@@ -172,3 +172,35 @@ nav a[data-section="faq"] > span {
     100% 100%,
     auto;
 }
+
+/*
+ * Photo gallery lightbox (yet-another-react-lightbox): prev/next as outlined
+ * circles instead of the library's bare shadowed chevrons. Scoped under the
+ * lightbox's className so it outranks the library's own single-class rules.
+ */
+.gallery-lightbox .yarl__navigation_prev,
+.gallery-lightbox .yarl__navigation_next {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  padding: 0;
+  margin-inline: 1.25rem;
+  border: 1px solid rgb(255 255 255 / 0.4);
+  border-radius: 9999px;
+  color: #fff;
+  filter: none;
+  transition: background-color 150ms;
+}
+.gallery-lightbox .yarl__navigation_prev:hover,
+.gallery-lightbox .yarl__navigation_next:hover {
+  background-color: rgb(255 255 255 / 0.15);
+}
+/* phones swipe between photos, as the old gallery did */
+@media (width < 40rem) {
+  .gallery-lightbox .yarl__navigation_prev,
+  .gallery-lightbox .yarl__navigation_next {
+    display: none;
+  }
+}
