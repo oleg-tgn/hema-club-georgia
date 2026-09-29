@@ -32,7 +32,8 @@
     },
     "levels": {
       "beginners": "Beginners",
-      "advanced": "Advanced"
+      "advanced": "Advanced",
+      "all": "All levels"
     }
   },
   "Instructors": {

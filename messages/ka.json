@@ -32,7 +32,8 @@
     },
     "levels": {
       "beginners": "დამწყები",
-      "advanced": "მოწინავე"
+      "advanced": "მოწინავე",
+      "all": "ყველა დონე"
     }
   },
   "Instructors": {

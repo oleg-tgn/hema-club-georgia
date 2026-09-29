@@ -32,7 +32,8 @@
     },
     "levels": {
       "beginners": "Начинающие",
-      "advanced": "Продвинутые"
+      "advanced": "Продвинутые",
+      "all": "Все уровни"
     }
   },
   "Instructors": {

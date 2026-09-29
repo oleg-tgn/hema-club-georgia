@@ -234,9 +234,13 @@ export interface Weapon {
 export interface ScheduleGroup {
   id: string;
   /**
-   * Stable identifier that determines where this card is placed in the schedule layout, e.g. 'longsword', 'sparrings'. Not localized.
+   * Stable identifier for this card, e.g. 'longsword', 'sparrings'. Not localized.
    */
   slug: string;
+  /**
+   * Cards are listed in ascending order (lower numbers first).
+   */
+  order?: number | null;
   /**
    * Leave empty for a card with no weapon (e.g. Sparrings) — set Title below instead.
    */
@@ -246,12 +250,12 @@ export interface ScheduleGroup {
    */
   title?: string | null;
   /**
-   * One section with no Level for a plain card (e.g. Saber, Rapier, Sparrings), or two sections (Beginners / Advanced) for a split card (e.g. Longsword).
+   * One row per group. A section with no Level is labelled "All levels" (e.g. Saber, Sparrings); add one section per level for split groups (e.g. Longsword: Beginners / Advanced).
    */
   sections?:
     | {
         /**
-         * Sub-heading shown above this section's rows. Leave empty for a section with no subheading.
+         * Group label shown next to this section's time slots. Leave empty to show "All levels".
          */
         level?: ('beginners' | 'advanced') | null;
         rows?:
@@ -501,6 +505,7 @@ export interface WeaponsSelect<T extends boolean = true> {
  */
 export interface ScheduleGroupsSelect<T extends boolean = true> {
   slug?: T;
+  order?: T;
   weapon?: T;
   title?: T;
   sections?:
