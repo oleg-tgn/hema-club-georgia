@@ -39,11 +39,18 @@
   },
   "Instructors": {
     "title": "ინსტრუქტორები",
-    "hemaRating": "Hema rating"
+    "hemaRating": "Hema rating",
+    "metaDescription": "წმინდა გიორგის HEMA სკოლის ინსტრუქტორები თბილისში"
   },
   "Gallery": {
     "title": "გალერეა",
-    "instagramCta": "მეტი ფოტო Instagram"
+    "metaDescription": "ფოტოები წმინდა გიორგის HEMA სკოლის ვარჯიშებიდან და ტურნირებიდან",
+    "openPhoto": "ფოტო {index}-ის გახსნა",
+    "close": "დახურვა",
+    "previous": "წინა ფოტო",
+    "next": "შემდეგი ფოტო",
+    "zoomIn": "გადიდება",
+    "zoomOut": "დაპატარავება"
   },
   "TournamentPage": {
     "title": "ტურნირი",

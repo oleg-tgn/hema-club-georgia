@@ -13,8 +13,8 @@ const menuLinks = [
   { href: "/#about", labelKey: "about", section: "about" },
   { href: "/#schedule", labelKey: "schedule", section: "schedule" },
   { href: "/#faq", labelKey: "faq", section: "faq" },
-  { href: "/#instructors", labelKey: "instructors", section: "instructors" },
-  { href: "/#gallery", labelKey: "gallery", section: "gallery" },
+  { href: "/instructors", labelKey: "instructors", section: null },
+  { href: "/gallery", labelKey: "gallery", section: null },
   { href: "/tournaments", labelKey: "tournaments", section: null },
 ] as const;
 
@@ -64,8 +64,8 @@ function Nav({
     <nav className={`items-center gap-6 xl:gap-8 ${className}`}>
       {menuLinks.map(({ href, labelKey, section }) => {
         // Section links get their active state from the CSS scroll-timeline
-        // animation below (see globals.css); only the plain-route link
-        // (tournaments) needs a JS-driven active check against pathname.
+        // animation below (see globals.css); only plain-route links need a
+        // JS-driven active check against pathname.
         const isActive = section === null && pathname === href;
 
         return (
@@ -140,7 +140,7 @@ export default function Header() {
 
   return (
     <header className="bg-paper-100/90 fixed top-0 z-50 w-full backdrop-blur-[10px]">
-      <div className="container mx-auto flex h-(--header-height) items-center justify-between px-2 sm:px-5 md:px-10">
+      <div className="mx-auto flex h-(--header-height) w-full max-w-384 items-center justify-between px-2 sm:px-5 md:px-10">
         <MenuLink href="/" section="" isHome={isHome} className="group">
           <div className="flex sm:hidden">
             <Logo className="h-7 w-auto" variant="mobile" />

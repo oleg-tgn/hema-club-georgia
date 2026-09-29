@@ -60,9 +60,7 @@ html {
 body {
   font-family: var(--font-sans);
   overflow-x: hidden;
-  timeline-scope:
-    --about-visible, --schedule-visible, --faq-visible, --instructors-visible,
-    --gallery-visible;
+  timeline-scope: --about-visible, --schedule-visible, --faq-visible;
 }
 
 /*
@@ -79,9 +77,7 @@ body {
  */
 #about,
 #schedule,
-#faq,
-#instructors,
-#gallery {
+#faq {
   view-timeline-inset: calc(var(--header-height) + var(--nav-active-offset)) 0;
 }
 #about {
@@ -92,12 +88,6 @@ body {
 }
 #faq {
   view-timeline-name: --faq-visible;
-}
-#instructors {
-  view-timeline-name: --instructors-visible;
-}
-#gallery {
-  view-timeline-name: --gallery-visible;
 }
 
 @keyframes nav-link-active {
@@ -156,14 +146,6 @@ nav a[data-section="faq"],
 nav a[data-section="faq"] > span {
   animation-timeline: --faq-visible;
 }
-nav a[data-section="instructors"],
-nav a[data-section="instructors"] > span {
-  animation-timeline: --instructors-visible;
-}
-nav a[data-section="gallery"],
-nav a[data-section="gallery"] > span {
-  animation-timeline: --gallery-visible;
-}
 
 /*
  * Aged-paper surface on a base between paper-100 (the page background) and
@@ -189,56 +171,4 @@ nav a[data-section="gallery"] > span {
     auto,
     100% 100%,
     auto;
-}
-
-/*
- * Leading/trailing space for full-bleed carousels, matching the offset
- * of `main`'s content edge (`container mx-auto px-2 sm:px-5 md:px-10`)
- * from the viewport edge, so the first slide lines up with the page
- * content at rest. Mirrors Tailwind's default `.container`
- * breakpoints/max-widths.
- *
- * Below `sm`, `main` already spans the full viewport width, so bleeding
- * out only needs to cancel `main`'s own padding - done with a plain
- * negative margin, no `vw` involved. `vw` (used from `sm` up, where the
- * container's max-width is narrower than the viewport) is intentionally
- * avoided here: Chrome sizes `100vw` to include the scrollbar gutter,
- * which is only off by a few px, but at this tier `--inset` is small
- * enough for that error to be visible.
- */
-.full-bleed-inset {
-  --inset: 0.5rem;
-  width: 100%;
-  margin-left: calc(-1 * var(--inset));
-  margin-right: calc(-1 * var(--inset));
-  padding-left: var(--inset);
-  padding-right: var(--inset);
-}
-@media (min-width: 40rem) {
-  .full-bleed-inset {
-    --inset: calc((100vw - 40rem) / 2 + 1.25rem);
-    width: 100vw;
-    margin-left: calc(50% - 50vw);
-    margin-right: calc(50% - 50vw);
-  }
-}
-@media (min-width: 48rem) {
-  .full-bleed-inset {
-    --inset: calc((100vw - 48rem) / 2 + 2.5rem);
-  }
-}
-@media (min-width: 64rem) {
-  .full-bleed-inset {
-    --inset: calc((100vw - 64rem) / 2 + 2.5rem);
-  }
-}
-@media (min-width: 80rem) {
-  .full-bleed-inset {
-    --inset: calc((100vw - 80rem) / 2 + 2.5rem);
-  }
-}
-@media (min-width: 96rem) {
-  .full-bleed-inset {
-    --inset: calc((100vw - 96rem) / 2 + 2.5rem);
-  }
 }

@@ -5,7 +5,6 @@ import config from "@payload-config";
 import { getPayload } from "payload";
 import Image from "next/image";
 import Heading from "../ui/Heading";
-import { Carousel, CarouselViewport, CarouselControls } from "../ui/Carousel";
 import SocialLinks from "../ui/SocialLinks";
 import ExternalIcon from "../icons/externalIcon";
 
@@ -28,7 +27,7 @@ export default async function Instructors() {
   const instructors = allInstructors.filter(
     (instructor): instructor is Instructor & { photo: Media } =>
       typeof instructor.photo === "object" &&
-      Boolean(instructor.photo.sizes?.thumbnail?.url || instructor.photo.url),
+      Boolean(instructor.photo.url || instructor.photo.sizes?.thumbnail?.url),
   );
 
   if (instructors.length === 0) {
@@ -36,96 +35,81 @@ export default async function Instructors() {
   }
 
   return (
-    <Carousel options={{ loop: false, align: "start" }}>
-      <div className="mb-5 grid grid-cols-2 items-center lg:grid-cols-[1fr_auto_1fr]">
-        <Heading
-          size="lg"
-          as="h2"
-          className="justify-self-start lg:col-start-2 lg:justify-self-center"
-        >
-          {t("title")}
-        </Heading>
-        <CarouselControls className="justify-self-end lg:col-start-3" />
-      </div>
+    <>
+      <Heading size="lg" as="h1" className="mb-10 text-center">
+        {t("title")}
+      </Heading>
 
-      <CarouselViewport>
-        <div className="flex gap-10">
-          {instructors.map((instructor) => {
-            const photo = instructor.photo;
-            const photoUrl = photo.sizes?.thumbnail?.url || photo.url;
+      <div className="mx-auto grid max-w-md grid-cols-1 gap-x-10 gap-y-15 sm:max-w-2xl sm:grid-cols-2 lg:max-w-5xl lg:grid-cols-3">
+        {instructors.map((instructor) => {
+          const photo = instructor.photo;
+          const photoUrl = photo.url || photo.sizes?.thumbnail?.url;
 
-            const weapons = (instructor.weapons ?? []).filter(
-              (weapon): weapon is Weapon => typeof weapon === "object",
-            );
+          const weapons = (instructor.weapons ?? []).filter(
+            (weapon): weapon is Weapon => typeof weapon === "object",
+          );
 
-            const [firstName, ...lastNameParts] = instructor.name.split(" ");
-            const lastName = lastNameParts.join(" ");
+          const [firstName, ...lastNameParts] = instructor.name.split(" ");
+          const lastName = lastNameParts.join(" ");
 
-            return (
-              <div
-                key={instructor.id}
-                className="text-night flex w-62.5 flex-none flex-col gap-4 md:w-65 xl:w-80"
-              >
-                <div className="relative aspect-square w-full overflow-hidden rounded-sm">
-                  <Image
-                    src={photoUrl!}
-                    alt={photo.alt || instructor.name}
-                    fill
-                    sizes="(min-width: 640px) 288px, 320px"
-                    className="object-cover"
-                  />
-                </div>
-
-                <div className="flex flex-col gap-3">
-                  {weapons.length > 0 && (
-                    <div className="flex flex-wrap gap-x-6 text-sm">
-                      {weapons.map((weapon) => (
-                        <span
-                          key={weapon.id}
-                          className="text-base font-semibold"
-                        >
-                          {weapon.name}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-
-                  <div className="text-[34px] leading-8.5 font-normal">
-                    {firstName}
-                    <br />
-                    {lastName}
-                  </div>
-
-                  {instructor.description && (
-                    <p className="line-clamp-3 text-sm">
-                      {instructor.description}
-                    </p>
-                  )}
-                </div>
-
-                <div className="mt-auto flex items-center justify-between gap-4 pt-3">
-                  <SocialLinks
-                    links={instructor.socialLinks ?? []}
-                    className="gap-2"
-                  />
-
-                  {instructor.hemaRatingUrl && (
-                    <a
-                      href={instructor.hemaRatingUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-night hover:text-gold-200 flex items-center gap-2 text-sm font-normal"
-                    >
-                      {t("hemaRating")}
-                      <ExternalIcon className="h-4 w-4" />
-                    </a>
-                  )}
-                </div>
+          return (
+            <div key={instructor.id} className="text-night flex flex-col gap-4">
+              <div className="relative aspect-square w-full overflow-hidden rounded-sm">
+                <Image
+                  src={photoUrl!}
+                  alt={photo.alt || instructor.name}
+                  fill
+                  sizes="(min-width: 640px) 320px, 448px"
+                  className="object-cover"
+                />
               </div>
-            );
-          })}
-        </div>
-      </CarouselViewport>
-    </Carousel>
+
+              <div className="flex flex-col gap-3">
+                {weapons.length > 0 && (
+                  <div className="flex flex-wrap gap-x-6 text-sm">
+                    {weapons.map((weapon) => (
+                      <span key={weapon.id} className="text-base font-semibold">
+                        {weapon.name}
+                      </span>
+                    ))}
+                  </div>
+                )}
+
+                <div className="text-[34px] leading-8.5 font-normal">
+                  {firstName}
+                  <br />
+                  {lastName}
+                </div>
+
+                {instructor.description && (
+                  <p className="line-clamp-3 text-sm">
+                    {instructor.description}
+                  </p>
+                )}
+              </div>
+
+              <div className="mt-auto flex items-center justify-between gap-4 pt-3">
+                <SocialLinks
+                  links={instructor.socialLinks ?? []}
+                  className="gap-2"
+                />
+
+                {instructor.hemaRatingUrl && (
+                  <a
+                    href={instructor.hemaRatingUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-night hover:text-gold-200 flex items-center gap-2 text-sm font-normal"
+                  >
+                    {t("hemaRating")}
+                    <ExternalIcon className="h-4 w-4" />
+                  </a>
+                )}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </>
   );
 }
