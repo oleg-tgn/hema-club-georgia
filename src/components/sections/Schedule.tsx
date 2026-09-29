@@ -81,15 +81,16 @@ export default async function Schedule() {
         {t("title")}
       </Heading>
       {/* Guard figures flank the cards only where there's room beside them;
-          smaller screens keep the schedule on its own. */}
-      <div className="flex w-full items-center justify-center xl:gap-10">
-        <Ochs className="hidden w-50! shrink-0 xl:flex 2xl:w-60!" />
+          smaller screens keep the schedule on its own. They sit on a
+          diagonal (left low, right high) - the mirror of About's. */}
+      <div className="flex w-full justify-center xl:gap-10">
+        <Ochs className="hidden w-50! shrink-0 self-end xl:flex 2xl:w-60!" />
         <div className="@container flex w-full max-w-120 flex-col gap-2.5">
           {groups.map((doc) => (
             <ScheduleCard key={doc.id} doc={doc} t={t} />
           ))}
         </div>
-        <Pflug className="hidden w-60! shrink-0 xl:flex 2xl:w-72.5!" />
+        <Pflug className="hidden w-60! shrink-0 self-start xl:flex 2xl:w-72.5!" />
       </div>
     </div>
   );
