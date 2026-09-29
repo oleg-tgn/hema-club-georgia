@@ -59,6 +59,7 @@ export default async function Join() {
       {/* On mobile the invitation comes first, then where to find us. */}
       <div className="order-last flex w-full flex-col gap-2.5 lg:order-first lg:max-w-118.25 lg:flex-1 xl:max-w-159.5 2xl:max-w-233">
         <MapEmbed locale={locale} title={address.addressLine} />
+        <AddressText address={address} />
       </div>
       <div className="mx-auto flex w-full max-w-84 flex-col gap-4">
         <div className="border-night flex flex-row justify-between border-t border-b py-1 text-base font-semibold">
