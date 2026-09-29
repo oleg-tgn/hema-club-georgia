@@ -75,7 +75,7 @@ export default async function Schedule() {
   });
 
   return (
-    <div className="bg-old-paper flex w-full flex-col items-center gap-6 rounded-[20px] px-2 py-8 sm:p-10 md:rounded-[40px] md:p-16 xl:gap-12">
+    <div className="bg-old-paper flex w-full flex-col items-center gap-6 rounded-[20px] px-4 py-8 sm:p-10 md:rounded-[40px] md:p-16 xl:gap-12">
       <Heading size="lg" as="h2" className="text-center">
         {t("title")}
       </Heading>
