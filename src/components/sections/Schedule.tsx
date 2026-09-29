@@ -30,7 +30,7 @@ function ScheduleCard({ doc, t }: { doc: ScheduleGroup; t: TFunc }) {
     // Content is capped at the width of the two-column grid below, so on
     // wide screens days and times stay close together instead of spreading
     // to the card edges.
-    <div className="text-night flex flex-col gap-3 rounded-lg border border-black/20 p-4 *:max-w-125">
+    <div className="text-night flex flex-col gap-3 rounded-lg p-4 *:max-w-125">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <Heading size="sm" as="h3">
           {weapon?.name ?? doc.title}
@@ -42,7 +42,7 @@ function ScheduleCard({ doc, t }: { doc: ScheduleGroup; t: TFunc }) {
       {sections.map((section, i) => (
         <div
           key={section.id ?? i}
-          className="border-night/20 grid grid-cols-1 gap-1.5 border-t pt-3 @md:grid-cols-[10rem_minmax(0,1fr)] @md:gap-5"
+          className="border-night/10 grid grid-cols-1 gap-1.5 border-t pt-3 @md:grid-cols-[10rem_minmax(0,1fr)] @md:gap-5"
         >
           <span className="text-base font-medium">
             {section.label || t("levels.all")}
@@ -76,7 +76,7 @@ function AddressCard({
         href={address.googleMap}
         target="_blank"
         rel="noopener noreferrer"
-        className="text-night flex w-full flex-row items-start justify-between gap-2 rounded-lg border border-black/20 bg-transparent p-2 transition-colors hover:bg-black/10"
+        className="text-night flex w-full flex-row items-start justify-between gap-2 rounded-lg p-2 transition-colors hover:bg-black/5"
       >
         <div className="flex min-w-0 flex-col gap-1.5">
           <span className="text-[18px] font-medium sm:text-xl">
@@ -112,7 +112,7 @@ export default async function Schedule() {
   });
 
   return (
-    <div className="bg-gold-100 flex w-full flex-col gap-4 rounded-[20px] p-2 sm:p-5 md:rounded-[40px] md:p-10 xl:gap-12 2xl:gap-23">
+    <div className="bg-old-paper flex w-full flex-col gap-4 rounded-[20px] p-2 sm:p-5 md:rounded-[40px] md:p-10 xl:gap-12 2xl:gap-23">
       <div className="flex flex-col gap-4 sm:gap-10 xl:flex-row xl:justify-between 2xl:gap-10">
         <Heading size="lg" as="h2" className="w-full xl:w-auto 2xl:w-1/2">
           {t("title")}
