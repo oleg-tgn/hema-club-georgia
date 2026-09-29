@@ -26,36 +26,37 @@ function ScheduleCard({ doc, t }: { doc: ScheduleGroup; t: TFunc }) {
   const sections = doc.sections ?? [];
 
   return (
-    // Content is capped at the width of the two-column grid below, so on
-    // wide screens days and times stay close together instead of spreading
-    // to the card edges.
-    <div className="text-night flex flex-col gap-3 rounded-lg p-4 *:max-w-125">
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <Heading size="sm" as="h3">
-          {weapon?.name ?? doc.title}
-        </Heading>
-        {weapon && <WeaponIcon slug={weapon.slug} className="h-10 w-auto" />}
-      </div>
-      {sections.map((section, i) => (
-        <div
-          key={section.id ?? i}
-          className="border-night/10 grid grid-cols-1 gap-1.5 border-t pt-3 @md:grid-cols-[10rem_minmax(0,1fr)] @md:gap-5"
-        >
-          <span className="text-base font-medium">
-            {section.label || t("levels.all")}
-          </span>
-          <div className="flex flex-col gap-1">
-            {(section.rows ?? []).map((row, idx) => (
-              <div key={idx} className="flex justify-between gap-3">
-                <span className="text-base">{t(`days.${row.day}`)}</span>
-                <span className="text-right text-base font-semibold whitespace-nowrap tabular-nums">
-                  {formatTime(row.startTime)} — {formatTime(row.endTime)}
-                </span>
-              </div>
-            ))}
-          </div>
+    <div className="text-night border-night/20 flex flex-col overflow-hidden rounded-2xl border">
+      <div className="bg-night/5 px-4 py-3">
+        <div className="flex max-w-125 flex-wrap items-center justify-between gap-3">
+          <Heading size="sm" as="h3">
+            {weapon?.name ?? doc.title}
+          </Heading>
+          {weapon && <WeaponIcon slug={weapon.slug} className="h-10 w-auto" />}
         </div>
-      ))}
+      </div>
+      <div className="flex flex-col gap-4 p-4 *:max-w-125">
+        {sections.map((section, i) => (
+          <div
+            key={section.id ?? i}
+            className="grid grid-cols-1 gap-1.5 @md:grid-cols-[10rem_minmax(0,1fr)] @md:gap-5"
+          >
+            <span className="text-base font-medium">
+              {section.label || t("levels.all")}
+            </span>
+            <div className="flex flex-col gap-1">
+              {(section.rows ?? []).map((row, idx) => (
+                <div key={idx} className="flex justify-between gap-3">
+                  <span className="text-base">{t(`days.${row.day}`)}</span>
+                  <span className="text-right text-base font-semibold whitespace-nowrap tabular-nums">
+                    {formatTime(row.startTime)} — {formatTime(row.endTime)}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
@@ -86,7 +87,7 @@ export default async function Schedule() {
           name="ochs"
           className="hidden w-68 shrink-0 self-end xl:flex 2xl:w-80"
         />
-        <div className="border-off-white/30 @container flex w-full max-w-120 flex-col gap-2.5 rounded-lg">
+        <div className="@container flex w-full max-w-120 flex-col gap-3">
           {groups.map((doc) => (
             <ScheduleCard key={doc.id} doc={doc} t={t} />
           ))}
