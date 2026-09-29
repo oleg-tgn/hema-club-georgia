@@ -49,7 +49,8 @@
     "close": "Close",
     "previous": "Previous photo",
     "next": "Next photo",
-    "counter": "{current} / {total}"
+    "zoomIn": "Zoom in",
+    "zoomOut": "Zoom out"
   },
   "TournamentPage": {
     "title": "Tournament",

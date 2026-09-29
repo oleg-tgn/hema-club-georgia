@@ -49,7 +49,8 @@
     "close": "დახურვა",
     "previous": "წინა ფოტო",
     "next": "შემდეგი ფოტო",
-    "counter": "{current} / {total}"
+    "zoomIn": "გადიდება",
+    "zoomOut": "დაპატარავება"
   },
   "TournamentPage": {
     "title": "ტურნირი",
