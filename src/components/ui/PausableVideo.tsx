@@ -1,11 +1,13 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useTranslations } from "next-intl";
 
 // Looping muted video that pauses/resumes on click anywhere on it. The icon
 // shows on hover and stays while paused, so a stopped video reads as
 // stopped rather than broken. Starts paused for prefers-reduced-motion.
 export default function PausableVideo({ src }: { src: string }) {
+  const t = useTranslations("Hero");
   const ref = useRef<HTMLVideoElement>(null);
   const [paused, setPaused] = useState(false);
 
@@ -30,7 +32,7 @@ export default function PausableVideo({ src }: { src: string }) {
     <button
       type="button"
       onClick={toggle}
-      aria-label={paused ? "Play video" : "Pause video"}
+      aria-label={paused ? t("playVideo") : t("pauseVideo")}
       aria-pressed={paused}
       className="group relative block h-full w-full cursor-pointer"
     >

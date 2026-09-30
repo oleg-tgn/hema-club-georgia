@@ -14,12 +14,6 @@
   --color-gold-100: #c4a043;
   --color-gold-200: #9d7d2b;
   --color-off-white: #e4e4e4;
-  --background-image-hero-gradient: linear-gradient(
-    72deg,
-    rgba(0, 0, 0, 0.9) 0.35%,
-    rgba(0, 0, 0, 0.77) 22.81%,
-    rgba(0, 0, 0, 0) 54.77%
-  );
 }
 
 html[lang="ka"] {
@@ -46,14 +40,12 @@ html {
   --header-height: 52px;
   /* how far past the header a section must scroll before its nav link activates */
   --nav-active-offset: 200px;
-  --hero-gap: 0.5rem;
   scroll-padding-top: var(--header-height);
   scroll-behavior: smooth;
 }
 @media (min-width: 40rem) {
   html {
     --header-height: 68px;
-    --hero-gap: 1rem;
   }
 }
 

@@ -11,9 +11,8 @@
     "closeMenu": "მენიუს დახურვა"
   },
   "Hero": {
-    "ctaJoinMobile": "შემოგვთიერთდი",
-    "ctaJoin": "შემოგვიერთდით",
-    "ctaSchedule": "განრიგი"
+    "pauseVideo": "ვიდეოს დაპაუზება",
+    "playVideo": "ვიდეოს ჩართვა"
   },
   "Training": {
     "equipGuideCtaMobile": "აღჭურვილობის გზამკვლევი",

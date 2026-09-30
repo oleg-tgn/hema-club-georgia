@@ -1,130 +1,64 @@
-import CtaTile from "../ui/CtaTile";
-import Image from "next/image";
 import config from "@payload-config";
-import { getLocale, getTranslations } from "next-intl/server";
+import { getLocale } from "next-intl/server";
 import { getPayload } from "payload";
 import type { Locale } from "@/i18n/routing";
-import WeaponIcon from "../icons/WeaponIcon";
-import { Weapon } from "@/payload-types";
-import { RichText } from "@payloadcms/richtext-lexical/react";
+import Heading from "../ui/Heading";
+import PausableVideo from "../ui/PausableVideo";
 
-type TFunc = Awaited<ReturnType<typeof getTranslations>>;
+// Book-style tailpiece closing the welcome text: two crossed swords between
+// hairlines.
+function SwordsOrnament() {
+  const sword = (
+    <g stroke="currentColor" strokeLinecap="round" fill="none">
+      <path d="M9 23 L 27 5" strokeWidth="1.6" />
+      <path d="M6.5 20.5 L 11.5 25.5" strokeWidth="1.6" />
+      <path d="M9 23 L 5.5 26.5" strokeWidth="2.2" />
+      <circle cx="4.6" cy="27.4" r="1.3" fill="currentColor" stroke="none" />
+    </g>
+  );
 
-function DescriptionPanel({
-  t,
-  description,
-}: {
-  t: TFunc;
-  description: string;
-}) {
   return (
-    <div className="flex w-full flex-col gap-3 sm:flex-row md:flex-col">
-      <p className="text-off-white flex w-full text-base font-normal">
-        {description}
-      </p>
-      <div className="flex h-10.5 w-full flex-row gap-2 sm:h-22">
-        <CtaTile href="#join" className="flex flex-[4_0_0] text-xl sm:hidden">
-          {t.rich("ctaJoinMobile")}
-        </CtaTile>
-
-        <CtaTile href="#join" className="hidden flex-[3_0_0] text-xl sm:flex">
-          {t.rich("ctaJoin", { br: () => <br /> })}
-        </CtaTile>
-        <CtaTile
-          href="#schedule"
-          className="flex-[6_0_0] text-xl sm:text-[34px]"
-        >
-          {t.rich("ctaSchedule")}
-        </CtaTile>
-      </div>
+    <div
+      aria-hidden
+      className="text-gold-200 flex max-w-160 items-center justify-center gap-4"
+    >
+      <span className="bg-gold-200/60 h-px w-16" />
+      <svg viewBox="0 0 32 32" className="h-8 w-auto">
+        {sword}
+        <g transform="matrix(-1 0 0 1 32 0)">{sword}</g>
+      </svg>
+      <span className="bg-gold-200/60 h-px w-16" />
     </div>
   );
 }
 
-function WeaponsPanel({ weapons }: { weapons: Weapon[] }) {
-  if (weapons.length === 0) {
-    return null;
-  }
-
-  return (
-    <div className="flex w-full flex-col gap-2 md:gap-4 lg:gap-2 xl:flex-row xl:justify-end xl:gap-4">
-      {weapons.map((weapon) => {
-        return (
-          <div
-            key={weapon.id}
-            className="bg-gold-100 border-gold-100 sm:border-off-white/30 flex h-38 w-full flex-col items-start justify-between rounded-[20px] border p-4 sm:h-auto sm:justify-normal sm:gap-4 sm:rounded-lg sm:border sm:bg-black/40 sm:backdrop-blur-md lg:flex-row lg:justify-between xl:max-w-59 xl:flex-col 2xl:max-w-68.5"
-          >
-            <div className="flex h-10.5 w-full lg:w-auto xl:w-full">
-              <WeaponIcon
-                slug={weapon.slug}
-                className="text-night sm:text-off-white h-full w-auto"
-              />
-            </div>
-            <div className="flex flex-col gap-2 lg:w-43 xl:w-full">
-              <span className="text-night sm:text-paper-100 font-serif text-[32px] leading-none tracking-tight">
-                {weapon.name}
-              </span>
-              {weapon.label && (
-                <RichText
-                  data={weapon.label}
-                  className="text-night/80 [&_strong]:text-semibold sm:text-gold-100 text-base leading-6"
-                />
-              )}
-            </div>
-          </div>
-        );
-      })}
-    </div>
-  );
-}
-
+// The school name leads as the page's h1; the welcome text sits beside a
+// modest video instead of under a full-screen one, so the schedule heading
+// already shows on the first screen.
 export default async function Hero() {
-  const t = await getTranslations("Hero");
   const locale = await getLocale();
   const payload = await getPayload({ config });
 
-  const [{ docs: weapons }, hero] = await Promise.all([
-    payload.find({
-      collection: "weapons",
-      depth: 0,
-      limit: 10,
-      locale: locale as Locale,
-      sort: "order",
-    }),
-    payload.findGlobal({ slug: "hero", locale: locale as Locale }),
-  ]);
+  const welcome = await payload.findGlobal({
+    slug: "welcome-section",
+    locale: locale as Locale,
+  });
 
   return (
-    <>
-      <section className="relative mb-(--hero-gap) flex min-h-[calc(100dvh-var(--header-height)-var(--hero-gap))] w-full flex-col justify-between overflow-hidden rounded-[20px] p-5 text-white sm:gap-10 md:rounded-[40px] md:p-10">
-        <video
-          className="absolute inset-0 h-full w-full object-cover"
-          src="/videos/hema-intro.webm"
-          autoPlay
-          muted
-          loop
-          playsInline
-        />
-        <div className="bg-hero-gradient absolute inset-0" />
+    <div className="text-night grid w-full grid-cols-1 gap-6 lg:grid-cols-[minmax(0,6fr)_minmax(0,5fr)] lg:items-center lg:gap-12">
+      <div className="flex flex-col gap-6">
+        <Heading size="lg" as="h1">
+          St. George HEMA School
+        </Heading>
+        <p className="max-w-160 font-(family-name:--font-literata) text-[18px] leading-7 whitespace-pre-line">
+          {welcome.text}
+        </p>
+        <SwordsOrnament />
+      </div>
 
-        <div className="relative h-19 w-auto max-w-full self-start sm:h-33 md:h-37 xl:h-47">
-          <Image
-            src="/images/hero-logo.svg"
-            alt="St. George HEMA School"
-            width={364}
-            height={189}
-            loading="eager"
-            fetchPriority="high"
-            className="h-full w-auto"
-          />
-        </div>
-
-        <div className="relative flex w-full flex-col justify-between sm:flex-col-reverse sm:gap-10 md:max-w-77 lg:mt-auto lg:max-w-full lg:flex-row lg:items-end">
-          <div className="flex w-full md:max-w-77 lg:mt-auto xl:max-w-91">
-            <DescriptionPanel t={t} description={hero.description} />
-          </div>
-        </div>
-      </section>
-    </>
+      <div className="aspect-video w-full overflow-hidden rounded-[20px] lg:aspect-4/3">
+        <PausableVideo src="/videos/hema-intro.webm" />
+      </div>
+    </div>
   );
 }

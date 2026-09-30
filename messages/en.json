@@ -11,9 +11,8 @@
     "closeMenu": "Close menu"
   },
   "Hero": {
-    "ctaJoinMobile": "Join",
-    "ctaJoin": "Join<br></br>Club",
-    "ctaSchedule": "Schedule"
+    "pauseVideo": "Pause video",
+    "playVideo": "Play video"
   },
   "Training": {
     "equipGuideCtaMobile": "Equip Guide",
