@@ -80,7 +80,7 @@ export default async function Schedule() {
       <Heading size="lg" as="h2" className="text-center">
         {t("title")}
       </Heading>
-      <div className="flex w-full max-w-120 flex-col gap-3 md:max-w-4xl">
+      <div className="flex w-full max-w-120 flex-col gap-3 md:max-w-185">
         {groups.map((doc) => (
           <ScheduleCard key={doc.id} doc={doc} t={t} />
         ))}
