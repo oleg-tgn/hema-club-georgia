@@ -10,7 +10,7 @@ import BurgerIcon from "../icons/BurgerIcon";
 import CloseIcon from "../icons/CloseIcon";
 
 const menuLinks = [
-  { href: "/#about", labelKey: "about", section: "about" },
+  { href: "/#welcome", labelKey: "about", section: "welcome" },
   { href: "/#schedule", labelKey: "schedule", section: "schedule" },
   { href: "/#faq", labelKey: "faq", section: "faq" },
   { href: "/instructors", labelKey: "instructors", section: null },
