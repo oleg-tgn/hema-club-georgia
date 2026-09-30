@@ -3,6 +3,7 @@ import { getLocale, getTranslations } from "next-intl/server";
 import { getPayload } from "payload";
 import type { Locale } from "@/i18n/routing";
 import type { ScheduleGroup } from "@/payload-types";
+import Guard from "../ui/Guards";
 import Heading from "../ui/Heading";
 import WeaponIcon from "../icons/WeaponIcon";
 
@@ -25,18 +26,25 @@ function ScheduleCard({ doc, t }: { doc: ScheduleGroup; t: TFunc }) {
   const sections = doc.sections ?? [];
 
   return (
-    // Stacked on mobile; on desktop the weapon sits in a side column so each
-    // card is only as tall as its schedule and the section fits one screen.
-    <div className="text-night border-night/20 flex flex-col overflow-hidden rounded-2xl border md:flex-row">
-      <div className="bg-night/5 px-4 py-3 md:w-60 md:shrink-0 md:p-5">
-        <div className="flex max-w-125 flex-wrap items-center justify-between gap-3 md:flex-col md:items-start">
-          <Heading size="sm" as="h3">
+    // The weapon heads the card as a band on every screen size, so the
+    // section reads on one top-to-bottom axis.
+    <div className="text-night border-night/20 flex flex-col overflow-hidden rounded-2xl border">
+      <div className="bg-night/5 px-4 py-3 md:px-5">
+        <div className="flex items-center justify-between gap-3">
+          <Heading size="sm" as="h3" className="shrink-0 whitespace-nowrap">
             {weapon?.name ?? doc.title}
           </Heading>
-          {weapon && <WeaponIcon slug={weapon.slug} className="h-10 w-auto" />}
+          {/* The engraving gives way to the name on narrow cards: its mask
+              is `contain`, so a squeezed box just draws it smaller. */}
+          {weapon && (
+            <WeaponIcon
+              slug={weapon.slug}
+              className="h-7 w-auto min-w-0 sm:h-10"
+            />
+          )}
         </div>
       </div>
-      <div className="@container flex min-w-0 flex-1 flex-col gap-4 p-4 *:max-w-125 md:p-5">
+      <div className="@container flex flex-col gap-4 p-4 md:p-5">
         {sections.map((section, i) => (
           <div
             key={section.id ?? i}
@@ -80,10 +88,24 @@ export default async function Schedule() {
       <Heading size="lg" as="h2" className="text-center">
         {t("title")}
       </Heading>
-      <div className="flex w-full max-w-120 flex-col gap-3 md:max-w-185">
-        {groups.map((doc) => (
-          <ScheduleCard key={doc.id} doc={doc} t={t} />
-        ))}
+      {/* Guard figures flank the cards only where there's room beside them;
+          smaller screens keep the schedule on its own. They sit on a
+          diagonal (left low, right high). */}
+      <div className="flex w-full justify-center xl:gap-6 2xl:gap-10">
+        <Guard
+          name="ochs"
+          className="hidden w-68 shrink-0 self-end xl:flex 2xl:w-80"
+        />
+        {/* Cards stay narrow so each time sits close to its day. */}
+        <div className="flex w-full max-w-125 flex-col gap-3">
+          {groups.map((doc) => (
+            <ScheduleCard key={doc.id} doc={doc} t={t} />
+          ))}
+        </div>
+        <Guard
+          name="pflug"
+          className="hidden w-68 shrink-0 self-start xl:flex 2xl:w-80"
+        />
       </div>
     </div>
   );
