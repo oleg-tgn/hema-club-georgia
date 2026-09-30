@@ -1,7 +1,7 @@
 import Hero from "@/components/sections/Hero";
 import Schedule from "@/components/sections/Schedule";
 import Faq from "@/components/sections/Faq";
-import Join from "@/components/sections/Join";
+import Address from "@/components/sections/Address";
 
 export const revalidate = 60;
 
@@ -23,8 +23,8 @@ export default function HomePage() {
         <Faq />
       </section>
 
-      <section id="join">
-        <Join />
+      <section id="address">
+        <Address />
       </section>
     </div>
   );

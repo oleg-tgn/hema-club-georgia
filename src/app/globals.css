@@ -52,7 +52,8 @@ html {
 body {
   font-family: var(--font-sans);
   overflow-x: hidden;
-  timeline-scope: --welcome-visible, --schedule-visible, --faq-visible;
+  timeline-scope:
+    --welcome-visible, --schedule-visible, --faq-visible, --address-visible;
 }
 
 /*
@@ -69,7 +70,8 @@ body {
  */
 #welcome,
 #schedule,
-#faq {
+#faq,
+#address {
   view-timeline-inset: calc(var(--header-height) + var(--nav-active-offset)) 0;
 }
 #welcome {
@@ -80,6 +82,9 @@ body {
 }
 #faq {
   view-timeline-name: --faq-visible;
+}
+#address {
+  view-timeline-name: --address-visible;
 }
 
 @keyframes nav-link-active {
@@ -137,6 +142,10 @@ nav a[data-section="schedule"] > span {
 nav a[data-section="faq"],
 nav a[data-section="faq"] > span {
   animation-timeline: --faq-visible;
+}
+nav a[data-section="address"],
+nav a[data-section="address"] > span {
+  animation-timeline: --address-visible;
 }
 
 /*

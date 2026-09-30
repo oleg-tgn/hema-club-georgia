@@ -6,7 +6,7 @@
     "instructors": "Инструкторы",
     "gallery": "Галерея",
     "tournaments": "Турниры",
-    "join": "Присоединиться",
+    "address": "Адрес",
     "openMenu": "Открыть меню",
     "closeMenu": "Закрыть меню"
   },
@@ -35,6 +35,12 @@
   },
   "Faq": {
     "title": "Часто задаваемые вопросы"
+  },
+  "Address": {
+    "title": "Адрес",
+    "openInMaps": "Открыть в Google Maps",
+    "howToJoin": "Чтобы записаться, напишите нам в соцсетях — или просто приходите на любую тренировку по расписанию.",
+    "entranceAlt": "Вход в зал St. George HEMA School"
   },
   "Instructors": {
     "title": "Инструкторы",

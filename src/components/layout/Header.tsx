@@ -13,6 +13,7 @@ const menuLinks = [
   { href: "/#welcome", labelKey: "welcome", section: "welcome" },
   { href: "/#schedule", labelKey: "schedule", section: "schedule" },
   { href: "/#faq", labelKey: "faq", section: "faq" },
+  { href: "/#address", labelKey: "address", section: "address" },
   { href: "/instructors", labelKey: "instructors", section: null },
   { href: "/gallery", labelKey: "gallery", section: null },
   { href: "/tournaments", labelKey: "tournaments", section: null },
@@ -134,35 +135,29 @@ function MobileNav({
 }
 
 export default function Header() {
-  const t = useTranslations("Nav");
   const pathname = usePathname();
   const isHome = pathname === "/";
 
   return (
     <header className="bg-paper-100/90 fixed top-0 z-50 w-full backdrop-blur-[10px]">
       <div className="mx-auto flex h-(--header-height) w-full max-w-384 items-center justify-between px-2 sm:px-5 md:px-10">
-        <MenuLink href="/" section="" isHome={isHome} className="group">
-          <div className="flex sm:hidden">
-            <Logo className="h-7 w-auto" variant="mobile" />
-          </div>
-          <div className="hidden sm:flex">
-            <Logo className="h-5 w-auto" variant="header" />
-          </div>
-        </MenuLink>
+        {/* Equal flex-1 sides keep the nav centred on the page even though
+            the logo is wider than the locale switcher. */}
+        <div className="flex flex-1">
+          <MenuLink href="/" section="" isHome={isHome} className="group">
+            <div className="flex sm:hidden">
+              <Logo className="h-7 w-auto" variant="mobile" />
+            </div>
+            <div className="hidden sm:flex">
+              <Logo className="h-5 w-auto" variant="header" />
+            </div>
+          </MenuLink>
+        </div>
         <Nav pathname={pathname} isHome={isHome} className="hidden xl:flex" />
-        <div className="flex items-center gap-2 sm:gap-4">
+        <div className="flex flex-1 items-center justify-end gap-2 sm:gap-4">
           <div className="hidden xl:flex">
             <LocaleSwitcher />
           </div>
-
-          <MenuLink
-            href="#join"
-            section="join"
-            isHome={isHome}
-            className="text-night hover:bg-night-hover flex h-9 items-center justify-center rounded-[20px] border border-black/40 px-4 text-base leading-none font-semibold transition-colors"
-          >
-            {t("join")}
-          </MenuLink>
 
           <MobileNav pathname={pathname} isHome={isHome} />
         </div>

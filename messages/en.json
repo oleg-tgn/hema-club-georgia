@@ -6,7 +6,7 @@
     "instructors": "Instructors",
     "gallery": "Gallery",
     "tournaments": "Tournaments",
-    "join": "Join",
+    "address": "Address",
     "openMenu": "Open menu",
     "closeMenu": "Close menu"
   },
@@ -35,6 +35,12 @@
   },
   "Faq": {
     "title": "Frequently Asked Questions"
+  },
+  "Address": {
+    "title": "Address",
+    "openInMaps": "Open in Google Maps",
+    "howToJoin": "To sign up, message us on social media — or just come to any class on the schedule.",
+    "entranceAlt": "Entrance to the St. George HEMA School gym"
   },
   "Instructors": {
     "title": "Instructors",
