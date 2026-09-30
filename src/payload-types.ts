@@ -100,6 +100,7 @@ export interface Config {
   globals: {
     address: Address;
     hero: Hero;
+    'welcome-section': WelcomeSection;
     about: About;
     'weapons-section': WeaponsSection;
     'faq-section': FaqSection;
@@ -108,6 +109,7 @@ export interface Config {
   globalsSelect: {
     address: AddressSelect<false> | AddressSelect<true>;
     hero: HeroSelect<false> | HeroSelect<true>;
+    'welcome-section': WelcomeSectionSelect<false> | WelcomeSectionSelect<true>;
     about: AboutSelect<false> | AboutSelect<true>;
     'weapons-section': WeaponsSectionSelect<false> | WeaponsSectionSelect<true>;
     'faq-section': FaqSectionSelect<false> | FaqSectionSelect<true>;
@@ -636,6 +638,20 @@ export interface Hero {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "welcome-section".
+ */
+export interface WelcomeSection {
+  id: string;
+  title: string;
+  /**
+   * Line breaks are kept.
+   */
+  text: string;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "about".
  */
 export interface About {
@@ -766,6 +782,17 @@ export interface AddressSelect<T extends boolean = true> {
  */
 export interface HeroSelect<T extends boolean = true> {
   description?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "welcome-section_select".
+ */
+export interface WelcomeSectionSelect<T extends boolean = true> {
+  title?: T;
+  text?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

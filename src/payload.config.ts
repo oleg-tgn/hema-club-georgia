@@ -17,6 +17,7 @@ import { GalleryPhotos } from "./collections/GalleryPhotos";
 import { SocialLinks } from "./collections/SocialLinks";
 import { HeroSection } from "./globals/HeroSection";
 import { AboutSection } from "./globals/AboutSection";
+import { WelcomeSection } from "./globals/WelcomeSection";
 import { WeaponsSection } from "./globals/WeaponsSection";
 import { FaqSection } from "./globals/FaqSection";
 import { JoinSection } from "./globals/JoinSection";
@@ -47,6 +48,7 @@ export default buildConfig({
   globals: [
     Address,
     HeroSection,
+    WelcomeSection,
     AboutSection,
     WeaponsSection,
     FaqSection,

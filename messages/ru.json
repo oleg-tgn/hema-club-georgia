@@ -1,6 +1,6 @@
 {
   "Nav": {
-    "about": "О нас",
+    "welcome": "Добро пожаловать",
     "schedule": "Расписание",
     "faq": "Вопросы",
     "instructors": "Инструкторы",
@@ -11,9 +11,8 @@
     "closeMenu": "Закрыть меню"
   },
   "Hero": {
-    "ctaJoinMobile": "Присоединиться",
-    "ctaJoin": "Присоединиться<br></br>к клубу",
-    "ctaSchedule": "Расписание"
+    "pauseVideo": "Поставить видео на паузу",
+    "playVideo": "Воспроизвести видео"
   },
   "Training": {
     "equipGuideCtaMobile": "Гайд по экипировке",
