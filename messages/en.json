@@ -1,6 +1,5 @@
 {
   "Nav": {
-    "welcome": "Welcome",
     "schedule": "Schedule",
     "faq": "FAQ",
     "instructors": "Instructors",
@@ -56,10 +55,6 @@
     "comingSoon": "The tournament page is coming soon."
   },
   "Footer": {
-    "tagline": "Historical European martial arts school in Tbilisi",
-    "address": "Address",
-    "openInMaps": "Open in Google Maps",
-    "credit": "Development —",
-    "contacts": "Contacts"
+    "credit": "Development —"
   }
 }
