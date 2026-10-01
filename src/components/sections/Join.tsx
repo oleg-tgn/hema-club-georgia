@@ -4,6 +4,7 @@ import { getPayload } from "payload";
 import { RichText } from "@payloadcms/richtext-lexical/react";
 import type { Locale } from "@/i18n/routing";
 import Heading from "../ui/Heading";
+import Tailpiece from "../ui/Tailpiece";
 
 // "Share → Embed a map" link for the "St.George HEMA School" place, so Google
 // shows its own place card with an "Open in Google Maps" link. The interface
@@ -13,9 +14,9 @@ function mapEmbedSrc(locale: string) {
 }
 
 // The mirror of Hero: the map where Hero has its video, and the text set the
-// same way as the welcome text - a heading and plain paragraphs. Contact
-// details live in the footer, so this stays prose. On mobile the text comes
-// first, as in Hero.
+// same way as the welcome text - a heading, plain paragraphs and the closing
+// tailpiece, which here also ends the page. Contact details live in the
+// footer, so this stays prose. On mobile the text comes first, as in Hero.
 export default async function Join() {
   const locale = await getLocale();
   const payload = await getPayload({ config });
@@ -46,6 +47,7 @@ export default async function Join() {
           data={join.description}
           className="[&_a]:text-gold-200 [&_a]:hover:text-gold-100 flex max-w-160 flex-col gap-4 font-(family-name:--font-literata) text-[18px] leading-7 [&_a]:transition-colors"
         />
+        <Tailpiece />
       </div>
     </div>
   );
