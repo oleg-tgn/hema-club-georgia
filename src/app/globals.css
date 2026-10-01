@@ -52,8 +52,7 @@ html {
 body {
   font-family: var(--font-sans);
   overflow-x: hidden;
-  timeline-scope:
-    --welcome-visible, --schedule-visible, --faq-visible, --address-visible;
+  timeline-scope: --schedule-visible, --faq-visible, --join-visible;
 }
 
 /*
@@ -68,14 +67,10 @@ body {
  * Unsupported browsers (e.g. Firefox) just stay at the 0%/100% keyframe —
  * asphalt text, transparent dot, hover still works.
  */
-#welcome,
 #schedule,
 #faq,
-#address {
+#join {
   view-timeline-inset: calc(var(--header-height) + var(--nav-active-offset)) 0;
-}
-#welcome {
-  view-timeline-name: --welcome-visible;
 }
 #schedule {
   view-timeline-name: --schedule-visible;
@@ -83,8 +78,8 @@ body {
 #faq {
   view-timeline-name: --faq-visible;
 }
-#address {
-  view-timeline-name: --address-visible;
+#join {
+  view-timeline-name: --join-visible;
 }
 
 @keyframes nav-link-active {
@@ -131,10 +126,6 @@ nav a[data-section]:hover > span {
   background-color: var(--color-gold-100) !important;
 }
 
-nav a[data-section="welcome"],
-nav a[data-section="welcome"] > span {
-  animation-timeline: --welcome-visible;
-}
 nav a[data-section="schedule"],
 nav a[data-section="schedule"] > span {
   animation-timeline: --schedule-visible;
@@ -143,9 +134,9 @@ nav a[data-section="faq"],
 nav a[data-section="faq"] > span {
   animation-timeline: --faq-visible;
 }
-nav a[data-section="address"],
-nav a[data-section="address"] > span {
-  animation-timeline: --address-visible;
+nav a[data-section="join"],
+nav a[data-section="join"] > span {
+  animation-timeline: --join-visible;
 }
 
 /*

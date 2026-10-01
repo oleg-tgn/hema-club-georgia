@@ -1,12 +1,11 @@
 {
   "Nav": {
-    "welcome": "Добро пожаловать",
     "schedule": "Расписание",
     "faq": "Вопросы",
     "instructors": "Инструкторы",
     "gallery": "Галерея",
     "tournaments": "Турниры",
-    "address": "Адрес",
+    "join": "Присоединиться",
     "openMenu": "Открыть меню",
     "closeMenu": "Закрыть меню"
   },
@@ -36,12 +35,6 @@
   "Faq": {
     "title": "Часто задаваемые вопросы"
   },
-  "Address": {
-    "title": "Адрес",
-    "openInMaps": "Открыть в Google Maps",
-    "howToJoin": "Чтобы записаться, напишите нам в соцсетях — или просто приходите на любую тренировку по расписанию.",
-    "entranceAlt": "Вход в зал St. George HEMA School"
-  },
   "Instructors": {
     "title": "Инструкторы",
     "hemaRating": "Hema rating",
@@ -60,5 +53,8 @@
   "TournamentPage": {
     "title": "Турнир",
     "comingSoon": "Страница турнира скоро появится."
+  },
+  "Footer": {
+    "credit": "Сайт разработал Олег Стельмах"
   }
 }

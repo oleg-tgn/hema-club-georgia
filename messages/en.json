@@ -1,12 +1,11 @@
 {
   "Nav": {
-    "welcome": "Welcome",
     "schedule": "Schedule",
     "faq": "FAQ",
     "instructors": "Instructors",
     "gallery": "Gallery",
     "tournaments": "Tournaments",
-    "address": "Address",
+    "join": "Join",
     "openMenu": "Open menu",
     "closeMenu": "Close menu"
   },
@@ -36,12 +35,6 @@
   "Faq": {
     "title": "Frequently Asked Questions"
   },
-  "Address": {
-    "title": "Address",
-    "openInMaps": "Open in Google Maps",
-    "howToJoin": "To sign up, message us on social media — or just come to any class on the schedule.",
-    "entranceAlt": "Entrance to the St. George HEMA School gym"
-  },
   "Instructors": {
     "title": "Instructors",
     "hemaRating": "Hema rating",
@@ -60,5 +53,8 @@
   "TournamentPage": {
     "title": "Tournament",
     "comingSoon": "The tournament page is coming soon."
+  },
+  "Footer": {
+    "credit": "Developed by Oleg Stelmakh"
   }
 }

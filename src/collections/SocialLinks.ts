@@ -41,6 +41,14 @@ export const SocialLinks: CollectionConfig = {
       required: true,
     },
     {
+      name: "label",
+      type: "text",
+      admin: {
+        description:
+          "Account name shown in the footer, e.g. @st.george_hema_school. Leave empty to show the platform name.",
+      },
+    },
+    {
       name: "order",
       type: "number",
       defaultValue: 0,
