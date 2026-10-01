@@ -11,7 +11,6 @@ import CloseIcon from "../icons/CloseIcon";
 import Container from "../ui/Container";
 
 const menuLinks = [
-  { href: "/#welcome", labelKey: "welcome", section: "welcome" },
   { href: "/#schedule", labelKey: "schedule", section: "schedule" },
   { href: "/#faq", labelKey: "faq", section: "faq" },
   { href: "/#join", labelKey: "join", section: "join" },

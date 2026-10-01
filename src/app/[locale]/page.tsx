@@ -11,7 +11,7 @@ export default function HomePage() {
       {/* padding instead of a flex gap: the nav highlight (globals.css)
           keys off each section's own box, and a gap belongs to neither
           neighbor. */}
-      <section id="welcome" className="pt-6 md:pt-10">
+      <section className="pt-6 md:pt-10">
         <Hero />
       </section>
 
