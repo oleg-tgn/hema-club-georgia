@@ -43,7 +43,7 @@ export default async function Footer() {
   const links = socialLinks.filter((link) => socialIcons[link.platform]);
 
   return (
-    <footer className="text-night mt-20 flex w-full flex-col gap-8 pb-8 text-[15px] leading-6">
+    <footer className="text-night mt-10 sm:mt-15 md:mt-20 flex w-full flex-col gap-8 pb-8 text-[15px] leading-6">
       <div aria-hidden className="bg-night/20 h-px" />
 
       <Container className="flex flex-col gap-6 lg:grid lg:grid-cols-3 lg:items-start">
