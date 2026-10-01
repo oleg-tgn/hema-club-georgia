@@ -9,8 +9,6 @@ import PhoneIcon from "../icons/PhoneIcon";
 import TelegramIcon from "../icons/TelegramIcon";
 import Container from "../ui/Container";
 
-const AUTHOR = "Oleg Stelmakh";
-
 const socialIcons: Record<string, ComponentType<{ className?: string }>> = {
   instagram: InstagramIcon,
   telegram: TelegramIcon,
@@ -101,7 +99,7 @@ export default async function Footer() {
         {/* Shares the contacts' last baseline (both are aligned by last
             baseline), in the small grey of a note. */}
         <span className="text-asphalt text-xs lg:order-3 lg:self-baseline-last lg:justify-self-end">
-          {t("credit")} {AUTHOR}
+          {t("credit")}
         </span>
       </Container>
     </footer>
