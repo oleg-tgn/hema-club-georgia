@@ -54,5 +54,12 @@
   "TournamentPage": {
     "title": "Tournament",
     "comingSoon": "The tournament page is coming soon."
+  },
+  "Footer": {
+    "tagline": "Historical European martial arts school in Tbilisi",
+    "address": "Address",
+    "openInMaps": "Open in Google Maps",
+    "credit": "Development —",
+    "contacts": "Contacts"
   }
 }

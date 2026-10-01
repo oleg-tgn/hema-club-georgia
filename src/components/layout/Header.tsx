@@ -8,6 +8,7 @@ import LocaleSwitcher from "../ui/LocaleSwitcher";
 import Logo from "../icons/Logo";
 import BurgerIcon from "../icons/BurgerIcon";
 import CloseIcon from "../icons/CloseIcon";
+import Container from "../ui/Container";
 
 const menuLinks = [
   { href: "/#welcome", labelKey: "welcome", section: "welcome" },
@@ -140,7 +141,7 @@ export default function Header() {
 
   return (
     <header className="bg-paper-100/90 fixed top-0 z-50 w-full backdrop-blur-[10px]">
-      <div className="mx-auto flex h-(--header-height) w-full max-w-384 items-center justify-between px-2 sm:px-5 md:px-10">
+      <Container className="flex h-(--header-height) items-center justify-between">
         {/* Equal flex-1 sides keep the nav centred on the page even though
             the logo is wider than the locale switcher. */}
         <div className="flex flex-1">
@@ -161,7 +162,7 @@ export default function Header() {
 
           <MobileNav pathname={pathname} isHome={isHome} />
         </div>
-      </div>
+      </Container>
     </header>
   );
 }

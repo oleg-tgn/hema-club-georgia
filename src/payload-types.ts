@@ -338,6 +338,10 @@ export interface SocialLink {
   id: string;
   platform: 'instagram' | 'telegram' | 'facebook' | 'youtube' | 'tiktok' | 'website';
   url: string;
+  /**
+   * Account name shown in the footer, e.g. @st.george_hema_school. Leave empty to show the platform name.
+   */
+  label?: string | null;
   order?: number | null;
   updatedAt: string;
   createdAt: string;
@@ -570,6 +574,7 @@ export interface GalleryPhotosSelect<T extends boolean = true> {
 export interface SocialLinksSelect<T extends boolean = true> {
   platform?: T;
   url?: T;
+  label?: T;
   order?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -623,6 +628,10 @@ export interface Address {
   addressLine: string;
   description: string;
   googleMap: string;
+  /**
+   * International format, shown as written, e.g. +995 591 01 59 07. Leave empty to hide.
+   */
+  phone?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -772,6 +781,7 @@ export interface AddressSelect<T extends boolean = true> {
   addressLine?: T;
   description?: T;
   googleMap?: T;
+  phone?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

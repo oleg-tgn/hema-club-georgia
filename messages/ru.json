@@ -54,5 +54,12 @@
   "TournamentPage": {
     "title": "Турнир",
     "comingSoon": "Страница турнира скоро появится."
+  },
+  "Footer": {
+    "tagline": "Школа исторического европейского фехтования в Тбилиси",
+    "address": "Адрес",
+    "openInMaps": "Открыть в Google Maps",
+    "credit": "Разработка —",
+    "contacts": "Контакты"
   }
 }
