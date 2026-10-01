@@ -36,11 +36,11 @@ export default async function Join() {
         allowFullScreen
         // Greyscale with a light sepia warmth, multiplied onto the paper
         // background so the map's whites take the page colour.
-        className="order-last aspect-video w-full rounded-[20px] border-0 mix-blend-multiply contrast-90 grayscale sepia-[.1] lg:order-first lg:aspect-4/3"
+        className="order-last aspect-video w-full max-w-160 justify-self-center rounded-[20px] border-0 mix-blend-multiply contrast-90 grayscale sepia-[.1] lg:order-first lg:aspect-4/3 lg:max-w-none lg:justify-self-stretch"
       />
 
-      <div className="flex flex-col gap-6">
-        <Heading size="lg" as="h2">
+      <div className="flex w-full max-w-160 flex-col gap-6 justify-self-center lg:justify-self-stretch">
+        <Heading size="lg" as="h2" className="text-center lg:text-left">
           {join.title}
         </Heading>
         <RichText

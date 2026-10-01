@@ -22,11 +22,11 @@ export default async function Faq() {
   }));
 
   return (
-    <div className="flex w-full flex-col items-center gap-6 xl:gap-12">
+    <div className="mx-auto flex w-full max-w-160 flex-col items-center gap-6 xl:gap-12">
       <Heading size="lg" as="h2" className="text-center">
         {t("title")}
       </Heading>
-      <div className="w-full max-w-200">
+      <div className="w-full">
         <Accordion items={items} />
       </div>
     </div>

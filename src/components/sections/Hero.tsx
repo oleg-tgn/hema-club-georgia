@@ -20,8 +20,8 @@ export default async function Hero() {
 
   return (
     <div className="text-night grid w-full grid-cols-1 gap-6 lg:grid-cols-[minmax(0,6fr)_minmax(0,5fr)] lg:items-center lg:gap-12">
-      <div className="flex flex-col gap-6">
-        <Heading size="lg" as="h1">
+      <div className="flex w-full max-w-160 flex-col gap-6 justify-self-center lg:justify-self-stretch">
+        <Heading size="lg" as="h1" className="text-center lg:text-left">
           St. George HEMA School
         </Heading>
         <p className="max-w-160 font-(family-name:--font-literata) text-[18px] leading-7 whitespace-pre-line">
@@ -30,7 +30,7 @@ export default async function Hero() {
         <Tailpiece />
       </div>
 
-      <div className="aspect-video w-full overflow-hidden rounded-[20px] lg:aspect-4/3">
+      <div className="aspect-video w-full max-w-160 justify-self-center overflow-hidden rounded-[20px] lg:aspect-4/3 lg:max-w-none lg:justify-self-stretch">
         <PausableVideo src="/videos/hema-intro.webm" />
       </div>
     </div>

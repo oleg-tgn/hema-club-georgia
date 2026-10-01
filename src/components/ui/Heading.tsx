@@ -3,7 +3,7 @@ import type { ElementType, ReactNode } from "react";
 type HeadingSize = "lg" | "sm";
 
 const sizeStyles: Record<HeadingSize, string> = {
-  lg: "text-[42px] leading-9.5 sm:text-7xl sm:leading-16",
+  lg: "text-[42px] leading-9.5 sm:text-[54px] sm:leading-16 xl:text-[64px]",
   sm: "text-3xl leading-8",
 };
 
