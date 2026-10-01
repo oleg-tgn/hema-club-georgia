@@ -31,7 +31,7 @@ function ScheduleCard({ doc, t }: { doc: ScheduleGroup; t: TFunc }) {
     <div className="text-night border-night/20 flex flex-col overflow-hidden rounded-2xl border">
       <div className="bg-night/5 px-4 py-3 md:px-5">
         <div className="flex items-center justify-between gap-3">
-          <Heading size="sm" as="h3" className="shrink-0 whitespace-nowrap">
+          <Heading as="h3" className="shrink-0 whitespace-nowrap">
             {weapon?.name ?? doc.title}
           </Heading>
           {/* The engraving gives way to the name on narrow cards: its mask
@@ -85,7 +85,7 @@ export default async function Schedule() {
 
   return (
     <div className="flex w-full flex-col items-center gap-6 xl:gap-12">
-      <Heading size="lg" as="h2" className="text-center">
+      <Heading as="h2" className="text-center">
         {t("title")}
       </Heading>
       {/* Guard figures flank the cards only where there's room beside them;

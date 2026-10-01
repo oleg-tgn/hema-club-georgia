@@ -40,7 +40,7 @@ export default async function Join() {
       />
 
       <div className="flex w-full max-w-160 flex-col gap-6 justify-self-center lg:justify-self-stretch">
-        <Heading size="lg" as="h2" className="text-center lg:text-left">
+        <Heading as="h2" className="text-center lg:text-left">
           {join.title}
         </Heading>
         <RichText

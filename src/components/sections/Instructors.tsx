@@ -36,7 +36,7 @@ export default async function Instructors() {
 
   return (
     <>
-      <Heading size="lg" as="h1" className="mb-10 text-center">
+      <Heading as="h1" className="mb-10 text-center">
         {t("title")}
       </Heading>
 
