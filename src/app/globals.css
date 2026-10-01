@@ -53,7 +53,7 @@ body {
   font-family: var(--font-sans);
   overflow-x: hidden;
   timeline-scope:
-    --welcome-visible, --schedule-visible, --faq-visible, --address-visible;
+    --welcome-visible, --schedule-visible, --faq-visible, --join-visible;
 }
 
 /*
@@ -71,7 +71,7 @@ body {
 #welcome,
 #schedule,
 #faq,
-#address {
+#join {
   view-timeline-inset: calc(var(--header-height) + var(--nav-active-offset)) 0;
 }
 #welcome {
@@ -83,8 +83,8 @@ body {
 #faq {
   view-timeline-name: --faq-visible;
 }
-#address {
-  view-timeline-name: --address-visible;
+#join {
+  view-timeline-name: --join-visible;
 }
 
 @keyframes nav-link-active {
@@ -143,9 +143,9 @@ nav a[data-section="faq"],
 nav a[data-section="faq"] > span {
   animation-timeline: --faq-visible;
 }
-nav a[data-section="address"],
-nav a[data-section="address"] > span {
-  animation-timeline: --address-visible;
+nav a[data-section="join"],
+nav a[data-section="join"] > span {
+  animation-timeline: --join-visible;
 }
 
 /*

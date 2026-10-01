@@ -13,7 +13,7 @@ const menuLinks = [
   { href: "/#welcome", labelKey: "welcome", section: "welcome" },
   { href: "/#schedule", labelKey: "schedule", section: "schedule" },
   { href: "/#faq", labelKey: "faq", section: "faq" },
-  { href: "/#address", labelKey: "address", section: "address" },
+  { href: "/#join", labelKey: "join", section: "join" },
   { href: "/instructors", labelKey: "instructors", section: null },
   { href: "/gallery", labelKey: "gallery", section: null },
   { href: "/tournaments", labelKey: "tournaments", section: null },
