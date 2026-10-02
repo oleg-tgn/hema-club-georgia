@@ -45,7 +45,7 @@ export default async function Join() {
         </Heading>
         <RichText
           data={join.description}
-          className="[&_a]:text-gold-200 [&_a]:hover:text-gold-100 flex max-w-160 flex-col gap-4 font-(family-name:--font-literata) text-[18px] leading-7 [&_a]:transition-colors"
+          className="[&_a]:text-gold-200 [&_a]:hover:text-gold-100 flex max-w-160 flex-col gap-4 font-text text-xl leading-[30px] [&_a]:transition-colors"
         />
         <Tailpiece />
       </div>

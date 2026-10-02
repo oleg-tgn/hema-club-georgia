@@ -20,13 +20,13 @@ export default function Accordion({ items }: { items: AccordionItem[] }) {
           className="border-night/20 border-b first:border-t"
         >
           <BaseAccordion.Header>
-            <BaseAccordion.Trigger className="group text-night hover:bg-night-hover focus-visible:bg-night-hover data-panel-open:bg-night-hover flex w-full cursor-pointer items-center justify-between gap-4 px-1 py-5 text-left text-lg font-medium outline-none sm:px-3 sm:text-xl">
+            <BaseAccordion.Trigger className="group text-night hover:bg-night-hover focus-visible:bg-night-hover data-panel-open:bg-night-hover flex w-full cursor-pointer items-center justify-between gap-4 px-1 py-5 text-left text-base leading-[1.4] font-medium outline-none sm:px-3 sm:text-lg">
               {item.question}
               <PlusMinusIcon className="text-gold-200 size-6 shrink-0" />
             </BaseAccordion.Trigger>
           </BaseAccordion.Header>
           <BaseAccordion.Panel className="h-(--accordion-panel-height) overflow-hidden transition-[height] duration-300 ease-out data-ending-style:h-0 data-starting-style:h-0">
-            <p className="text-night/80 px-1 pt-4 pb-6 text-base whitespace-pre-line sm:px-3 sm:pr-14">
+            <p className="text-night px-1 pt-1 pb-6 text-base leading-relaxed whitespace-pre-line sm:px-3 sm:pr-14">
               {item.answer}
             </p>
           </BaseAccordion.Panel>

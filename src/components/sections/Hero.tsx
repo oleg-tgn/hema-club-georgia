@@ -24,7 +24,7 @@ export default async function Hero() {
         <Heading as="h1" className="text-center lg:text-left">
           St. George HEMA School
         </Heading>
-        <p className="max-w-160 font-(family-name:--font-literata) text-[18px] leading-7 whitespace-pre-line">
+        <p className="max-w-160 font-text text-xl leading-[30px] whitespace-pre-line">
           {welcome.text}
         </p>
         <Tailpiece />

@@ -3,6 +3,7 @@
 @theme inline {
   --font-sans: var(--font-manrope), sans-serif;
   --font-serif: var(--font-libertinus-serif-display), serif;
+  --font-text: var(--font-libertinus-serif), serif;
 }
 
 @theme {

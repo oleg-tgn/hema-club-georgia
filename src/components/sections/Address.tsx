@@ -58,7 +58,7 @@ export default async function Address() {
           </div>
 
           <div className="border-night/20 flex flex-col gap-4 border-t pt-6">
-            <p className="font-(family-name:--font-literata) text-[18px] leading-7">
+            <p className="font-text text-xl leading-[30px]">
               {t("howToJoin")}
             </p>
             <SocialLinks links={socialLinks} className="gap-5" />
