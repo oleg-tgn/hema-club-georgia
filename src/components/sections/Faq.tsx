@@ -22,7 +22,7 @@ export default async function Faq() {
   }));
 
   return (
-    <div className="mx-auto flex w-full max-w-160 flex-col items-center gap-6 xl:gap-12">
+    <div className="mx-auto flex w-full max-w-160 flex-col items-center gap-6">
       <Heading as="h2" className="text-center">
         {t("title")}
       </Heading>

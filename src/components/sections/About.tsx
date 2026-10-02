@@ -65,7 +65,7 @@ export default async function About() {
           <Heading as="h2">{about.title}</Heading>
           <RichText
             data={about.description}
-            className="text-justify font-text text-xl leading-[30px]"
+            className="text-justify font-text text-body"
           />
         </div>
 

@@ -1,12 +1,19 @@
 @import "tailwindcss";
 
-@theme inline {
-  --font-sans: var(--font-manrope), sans-serif;
-  --font-serif: var(--font-libertinus-serif-display), serif;
-  --font-text: var(--font-libertinus-serif), serif;
-}
-
+/* Not `inline`: the utilities must read these variables at runtime so the
+   per-locale overrides below (html[lang="ka"]) take effect. */
 @theme {
+  /* The browser picks a font per character, left to right: Latin and
+     Cyrillic come from our fonts, Georgian letters (which they lack) from
+     the Noto Georgian fonts after them. Noto is only downloaded where a page
+     actually has Georgian text. No generic family before Noto, or a system
+     font could take the Georgian letters first. */
+  --font-sans: var(--font-manrope), var(--font-noto-sans-georgian), sans-serif;
+  --font-serif:
+    var(--font-libertinus-serif-display), var(--font-noto-serif-georgian), serif;
+  --font-text:
+    var(--font-libertinus-serif), var(--font-noto-serif-georgian), serif;
+
   --color-paper-100: #efebe2;
   --color-paper-200: #dbd6ca;
   --color-asphalt: #777571;
@@ -15,29 +22,35 @@
   --color-gold-100: #c4a043;
   --color-gold-200: #9d7d2b;
   --color-off-white: #e4e4e4;
+
+  /* Serif type sizes: headings per breakpoint (base / sm / lg) and running
+     text. All scale with --serif-scale, so a locale whose serif runs larger
+     (Georgian) shrinks just these - not the sans interface or the spacing. */
+  --text-h1: calc(2.625rem * var(--serif-scale));
+  --text-h1-sm: calc(3.25rem * var(--serif-scale));
+  --text-h1-lg: calc(4rem * var(--serif-scale));
+  --text-h2: calc(2.25rem * var(--serif-scale));
+  --text-h2-sm: calc(2.75rem * var(--serif-scale));
+  --text-h2-lg: calc(3.25rem * var(--serif-scale));
+  --text-h3: calc(1.625rem * var(--serif-scale));
+  --text-h3-sm: calc(1.75rem * var(--serif-scale));
+  --text-h3-lg: calc(1.875rem * var(--serif-scale));
+  --text-body: calc(1.25rem * var(--serif-scale));
+  --text-body--line-height: 1.875rem;
 }
 
+/*
+ * Georgian: Noto Serif Georgian reads larger than Libertinus, so on the
+ * Georgian site the serif is set 15% smaller. This applies to whole elements
+ * (Latin included), hence per locale rather than in the font stacks. The sans
+ * needs nothing: Noto Sans Georgian already matches Manrope.
+ */
 html[lang="ka"] {
-  --font-sans: var(--font-noto-sans-georgian), sans-serif;
-  --font-serif: var(--font-noto-serif-georgian), serif;
-  /* Georgian script reads larger than Latin/Cyrillic at the same font-size,
-     so scale every text-* utility down 10% for this locale. */
-  --text-xs: 0.675rem;
-  --text-sm: 0.7875rem;
-  --text-base: 0.9rem;
-  --text-lg: 1.0125rem;
-  --text-xl: 1.125rem;
-  --text-2xl: 1.35rem;
-  --text-3xl: 1.6875rem;
-  --text-4xl: 2.025rem;
-  --text-5xl: 2.7rem;
-  --text-6xl: 3.375rem;
-  --text-7xl: 4.05rem;
-  --text-8xl: 5.4rem;
-  --text-9xl: 7.2rem;
+  --serif-scale: 0.85;
 }
 
 html {
+  --serif-scale: 1;
   --header-height: 52px;
   /* how far past the header a section must scroll before its nav link activates */
   --nav-active-offset: 200px;

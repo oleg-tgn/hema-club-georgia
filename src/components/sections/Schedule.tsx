@@ -84,7 +84,7 @@ export default async function Schedule() {
   });
 
   return (
-    <div className="flex w-full flex-col items-center gap-6 xl:gap-12">
+    <div className="flex w-full flex-col items-center gap-6">
       <Heading as="h2" className="text-center">
         {t("title")}
       </Heading>
