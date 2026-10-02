@@ -62,12 +62,10 @@ export default async function About() {
         </div>
 
         <div className="flex w-full flex-col gap-6 px-2 text-center xl:max-w-lg">
-          <Heading size="lg" as="h2">
-            {about.title}
-          </Heading>
+          <Heading as="h2">{about.title}</Heading>
           <RichText
             data={about.description}
-            className="text-justify font-(family-name:--font-literata) text-[18px] leading-7"
+            className="text-justify font-text text-body"
           />
         </div>
 

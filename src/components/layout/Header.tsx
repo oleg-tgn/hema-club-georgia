@@ -145,12 +145,7 @@ export default function Header() {
             the logo is wider than the locale switcher. */}
         <div className="flex flex-1">
           <MenuLink href="/" section="" isHome={isHome} className="group">
-            <div className="flex sm:hidden">
-              <Logo className="h-7 w-auto" variant="mobile" />
-            </div>
-            <div className="hidden sm:flex">
-              <Logo className="h-5 w-auto" variant="header" />
-            </div>
+            <Logo className="block h-4 w-auto sm:h-5" />
           </MenuLink>
         </div>
         <Nav pathname={pathname} isHome={isHome} className="hidden xl:flex" />

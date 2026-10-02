@@ -1,28 +1,32 @@
-import type { ElementType, ReactNode } from "react";
+import type { ReactNode } from "react";
 
-type HeadingSize = "lg" | "sm";
+type HeadingTag = "h1" | "h2" | "h3";
 
-const sizeStyles: Record<HeadingSize, string> = {
-  lg: "text-[42px] leading-9.5 sm:text-7xl sm:leading-16",
-  sm: "text-3xl leading-8",
+// The size follows the level: h1 is the page title (the school's name on the
+// home page), a step above the h2 section headings, so it stays the largest
+// line on the page; h3 heads small blocks such as schedule cards. Tablets
+// get a middle step: up to lg the page is still one narrow column. The
+// sizes are theme tokens (globals.css), so a locale can rescale them.
+const tagStyles: Record<HeadingTag, string> = {
+  h1: "text-h1 sm:text-h1-sm lg:text-h1-lg",
+  h2: "text-h2 sm:text-h2-sm lg:text-h2-lg",
+  h3: "text-h3 sm:text-h3-sm lg:text-h3-lg",
 };
 
 type HeadingProps = {
-  size: HeadingSize;
-  as: ElementType;
+  as: HeadingTag;
   className?: string;
   children?: ReactNode;
 };
 
 export default function Heading({
-  size,
   as: Tag,
   className = "",
   children,
 }: HeadingProps) {
   return (
     <Tag
-      className={`text-night font-serif font-normal tracking-[-0.03em] ${sizeStyles[size]} ${className}`}
+      className={`text-night font-serif leading-none font-normal tracking-tight ${tagStyles[Tag]} ${className}`}
     >
       {children}
     </Tag>

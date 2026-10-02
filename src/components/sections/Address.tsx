@@ -33,7 +33,7 @@ export default async function Address() {
 
   return (
     <div className="text-night flex w-full flex-col items-center gap-6 xl:gap-12">
-      <Heading size="lg" as="h2" className="text-center">
+      <Heading as="h2" className="text-center">
         {t("title")}
       </Heading>
 
@@ -58,7 +58,7 @@ export default async function Address() {
           </div>
 
           <div className="border-night/20 flex flex-col gap-4 border-t pt-6">
-            <p className="font-(family-name:--font-literata) text-[18px] leading-7">
+            <p className="font-text text-body">
               {t("howToJoin")}
             </p>
             <SocialLinks links={socialLinks} className="gap-5" />

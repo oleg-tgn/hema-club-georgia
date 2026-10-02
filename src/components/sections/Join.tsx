@@ -4,6 +4,7 @@ import { getPayload } from "payload";
 import { RichText } from "@payloadcms/richtext-lexical/react";
 import type { Locale } from "@/i18n/routing";
 import Heading from "../ui/Heading";
+import Tailpiece from "../ui/Tailpiece";
 
 // "Share → Embed a map" link for the "St.George HEMA School" place, so Google
 // shows its own place card with an "Open in Google Maps" link. The interface
@@ -13,9 +14,9 @@ function mapEmbedSrc(locale: string) {
 }
 
 // The mirror of Hero: the map where Hero has its video, and the text set the
-// same way as the welcome text - a heading and plain paragraphs. Contact
-// details live in the footer, so this stays prose. On mobile the text comes
-// first, as in Hero.
+// same way as the welcome text - a heading, plain paragraphs and the closing
+// tailpiece, which here also ends the page. Contact details live in the
+// footer, so this stays prose. On mobile the text comes first, as in Hero.
 export default async function Join() {
   const locale = await getLocale();
   const payload = await getPayload({ config });
@@ -35,17 +36,18 @@ export default async function Join() {
         allowFullScreen
         // Greyscale with a light sepia warmth, multiplied onto the paper
         // background so the map's whites take the page colour.
-        className="order-last aspect-video w-full rounded-[20px] border-0 mix-blend-multiply contrast-90 grayscale sepia-[.1] lg:order-first lg:aspect-4/3"
+        className="order-last aspect-video w-full max-w-160 justify-self-center rounded-[20px] border-0 mix-blend-multiply contrast-90 grayscale sepia-[.1] lg:order-first lg:aspect-4/3 lg:max-w-none lg:justify-self-stretch"
       />
 
-      <div className="flex flex-col gap-6">
-        <Heading size="lg" as="h2">
+      <div className="flex w-full max-w-160 flex-col gap-6 justify-self-center lg:justify-self-stretch">
+        <Heading as="h2" className="text-center lg:text-left">
           {join.title}
         </Heading>
         <RichText
           data={join.description}
-          className="[&_a]:text-gold-200 [&_a]:hover:text-gold-100 flex max-w-160 flex-col gap-4 font-(family-name:--font-literata) text-[18px] leading-7 [&_a]:transition-colors"
+          className="[&_a]:text-gold-200 [&_a]:hover:text-gold-100 flex max-w-160 flex-col gap-4 font-text text-body [&_a]:transition-colors"
         />
+        <Tailpiece />
       </div>
     </div>
   );
