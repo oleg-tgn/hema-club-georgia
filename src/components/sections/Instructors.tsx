@@ -13,7 +13,7 @@ function ProfileLink({ href, children }: { href: string; children: string }) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="text-night hover:text-gold-200 flex items-center gap-2 text-sm font-normal"
+      className="text-night hover:text-gold-200 flex items-center gap-2"
     >
       {children}
       <ExternalIcon className="h-4 w-4" />
@@ -85,8 +85,14 @@ export default async function Instructors() {
 
                 <Heading as="h3">{instructor.name}</Heading>
 
+                {instructor.description && (
+                  <p className="font-text text-body line-clamp-3">
+                    {instructor.description}
+                  </p>
+                )}
+
                 {(instructor.hemaRatingUrl || instructor.hemagonUrl) && (
-                  <div className="flex flex-wrap gap-x-6 gap-y-1">
+                  <div className="flex flex-wrap gap-x-6 gap-y-1 text-sm">
                     {instructor.hemaRatingUrl && (
                       <ProfileLink href={instructor.hemaRatingUrl}>
                         HEMA Ratings
@@ -98,12 +104,6 @@ export default async function Instructors() {
                       </ProfileLink>
                     )}
                   </div>
-                )}
-
-                {instructor.description && (
-                  <p className="font-text text-body line-clamp-3">
-                    {instructor.description}
-                  </p>
                 )}
               </div>
             </div>
