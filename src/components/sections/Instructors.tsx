@@ -5,8 +5,21 @@ import config from "@payload-config";
 import { getPayload } from "payload";
 import Image from "next/image";
 import Heading from "../ui/Heading";
-import SocialLinks from "../ui/SocialLinks";
 import ExternalIcon from "../icons/externalIcon";
+
+function ProfileLink({ href, children }: { href: string; children: string }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-night hover:text-gold-200 flex items-center gap-2 text-sm font-normal"
+    >
+      {children}
+      <ExternalIcon className="h-4 w-4" />
+    </a>
+  );
+}
 
 export default async function Instructors() {
   const locale = await getLocale();
@@ -49,9 +62,6 @@ export default async function Instructors() {
             (weapon): weapon is Weapon => typeof weapon === "object",
           );
 
-          const [firstName, ...lastNameParts] = instructor.name.split(" ");
-          const lastName = lastNameParts.join(" ");
-
           return (
             <div key={instructor.id} className="text-night flex flex-col gap-4">
               <div className="relative aspect-square w-full overflow-hidden rounded-sm">
@@ -66,44 +76,34 @@ export default async function Instructors() {
 
               <div className="flex flex-col gap-3">
                 {weapons.length > 0 && (
-                  <div className="flex flex-wrap gap-x-6 text-sm">
+                  <div className="flex flex-wrap gap-x-6 text-sm font-medium">
                     {weapons.map((weapon) => (
-                      <span key={weapon.id} className="text-base font-semibold">
-                        {weapon.name}
-                      </span>
+                      <span key={weapon.id}>{weapon.name}</span>
                     ))}
                   </div>
                 )}
 
-                <div className="text-[34px] leading-8.5 font-normal">
-                  {firstName}
-                  <br />
-                  {lastName}
-                </div>
+                <Heading as="h3">{instructor.name}</Heading>
+
+                {(instructor.hemaRatingUrl || instructor.hemagonUrl) && (
+                  <div className="flex flex-wrap gap-x-6 gap-y-1">
+                    {instructor.hemaRatingUrl && (
+                      <ProfileLink href={instructor.hemaRatingUrl}>
+                        HEMA Ratings
+                      </ProfileLink>
+                    )}
+                    {instructor.hemagonUrl && (
+                      <ProfileLink href={instructor.hemagonUrl}>
+                        Hemagon
+                      </ProfileLink>
+                    )}
+                  </div>
+                )}
 
                 {instructor.description && (
-                  <p className="line-clamp-3 text-sm">
+                  <p className="font-text text-body line-clamp-3">
                     {instructor.description}
                   </p>
-                )}
-              </div>
-
-              <div className="mt-auto flex items-center justify-between gap-4 pt-3">
-                <SocialLinks
-                  links={instructor.socialLinks ?? []}
-                  className="gap-2"
-                />
-
-                {instructor.hemaRatingUrl && (
-                  <a
-                    href={instructor.hemaRatingUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-night hover:text-gold-200 flex items-center gap-2 text-sm font-normal"
-                  >
-                    {t("hemaRating")}
-                    <ExternalIcon className="h-4 w-4" />
-                  </a>
                 )}
               </div>
             </div>

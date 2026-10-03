@@ -289,17 +289,14 @@ export interface Instructor {
    * Weapons this instructor teaches.
    */
   weapons?: (string | Weapon)[] | null;
-  socialLinks?:
-    | {
-        platform: 'instagram' | 'telegram' | 'facebook' | 'youtube' | 'tiktok' | 'website';
-        url: string;
-        id?: string | null;
-      }[]
-    | null;
   /**
-   * Link to this instructor's HEMA Rating profile.
+   * Link to this instructor's HEMA Ratings profile.
    */
   hemaRatingUrl?: string | null;
+  /**
+   * Link to this instructor's Hemagon profile.
+   */
+  hemagonUrl?: string | null;
   order?: number | null;
   /**
    * Uncheck to hide this instructor from the site, e.g. if they no longer teach.
@@ -542,14 +539,8 @@ export interface InstructorsSelect<T extends boolean = true> {
   photo?: T;
   description?: T;
   weapons?: T;
-  socialLinks?:
-    | T
-    | {
-        platform?: T;
-        url?: T;
-        id?: T;
-      };
   hemaRatingUrl?: T;
+  hemagonUrl?: T;
   order?: T;
   isActive?: T;
   updatedAt?: T;

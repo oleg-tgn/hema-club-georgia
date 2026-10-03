@@ -44,34 +44,17 @@ export const Instructors: CollectionConfig = {
       },
     },
     {
-      name: "socialLinks",
-      type: "array",
-      fields: [
-        {
-          name: "platform",
-          type: "select",
-          required: true,
-          options: [
-            { label: "Instagram", value: "instagram" },
-            { label: "Telegram", value: "telegram" },
-            { label: "Facebook", value: "facebook" },
-            { label: "YouTube", value: "youtube" },
-            { label: "TikTok", value: "tiktok" },
-            { label: "Website", value: "website" },
-          ],
-        },
-        {
-          name: "url",
-          type: "text",
-          required: true,
-        },
-      ],
-    },
-    {
       name: "hemaRatingUrl",
       type: "text",
       admin: {
-        description: "Link to this instructor's HEMA Rating profile.",
+        description: "Link to this instructor's HEMA Ratings profile.",
+      },
+    },
+    {
+      name: "hemagonUrl",
+      type: "text",
+      admin: {
+        description: "Link to this instructor's Hemagon profile.",
       },
     },
     {
