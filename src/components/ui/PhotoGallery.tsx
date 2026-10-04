@@ -15,6 +15,8 @@ import "yet-another-react-lightbox/plugins/captions.css";
 import "yet-another-react-lightbox/plugins/counter.css";
 
 import ArrowIcon from "../icons/ArrowIcon";
+import CloseIcon from "../icons/CloseIcon";
+import ZoomIcon from "../icons/ZoomIcon";
 
 export type GalleryImage = {
   id: string;
@@ -134,11 +136,17 @@ export default function PhotoGallery({
         captions={{ descriptionTextAlign: "center" }}
         controller={{ closeOnBackdropClick: true }}
         // Circled arrows in the site's style; the circle itself is drawn in
-        // globals.css (.gallery-lightbox).
+        // globals.css (.gallery-lightbox). Toolbar icons share the arrows'
+        // line weight but stay unframed - they're secondary.
         className="gallery-lightbox"
         render={{
           iconPrev: () => <ArrowIcon direction="left" className="h-8 w-8" />,
           iconNext: () => <ArrowIcon direction="right" className="h-8 w-8" />,
+          iconClose: () => (
+            <CloseIcon className="size-4.5" strokeWidth={1.78} />
+          ),
+          iconZoomIn: () => <ZoomIcon direction="in" className="h-8 w-8" />,
+          iconZoomOut: () => <ZoomIcon direction="out" className="h-8 w-8" />,
         }}
         labels={{
           Lightbox: title,
