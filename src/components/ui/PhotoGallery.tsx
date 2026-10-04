@@ -59,6 +59,18 @@ function toSlide({ url, width, height, caption }: GalleryImage): SlideImage {
 // roughly track Tailwind's sm / lg with the page padding taken off.
 const BREAKPOINTS = [600, 960] as const;
 
+// Album width per viewport, mirroring Container (max-w-384 and its
+// px-2 / sm:px-5 / md:px-10). The album turns this into each photo's
+// `sizes`, taking columns and gaps into account.
+const ALBUM_SIZES = {
+  size: "calc(100vw - 16px)",
+  sizes: [
+    { viewport: "(min-width: 1536px)", size: "1456px" },
+    { viewport: "(min-width: 768px)", size: "calc(100vw - 80px)" },
+    { viewport: "(min-width: 640px)", size: "calc(100vw - 40px)" },
+  ],
+};
+
 export default function PhotoGallery({
   photos,
   title,
@@ -86,6 +98,7 @@ export default function PhotoGallery({
           }))}
           columns={(width) => (width < BREAKPOINTS[1] ? 2 : 3)}
           spacing={(width) => (width < BREAKPOINTS[0] ? 8 : 12)}
+          sizes={ALBUM_SIZES}
           onClick={({ index }) => setIndex(index)}
           componentsProps={{
             button: {
@@ -96,14 +109,14 @@ export default function PhotoGallery({
             },
           }}
           render={{
-            image: ({ alt, title }, { photo }) => (
+            image: ({ alt, title, sizes }, { photo }) => (
               <Image
                 src={photo.url}
                 alt={alt ?? ""}
                 title={title}
                 width={photo.width}
                 height={photo.height}
-                sizes="(min-width: 1024px) 33vw, 50vw"
+                sizes={sizes}
                 className="h-auto w-full transition-transform duration-300 group-hover:scale-[1.03]"
               />
             ),
