@@ -3,6 +3,9 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import Image, { getImageProps } from "next/image";
+import { MasonryPhotoAlbum } from "react-photo-album";
+import SSR from "react-photo-album/ssr";
+import "react-photo-album/masonry.css";
 import Lightbox, { type SlideImage } from "yet-another-react-lightbox";
 import Captions from "yet-another-react-lightbox/plugins/captions";
 import Counter from "yet-another-react-lightbox/plugins/counter";
@@ -52,6 +55,10 @@ function toSlide({ url, width, height, caption }: GalleryImage): SlideImage {
   };
 }
 
+// Album breakpoints are container widths, not viewport widths; these
+// roughly track Tailwind's sm / lg with the page padding taken off.
+const BREAKPOINTS = [600, 960] as const;
+
 export default function PhotoGallery({
   photos,
   title,
@@ -64,26 +71,45 @@ export default function PhotoGallery({
 
   return (
     <>
-      <div className="columns-2 gap-2 sm:gap-3 lg:columns-3">
-        {photos.map((photo, i) => (
-          <button
-            key={photo.id}
-            type="button"
-            onClick={() => setIndex(i)}
-            aria-label={t("openPhoto", { index: i + 1 })}
-            className="group mb-2 block w-full cursor-zoom-in break-inside-avoid overflow-hidden rounded-lg sm:mb-3"
-          >
-            <Image
-              src={photo.url}
-              alt={photo.caption}
-              width={photo.width}
-              height={photo.height}
-              sizes="(min-width: 1024px) 33vw, 50vw"
-              className="h-auto w-full transition-transform duration-300 group-hover:scale-[1.03]"
-            />
-          </button>
-        ))}
-      </div>
+      {/* Masonry fills the shortest column next, so the order reads across
+          rows (CSS columns would read down each column). SSR renders every
+          breakpoint and lets container queries pick one - no layout jump
+          on hydration. */}
+      <SSR breakpoints={BREAKPOINTS}>
+        <MasonryPhotoAlbum
+          photos={photos.map((photo, i) => ({
+            ...photo,
+            key: photo.id,
+            src: photo.url,
+            alt: photo.caption,
+            label: t("openPhoto", { index: i + 1 }),
+          }))}
+          columns={(width) => (width < BREAKPOINTS[1] ? 2 : 3)}
+          spacing={(width) => (width < BREAKPOINTS[0] ? 8 : 12)}
+          onClick={({ index }) => setIndex(index)}
+          componentsProps={{
+            button: {
+              // `!` because the library's unlayered `cursor: pointer` beats
+              // Tailwind's layered utilities
+              className:
+                "group block w-full cursor-zoom-in! overflow-hidden rounded-lg",
+            },
+          }}
+          render={{
+            image: ({ alt, title }, { photo }) => (
+              <Image
+                src={photo.url}
+                alt={alt ?? ""}
+                title={title}
+                width={photo.width}
+                height={photo.height}
+                sizes="(min-width: 1024px) 33vw, 50vw"
+                className="h-auto w-full transition-transform duration-300 group-hover:scale-[1.03]"
+              />
+            ),
+          }}
+        />
+      </SSR>
 
       <Lightbox
         open={index >= 0}
