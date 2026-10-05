@@ -49,9 +49,12 @@
     "zoomIn": "გადიდება",
     "zoomOut": "დაპატარავება"
   },
-  "TournamentPage": {
-    "title": "ტურნირი",
-    "comingSoon": "ტურნირის გვერდი მალე დაემატება."
+  "Tournaments": {
+    "title": "ტურნირები",
+    "metaDescription": "წმინდა გიორგის HEMA სკოლის ტურნირები თბილისში",
+    "upcoming": "მომავალი",
+    "website": "ვებგვერდი",
+    "photos": "ფოტოები"
   },
   "Footer": {
     "credit": "საიტის შემქმნელი — ოლეგ სტელმახი"
