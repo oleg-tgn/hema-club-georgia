@@ -52,9 +52,7 @@
   "Tournaments": {
     "title": "Tournaments",
     "metaDescription": "Tournaments held by Saint George's HEMA School in Tbilisi",
-    "upcoming": "Upcoming",
-    "website": "Website",
-    "photos": "Photos"
+    "upcoming": "Upcoming"
   },
   "Footer": {
     "credit": "Developed by Oleg Stelmakh"

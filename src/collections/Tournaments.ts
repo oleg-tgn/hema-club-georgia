@@ -3,6 +3,8 @@ import type { CollectionConfig } from "payload";
 import { isAdmin } from "@/access/isAdmin";
 import { isAdminOrModerator } from "@/access/isAdminOrModerator";
 
+// The name is not localized: tournaments are named in English on every
+// language of the site.
 // Upcoming vs past is not stored: the site splits tournaments by date, so an
 // upcoming tournament moves to the past on its own once it is over.
 export const Tournaments: CollectionConfig = {
@@ -23,7 +25,6 @@ export const Tournaments: CollectionConfig = {
       name: "name",
       type: "text",
       required: true,
-      localized: true,
     },
     {
       name: "banner",

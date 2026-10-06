@@ -30,19 +30,14 @@ function formatDates(tournament: Tournament, locale: string): string {
     : format.format(start);
 }
 
-function TournamentLinks({
-  tournament,
-  t,
-}: {
-  tournament: Tournament;
-  t: TFunc;
-}) {
+// Link labels stay in English on every language, like the names.
+function TournamentLinks({ tournament }: { tournament: Tournament }) {
   const { website, hemaRatings, hemagon, photos } = tournament.links ?? {};
   const links = [
-    website && { href: website, label: t("website") },
+    website && { href: website, label: "Website" },
     hemaRatings && { href: hemaRatings, label: "HEMA Ratings" },
     hemagon && { href: hemagon, label: "Hemagon" },
-    photos && { href: photos, label: t("photos") },
+    photos && { href: photos, label: "Photos" },
   ].filter((link): link is { href: string; label: string } => Boolean(link));
 
   if (links.length === 0) return null;
@@ -119,7 +114,7 @@ function TournamentCard({
           )}
         </p>
         <Heading as="h3">{tournament.name}</Heading>
-        <TournamentLinks tournament={tournament} t={t} />
+        <TournamentLinks tournament={tournament} />
       </div>
     </article>
   );
