@@ -49,9 +49,10 @@
     "zoomIn": "Zoom in",
     "zoomOut": "Zoom out"
   },
-  "TournamentPage": {
-    "title": "Tournament",
-    "comingSoon": "The tournament page is coming soon."
+  "Tournaments": {
+    "title": "Tournaments",
+    "metaDescription": "Tournaments held by Saint George's HEMA School in Tbilisi",
+    "upcoming": "Upcoming"
   },
   "Footer": {
     "credit": "Developed by Oleg Stelmakh"

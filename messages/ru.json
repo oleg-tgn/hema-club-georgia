@@ -49,9 +49,10 @@
     "zoomIn": "Приблизить",
     "zoomOut": "Отдалить"
   },
-  "TournamentPage": {
-    "title": "Турнир",
-    "comingSoon": "Страница турнира скоро появится."
+  "Tournaments": {
+    "title": "Турниры",
+    "metaDescription": "Турниры школы HEMA Святого Георгия в Тбилиси",
+    "upcoming": "Предстоящий"
   },
   "Footer": {
     "credit": "Сайт разработал Олег Стельмах"

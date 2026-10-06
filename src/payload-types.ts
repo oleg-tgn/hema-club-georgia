@@ -74,6 +74,7 @@ export interface Config {
     instructors: Instructor;
     'gallery-photos': GalleryPhoto;
     'social-links': SocialLink;
+    tournaments: Tournament;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -88,6 +89,7 @@ export interface Config {
     instructors: InstructorsSelect<false> | InstructorsSelect<true>;
     'gallery-photos': GalleryPhotosSelect<false> | GalleryPhotosSelect<true>;
     'social-links': SocialLinksSelect<false> | SocialLinksSelect<true>;
+    tournaments: TournamentsSelect<false> | TournamentsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -345,6 +347,50 @@ export interface SocialLink {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tournaments".
+ */
+export interface Tournament {
+  id: string;
+  name: string;
+  /**
+   * Tournament poster or banner. Shown at its own proportions.
+   */
+  banner?: (string | null) | Media;
+  startDate: string;
+  /**
+   * Leave empty for a one-day tournament.
+   */
+  endDate?: string | null;
+  /**
+   * City or venue, e.g. 'Tbilisi'.
+   */
+  location?: string | null;
+  /**
+   * All optional; only filled links are shown.
+   */
+  links?: {
+    /**
+     * The tournament's own website.
+     */
+    website?: string | null;
+    /**
+     * Event page on HEMA Ratings.
+     */
+    hemaRatings?: string | null;
+    /**
+     * Event page on Hemagon.
+     */
+    hemagon?: string | null;
+    /**
+     * Photo album, e.g. on Facebook or VK.
+     */
+    photos?: string | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -394,6 +440,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'social-links';
         value: string | SocialLink;
+      } | null)
+    | ({
+        relationTo: 'tournaments';
+        value: string | Tournament;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -567,6 +617,27 @@ export interface SocialLinksSelect<T extends boolean = true> {
   url?: T;
   label?: T;
   order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tournaments_select".
+ */
+export interface TournamentsSelect<T extends boolean = true> {
+  name?: T;
+  banner?: T;
+  startDate?: T;
+  endDate?: T;
+  location?: T;
+  links?:
+    | T
+    | {
+        website?: T;
+        hemaRatings?: T;
+        hemagon?: T;
+        photos?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }
