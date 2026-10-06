@@ -6,18 +6,8 @@ import type { Locale } from "@/i18n/routing";
 import type { Tournament } from "@/payload-types";
 import Heading from "../ui/Heading";
 import ExternalIcon from "../icons/externalIcon";
-import { demoTournaments } from "./tournaments-demo";
 
 type TFunc = Awaited<ReturnType<typeof getTranslations>>;
-export type Variant = "plain" | "light" | "warm" | "old";
-
-// TEMPORARY: candidate sheets for the cards, to pick one by eye.
-const sheets: Record<Variant, string> = {
-  plain: "",
-  light: "bg-[#e2dccd] rounded-2xl p-4 sm:p-5",
-  warm: "bg-[#e7e0cf] rounded-2xl p-4 sm:p-5",
-  old: "bg-old-paper rounded-2xl p-4 sm:p-5",
-};
 
 function bannerOf(tournament: Tournament) {
   const media = tournament.banner;
@@ -75,21 +65,18 @@ function TournamentLinks({
   );
 }
 
-// Banner on the left, cropped to 16:9 so every card has the same rhythm
-// whatever the uploaded proportions; on phones it sits above the text.
-// An upcoming tournament is flagged above its date.
+// One card per tournament: banner on the left (cropped to 16:9 so every
+// card keeps the same rhythm whatever the upload), dateline, headline,
+// links. On phones the banner sits above the text. Upcoming tournaments
+// lead: a gold frame, a label and a larger banner.
 function TournamentCard({
   tournament,
   upcoming,
-  sheet,
-  bg,
   locale,
   t,
 }: {
   tournament: Tournament;
   upcoming: boolean;
-  sheet: string;
-  bg?: string;
   locale: string;
   t: TFunc;
 }) {
@@ -97,8 +84,11 @@ function TournamentCard({
 
   return (
     <article
-      className={`text-night grid grid-cols-1 gap-4 sm:grid-cols-[18rem_minmax(0,1fr)] sm:gap-6 md:grid-cols-[22rem_minmax(0,1fr)] md:gap-8 ${sheet}`}
-      style={bg ? { backgroundColor: bg } : undefined}
+      className={`text-night grid grid-cols-1 gap-4 rounded-2xl bg-[#f7f4ed] p-4 sm:gap-6 sm:p-5 md:gap-8 ${
+        upcoming
+          ? "border-gold-200 border-2 sm:grid-cols-[18rem_minmax(0,1fr)] md:grid-cols-[22rem_minmax(0,1fr)]"
+          : "border-night/15 border sm:grid-cols-[12rem_minmax(0,1fr)] md:grid-cols-[14rem_minmax(0,1fr)]"
+      }`}
     >
       <div className="relative aspect-video w-full overflow-hidden rounded-sm">
         {banner && (
@@ -106,7 +96,11 @@ function TournamentCard({
             src={banner.url}
             alt={banner.alt}
             fill
-            sizes="(min-width: 768px) 352px, (min-width: 640px) 288px, 100vw"
+            sizes={
+              upcoming
+                ? "(min-width: 768px) 352px, (min-width: 640px) 288px, 100vw"
+                : "(min-width: 768px) 224px, (min-width: 640px) 192px, 100vw"
+            }
             className="object-cover"
           />
         )}
@@ -118,7 +112,7 @@ function TournamentCard({
             {t("upcoming")}
           </p>
         )}
-        <p className="text-base font-medium">
+        <p className="text-sm font-semibold tracking-wider uppercase">
           {formatDates(tournament, locale)}
           {tournament.location && (
             <span className="text-asphalt"> · {tournament.location}</span>
@@ -146,75 +140,35 @@ function splitByDate(tournaments: Tournament[]) {
   return { upcoming, past };
 }
 
-export type Mark = "label" | "sheet";
-
-export default async function Tournaments({
-  variant,
-  mark,
-  bg,
-  frame,
-  demo,
-}: {
-  variant: Variant;
-  mark: Mark;
-  bg?: string;
-  frame: boolean;
-  demo: boolean;
-}) {
+export default async function Tournaments() {
   const locale = await getLocale();
   const t = await getTranslations("Tournaments");
 
-  let tournaments: Tournament[];
-  if (demo) {
-    tournaments = demoTournaments;
-  } else {
-    const payload = await getPayload({ config });
-    const { docs } = await payload.find({
-      collection: "tournaments",
-      depth: 1,
-      limit: 200,
-      sort: "-startDate",
-      locale: locale as Locale,
-    });
-    tournaments = docs;
-  }
-
-  const { upcoming, past } = splitByDate(tournaments);
-
-  // TEMPORARY: "label" puts every card on the same sheet; "sheet" gives
-  // only upcoming tournaments a sheet and leaves past ones on the page.
-  const sheetOf = (isUpcoming: boolean) =>
-    (frame ? "border border-night/15 " : "") +
-    (mark === "label"
-      ? sheets[variant]
-      : isUpcoming
-        ? sheets[variant === "plain" ? "light" : variant]
-        : `${sheets.plain} px-4 sm:px-5`);
+  const payload = await getPayload({ config });
+  const { docs } = await payload.find({
+    collection: "tournaments",
+    depth: 1,
+    limit: 200,
+    sort: "-startDate",
+    locale: locale as Locale,
+  });
+  const { upcoming, past } = splitByDate(docs);
 
   return (
     <div className="flex flex-col items-center gap-10 md:gap-12">
       <Heading as="h1" className="text-center">
         {t("title")}
       </Heading>
-      <div
-        className={`flex w-full max-w-200 flex-col ${
-          mark === "label" && variant !== "plain" ? "gap-4" : "gap-10"
-        }`}
-      >
-        {[...upcoming, ...past].map((tournament, i) => {
-          const isUpcoming = i < upcoming.length;
-          return (
-            <TournamentCard
-              key={tournament.id}
-              tournament={tournament}
-              upcoming={isUpcoming}
-              sheet={sheetOf(isUpcoming)}
-              bg={mark === "label" || isUpcoming ? bg : undefined}
-              locale={locale}
-              t={t}
-            />
-          );
-        })}
+      <div className="flex w-full max-w-200 flex-col gap-4">
+        {[...upcoming, ...past].map((tournament, i) => (
+          <TournamentCard
+            key={tournament.id}
+            tournament={tournament}
+            upcoming={i < upcoming.length}
+            locale={locale}
+            t={t}
+          />
+        ))}
       </div>
     </div>
   );
