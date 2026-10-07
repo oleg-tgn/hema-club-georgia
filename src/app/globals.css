@@ -185,21 +185,26 @@ nav a[data-section="join"] > span {
 /*
  * Text of a blog post (Payload rich text): running text in Libertinus,
  * subheadings in the display face like the page headings, images as book
- * illustrations at the column's width, links in gold.
+ * illustrations, links in gold. Normal block flow rather than flex, so a
+ * narrow image can float with the text running around it; flow-root keeps
+ * a float at the end inside the text.
  */
 .post-body {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
+  display: flow-root;
   color: var(--color-night);
   font-family: var(--font-text);
   font-size: var(--text-body);
   line-height: var(--text-body--line-height);
 }
+.post-body > * + * {
+  margin-top: 1.25rem;
+}
 .post-body h2,
 .post-body h3,
 .post-body h4 {
-  margin-top: 1.25rem;
+  /* a new section starts below any image still floating beside the text */
+  clear: both;
+  margin-top: 2.5rem;
   font-family: var(--font-serif);
   font-weight: 400;
   line-height: 1.1;
@@ -240,10 +245,51 @@ nav a[data-section="join"] > span {
 .post-body img {
   width: 100%;
   height: auto;
-  margin-block: 0.75rem;
   border-radius: 2px;
 }
+.post-body .post-figure {
+  margin-block: 2rem;
+}
+.post-body figcaption {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-style: italic;
+  text-align: center;
+}
+/* On phones every image takes the column: beside it the text would be a
+   few words a line. */
+@media (min-width: 40rem) {
+  .post-body .post-figure-medium {
+    width: 60%;
+  }
+  .post-body .post-figure-small {
+    width: 40%;
+  }
+  .post-body .post-figure-center {
+    margin-inline: auto;
+  }
+  .post-body .post-figure-left,
+  .post-body .post-figure-right {
+    /* top in line with the text that wraps around it */
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .post-body .post-figure-left {
+    float: left;
+    margin-right: 2rem;
+  }
+  .post-body .post-figure-right {
+    float: right;
+    margin-left: 2rem;
+  }
+  .post-body .post-figure-left figcaption,
+  .post-body .post-figure-right figcaption {
+    text-align: left;
+  }
+}
 .post-body hr {
+  clear: both;
   width: 4rem;
   margin-inline: auto;
   border-color: rgb(157 125 43 / 0.6);

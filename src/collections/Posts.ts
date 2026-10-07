@@ -1,7 +1,43 @@
-import { slugField, type CollectionConfig } from "payload";
+import { lexicalEditor, UploadFeature } from "@payloadcms/richtext-lexical";
+import { slugField, type CollectionConfig, type Field } from "payload";
 
 import { isAdmin } from "@/access/isAdmin";
 import { isAdminOrModerator } from "@/access/isAdminOrModerator";
+
+// Settings of an image inserted in a post's text (click the image, then the
+// pencil): how wide, where in the column, and a caption. They are stored
+// with the post, not on the Media file, so one photo can be set differently
+// in different posts. Rendered by components/ui/PostImage.tsx.
+const imageFields: Field[] = [
+  {
+    name: "size",
+    type: "select",
+    defaultValue: "full",
+    options: [
+      { label: "Full column width", value: "full" },
+      { label: "Medium", value: "medium" },
+      { label: "Small", value: "small" },
+    ],
+  },
+  {
+    name: "position",
+    type: "select",
+    defaultValue: "center",
+    options: [
+      { label: "Centre", value: "center" },
+      { label: "Left, text wraps around", value: "left" },
+      { label: "Right, text wraps around", value: "right" },
+    ],
+    admin: {
+      condition: (_, siblingData) => siblingData?.size !== "full",
+      description: "On phones the image always takes the full width.",
+    },
+  },
+  {
+    name: "caption",
+    type: "text",
+  },
+];
 
 // Blog posts. Every post is written in English first; a language it isn't
 // translated into shows the English text (Payload's locale fallback), so a
@@ -73,6 +109,18 @@ export const Posts: CollectionConfig = {
       type: "richText",
       required: true,
       localized: true,
+      editor: lexicalEditor({
+        features: ({ defaultFeatures }) => [
+          ...defaultFeatures,
+          UploadFeature({
+            collections: {
+              media: {
+                fields: imageFields,
+              },
+            },
+          }),
+        ],
+      }),
     },
   ],
 };
