@@ -16,6 +16,7 @@ import { Instructors } from "./collections/Instructors";
 import { GalleryPhotos } from "./collections/GalleryPhotos";
 import { SocialLinks } from "./collections/SocialLinks";
 import { Tournaments } from "./collections/Tournaments";
+import { Posts } from "./collections/Posts";
 import { HeroSection } from "./globals/HeroSection";
 import { AboutSection } from "./globals/AboutSection";
 import { WelcomeSection } from "./globals/WelcomeSection";
@@ -46,6 +47,7 @@ export default buildConfig({
     GalleryPhotos,
     SocialLinks,
     Tournaments,
+    Posts,
   ],
   globals: [
     Address,

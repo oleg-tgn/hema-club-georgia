@@ -75,6 +75,7 @@ export interface Config {
     'gallery-photos': GalleryPhoto;
     'social-links': SocialLink;
     tournaments: Tournament;
+    posts: Post;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -90,6 +91,7 @@ export interface Config {
     'gallery-photos': GalleryPhotosSelect<false> | GalleryPhotosSelect<true>;
     'social-links': SocialLinksSelect<false> | SocialLinksSelect<true>;
     tournaments: TournamentsSelect<false> | TournamentsSelect<true>;
+    posts: PostsSelect<false> | PostsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -391,6 +393,50 @@ export interface Tournament {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "posts".
+ */
+export interface Post {
+  id: string;
+  title: string;
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  publishedAt: string;
+  /**
+   * Leave empty and fill 'Guest author' for someone else.
+   */
+  author?: (string | null) | Instructor;
+  /**
+   * Shown only when no instructor is picked above.
+   */
+  guestAuthor?: string | null;
+  /**
+   * A short opening paragraph: what the post is about. Shown in the blog list and at the top of the post. Leave empty to use the post's first paragraph in the list.
+   */
+  lead?: string | null;
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -444,6 +490,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'tournaments';
         value: string | Tournament;
+      } | null)
+    | ({
+        relationTo: 'posts';
+        value: string | Post;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -640,6 +690,23 @@ export interface TournamentsSelect<T extends boolean = true> {
       };
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "posts_select".
+ */
+export interface PostsSelect<T extends boolean = true> {
+  title?: T;
+  generateSlug?: T;
+  slug?: T;
+  publishedAt?: T;
+  author?: T;
+  guestAuthor?: T;
+  lead?: T;
+  content?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

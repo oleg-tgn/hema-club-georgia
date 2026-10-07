@@ -17,6 +17,7 @@ const menuLinks = [
   { href: "/instructors", labelKey: "instructors", section: null },
   { href: "/gallery", labelKey: "gallery", section: null },
   { href: "/tournaments", labelKey: "tournaments", section: null },
+  { href: "/blog", labelKey: "blog", section: null },
 ] as const;
 
 function MenuLink({
@@ -66,8 +67,11 @@ function Nav({
       {menuLinks.map(({ href, labelKey, section }) => {
         // Section links get their active state from the CSS scroll-timeline
         // animation below (see globals.css); only plain-route links need a
-        // JS-driven active check against pathname.
-        const isActive = section === null && pathname === href;
+        // JS-driven active check against pathname. A route's sub-pages (a
+        // blog post under /blog) keep its link active.
+        const isActive =
+          section === null &&
+          (pathname === href || pathname.startsWith(`${href}/`));
 
         return (
           <MenuLink
