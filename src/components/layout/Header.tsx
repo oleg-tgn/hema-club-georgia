@@ -9,6 +9,7 @@ import Logo from "../icons/Logo";
 import BurgerIcon from "../icons/BurgerIcon";
 import CloseIcon from "../icons/CloseIcon";
 import Container from "../ui/Container";
+import { HEADER_SLOT_ID } from "../ui/PostContentsMenu";
 
 const menuLinks = [
   { href: "/#schedule", labelKey: "schedule", section: "schedule" },
@@ -158,6 +159,8 @@ export default function Header() {
             <LocaleSwitcher />
           </div>
 
+          {/* a page's own toggle, e.g. a long post's contents */}
+          <div id={HEADER_SLOT_ID} className="flex xl:hidden" />
           <MobileNav pathname={pathname} isHome={isHome} />
         </div>
       </Container>

@@ -9,6 +9,7 @@ import type { Post as PostDoc } from "@/payload-types";
 import Heading from "../ui/Heading";
 import PostContents, { sectionTimeline } from "../ui/PostContents";
 import PostDateline from "../ui/PostDateline";
+import PostContentsMenu from "../ui/PostContentsMenu";
 import PostImage from "../ui/PostImage";
 import Tailpiece from "../ui/Tailpiece";
 
@@ -45,8 +46,8 @@ function splitAt(content: Content, ids: Map<object, string>): Content[] {
 // Set like a book chapter in one narrow column: title, dateline, the lead
 // a step larger than the text, the text, and a tailpiece to close it.
 // A long post can also show its contents: in the margin left of the text
-// on wide screens, staying in view while reading; above the text on
-// narrower ones, where there is no margin.
+// on wide screens, staying in view while reading; on narrower ones, where
+// there is no margin, behind a button in the header.
 export default async function Post({ post }: { post: PostDoc }) {
   const locale = await getLocale();
   const t = await getTranslations("Blog");
@@ -63,13 +64,6 @@ export default async function Post({ post }: { post: PostDoc }) {
       </header>
       {post.lead && (
         <p className="text-night font-text text-lead">{post.lead}</p>
-      )}
-      {showContents && (
-        <PostContents
-          items={outline.items}
-          label={t("contents")}
-          className="xl:hidden"
-        />
       )}
       {showContents ? (
         // One <section> per subheading, back-to-back, each a view-timeline
@@ -123,10 +117,10 @@ export default async function Post({ post }: { post: PostDoc }) {
       <PostContents
         items={outline.items}
         label={t("contents")}
-        tracking
         className="sticky top-[calc(var(--header-height)+2.5rem)] hidden max-h-[calc(100vh-var(--header-height)-5rem)] max-w-64 self-start justify-self-end overflow-y-auto xl:col-start-1 xl:row-start-1 xl:block"
       />
       {article}
+      <PostContentsMenu items={outline.items} label={t("contents")} />
     </div>
   );
 }
