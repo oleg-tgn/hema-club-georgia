@@ -26,10 +26,10 @@
   /* Serif type sizes: headings per breakpoint (base / sm / lg) and running
      text. All scale with --serif-scale, so a locale whose serif runs larger
      (Georgian) shrinks just these - not the sans interface or the spacing. */
-  --text-h1: calc(2.625rem * var(--serif-scale));
+  --text-h1: calc(2.375rem * var(--serif-scale));
   --text-h1-sm: calc(3.25rem * var(--serif-scale));
   --text-h1-lg: calc(4rem * var(--serif-scale));
-  --text-h2: calc(2.25rem * var(--serif-scale));
+  --text-h2: calc(2rem * var(--serif-scale));
   --text-h2-sm: calc(2.75rem * var(--serif-scale));
   --text-h2-lg: calc(3.25rem * var(--serif-scale));
   --text-h3: calc(1.625rem * var(--serif-scale));
