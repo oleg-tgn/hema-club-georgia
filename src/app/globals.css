@@ -158,22 +158,16 @@ nav a[data-section="join"] > span {
 
 /*
  * Contents beside a long blog post: the link of the section being read is
- * highlighted like the home page nav above - same keyframes, same line
+ * darkened like the home page nav links above (no gold mark - the list is
+ * quieter than the menu) - same keyframe, same line
  * `--nav-active-offset` below the header. The timelines are named per post
  * (inline styles in Post.tsx / PostContents.tsx).
  */
-.post-body > section {
+.post-part {
   view-timeline-inset: calc(var(--header-height) + var(--nav-active-offset)) 0;
 }
 .post-toc a {
   animation-name: nav-link-active;
-  animation-timing-function: linear;
-  animation-fill-mode: both;
-  animation-duration: 1ms;
-  animation-range: exit-crossing;
-}
-.post-toc a > span {
-  animation-name: nav-dot-active;
   animation-timing-function: linear;
   animation-fill-mode: both;
   animation-duration: 1ms;

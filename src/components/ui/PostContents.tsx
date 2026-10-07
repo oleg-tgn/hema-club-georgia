@@ -23,14 +23,9 @@ export default function PostContents({
           <li key={item.id} className={item.level === 3 ? "pl-4" : ""}>
             <a
               href={`#${item.id}`}
-              className="relative block text-sm leading-5 font-medium text-black/40 hover:text-black"
+              className="block text-sm leading-5 font-medium text-black/40 hover:text-black"
               style={{ animationTimeline: sectionTimeline(i) }}
             >
-              <span
-                aria-hidden
-                className="absolute top-2.5 -left-4 h-px w-2.5"
-                style={{ animationTimeline: sectionTimeline(i) }}
-              />
               {item.text}
             </a>
           </li>
@@ -40,8 +35,8 @@ export default function PostContents({
   );
 }
 
-// The view-timeline of the post section that starts with the i-th heading
-// of the outline (set on that section in Post.tsx).
+// The view-timeline of the post part for the i-th contents link: the
+// opening for the title, then the section of each subheading (Post.tsx).
 export function sectionTimeline(i: number): string {
   return `--post-section-${i}`;
 }

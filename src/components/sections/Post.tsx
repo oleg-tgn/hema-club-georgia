@@ -31,7 +31,7 @@ function convertersWith(ids: Map<object, string>): JSXConvertersFunction {
 }
 
 // The text cut before each outlined heading: the opening (before the first
-// subheading), then one part per subheading.
+// subheading, maybe empty), then one part per subheading.
 function splitAt(content: Content, ids: Map<object, string>): Content[] {
   const parts: Content["root"]["children"][] = [[]];
   for (const node of content.root.children) {
@@ -56,8 +56,8 @@ export default async function Post({ post }: { post: PostDoc }) {
   const converters = convertersWith(outline.ids);
   const showContents = post.showContents && outline.items.length >= 2;
 
-  const article = (
-    <article className="mx-auto flex w-full max-w-160 flex-col gap-8 xl:col-start-2 xl:row-start-1">
+  const heading = (
+    <>
       <header className="flex flex-col items-center gap-4 text-center">
         <Heading as="h1">{post.title}</Heading>
         <PostDateline post={post} locale={locale} />
@@ -65,17 +65,39 @@ export default async function Post({ post }: { post: PostDoc }) {
       {post.lead && (
         <p className="text-night font-text text-lead">{post.lead}</p>
       )}
+    </>
+  );
+
+  // With contents the post is cut into back-to-back parts, each a
+  // view-timeline for its contents link: the opening (title, lead and the
+  // text before the first subheading), then one <section> per subheading.
+  const [opening, ...sections] = showContents
+    ? splitAt(post.content, outline.ids)
+    : [];
+
+  const article = (
+    <article className="mx-auto flex w-full max-w-160 flex-col gap-8 xl:col-start-2 xl:row-start-1">
       {showContents ? (
-        // One <section> per subheading, back-to-back, each a view-timeline
-        // for its contents link.
-        <div className="post-body">
-          {splitAt(post.content, outline.ids).map((part, i) =>
-            part.root.children.length === 0 ? null : (
+        <div>
+          <div
+            className="post-part flex flex-col gap-8"
+            style={{ viewTimelineName: sectionTimeline(0) }}
+          >
+            {heading}
+            {opening.root.children.length > 0 && (
+              <RichText
+                data={opening}
+                converters={converters}
+                className="post-body"
+              />
+            )}
+          </div>
+          <div className="post-body">
+            {sections.map((part, i) => (
               <section
                 key={i}
-                style={
-                  i > 0 ? { viewTimelineName: sectionTimeline(i - 1) } : {}
-                }
+                className="post-part"
+                style={{ viewTimelineName: sectionTimeline(i + 1) }}
               >
                 <RichText
                   data={part}
@@ -83,15 +105,18 @@ export default async function Post({ post }: { post: PostDoc }) {
                   disableContainer
                 />
               </section>
-            ),
-          )}
+            ))}
+          </div>
         </div>
       ) : (
-        <RichText
-          data={post.content}
-          converters={converters}
-          className="post-body"
-        />
+        <>
+          {heading}
+          <RichText
+            data={post.content}
+            converters={converters}
+            className="post-body"
+          />
+        </>
       )}
       <Tailpiece />
       <Link
@@ -105,22 +130,29 @@ export default async function Post({ post }: { post: PostDoc }) {
 
   if (!showContents) return article;
 
+  // The contents open with the post's title, as in a book: it leads back
+  // to the start and stays highlighted while the opening is read.
+  const contents = [
+    { id: "top", text: post.title, level: 2 as const },
+    ...outline.items,
+  ];
+
   // The grid's middle column keeps the text where it is without contents;
-  // the timeline-scope lets the contents links read the sections' timelines.
+  // the timeline-scope lets the contents links read the parts' timelines.
   return (
     <div
       className="xl:grid xl:grid-cols-[1fr_minmax(0,40rem)_1fr] xl:gap-x-16"
       style={{
-        timelineScope: outline.items.map((_, i) => sectionTimeline(i)).join(),
+        timelineScope: contents.map((_, i) => sectionTimeline(i)).join(),
       }}
     >
       <PostContents
-        items={outline.items}
+        items={contents}
         label={t("contents")}
         className="sticky top-[calc(var(--header-height)+2.5rem)] hidden max-h-[calc(100vh-var(--header-height)-5rem)] max-w-64 self-start justify-self-end overflow-y-auto xl:col-start-1 xl:row-start-1 xl:block"
       />
       {article}
-      <PostContentsMenu items={outline.items} label={t("contents")} />
+      <PostContentsMenu items={contents} label={t("contents")} />
     </div>
   );
 }
