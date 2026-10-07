@@ -56,3 +56,51 @@ export function previewOf(post: Post): string | null {
   }
   return null;
 }
+
+export type OutlineItem = {
+  id: string;
+  text: string;
+  level: 2 | 3;
+};
+
+// An address for a subheading, from its words: "#how-to-hold-the-sword".
+// Letters of any script are kept, so Russian and Georgian headings get
+// readable addresses too.
+function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/[^\p{L}\p{N}]+/gu, "-")
+    .replace(/^-|-$/g, "");
+}
+
+// The post's subheadings (h2, and h3 under them) in order, with an id for
+// each - the contents list beside a long post. The ids are keyed by the
+// heading node, so the text can be rendered with the same ids.
+export function outlineOf(post: Post): {
+  items: OutlineItem[];
+  ids: Map<object, string>;
+} {
+  const items: OutlineItem[] = [];
+  const ids = new Map<object, string>();
+  const used = new Set<string>();
+  const nodes = post.content.root.children as (LexicalNode & {
+    tag?: string;
+  })[];
+
+  for (const node of nodes) {
+    if (node.type !== "heading" || (node.tag !== "h2" && node.tag !== "h3")) {
+      continue;
+    }
+    const text = textOf(node).trim();
+    if (!text) continue;
+
+    const base = slugify(text) || "section";
+    let id = base;
+    for (let n = 2; used.has(id); n++) id = `${base}-${n}`;
+    used.add(id);
+
+    ids.set(node, id);
+    items.push({ id, text, level: node.tag === "h2" ? 2 : 3 });
+  }
+  return { items, ids };
+}

@@ -96,6 +96,17 @@ export const Posts: CollectionConfig = {
       },
     },
     {
+      name: "showContents",
+      type: "checkbox",
+      defaultValue: false,
+      label: "Show contents",
+      admin: {
+        position: "sidebar",
+        description:
+          "For a long post: a list of its subheadings beside the text (above it on phones), to jump between sections.",
+      },
+    },
+    {
       name: "lead",
       type: "textarea",
       localized: true,

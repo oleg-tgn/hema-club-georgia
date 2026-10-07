@@ -413,6 +413,10 @@ export interface Post {
    */
   guestAuthor?: string | null;
   /**
+   * For a long post: a list of its subheadings beside the text (above it on phones), to jump between sections.
+   */
+  showContents?: boolean | null;
+  /**
    * A short opening paragraph: what the post is about. Shown in the blog list and at the top of the post. Leave empty to use the post's first paragraph in the list.
    */
   lead?: string | null;
@@ -702,6 +706,7 @@ export interface PostsSelect<T extends boolean = true> {
   publishedAt?: T;
   author?: T;
   guestAuthor?: T;
+  showContents?: T;
   lead?: T;
   content?: T;
   updatedAt?: T;

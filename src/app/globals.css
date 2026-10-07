@@ -157,6 +157,33 @@ nav a[data-section="join"] > span {
 }
 
 /*
+ * Contents beside a long blog post: the link of the section being read is
+ * highlighted like the home page nav above - same keyframes, same line
+ * `--nav-active-offset` below the header. The timelines are named per post
+ * (inline styles in Post.tsx / PostContents.tsx).
+ */
+.post-body > section {
+  view-timeline-inset: calc(var(--header-height) + var(--nav-active-offset)) 0;
+}
+.post-toc a {
+  animation-name: nav-link-active;
+  animation-timing-function: linear;
+  animation-fill-mode: both;
+  animation-duration: 1ms;
+  animation-range: exit-crossing;
+}
+.post-toc a > span {
+  animation-name: nav-dot-active;
+  animation-timing-function: linear;
+  animation-fill-mode: both;
+  animation-duration: 1ms;
+  animation-range: exit-crossing;
+}
+.post-toc a:hover {
+  color: #000 !important;
+}
+
+/*
  * Aged-paper surface on a base between paper-100 (the page background) and
  * paper-200 - light for text contrast, but still distinct from the page.
  * On top: a fine fibre grain, soft
@@ -196,8 +223,17 @@ nav a[data-section="join"] > span {
   font-size: var(--text-body);
   line-height: var(--text-body--line-height);
 }
-.post-body > * + * {
+.post-body > * + *,
+.post-body > section > * + * {
   margin-top: 1.25rem;
+}
+/* A post with contents is cut into one section per subheading (Post.tsx).
+   They sit back-to-back, with no margin between them, so one of them is
+   always the one being read; flow-root keeps the subheading's top margin
+   inside its section. */
+.post-body > section {
+  display: flow-root;
+  margin-top: 0;
 }
 .post-body h2,
 .post-body h3,
