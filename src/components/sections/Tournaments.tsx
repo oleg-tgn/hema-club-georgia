@@ -60,31 +60,26 @@ function TournamentLinks({ tournament }: { tournament: Tournament }) {
   );
 }
 
-// One entry per tournament: banner on the left (cropped to 16:9 so every
-// entry keeps the same rhythm whatever the upload), dateline, headline,
-// links. On phones the banner sits above the text. Upcoming tournaments
-// lead with a gold frame and a label; past ones lie on the page itself,
-// parted by hairlines, with transparent side borders so their banners
-// line up with the one above.
+// A tournament is upcoming until its last day is over.
+function isUpcoming(tournament: Tournament) {
+  const lastDay = new Date(tournament.endDate ?? tournament.startDate);
+  return lastDay.getTime() + 24 * 60 * 60 * 1000 > Date.now();
+}
+
 function TournamentCard({
   tournament,
-  upcoming,
-  divided,
   locale,
   t,
 }: {
   tournament: Tournament;
-  upcoming: boolean;
-  divided: boolean;
   locale: string;
   t: TFunc;
 }) {
   const banner = bannerOf(tournament);
+  const upcoming = isUpcoming(tournament);
   const frame = upcoming
     ? "mb-4 rounded-2xl border-gold-200 border-2 bg-[#f7f4ed]"
-    : `border-x-2 border-x-transparent border-b-0 ${
-        divided ? "border-t border-t-night/15" : "border-t-0"
-      }`;
+    : "border-x-2 border-x-transparent not-last:border-b not-last:border-b-night/15";
 
   return (
     <article
@@ -121,21 +116,6 @@ function TournamentCard({
   );
 }
 
-// A tournament is upcoming until its last day is over. Upcoming ones read
-// soonest first, past ones newest first.
-function splitByDate(tournaments: Tournament[]) {
-  const now = Date.now();
-  const lastDay = (x: Tournament) =>
-    new Date(x.endDate ?? x.startDate).getTime() + 24 * 60 * 60 * 1000;
-  const upcoming = tournaments
-    .filter((x) => lastDay(x) > now)
-    .sort((a, b) => a.startDate.localeCompare(b.startDate));
-  const past = tournaments
-    .filter((x) => lastDay(x) <= now)
-    .sort((a, b) => b.startDate.localeCompare(a.startDate));
-  return { upcoming, past };
-}
-
 export default async function Tournaments() {
   const locale = await getLocale();
   const t = await getTranslations("Tournaments");
@@ -148,7 +128,6 @@ export default async function Tournaments() {
     sort: "-startDate",
     locale: locale as Locale,
   });
-  const { upcoming, past } = splitByDate(docs);
 
   return (
     <div className="flex flex-col items-center gap-10 md:gap-12">
@@ -156,12 +135,10 @@ export default async function Tournaments() {
         {t("title")}
       </Heading>
       <div className="flex w-full max-w-200 flex-col">
-        {[...upcoming, ...past].map((tournament, i) => (
+        {docs.map((tournament) => (
           <TournamentCard
             key={tournament.id}
             tournament={tournament}
-            upcoming={i < upcoming.length}
-            divided={i > upcoming.length}
             locale={locale}
             t={t}
           />
