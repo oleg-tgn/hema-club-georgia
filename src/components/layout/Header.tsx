@@ -9,6 +9,7 @@ import Logo from "../icons/Logo";
 import BurgerIcon from "../icons/BurgerIcon";
 import CloseIcon from "../icons/CloseIcon";
 import Container from "../ui/Container";
+import { HEADER_SLOT_ID } from "../ui/PostContentsMenu";
 
 const menuLinks = [
   { href: "/#schedule", labelKey: "schedule", section: "schedule" },
@@ -17,6 +18,7 @@ const menuLinks = [
   { href: "/instructors", labelKey: "instructors", section: null },
   { href: "/gallery", labelKey: "gallery", section: null },
   { href: "/tournaments", labelKey: "tournaments", section: null },
+  { href: "/blog", labelKey: "blog", section: null },
 ] as const;
 
 function MenuLink({
@@ -66,8 +68,11 @@ function Nav({
       {menuLinks.map(({ href, labelKey, section }) => {
         // Section links get their active state from the CSS scroll-timeline
         // animation below (see globals.css); only plain-route links need a
-        // JS-driven active check against pathname.
-        const isActive = section === null && pathname === href;
+        // JS-driven active check against pathname. A route's sub-pages (a
+        // blog post under /blog) keep its link active.
+        const isActive =
+          section === null &&
+          (pathname === href || pathname.startsWith(`${href}/`));
 
         return (
           <MenuLink
@@ -107,11 +112,11 @@ function MobileNav({
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
       <Dialog.Trigger
-        className="group text-night hover:bg-night-hover relative flex h-9 w-16.5 items-center justify-center rounded-[20px] border border-black/40 px-4 transition-colors xl:hidden"
+        className="group text-night relative -mr-3 flex h-11 w-12.5 items-center justify-center transition-colors hover:text-black/60 xl:hidden"
         aria-label={open ? t("closeMenu") : t("openMenu")}
       >
-        <BurgerIcon className="h-2.5 group-data-popup-open:hidden" />
-        <CloseIcon className="hidden h-3.75 group-data-popup-open:block" />
+        <BurgerIcon className="h-3 group-data-popup-open:hidden" />
+        <CloseIcon className="hidden h-4 group-data-popup-open:block" />
       </Dialog.Trigger>
 
       <Dialog.Portal>
@@ -154,6 +159,8 @@ export default function Header() {
             <LocaleSwitcher />
           </div>
 
+          {/* a page's own toggle, e.g. a long post's contents */}
+          <div id={HEADER_SLOT_ID} className="flex xl:hidden" />
           <MobileNav pathname={pathname} isHome={isHome} />
         </div>
       </Container>

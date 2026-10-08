@@ -26,10 +26,10 @@
   /* Serif type sizes: headings per breakpoint (base / sm / lg) and running
      text. All scale with --serif-scale, so a locale whose serif runs larger
      (Georgian) shrinks just these - not the sans interface or the spacing. */
-  --text-h1: calc(2.625rem * var(--serif-scale));
+  --text-h1: calc(2.375rem * var(--serif-scale));
   --text-h1-sm: calc(3.25rem * var(--serif-scale));
   --text-h1-lg: calc(4rem * var(--serif-scale));
-  --text-h2: calc(2.25rem * var(--serif-scale));
+  --text-h2: calc(2rem * var(--serif-scale));
   --text-h2-sm: calc(2.75rem * var(--serif-scale));
   --text-h2-lg: calc(3.25rem * var(--serif-scale));
   --text-h3: calc(1.625rem * var(--serif-scale));
@@ -37,6 +37,9 @@
   --text-h3-lg: calc(1.875rem * var(--serif-scale));
   --text-body: calc(1.25rem * var(--serif-scale));
   --text-body--line-height: 1.875rem;
+  /* a blog post's lead paragraph, a step above running text */
+  --text-lead: calc(1.5rem * var(--serif-scale));
+  --text-lead--line-height: 2.25rem;
 }
 
 /*
@@ -154,6 +157,27 @@ nav a[data-section="join"] > span {
 }
 
 /*
+ * Contents beside a long blog post: the link of the section being read is
+ * darkened like the home page nav links above (no gold mark - the list is
+ * quieter than the menu) - same keyframe, same line
+ * `--nav-active-offset` below the header. The timelines are named per post
+ * (inline styles in Post.tsx / PostContents.tsx).
+ */
+.post-part {
+  view-timeline-inset: calc(var(--header-height) + var(--nav-active-offset)) 0;
+}
+.post-toc a {
+  animation-name: nav-link-active;
+  animation-timing-function: linear;
+  animation-fill-mode: both;
+  animation-duration: 1ms;
+  animation-range: exit-crossing;
+}
+.post-toc a:hover {
+  color: #000 !important;
+}
+
+/*
  * Aged-paper surface on a base between paper-100 (the page background) and
  * paper-200 - light for text contrast, but still distinct from the page.
  * On top: a fine fibre grain, soft
@@ -177,6 +201,128 @@ nav a[data-section="join"] > span {
     auto,
     100% 100%,
     auto;
+}
+
+/*
+ * Text of a blog post (Payload rich text): running text in Libertinus,
+ * subheadings in the display face like the page headings, images as book
+ * illustrations, links in gold. Normal block flow rather than flex, so a
+ * narrow image can float with the text running around it; flow-root keeps
+ * a float at the end inside the text.
+ */
+.post-body {
+  display: flow-root;
+  color: var(--color-night);
+  font-family: var(--font-text);
+  font-size: var(--text-body);
+  line-height: var(--text-body--line-height);
+}
+.post-body > * + *,
+.post-body > section > * + * {
+  margin-top: 1.25rem;
+}
+/* A post with contents is cut into one section per subheading (Post.tsx).
+   They sit back-to-back, with no margin between them, so one of them is
+   always the one being read; flow-root keeps the subheading's top margin
+   inside its section. */
+.post-body > section {
+  display: flow-root;
+  margin-top: 0;
+}
+.post-body h2,
+.post-body h3,
+.post-body h4 {
+  /* a new section starts below any image still floating beside the text */
+  clear: both;
+  margin-top: 2.5rem;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+}
+.post-body h2 {
+  font-size: var(--text-h3-lg);
+}
+.post-body h3,
+.post-body h4 {
+  font-size: var(--text-lead);
+}
+.post-body ul,
+.post-body ol {
+  padding-left: 1.5rem;
+}
+.post-body ul {
+  list-style: disc;
+}
+.post-body ol {
+  list-style: decimal;
+}
+.post-body li::marker {
+  color: var(--color-gold-200);
+}
+.post-body a {
+  color: var(--color-gold-200);
+  transition: color 150ms;
+}
+.post-body a:hover {
+  color: var(--color-gold-100);
+}
+.post-body blockquote {
+  border-left: 1px solid var(--color-gold-200);
+  padding-left: 1.25rem;
+  font-style: italic;
+}
+.post-body img {
+  width: 100%;
+  height: auto;
+  border-radius: 2px;
+}
+.post-body .post-figure {
+  margin-block: 2rem;
+}
+.post-body figcaption {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-style: italic;
+  text-align: center;
+}
+/* On phones every image takes the column: beside it the text would be a
+   few words a line. */
+@media (min-width: 40rem) {
+  .post-body .post-figure-medium {
+    width: 60%;
+  }
+  .post-body .post-figure-small {
+    width: 40%;
+  }
+  .post-body .post-figure-center {
+    margin-inline: auto;
+  }
+  .post-body .post-figure-left,
+  .post-body .post-figure-right {
+    /* top in line with the text that wraps around it */
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .post-body .post-figure-left {
+    float: left;
+    margin-right: 2rem;
+  }
+  .post-body .post-figure-right {
+    float: right;
+    margin-left: 2rem;
+  }
+  .post-body .post-figure-left figcaption,
+  .post-body .post-figure-right figcaption {
+    text-align: left;
+  }
+}
+.post-body hr {
+  clear: both;
+  width: 4rem;
+  margin-inline: auto;
+  border-color: rgb(157 125 43 / 0.6);
 }
 
 /*

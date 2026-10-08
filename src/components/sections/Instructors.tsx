@@ -69,7 +69,7 @@ export default async function Instructors() {
                   src={photoUrl!}
                   alt={photo.alt || instructor.name}
                   fill
-                  sizes="(min-width: 640px) 320px, 448px"
+                  sizes="(min-width: 640px) 320px, min(448px, calc(100vw - 24px))"
                   className="object-cover"
                 />
               </div>

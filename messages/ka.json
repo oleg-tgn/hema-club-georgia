@@ -5,6 +5,7 @@
     "instructors": "ინსტრუქტორები",
     "gallery": "გალერეა",
     "tournaments": "ტურნირი",
+    "blog": "ბლოგი",
     "join": "შემოგვიერთდით",
     "openMenu": "მენიუს გახსნა",
     "closeMenu": "მენიუს დახურვა"
@@ -12,10 +13,6 @@
   "Hero": {
     "pauseVideo": "ვიდეოს დაპაუზება",
     "playVideo": "ვიდეოს ჩართვა"
-  },
-  "Training": {
-    "equipGuideCtaMobile": "აღჭურვილობის გზამკვლევი",
-    "equipGuideCta": "აღჭურვილობის<br></br>გზამკვლევი"
   },
   "Schedule": {
     "title": "განრიგი",
@@ -53,6 +50,13 @@
     "title": "ტურნირები",
     "metaDescription": "წმინდა გიორგის HEMA სკოლის ტურნირები თბილისში",
     "upcoming": "მომავალი"
+  },
+  "Blog": {
+    "title": "ბლოგი",
+    "metaDescription": "წმინდა გიორგის HEMA სკოლის ჩანაწერები და სტატიები თბილისში",
+    "allPosts": "ყველა ჩანაწერი",
+    "contents": "სარჩევი",
+    "empty": "ჩანაწერები ჯერ არ არის."
   },
   "Footer": {
     "credit": "საიტის შემქმნელი — ოლეგ სტელმახი"

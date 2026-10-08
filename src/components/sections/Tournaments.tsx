@@ -60,30 +60,30 @@ function TournamentLinks({ tournament }: { tournament: Tournament }) {
   );
 }
 
-// One card per tournament: banner on the left (cropped to 16:9 so every
-// card keeps the same rhythm whatever the upload), dateline, headline,
-// links. On phones the banner sits above the text. Upcoming tournaments
-// lead: a gold frame, a label and a larger banner.
+// A tournament is upcoming until its last day is over.
+function isUpcoming(tournament: Tournament) {
+  const lastDay = new Date(tournament.endDate ?? tournament.startDate);
+  return lastDay.getTime() + 24 * 60 * 60 * 1000 > Date.now();
+}
+
 function TournamentCard({
   tournament,
-  upcoming,
   locale,
   t,
 }: {
   tournament: Tournament;
-  upcoming: boolean;
   locale: string;
   t: TFunc;
 }) {
   const banner = bannerOf(tournament);
+  const upcoming = isUpcoming(tournament);
+  const frame = upcoming
+    ? "mb-4 rounded-2xl border-gold-200 border-2 bg-[#f7f4ed]"
+    : "border-x-2 border-x-transparent not-last:border-b not-last:border-b-night/15";
 
   return (
     <article
-      className={`text-night grid grid-cols-1 gap-4 rounded-2xl bg-[#f7f4ed] p-4 sm:gap-6 sm:p-5 md:gap-8 ${
-        upcoming
-          ? "border-gold-200 border-2 sm:grid-cols-[18rem_minmax(0,1fr)] md:grid-cols-[22rem_minmax(0,1fr)]"
-          : "border-night/15 border sm:grid-cols-[12rem_minmax(0,1fr)] md:grid-cols-[14rem_minmax(0,1fr)]"
-      }`}
+      className={`text-night grid grid-cols-1 gap-4 p-4 sm:grid-cols-[18rem_minmax(0,1fr)] sm:gap-6 sm:p-5 md:grid-cols-[22rem_minmax(0,1fr)] md:gap-8 ${frame}`}
     >
       <div className="relative aspect-video w-full overflow-hidden rounded-sm">
         {banner && (
@@ -91,11 +91,7 @@ function TournamentCard({
             src={banner.url}
             alt={banner.alt}
             fill
-            sizes={
-              upcoming
-                ? "(min-width: 768px) 352px, (min-width: 640px) 288px, 100vw"
-                : "(min-width: 768px) 224px, (min-width: 640px) 192px, 100vw"
-            }
+            sizes="(min-width: 768px) 352px, (min-width: 640px) 288px, 100vw"
             className="object-cover"
           />
         )}
@@ -120,21 +116,6 @@ function TournamentCard({
   );
 }
 
-// A tournament is upcoming until its last day is over. Upcoming ones read
-// soonest first, past ones newest first.
-function splitByDate(tournaments: Tournament[]) {
-  const now = Date.now();
-  const lastDay = (x: Tournament) =>
-    new Date(x.endDate ?? x.startDate).getTime() + 24 * 60 * 60 * 1000;
-  const upcoming = tournaments
-    .filter((x) => lastDay(x) > now)
-    .sort((a, b) => a.startDate.localeCompare(b.startDate));
-  const past = tournaments
-    .filter((x) => lastDay(x) <= now)
-    .sort((a, b) => b.startDate.localeCompare(a.startDate));
-  return { upcoming, past };
-}
-
 export default async function Tournaments() {
   const locale = await getLocale();
   const t = await getTranslations("Tournaments");
@@ -147,19 +128,17 @@ export default async function Tournaments() {
     sort: "-startDate",
     locale: locale as Locale,
   });
-  const { upcoming, past } = splitByDate(docs);
 
   return (
     <div className="flex flex-col items-center gap-10 md:gap-12">
       <Heading as="h1" className="text-center">
         {t("title")}
       </Heading>
-      <div className="flex w-full max-w-200 flex-col gap-4">
-        {[...upcoming, ...past].map((tournament, i) => (
+      <div className="flex w-full max-w-200 flex-col">
+        {docs.map((tournament) => (
           <TournamentCard
             key={tournament.id}
             tournament={tournament}
-            upcoming={i < upcoming.length}
             locale={locale}
             t={t}
           />

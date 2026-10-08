@@ -5,6 +5,7 @@
     "instructors": "Instructors",
     "gallery": "Gallery",
     "tournaments": "Tournaments",
+    "blog": "Blog",
     "join": "Join",
     "openMenu": "Open menu",
     "closeMenu": "Close menu"
@@ -12,10 +13,6 @@
   "Hero": {
     "pauseVideo": "Pause video",
     "playVideo": "Play video"
-  },
-  "Training": {
-    "equipGuideCtaMobile": "Equip Guide",
-    "equipGuideCta": "Equip<br></br>Guide"
   },
   "Schedule": {
     "title": "Schedule",
@@ -53,6 +50,13 @@
     "title": "Tournaments",
     "metaDescription": "Tournaments held by Saint George's HEMA School in Tbilisi",
     "upcoming": "Upcoming"
+  },
+  "Blog": {
+    "title": "Blog",
+    "metaDescription": "Notes and articles from Saint George's HEMA School in Tbilisi",
+    "allPosts": "All posts",
+    "contents": "Contents",
+    "empty": "No posts yet."
   },
   "Footer": {
     "credit": "Developed by Oleg Stelmakh"

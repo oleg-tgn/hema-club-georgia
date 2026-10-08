@@ -5,6 +5,7 @@
     "instructors": "Инструкторы",
     "gallery": "Галерея",
     "tournaments": "Турниры",
+    "blog": "Блог",
     "join": "Присоединиться",
     "openMenu": "Открыть меню",
     "closeMenu": "Закрыть меню"
@@ -12,10 +13,6 @@
   "Hero": {
     "pauseVideo": "Поставить видео на паузу",
     "playVideo": "Воспроизвести видео"
-  },
-  "Training": {
-    "equipGuideCtaMobile": "Гайд по экипировке",
-    "equipGuideCta": "Гайд по<br></br>экипировке"
   },
   "Schedule": {
     "title": "Расписание",
@@ -53,6 +50,13 @@
     "title": "Турниры",
     "metaDescription": "Турниры школы HEMA Святого Георгия в Тбилиси",
     "upcoming": "Предстоящий"
+  },
+  "Blog": {
+    "title": "Блог",
+    "metaDescription": "Заметки и статьи школы HEMA Святого Георгия в Тбилиси",
+    "allPosts": "Все заметки",
+    "contents": "Содержание",
+    "empty": "Заметок пока нет."
   },
   "Footer": {
     "credit": "Сайт разработал Олег Стельмах"

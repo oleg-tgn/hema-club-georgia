@@ -62,10 +62,10 @@ function toSlide({ url, width, height, caption }: GalleryImage): SlideImage {
 const BREAKPOINTS = [600, 960] as const;
 
 // Album width per viewport, mirroring Container (max-w-384 and its
-// px-2 / sm:px-5 / md:px-10). The album turns this into each photo's
+// px-3 / sm:px-5 / md:px-10). The album turns this into each photo's
 // `sizes`, taking columns and gaps into account.
 const ALBUM_SIZES = {
-  size: "calc(100vw - 16px)",
+  size: "calc(100vw - 24px)",
   sizes: [
     { viewport: "(min-width: 1536px)", size: "1456px" },
     { viewport: "(min-width: 768px)", size: "calc(100vw - 80px)" },
@@ -111,7 +111,9 @@ export default function PhotoGallery({
             },
           }}
           render={{
-            image: ({ alt, title, sizes }, { photo }) => (
+            // The first row is the LCP. Keep it lazy anyway: SSR renders a
+            // hidden copy per breakpoint, and eager would fetch all of them.
+            image: ({ alt, title, sizes }, { photo, index }) => (
               <Image
                 src={photo.url}
                 alt={alt ?? ""}
@@ -119,6 +121,7 @@ export default function PhotoGallery({
                 width={photo.width}
                 height={photo.height}
                 sizes={sizes}
+                fetchPriority={index < 3 ? "high" : undefined}
                 className="h-auto w-full transition-transform duration-300 group-hover:scale-[1.03]"
               />
             ),
