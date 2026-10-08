@@ -112,11 +112,11 @@ function MobileNav({
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
       <Dialog.Trigger
-        className="group text-night hover:bg-night-hover relative flex h-9 w-16.5 items-center justify-center rounded-[20px] border border-black/40 px-4 transition-colors xl:hidden"
+        className="group text-night relative -mr-3 flex h-11 w-12.5 items-center justify-center transition-colors hover:text-black/60 xl:hidden"
         aria-label={open ? t("closeMenu") : t("openMenu")}
       >
-        <BurgerIcon className="h-2.5 group-data-popup-open:hidden" />
-        <CloseIcon className="hidden h-3.75 group-data-popup-open:block" />
+        <BurgerIcon className="h-3 group-data-popup-open:hidden" />
+        <CloseIcon className="hidden h-4 group-data-popup-open:block" />
       </Dialog.Trigger>
 
       <Dialog.Portal>

@@ -37,8 +37,22 @@ export default function PostContentsMenu({
     <Dialog.Root open={open} onOpenChange={setOpen}>
       {slot &&
         createPortal(
-          <Dialog.Trigger className="text-night hover:bg-night-hover data-popup-open:bg-night-hover flex h-9 items-center rounded-[20px] border border-black/40 px-3 text-sm font-medium transition-colors sm:px-4">
+          <Dialog.Trigger className="group flex h-11 items-center gap-1 px-2 text-base font-semibold text-black/40 transition-colors hover:text-black data-popup-open:text-black">
             {label}
+            {/* the same chevron as the language switcher, flipped when open */}
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              fill="none"
+              aria-hidden
+              className="transition-transform group-data-popup-open:rotate-180"
+            >
+              <path
+                d="M11.3535 7.35352L8 10.707L4.64648 7.35352L5.35352 6.64648L8 9.29297L10.6465 6.64648L11.3535 7.35352Z"
+                fill="#A19D97"
+              />
+            </svg>
           </Dialog.Trigger>,
           slot,
         )}
