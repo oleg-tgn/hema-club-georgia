@@ -60,30 +60,35 @@ function TournamentLinks({ tournament }: { tournament: Tournament }) {
   );
 }
 
-// One card per tournament: banner on the left (cropped to 16:9 so every
-// card keeps the same rhythm whatever the upload), dateline, headline,
+// One entry per tournament: banner on the left (cropped to 16:9 so every
+// entry keeps the same rhythm whatever the upload), dateline, headline,
 // links. On phones the banner sits above the text. Upcoming tournaments
-// lead: a gold frame, a label and a larger banner.
+// lead with a gold frame and a label; past ones lie on the page itself,
+// parted by hairlines, with transparent side borders so their banners
+// line up with the one above.
 function TournamentCard({
   tournament,
   upcoming,
+  divided,
   locale,
   t,
 }: {
   tournament: Tournament;
   upcoming: boolean;
+  divided: boolean;
   locale: string;
   t: TFunc;
 }) {
   const banner = bannerOf(tournament);
+  const frame = upcoming
+    ? "mb-4 rounded-2xl border-gold-200 border-2 bg-[#f7f4ed]"
+    : `border-x-2 border-x-transparent border-b-0 ${
+        divided ? "border-t border-t-night/15" : "border-t-0"
+      }`;
 
   return (
     <article
-      className={`text-night grid grid-cols-1 gap-4 rounded-2xl bg-[#f7f4ed] p-4 sm:gap-6 sm:p-5 md:gap-8 ${
-        upcoming
-          ? "border-gold-200 border-2 sm:grid-cols-[18rem_minmax(0,1fr)] md:grid-cols-[22rem_minmax(0,1fr)]"
-          : "border-night/15 border sm:grid-cols-[12rem_minmax(0,1fr)] md:grid-cols-[14rem_minmax(0,1fr)]"
-      }`}
+      className={`text-night grid grid-cols-1 gap-4 p-4 sm:grid-cols-[18rem_minmax(0,1fr)] sm:gap-6 sm:p-5 md:grid-cols-[22rem_minmax(0,1fr)] md:gap-8 ${frame}`}
     >
       <div className="relative aspect-video w-full overflow-hidden rounded-sm">
         {banner && (
@@ -91,11 +96,7 @@ function TournamentCard({
             src={banner.url}
             alt={banner.alt}
             fill
-            sizes={
-              upcoming
-                ? "(min-width: 768px) 352px, (min-width: 640px) 288px, 100vw"
-                : "(min-width: 768px) 224px, (min-width: 640px) 192px, 100vw"
-            }
+            sizes="(min-width: 768px) 352px, (min-width: 640px) 288px, 100vw"
             className="object-cover"
           />
         )}
@@ -154,12 +155,13 @@ export default async function Tournaments() {
       <Heading as="h1" className="text-center">
         {t("title")}
       </Heading>
-      <div className="flex w-full max-w-200 flex-col gap-4">
+      <div className="flex w-full max-w-200 flex-col">
         {[...upcoming, ...past].map((tournament, i) => (
           <TournamentCard
             key={tournament.id}
             tournament={tournament}
             upcoming={i < upcoming.length}
+            divided={i > upcoming.length}
             locale={locale}
             t={t}
           />
