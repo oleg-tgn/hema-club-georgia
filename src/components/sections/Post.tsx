@@ -149,7 +149,7 @@ export default async function Post({ post }: { post: PostDoc }) {
       <PostContents
         items={contents}
         label={t("contents")}
-        className="sticky top-[calc(var(--header-height)+2.5rem)] hidden max-h-[calc(100vh-var(--header-height)-5rem)] max-w-64 self-start justify-self-end overflow-y-auto xl:col-start-1 xl:row-start-1 xl:block"
+        className="sticky top-[calc(var(--header-height)+0.75rem)] hidden max-h-[calc(100vh-var(--header-height)-1.5rem)] max-w-64 self-start justify-self-end overflow-y-auto xl:col-start-1 xl:row-start-1 xl:block"
       />
       {article}
       <PostContentsMenu items={contents} label={t("contents")} />
