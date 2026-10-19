@@ -130,8 +130,8 @@ export default async function Tournaments() {
   });
 
   return (
-    <div className="flex flex-col items-center gap-10 md:gap-12">
-      <Heading as="h1" className="text-center">
+    <div className="flex flex-col items-center">
+      <Heading as="h1" className="mb-5 text-center md:mb-10">
         {t("title")}
       </Heading>
       <div className="flex w-full max-w-200 flex-col">

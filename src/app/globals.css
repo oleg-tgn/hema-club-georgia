@@ -57,7 +57,10 @@ html {
   --header-height: 52px;
   /* how far past the header a section must scroll before its nav link activates */
   --nav-active-offset: 200px;
-  scroll-padding-top: var(--header-height);
+  /* space between the header's rule and whatever comes first below it: the
+     top of every page, and a section heading reached by an anchor link */
+  --page-gap: 1rem;
+  scroll-padding-top: calc(var(--header-height) + var(--page-gap));
   scroll-behavior: smooth;
 }
 @media (min-width: 40rem) {

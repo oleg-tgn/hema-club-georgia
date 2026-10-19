@@ -71,7 +71,7 @@ export default async function LocaleLayout({
       <body className="bg-paper-100 flex min-h-full flex-col text-black">
         <NextIntlClientProvider>
           <Header />
-          <main className="flex-1 pt-(--header-height)">
+          <main className="flex-1 pt-[calc(var(--header-height)+var(--page-gap))]">
             <Container>{children}</Container>
           </main>
           <Footer />

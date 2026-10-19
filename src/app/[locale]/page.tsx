@@ -12,7 +12,7 @@ const sectionGap = "pb-10 sm:pb-15 md:pb-20 xl:pb-25";
 export default function HomePage() {
   return (
     <div className="flex flex-col">
-      <section className={`pt-5 md:pt-10 ${sectionGap}`}>
+      <section className={`pt-2.5 md:pt-5 ${sectionGap}`}>
         <Hero />
       </section>
 

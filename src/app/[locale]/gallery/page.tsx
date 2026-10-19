@@ -18,7 +18,7 @@ export async function generateMetadata({
 
 export default function GalleryPage() {
   return (
-    <section className="md:pb -20 pb-10 sm:pb-15">
+    <section className="pb-10 sm:pb-15 md:pb-20">
       <Gallery />
     </section>
   );

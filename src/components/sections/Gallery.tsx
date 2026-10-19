@@ -38,7 +38,7 @@ export default async function Gallery() {
 
   return (
     <>
-      <Heading as="h1" className="mb-10 text-center">
+      <Heading as="h1" className="mb-5 text-center md:mb-10">
         {t("title")}
       </Heading>
 
