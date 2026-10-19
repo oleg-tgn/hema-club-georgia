@@ -30,7 +30,7 @@ export default async function Hero() {
         <Tailpiece />
       </div>
 
-      <div className="aspect-video w-full max-w-160 justify-self-center overflow-hidden rounded-[20px] lg:aspect-4/3 lg:max-w-none lg:justify-self-stretch">
+      <div className="aspect-video w-full max-w-160 justify-self-center overflow-hidden rounded-2xl lg:aspect-4/3 lg:max-w-none lg:justify-self-stretch">
         <PausableVideo src="/videos/hema-intro.webm" />
       </div>
     </div>

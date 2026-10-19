@@ -107,7 +107,7 @@ export default function PhotoGallery({
               // `!` because the library's unlayered `cursor: pointer` beats
               // Tailwind's layered utilities
               className:
-                "group block w-full cursor-zoom-in! overflow-hidden rounded-lg",
+                "group block w-full cursor-zoom-in! overflow-hidden rounded-md",
             },
           }}
           render={{

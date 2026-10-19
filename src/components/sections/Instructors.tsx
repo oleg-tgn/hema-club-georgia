@@ -64,7 +64,7 @@ export default async function Instructors() {
 
           return (
             <div key={instructor.id} className="text-night flex flex-col gap-4">
-              <div className="relative aspect-square w-full overflow-hidden rounded-sm">
+              <div className="relative aspect-square w-full overflow-hidden rounded-md">
                 <Image
                   src={photoUrl!}
                   alt={photo.alt || instructor.name}

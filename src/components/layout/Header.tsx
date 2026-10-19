@@ -120,8 +120,8 @@ function MobileNav({
       </Dialog.Trigger>
 
       <Dialog.Portal>
-        <Dialog.Backdrop className="fixed inset-x-0 top-0 bottom-0 z-40 bg-black/40 transition-opacity duration-200 data-ending-style:opacity-0 data-starting-style:opacity-0" />
-        <Dialog.Popup className="bg-paper-100 fixed inset-x-0 top-(--header-height) z-40 flex flex-col gap-12 rounded-b-[20px] px-2 py-10 transition-[transform,opacity] duration-200 ease-out data-ending-style:-translate-y-2 data-ending-style:opacity-0 data-starting-style:-translate-y-2 data-starting-style:opacity-0">
+        <Dialog.Backdrop className="fixed inset-x-0 top-0 bottom-0 z-40 bg-black/40 backdrop-blur-md transition-opacity duration-200 data-ending-style:opacity-0 data-starting-style:opacity-0" />
+        <Dialog.Popup className="bg-paper-100 fixed inset-x-0 top-(--header-height) z-40 flex flex-col gap-12 px-2 py-10 transition-[transform,opacity] duration-200 ease-out data-ending-style:-translate-y-2 data-ending-style:opacity-0 data-starting-style:-translate-y-2 data-starting-style:opacity-0">
           <div onClick={() => setOpen(false)}>
             <Nav
               pathname={pathname}
