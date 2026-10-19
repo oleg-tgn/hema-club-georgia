@@ -144,7 +144,7 @@ export default function Header() {
   const isHome = pathname === "/";
 
   return (
-    <header className="bg-paper-100/90 fixed top-0 z-50 w-full backdrop-blur-[10px]">
+    <header className="bg-paper-100 fixed top-0 z-50 w-full">
       <Container className="flex h-(--header-height) items-center justify-between">
         {/* Equal flex-1 sides keep the nav centred on the page even though
             the logo is wider than the locale switcher. */}
