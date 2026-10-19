@@ -85,7 +85,7 @@ function TournamentCard({
     <article
       className={`text-night grid grid-cols-1 gap-4 p-4 sm:grid-cols-[18rem_minmax(0,1fr)] sm:gap-6 sm:p-5 md:grid-cols-[22rem_minmax(0,1fr)] md:gap-8 ${frame}`}
     >
-      <div className="relative aspect-video w-full overflow-hidden rounded-sm">
+      <div className="relative aspect-video w-full overflow-hidden rounded-md">
         {banner && (
           <Image
             src={banner.url}

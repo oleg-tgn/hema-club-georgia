@@ -275,7 +275,7 @@ nav a[data-section="join"] > span {
 .post-body img {
   width: 100%;
   height: auto;
-  border-radius: 2px;
+  border-radius: 0.375rem; /* rounded-md, like other small images */
 }
 .post-body .post-figure {
   margin-block: 2rem;

@@ -120,8 +120,8 @@ function MobileNav({
       </Dialog.Trigger>
 
       <Dialog.Portal>
-        <Dialog.Backdrop className="fixed inset-x-0 top-0 bottom-0 z-40 bg-black/40 backdrop-blur-[10px] transition-opacity duration-200 data-ending-style:opacity-0 data-starting-style:opacity-0" />
-        <Dialog.Popup className="bg-paper-100/90 fixed inset-x-0 top-(--header-height) z-40 flex flex-col gap-12 rounded-b-[20px] px-2 py-10 backdrop-blur-[10px] transition-[transform,opacity] duration-200 ease-out data-ending-style:-translate-y-2 data-ending-style:opacity-0 data-starting-style:-translate-y-2 data-starting-style:opacity-0">
+        <Dialog.Backdrop className="fixed inset-x-0 top-0 bottom-0 z-40 bg-black/40 backdrop-blur-md transition-opacity duration-200 data-ending-style:opacity-0 data-starting-style:opacity-0" />
+        <Dialog.Popup className="bg-paper-100 fixed inset-x-0 top-(--header-height) z-40 flex flex-col gap-12 px-2 py-10 transition-[transform,opacity] duration-200 ease-out data-ending-style:-translate-y-2 data-ending-style:opacity-0 data-starting-style:-translate-y-2 data-starting-style:opacity-0">
           <div onClick={() => setOpen(false)}>
             <Nav
               pathname={pathname}
@@ -144,7 +144,7 @@ export default function Header() {
   const isHome = pathname === "/";
 
   return (
-    <header className="bg-paper-100 fixed top-0 z-50 w-full">
+    <header className="bg-paper-100 border-night/15 fixed top-0 z-50 w-full border-b">
       <Container className="flex h-(--header-height) items-center justify-between">
         {/* Equal flex-1 sides keep the nav centred on the page even though
             the logo is wider than the locale switcher. */}

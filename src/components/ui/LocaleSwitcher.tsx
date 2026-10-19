@@ -33,7 +33,7 @@ export default function LocaleSwitcher() {
 
       <Menu.Portal>
         <Menu.Positioner align="center" sideOffset={8} className="z-60">
-          <Menu.Popup className="rounded-md border border-black/40 bg-paper-100  shadow-lg">
+          <Menu.Popup className="border-night/15 bg-paper-100 rounded-md border">
             {routing.locales.map((loc) => (
               <Menu.Item
                 key={loc}

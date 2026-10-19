@@ -59,8 +59,8 @@ export default function PostContentsMenu({
 
       <div ref={container} className="contents" />
       <Dialog.Portal container={container}>
-        <Dialog.Backdrop className="fixed inset-0 z-40 bg-black/40 backdrop-blur-[10px] transition-opacity duration-200 data-ending-style:opacity-0 data-starting-style:opacity-0" />
-        <Dialog.Popup className="bg-paper-100/90 fixed inset-x-0 top-(--header-height) z-40 max-h-[calc(100dvh-var(--header-height)-2rem)] overflow-y-auto rounded-b-[20px] px-7 py-8 backdrop-blur-[10px] transition-[transform,opacity] duration-200 ease-out data-ending-style:-translate-y-2 data-ending-style:opacity-0 data-starting-style:-translate-y-2 data-starting-style:opacity-0 sm:px-10">
+        <Dialog.Backdrop className="fixed inset-0 z-40 bg-black/40 backdrop-blur-md transition-opacity duration-200 data-ending-style:opacity-0 data-starting-style:opacity-0" />
+        <Dialog.Popup className="bg-paper-100 fixed inset-x-0 top-(--header-height) z-40 max-h-[calc(100dvh-var(--header-height)-2rem)] overflow-y-auto px-7 py-8 transition-[transform,opacity] duration-200 ease-out data-ending-style:-translate-y-2 data-ending-style:opacity-0 data-starting-style:-translate-y-2 data-starting-style:opacity-0 sm:px-10">
           {/* a picked section closes the panel; the link itself scrolls */}
           <div onClick={() => setOpen(false)} className="mx-auto max-w-160">
             <PostContents items={items} label={label} />
