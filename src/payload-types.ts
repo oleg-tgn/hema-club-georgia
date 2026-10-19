@@ -786,10 +786,21 @@ export interface Hero {
 export interface WelcomeSection {
   id: string;
   title: string;
-  /**
-   * Line breaks are kept.
-   */
-  text: string;
+  description: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -936,7 +947,7 @@ export interface HeroSelect<T extends boolean = true> {
  */
 export interface WelcomeSectionSelect<T extends boolean = true> {
   title?: T;
-  text?: T;
+  description?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

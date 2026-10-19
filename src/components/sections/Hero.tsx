@@ -1,6 +1,7 @@
 import config from "@payload-config";
 import { getLocale } from "next-intl/server";
 import { getPayload } from "payload";
+import { RichText } from "@payloadcms/richtext-lexical/react";
 import type { Locale } from "@/i18n/routing";
 import Heading from "../ui/Heading";
 import PausableVideo from "../ui/PausableVideo";
@@ -24,9 +25,12 @@ export default async function Hero() {
         <Heading as="h1" className="text-center lg:text-left">
           St. George HEMA School
         </Heading>
-        <p className="font-text text-body max-w-160 whitespace-pre-line">
-          {welcome.text}
-        </p>
+        {welcome.description && (
+          <RichText
+            data={welcome.description}
+            className="[&_a]:text-gold-200 [&_a]:hover:text-gold-100 font-text text-body flex max-w-160 flex-col gap-4 [&_a]:transition-colors"
+          />
+        )}
         <Tailpiece />
       </div>
 
