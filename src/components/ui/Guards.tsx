@@ -31,3 +31,29 @@ export default function Guard({
     />
   );
 }
+
+// The same figure as a mask filled with the current text colour, for a
+// faint backdrop that takes a tint (the files themselves are drawn in black).
+export function GuardShape({
+  name,
+  className = "",
+}: {
+  name: GuardName;
+  className?: string;
+}) {
+  const src = `url(/images/guards/${name}.svg)`;
+  return (
+    <span
+      aria-hidden
+      className={`block aspect-square bg-current ${className}`}
+      style={{
+        WebkitMaskImage: src,
+        maskImage: src,
+        WebkitMaskSize: "contain",
+        maskSize: "contain",
+        WebkitMaskRepeat: "no-repeat",
+        maskRepeat: "no-repeat",
+      }}
+    />
+  );
+}
