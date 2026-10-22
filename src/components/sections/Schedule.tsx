@@ -93,7 +93,7 @@ export default async function Schedule() {
             so their feet land on the same line. */}
         <div
           aria-hidden
-          className="text-gold-200 pointer-events-none absolute inset-0 hidden opacity-25 select-none xl:block"
+          className="text-gold-200 pointer-events-none absolute inset-0 hidden opacity-15 select-none xl:block"
         >
           <GuardShape
             name="ochs"
