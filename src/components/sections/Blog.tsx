@@ -5,6 +5,7 @@ import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import type { Post } from "@/payload-types";
 import { previewOf } from "@/lib/posts";
+import ArrowIcon from "../icons/ArrowIcon";
 import Heading from "../ui/Heading";
 import PostDateline from "../ui/PostDateline";
 
@@ -37,9 +38,12 @@ function PostEntry({
         href={href}
         tabIndex={-1}
         aria-hidden
-        className="text-gold-200 hover:text-gold-100 font-text text-body -mt-3 self-start transition-colors"
+        className="text-gold-200 hover:text-gold-100 -mt-1 flex items-center self-start text-base font-medium transition-colors"
       >
-        {readMore} →
+        {/* An icon, not "→": Manrope's Google Fonts subsets lack the arrow,
+            so a system font would draw it. */}
+        {readMore}
+        <ArrowIcon className="size-6" />
       </Link>
     </article>
   );

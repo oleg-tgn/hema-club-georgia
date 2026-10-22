@@ -30,7 +30,8 @@
     }
   },
   "Faq": {
-    "title": "Frequently Asked Questions"
+    "title": "Frequently Asked Questions",
+    "metaDescription": "Answers to common questions about training at Saint George's HEMA School"
   },
   "Instructors": {
     "title": "Instructors",

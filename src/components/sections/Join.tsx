@@ -27,7 +27,7 @@ export default async function Join() {
   });
 
   return (
-    <div className="text-night grid w-full grid-cols-1 gap-6 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:items-center lg:gap-12">
+    <div className="text-night flex w-full flex-col items-center gap-6 lg:flex-row lg:justify-between lg:gap-12">
       <iframe
         title={join.title}
         src={mapEmbedSrc(locale)}
@@ -36,16 +36,16 @@ export default async function Join() {
         allowFullScreen
         // Greyscale with a light sepia warmth, multiplied onto the paper
         // background so the map's whites take the page colour.
-        className="order-last aspect-video w-full max-w-160 justify-self-center rounded-2xl border-0 mix-blend-multiply contrast-90 grayscale sepia-[.1] lg:order-first lg:aspect-4/3 lg:max-w-none lg:justify-self-stretch"
+        className="order-last aspect-video w-full max-w-160 rounded-2xl border-0 mix-blend-multiply contrast-90 grayscale sepia-[.1] lg:order-first lg:aspect-4/3 lg:w-5/11 lg:max-w-none"
       />
 
-      <div className="flex w-full max-w-160 flex-col gap-6 justify-self-center lg:justify-self-stretch">
+      <div className="flex w-full max-w-160 flex-col gap-6 lg:flex-1">
         <Heading as="h2" className="text-center lg:text-left">
           {join.title}
         </Heading>
         <RichText
           data={join.description}
-          className="[&_a]:text-gold-200 [&_a]:hover:text-gold-100 flex max-w-160 flex-col gap-4 font-text text-body [&_a]:transition-colors"
+          className="[&_a]:text-gold-200 [&_a]:hover:text-gold-100 text-night/85 font-text text-body flex max-w-160 flex-col gap-4 [&_a]:transition-colors"
         />
         <Tailpiece />
       </div>

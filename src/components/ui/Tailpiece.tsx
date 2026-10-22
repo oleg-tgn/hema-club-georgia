@@ -1,5 +1,6 @@
 // Book-style tailpiece closing a text: two crossed swords between hairlines.
-// Used by the mirrored Hero / Join pair only, so it keeps its weight.
+// Used sparingly - the mirrored Hero / Join pair, the end of a blog post and
+// of the FAQ - so it keeps its weight.
 export default function Tailpiece() {
   const sword = (
     <g stroke="currentColor" strokeLinecap="round" fill="none">
