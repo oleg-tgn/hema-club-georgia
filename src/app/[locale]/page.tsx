@@ -1,6 +1,5 @@
 import Hero from "@/components/sections/Hero";
 import Schedule from "@/components/sections/Schedule";
-import Faq from "@/components/sections/Faq";
 import Join from "@/components/sections/Join";
 
 export const revalidate = 60;
@@ -18,10 +17,6 @@ export default function HomePage() {
 
       <section id="schedule" className={sectionGap}>
         <Schedule />
-      </section>
-
-      <section id="faq" className={sectionGap}>
-        <Faq />
       </section>
 
       <section id="join">

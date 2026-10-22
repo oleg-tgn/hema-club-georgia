@@ -13,8 +13,8 @@ import { HEADER_SLOT_ID } from "../ui/PostContentsMenu";
 
 const menuLinks = [
   { href: "/#schedule", labelKey: "schedule", section: "schedule" },
-  { href: "/#faq", labelKey: "faq", section: "faq" },
   { href: "/#join", labelKey: "join", section: "join" },
+  { href: "/faq", labelKey: "faq", section: null },
   { href: "/instructors", labelKey: "instructors", section: null },
   { href: "/gallery", labelKey: "gallery", section: null },
   { href: "/tournaments", labelKey: "tournaments", section: null },

@@ -16,7 +16,7 @@ export const FaqSection: GlobalConfig = {
       label: "Questions",
       type: "array",
       admin: {
-        description: "Shown as an accordion, in this order.",
+        description: "Shown on the FAQ page, in this order.",
       },
       fields: [
         {

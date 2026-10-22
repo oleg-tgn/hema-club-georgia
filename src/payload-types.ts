@@ -863,7 +863,7 @@ export interface WeaponsSection {
 export interface FaqSection {
   id: string;
   /**
-   * Shown as an accordion, in this order.
+   * Shown on the FAQ page, in this order.
    */
   items?:
     | {
