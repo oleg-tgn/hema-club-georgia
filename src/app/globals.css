@@ -1,7 +1,5 @@
 @import "tailwindcss";
 
-/* Not `inline`: the utilities must read these variables at runtime so the
-   per-locale overrides below (html[lang="ka"]) take effect. */
 @theme {
   /* The browser picks a font per character, left to right: Latin and
      Cyrillic come from our fonts, Georgian letters (which they lack) from
@@ -9,10 +7,11 @@
      actually has Georgian text. No generic family before Noto, or a system
      font could take the Georgian letters first. */
   --font-sans: var(--font-manrope), var(--font-noto-sans-georgian), sans-serif;
-  --font-serif:
-    var(--font-libertinus-serif-display), var(--font-noto-serif-georgian), serif;
-  --font-text:
-    var(--font-libertinus-serif), var(--font-noto-serif-georgian), serif;
+  /* One serif family, Literata, for headings and text alike: its optical
+     size axis fits the letters to the size. Two tokens all the same, so
+     headings and running text say which they are. */
+  --font-serif: var(--font-literata), var(--font-noto-serif-georgian), serif;
+  --font-text: var(--font-serif);
 
   --color-paper-100: #efebe2;
   --color-paper-200: #dbd6ca;
@@ -24,45 +23,28 @@
   --color-off-white: #e4e4e4;
 
   /* Serif type sizes: headings per breakpoint (base / sm / lg) and running
-     text. All scale with --serif-scale, so a locale whose serif runs larger
-     (Georgian) shrinks just these - not the sans interface or the spacing. */
-  --text-h1: calc(2.375rem * var(--serif-scale));
-  --text-h1-sm: calc(3.25rem * var(--serif-scale));
-  --text-h1-lg: calc(4rem * var(--serif-scale));
-  --text-h2: calc(2rem * var(--serif-scale));
-  --text-h2-sm: calc(2.75rem * var(--serif-scale));
-  --text-h2-lg: calc(3.25rem * var(--serif-scale));
-  --text-h3: calc(1.625rem * var(--serif-scale));
-  --text-h3-sm: calc(1.75rem * var(--serif-scale));
-  --text-h3-lg: calc(1.875rem * var(--serif-scale));
-  --text-body: calc(1.25rem * var(--serif-scale));
+     text. The same on every locale: Noto Serif Georgian runs about the size
+     of Literata. */
+  --text-h1: 2.125rem;
+  --text-h1-sm: 2.875rem;
+  --text-h1-lg: 3.5rem;
+  --text-h2: 1.75rem;
+  --text-h2-sm: 2.5rem;
+  --text-h2-lg: 2.875rem;
+  --text-h3: 1.375rem;
+  --text-h3-sm: 1.5rem;
+  --text-h3-lg: 1.625rem;
+  --text-body: 1.125rem;
   --text-body--line-height: 1.875rem;
   /* a blog post's lead paragraph, a step above running text */
-  --text-lead: calc(1.5rem * var(--serif-scale));
-  --text-lead--line-height: 2.25rem;
-}
-
-/*
- * Georgian: Noto Serif Georgian reads larger than Libertinus, so on the
- * Georgian site the serif is set 15% smaller. This applies to whole elements
- * (Latin included), hence per locale rather than in the font stacks. The sans
- * needs nothing: Noto Sans Georgian already matches Manrope.
- */
-html[lang="ka"] {
-  --serif-scale: 0.85;
-}
-
-/*
- * Russian: the Cyrillic in Libertinus Serif Display is uneven - its flat-topped
- * lowercase (н, п, т, в...) stand taller than the round ones (о, а, с, е), so
- * a line of it jumps. The text cut has them right, so Russian headings use it.
- */
-html[lang="ru"] {
-  --font-serif: var(--font-text);
+  --text-lead: 1.375rem;
+  --text-lead--line-height: 2.125rem;
+  /* a caption under or above running text, a step below it */
+  --text-caption: 0.875rem;
+  --text-caption--line-height: 1.375rem;
 }
 
 html {
-  --serif-scale: 1;
   --header-height: 52px;
   /* how far past the header a section must scroll before its nav link activates */
   --nav-active-offset: 200px;
@@ -225,7 +207,7 @@ nav a[data-section="join"] > span {
 }
 
 /*
- * Text of a blog post (Payload rich text): running text in Libertinus,
+ * Text of a blog post (Payload rich text): running text in Literata,
  * subheadings in the display face like the page headings, images as book
  * illustrations, links in gold. Normal block flow rather than flex, so a
  * narrow image can float with the text running around it; flow-root keeps
@@ -257,7 +239,7 @@ nav a[data-section="join"] > span {
   clear: both;
   margin-top: 2.5rem;
   font-family: var(--font-serif);
-  font-weight: 400;
+  font-weight: 350;
   line-height: 1.1;
   letter-spacing: -0.025em;
 }

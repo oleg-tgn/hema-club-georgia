@@ -23,7 +23,7 @@ export default async function Faq() {
 
   return (
     <div className="mx-auto flex w-full flex-col items-center gap-6">
-      <Heading as="h1" className="text-center">
+      <Heading as="h1" className="mb-2 text-center md:mb-4">
         {t("title")}
       </Heading>
       {/* All answers stay open, like a newspaper's Q&A column: nothing is
@@ -33,7 +33,7 @@ export default async function Faq() {
       <dl className="faq-list font-text text-body w-full max-w-160">
         {items.map((item) => (
           <div key={item.id}>
-            <dt className="text-night">{item.question}</dt>
+            <dt className="text-night font-medium">{item.question}</dt>
             <dd className="text-night/85 mt-2 whitespace-pre-line">
               {item.answer}
             </dd>

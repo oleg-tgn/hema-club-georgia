@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import {
   Manrope,
-  Libertinus_Serif_Display,
-  Libertinus_Serif,
+  Literata,
   Noto_Sans_Georgian,
   Noto_Serif_Georgian,
 } from "next/font/google";
@@ -19,21 +18,13 @@ const manrope = Manrope({
   subsets: ["latin", "cyrillic"],
 });
 
-const libertinusSerifDisplay = Libertinus_Serif_Display({
-  variable: "--font-libertinus-serif-display",
-  weight: "400",
-  subsets: ["latin", "cyrillic"],
-  adjustFontFallback: false,
-  fallback: ["Georgia", "Times New Roman", "serif"],
-});
-
-const libertinusSerif = Libertinus_Serif({
-  variable: "--font-libertinus-serif",
-  weight: ["400", "600"],
+// Variable, with the optical size axis: the browser fits the letters to the
+// size, so one family serves headings (weight 350) and text (400).
+const literata = Literata({
+  variable: "--font-literata",
+  axes: ["opsz"],
   style: ["normal", "italic"],
   subsets: ["latin", "cyrillic"],
-  adjustFontFallback: false,
-  fallback: ["Georgia", "Times New Roman", "serif"],
 });
 
 const notoSansGeorgian = Noto_Sans_Georgian({
@@ -68,7 +59,7 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
-      className={`${manrope.variable} ${libertinusSerifDisplay.variable} ${libertinusSerif.variable} ${notoSansGeorgian.variable} ${notoSerifGeorgian.variable} h-full`}
+      className={`${manrope.variable} ${literata.variable} ${notoSansGeorgian.variable} ${notoSerifGeorgian.variable} h-full`}
     >
       <body className="bg-paper-100 flex min-h-full flex-col text-black">
         <NextIntlClientProvider>
