@@ -105,7 +105,7 @@ export default async function Schedule() {
           />
         </div>
         {/* Narrow, so each time stays close to its day. */}
-        <div className="text-night relative flex w-full max-w-112.5 flex-col font-serif text-xl">
+        <div className="text-night relative flex w-full max-w-112.5 flex-col font-text text-xl">
           {groups.map((doc) => (
             <ScheduleCard key={doc.id} doc={doc} t={t} />
           ))}

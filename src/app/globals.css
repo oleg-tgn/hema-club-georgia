@@ -52,6 +52,15 @@ html[lang="ka"] {
   --serif-scale: 0.85;
 }
 
+/*
+ * Russian: the Cyrillic in Libertinus Serif Display is uneven - its flat-topped
+ * lowercase (н, п, т, в...) stand taller than the round ones (о, а, с, е), so
+ * a line of it jumps. The text cut has them right, so Russian headings use it.
+ */
+html[lang="ru"] {
+  --font-serif: var(--font-text);
+}
+
 html {
   --serif-scale: 1;
   --header-height: 52px;

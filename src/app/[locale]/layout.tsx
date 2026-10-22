@@ -32,6 +32,8 @@ const libertinusSerif = Libertinus_Serif({
   weight: ["400", "600"],
   style: ["normal", "italic"],
   subsets: ["latin", "cyrillic"],
+  adjustFontFallback: false,
+  fallback: ["Georgia", "Times New Roman", "serif"],
 });
 
 const notoSansGeorgian = Noto_Sans_Georgian({
