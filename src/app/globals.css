@@ -25,12 +25,12 @@
   /* Serif type sizes: headings per breakpoint (base / sm / lg) and running
      text. The same on every locale: Noto Serif Georgian runs about the size
      of Literata. */
-  --text-h1: 2.125rem;
-  --text-h1-sm: 2.875rem;
-  --text-h1-lg: 3.5rem;
-  --text-h2: 1.75rem;
-  --text-h2-sm: 2.5rem;
-  --text-h2-lg: 2.875rem;
+  --text-h1: 1.875rem;
+  --text-h1-sm: 2.375rem;
+  --text-h1-lg: 3.25rem;
+  --text-h2: 1.625rem;
+  --text-h2-sm: 2rem;
+  --text-h2-lg: 2.625rem;
   --text-h3: 1.375rem;
   --text-h3-sm: 1.5rem;
   --text-h3-lg: 1.625rem;
