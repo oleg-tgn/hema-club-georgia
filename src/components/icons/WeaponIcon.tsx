@@ -1,9 +1,13 @@
+import Image from "next/image";
+
 type WeaponSlug = "longsword" | "rapier" | "saber";
 
+// Pre-rendered engravings with gilded grips, exported at 3x for sharp
+// retina display; the .svg files beside them are the plain sources.
 const WEAPONS: Record<WeaponSlug, { src: string; width: number; height: number }> = {
-  longsword: { src: "/images/weapons/longsword.svg", width: 212, height: 42 },
-  rapier: { src: "/images/weapons/rapier.svg", width: 202, height: 42 },
-  saber: { src: "/images/weapons/saber.svg", width: 182, height: 38 },
+  longsword: { src: "/images/weapons/longsword.webp", width: 212, height: 42 },
+  rapier: { src: "/images/weapons/rapier.webp", width: 202, height: 42 },
+  saber: { src: "/images/weapons/saber.webp", width: 182, height: 38 },
 };
 
 type WeaponIconProps = {
@@ -19,20 +23,13 @@ export default function WeaponIcon({ slug, className }: WeaponIconProps) {
   }
 
   return (
-    <span
+    <Image
+      src={weapon.src}
+      alt=""
       aria-hidden
-      className={`inline-block bg-current ${className ?? ""}`}
-      style={{
-        aspectRatio: `${weapon.width} / ${weapon.height}`,
-        WebkitMaskImage: `url(${weapon.src})`,
-        maskImage: `url(${weapon.src})`,
-        WebkitMaskRepeat: "no-repeat",
-        maskRepeat: "no-repeat",
-        WebkitMaskSize: "contain",
-        maskSize: "contain",
-        WebkitMaskPosition: "center",
-        maskPosition: "center",
-      }}
+      width={weapon.width}
+      height={weapon.height}
+      className={`object-contain ${className ?? ""}`}
     />
   );
 }
