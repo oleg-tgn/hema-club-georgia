@@ -82,13 +82,17 @@ export default async function Schedule() {
 
   return (
     <div className="relative flex w-full flex-col items-center gap-6">
+      {/* The friezes stand at the edges of the text measure (max-w-160, as
+          in the hero and Join), so they line up with the blocks around
+          them. From lg those blocks widen, so the box keeps the friezes
+          at a set distance from the column instead. */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 hidden select-none xl:block"
+        className="pointer-events-none absolute inset-0 mx-auto hidden w-full max-w-160 select-none sm:block lg:max-w-[calc(38rem+86.4px)]"
       >
-        <span className="frieze absolute -inset-y-4 right-[calc(50%+19rem)]" />
+        <span className="frieze absolute -inset-y-4 left-0" />
         {/* Mirrored, so the two borders face each other. */}
-        <span className="frieze absolute -inset-y-4 left-[calc(50%+19rem)] -scale-x-100" />
+        <span className="frieze absolute -inset-y-4 right-0 -scale-x-100" />
       </div>
       <Heading as="h2" className="relative text-center">
         {t("title")}
