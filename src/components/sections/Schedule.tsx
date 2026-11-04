@@ -3,7 +3,6 @@ import { getLocale, getTranslations } from "next-intl/server";
 import { getPayload } from "payload";
 import type { Locale } from "@/i18n/routing";
 import type { ScheduleGroup } from "@/payload-types";
-import { GuardShape } from "../ui/Guards";
 import Heading from "../ui/Heading";
 import WeaponIcon from "../icons/WeaponIcon";
 
@@ -82,28 +81,19 @@ export default async function Schedule() {
   });
 
   return (
-    <div className="flex w-full flex-col items-center gap-6">
-      <Heading as="h2" className="text-center">
+    <div className="relative flex w-full flex-col items-center gap-6">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 hidden select-none xl:block"
+      >
+        <span className="frieze absolute -inset-y-4 right-[calc(50%+19rem)]" />
+        {/* Mirrored, so the two borders face each other. */}
+        <span className="frieze absolute -inset-y-4 left-[calc(50%+19rem)] -scale-x-100" />
+      </div>
+      <Heading as="h2" className="relative text-center">
         {t("title")}
       </Heading>
       <div className="relative flex w-full justify-center">
-        {/* Guard figures sit faintly behind the cards as a backdrop, only
-            where there's room beside them, tinted gold to sink into the
-            paper. Both share one vertical centre; the files share a canvas,
-            so their feet land on the same line. */}
-        <div
-          aria-hidden
-          className="text-gold-200 pointer-events-none absolute inset-0 hidden opacity-15 select-none xl:block"
-        >
-          <GuardShape
-            name="ochs"
-            className="absolute top-1/2 right-[calc(50%+17rem)] w-76 -translate-y-1/2 2xl:w-104"
-          />
-          <GuardShape
-            name="pflug"
-            className="absolute top-1/2 left-[calc(50%+17rem)] w-76 -translate-y-1/2 2xl:w-104"
-          />
-        </div>
         {/* Narrow, so each time stays close to its day. */}
         <div className="text-night font-text text-body relative flex w-full max-w-112.5 flex-col">
           {groups.map((doc) => (
