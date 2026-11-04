@@ -56,7 +56,7 @@ function ScheduleCard({ doc, t }: { doc: ScheduleGroup; t: TFunc }) {
                   className="border-night/30 mb-1.5 min-w-4 flex-1 border-b border-dotted"
                 />
                 <span className="whitespace-nowrap tabular-nums">
-                  {formatTime(row.startTime)} — {formatTime(row.endTime)}
+                  {formatTime(row.startTime)} – {formatTime(row.endTime)}
                 </span>
               </div>
             ))}
