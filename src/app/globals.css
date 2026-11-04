@@ -25,12 +25,12 @@
   /* Serif type sizes: headings per breakpoint (base / sm / lg) and running
      text. The same on every locale: Noto Serif Georgian runs about the size
      of Literata. */
-  --text-h1: 2.125rem;
-  --text-h1-sm: 2.875rem;
-  --text-h1-lg: 3.5rem;
-  --text-h2: 1.75rem;
-  --text-h2-sm: 2.5rem;
-  --text-h2-lg: 2.875rem;
+  --text-h1: 1.875rem;
+  --text-h1-sm: 2.375rem;
+  --text-h1-lg: 3.25rem;
+  --text-h2: 1.625rem;
+  --text-h2-sm: 2rem;
+  --text-h2-lg: 2.625rem;
   --text-h3: 1.375rem;
   --text-h3-sm: 1.5rem;
   --text-h3-lg: 1.625rem;
@@ -187,6 +187,27 @@ nav a[data-section="join"] > span {
     auto,
     100% 100%,
     auto;
+}
+
+/*
+ * Carved frieze for the margins beside a narrow block: the Bedia church
+ * frieze (10th-11th c.), rings threaded by zigzag straps, drawn in pale
+ * grey like a printed book ornament. The 48 x 97 tile is set at 90% and repeats
+ * down; faint, and fading in and out at the ends of the block.
+ */
+@utility frieze {
+  width: 43.2px;
+  background-image: url("/images/ornaments/bedia-frieze.svg");
+  background-size: 43.2px 87.3px;
+  background-repeat: repeat-y;
+  opacity: 0.2;
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    black 15%,
+    black 85%,
+    transparent
+  );
 }
 
 /*

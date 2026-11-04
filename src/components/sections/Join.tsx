@@ -27,7 +27,7 @@ export default async function Join() {
   });
 
   return (
-    <div className="text-night flex w-full flex-col items-center gap-6 lg:flex-row lg:justify-between lg:gap-12">
+    <div className="text-night 2x:justify-between flex w-full flex-col items-center gap-6 lg:flex-row lg:gap-20 2xl:justify-between">
       <iframe
         title={join.title}
         src={mapEmbedSrc(locale)}
