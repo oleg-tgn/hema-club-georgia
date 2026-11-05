@@ -39,6 +39,10 @@
   /* a blog post's lead paragraph, a step above running text */
   --text-lead: 1.375rem;
   --text-lead--line-height: 2.125rem;
+  /* tables and lists such as the schedule, a step below running text, as
+     a book sets its contents */
+  --text-table: 1rem;
+  --text-table--line-height: 1.625rem;
   /* a caption under or above running text, a step below it */
   --text-caption: 0.875rem;
   --text-caption--line-height: 1.375rem;

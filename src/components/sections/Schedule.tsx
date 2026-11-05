@@ -42,8 +42,7 @@ function ScheduleCard({ doc, t }: { doc: ScheduleGroup; t: TFunc }) {
       <div className="flex flex-col gap-3">
         {sections.map((section, i) => (
           <div key={section.id ?? i}>
-            {/* The level captions its days, set apart in italic text. */}
-            <p className="text-night/70 font-text text-caption pb-1 italic">
+            <p className="text-night/70 italic">
               {section.label || t("levels.all")}
             </p>
             {(section.rows ?? []).map((row, idx) => (
@@ -99,7 +98,7 @@ export default async function Schedule() {
       </Heading>
       <div className="relative flex w-full justify-center">
         {/* Narrow, so each time stays close to its day. */}
-        <div className="text-night font-text text-body relative flex w-full max-w-112.5 flex-col">
+        <div className="text-night font-text text-table relative flex w-full max-w-112.5 flex-col">
           {groups.map((doc) => (
             <ScheduleCard key={doc.id} doc={doc} t={t} />
           ))}
