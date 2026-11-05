@@ -43,14 +43,16 @@ function TournamentLinks({ tournament }: { tournament: Tournament }) {
   if (links.length === 0) return null;
 
   return (
-    <div className="flex flex-wrap gap-x-6 gap-y-1 text-sm">
+    // The padding widens the tap target for a finger; the negative margin
+    // takes it back, so the row looks as before.
+    <div className="-mt-1 flex flex-wrap gap-x-6 text-base sm:text-sm">
       {links.map((link) => (
         <a
           key={link.label}
           href={link.href}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-night hover:text-gold-200 flex items-center gap-2 transition-colors"
+          className="text-night hover:text-gold-200 flex items-center gap-2 py-2.5 transition-colors"
         >
           {link.label}
           <ExternalIcon className="h-4 w-4" />
@@ -58,6 +60,14 @@ function TournamentLinks({ tournament }: { tournament: Tournament }) {
       ))}
     </div>
   );
+}
+
+// The tournament's main page, which its name links to: the website, then
+// HEMA Ratings, then Hemagon. Every tournament is meant to have one of them;
+// "#" only keeps the link valid if none was filled in.
+function mainLinkOf(tournament: Tournament) {
+  const { website, hemaRatings, hemagon } = tournament.links ?? {};
+  return website || hemaRatings || hemagon || "#";
 }
 
 // A tournament is upcoming until its last day is over.
@@ -76,6 +86,7 @@ function TournamentCard({
   t: TFunc;
 }) {
   const banner = bannerOf(tournament);
+  const mainLink = mainLinkOf(tournament);
   const upcoming = isUpcoming(tournament);
   const frame = upcoming
     ? "mb-4 rounded-2xl border-gold-200 border-2 bg-[#f7f4ed]"
@@ -85,7 +96,17 @@ function TournamentCard({
     <article
       className={`text-night grid grid-cols-1 gap-4 p-4 sm:grid-cols-[18rem_minmax(0,1fr)] sm:gap-6 sm:p-5 md:grid-cols-[22rem_minmax(0,1fr)] md:gap-8 ${frame}`}
     >
-      <div className="relative aspect-video w-full overflow-hidden rounded-md">
+      {/* The banner is the largest tap target, so it links where the name
+          does. Hidden from the keyboard and screen readers: for them the
+          name's link is enough, the same place twice would be noise. */}
+      <a
+        href={mainLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        tabIndex={-1}
+        aria-hidden="true"
+        className="relative aspect-video w-full overflow-hidden rounded-md transition-opacity hover:opacity-85"
+      >
         {banner && (
           <Image
             src={banner.url}
@@ -95,7 +116,7 @@ function TournamentCard({
             className="object-cover"
           />
         )}
-      </div>
+      </a>
       <div className="flex flex-col gap-3">
         {upcoming && (
           <p className="text-gold-200 flex items-center gap-2 text-sm font-medium">
@@ -103,13 +124,22 @@ function TournamentCard({
             {t("upcoming")}
           </p>
         )}
-        <p className="text-sm font-semibold tracking-wider uppercase">
+        <p className="text-sm font-medium tracking-wider uppercase">
           {formatDates(tournament, locale)}
           {tournament.location && (
             <span className="text-asphalt"> · {tournament.location}</span>
           )}
         </p>
-        <Heading as="h3">{tournament.name}</Heading>
+        <Heading as="h3">
+          <a
+            href={mainLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-gold-200 transition-colors"
+          >
+            {tournament.name}
+          </a>
+        </Heading>
         <TournamentLinks tournament={tournament} />
       </div>
     </article>
