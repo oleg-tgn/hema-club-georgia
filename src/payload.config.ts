@@ -69,6 +69,22 @@ export default buildConfig({
   // falls back to an empty origin. Set SERVER_URL per Vercel environment
   // (dev.hemageorgia.com for Preview, hemageorgia.com for Production).
   serverURL: process.env.SERVER_URL || "http://localhost:3000",
+  // Payload only accepts the auth cookie on write requests (POST/PATCH/DELETE)
+  // whose Origin header is in this list — anything else is treated as
+  // logged-out and fails with "You are not allowed to perform this action".
+  // The site is reachable from several domains, so allow all of them.
+  // VERCEL_URL / VERCEL_BRANCH_URL are set by Vercel per deployment (no scheme).
+  csrf: [
+    process.env.SERVER_URL || "http://localhost:3000",
+    "https://hemageorgia.com",
+    "https://www.hemageorgia.com",
+    "https://dev.hemageorgia.com",
+    "https://dev2.hemageorgia.com",
+    "https://hema-club-georgia.vercel.app",
+    ...[process.env.VERCEL_URL, process.env.VERCEL_BRANCH_URL]
+      .filter(Boolean)
+      .map((host) => `https://${host}`),
+  ],
   email: resendAdapter({
     apiKey: process.env.RESEND_API_KEY || "",
     defaultFromAddress:
