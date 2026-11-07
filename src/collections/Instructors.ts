@@ -31,7 +31,7 @@ export const Instructors: CollectionConfig = {
     },
     {
       name: "description",
-      type: "textarea",
+      type: "richText",
       localized: true,
     },
     {

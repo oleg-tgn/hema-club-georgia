@@ -6,6 +6,7 @@ import { getPayload } from "payload";
 import Image from "next/image";
 import Heading from "../ui/Heading";
 import ExternalIcon from "../icons/externalIcon";
+import { RichText } from "@payloadcms/richtext-lexical/react";
 
 function ProfileLink({ href, children }: { href: string; children: string }) {
   return (
@@ -86,9 +87,10 @@ export default async function Instructors() {
                 <Heading as="h3">{instructor.name}</Heading>
 
                 {instructor.description && (
-                  <p className="font-text text-table">
-                    {instructor.description}
-                  </p>
+                  <RichText
+                    data={instructor.description}
+                    className="text-night/85 font-text text-table"
+                  />
                 )}
 
                 {(instructor.hemaRatingUrl || instructor.hemagonUrl) && (
