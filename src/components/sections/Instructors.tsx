@@ -86,7 +86,7 @@ export default async function Instructors() {
                 <Heading as="h3">{instructor.name}</Heading>
 
                 {instructor.description && (
-                  <p className="font-text text-body line-clamp-3">
+                  <p className="font-text text-table">
                     {instructor.description}
                   </p>
                 )}
