@@ -222,12 +222,18 @@ nav a[data-section="join"] > span {
  * keeps the default flex, so it sits at its measure (max-w-160) and only
  * shrinks when the row is too narrow. So no gap opens in the middle when the
  * container meets the screen edges - the frame just widens, towards ~3:2.
+ * side-media-short lowers it for media beside a shorter text (the Join
+ * map), keeping the width so the columns still line up.
  */
 @utility side-media {
   aspect-ratio: auto;
-  height: calc(100cqw * 5 / 11 * 3 / 4);
+  height: calc(100cqw * 5 / 11 * 3 / 4 * var(--side-media-scale, 1));
   max-width: none;
   flex: 1 0 calc(100% * 5 / 11);
+}
+
+@utility side-media-short {
+  --side-media-scale: 0.85;
 }
 
 /*
