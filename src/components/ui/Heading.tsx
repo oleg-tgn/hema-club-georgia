@@ -9,9 +9,9 @@ type HeadingTag = "h1" | "h2" | "h3";
 // sizes are theme tokens (globals.css). Weight 350: a touch lighter than the
 // text, so the large sizes don't turn heavy.
 const tagStyles: Record<HeadingTag, string> = {
-  h1: "text-h1 sm:text-h1-sm lg:text-h1-lg",
-  h2: "text-h2 sm:text-h2-sm lg:text-h2-lg",
-  h3: "text-h3 sm:text-h3-sm lg:text-h3-lg",
+  h1: "text-h1 sm:text-h1-sm xl:text-h1-xl",
+  h2: "text-h2 sm:text-h2-sm xl:text-h2-xl",
+  h3: "text-h3 sm:text-h3-sm xl:text-h3-xl",
 };
 
 type HeadingProps = {

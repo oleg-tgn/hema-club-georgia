@@ -20,9 +20,9 @@ export default async function Hero() {
   });
 
   return (
-    <div className="text-night @container flex w-full flex-col items-center gap-6 lg:flex-row lg:gap-12 2xl:gap-16">
+    <div className="text-night @container flex w-full flex-col items-center gap-6 lg:gap-12 xl:flex-row 2xl:gap-16">
       <div className="flex w-full max-w-160 flex-col gap-6">
-        <Heading as="h1" className="text-center lg:text-left">
+        <Heading as="h1" className="text-center xl:text-left">
           St. George HEMA School
         </Heading>
         {welcome.description && (
@@ -35,7 +35,7 @@ export default async function Hero() {
       </div>
 
       {/* Sizing on desktop: see side-media in globals.css. */}
-      <div className="aspect-video w-full max-w-160 overflow-hidden rounded-2xl lg:side-media">
+      <div className="xl:side-media aspect-video w-full max-w-160 overflow-hidden rounded-2xl">
         <PausableVideo src="/videos/hema-intro.webm" />
       </div>
     </div>

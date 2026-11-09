@@ -87,7 +87,7 @@ export default async function Schedule() {
           at a set distance from the column instead. */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 mx-auto hidden w-full max-w-160 select-none sm:block lg:max-w-[calc(38rem+86.4px)]"
+        className="pointer-events-none absolute inset-0 mx-auto hidden w-full max-w-160 select-none sm:block"
       >
         <span className="frieze absolute -inset-y-4 left-0" />
         {/* Mirrored, so the two borders face each other. */}

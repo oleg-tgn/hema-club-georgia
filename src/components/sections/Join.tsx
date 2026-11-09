@@ -27,7 +27,7 @@ export default async function Join() {
   });
 
   return (
-    <div className="text-night @container flex w-full flex-col items-center gap-6 lg:flex-row lg:gap-12 2xl:gap-16">
+    <div className="text-night @container flex w-full flex-col items-center gap-6 lg:gap-12 xl:flex-row 2xl:gap-16">
       <iframe
         title={join.title}
         src={mapEmbedSrc(locale)}
@@ -38,11 +38,11 @@ export default async function Join() {
         // background so the map's whites take the page colour. Desktop
         // sizing: see side-media in globals.css; lower than the Hero video,
         // as the text beside it is shorter.
-        className="order-last aspect-video w-full max-w-160 rounded-2xl border-0 mix-blend-multiply contrast-90 grayscale sepia-[.1] lg:order-first lg:side-media lg:side-media-short"
+        className="xl:side-media xl:side-media-short order-last aspect-video w-full max-w-160 rounded-2xl border-0 mix-blend-multiply contrast-90 grayscale sepia-[.1] xl:order-first"
       />
 
       <div className="flex w-full max-w-160 flex-col gap-6">
-        <Heading as="h2" className="text-center lg:text-left">
+        <Heading as="h2" className="text-center xl:text-left">
           {join.title}
         </Heading>
         <RichText
