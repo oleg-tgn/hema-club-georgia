@@ -27,7 +27,7 @@ export default async function Join() {
   });
 
   return (
-    <div className="text-night 2x:justify-between flex w-full flex-col items-center gap-6 lg:flex-row lg:gap-20 2xl:justify-between">
+    <div className="text-night @container flex w-full flex-col items-center gap-6 lg:flex-row lg:gap-12 2xl:gap-16">
       <iframe
         title={join.title}
         src={mapEmbedSrc(locale)}
@@ -35,11 +35,12 @@ export default async function Join() {
         referrerPolicy="strict-origin-when-cross-origin"
         allowFullScreen
         // Greyscale with a light sepia warmth, multiplied onto the paper
-        // background so the map's whites take the page colour.
-        className="order-last aspect-video w-full max-w-160 rounded-2xl border-0 mix-blend-multiply contrast-90 grayscale sepia-[.1] lg:order-first lg:aspect-4/3 lg:w-5/11 lg:max-w-none"
+        // background so the map's whites take the page colour. Desktop
+        // sizing: see side-media in globals.css.
+        className="order-last aspect-video w-full max-w-160 rounded-2xl border-0 mix-blend-multiply contrast-90 grayscale sepia-[.1] lg:order-first lg:side-media"
       />
 
-      <div className="flex w-full max-w-160 flex-col gap-6 lg:flex-1">
+      <div className="flex w-full max-w-160 flex-col gap-6">
         <Heading as="h2" className="text-center lg:text-left">
           {join.title}
         </Heading>

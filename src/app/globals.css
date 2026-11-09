@@ -215,6 +215,22 @@ nav a[data-section="join"] > span {
 }
 
 /*
+ * Media (video, map) beside a text column in a desktop row - the mirrored
+ * Hero / Join pair. The row must be an @container. The height is that of a
+ * 4:3 box 5/11 of the row wide, at any width. The width never drops below
+ * 5/11 (no shrink) and takes whatever the text column leaves: that column
+ * keeps the default flex, so it sits at its measure (max-w-160) and only
+ * shrinks when the row is too narrow. So no gap opens in the middle when the
+ * container meets the screen edges - the frame just widens, towards ~3:2.
+ */
+@utility side-media {
+  aspect-ratio: auto;
+  height: calc(100cqw * 5 / 11 * 3 / 4);
+  max-width: none;
+  flex: 1 0 calc(100% * 5 / 11);
+}
+
+/*
  * FAQ: a short centred hairline between question/answer pairs - the
  * tailpiece's line. A pseudo-element, since a <dl> takes only <dt>/<dd>
  * groups, so the rule can't be an element of its own.
