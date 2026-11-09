@@ -35,8 +35,8 @@ function TournamentLinks({ tournament }: { tournament: Tournament }) {
   const { website, hemaRatings, hemagon, photos } = tournament.links ?? {};
   const links = [
     website && { href: website, label: "Website" },
-    hemaRatings && { href: hemaRatings, label: "HEMA Ratings" },
     hemagon && { href: hemagon, label: "Hemagon" },
+    hemaRatings && { href: hemaRatings, label: "HEMA Ratings" },
     photos && { href: photos, label: "Photos" },
   ].filter((link): link is { href: string; label: string } => Boolean(link));
 
@@ -67,7 +67,7 @@ function TournamentLinks({ tournament }: { tournament: Tournament }) {
 // "#" only keeps the link valid if none was filled in.
 function mainLinkOf(tournament: Tournament) {
   const { website, hemaRatings, hemagon } = tournament.links ?? {};
-  return website || hemaRatings || hemagon || "#";
+  return website || hemagon || hemaRatings || "#";
 }
 
 // A tournament is upcoming until its last day is over.
