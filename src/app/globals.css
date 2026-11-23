@@ -70,8 +70,16 @@ body {
  * animates off it instead of a JS IntersectionObserver.
  *
  * `view-timeline-inset` puts a line `--nav-active-offset` below the
- * header; `exit-crossing` is active exactly while a section's box spans
- * that line. Sections are back-to-back, so these windows never overlap.
+ * header. A section's link is active while either:
+ *   - `exit-crossing`: the section's box spans that line, or
+ *   - `contain`: the section fits whole between the line and the bottom
+ *     of the screen - so a short last section (Join) still lights up on a
+ *     tall screen, where the page ends before its top reaches the line.
+ * Sections are back-to-back, so crossings never overlap; when a later
+ * section is wholly visible it wins, and switches the earlier links off
+ * (an extra `nav-*-off` animation on its timeline). Animations later in
+ * the list win, and the `contain` ones use fill-mode `none`, so they only
+ * apply inside their own range.
  *
  * Unsupported browsers (e.g. Firefox) just stay at the 0%/100% keyframe —
  * asphalt text, transparent dot, hover still works.
@@ -107,20 +115,40 @@ body {
     background-color: var(--color-gold-100);
   }
 }
-
-nav a[data-section] {
-  animation-name: nav-link-active;
-  animation-timing-function: linear;
-  animation-fill-mode: both;
-  animation-duration: 1ms;
-  animation-range: exit-crossing;
+/* constant on/off states for the `contain` ranges (no 0%/100% blink) */
+@keyframes nav-link-on {
+  from,
+  to {
+    color: var(--color-night);
+  }
 }
+@keyframes nav-link-off {
+  from,
+  to {
+    color: rgb(0 0 0 / 0.4);
+  }
+}
+@keyframes nav-dot-on {
+  from,
+  to {
+    background-color: var(--color-gold-100);
+  }
+}
+@keyframes nav-dot-off {
+  from,
+  to {
+    background-color: transparent;
+  }
+}
+
+/* list order: own crossing, own whole-visible, later sections' whole-visible
+   (shorter name lists just drop the trailing range/fill entries) */
+nav a[data-section],
 nav a[data-section] > span {
-  animation-name: nav-dot-active;
   animation-timing-function: linear;
-  animation-fill-mode: both;
   animation-duration: 1ms;
-  animation-range: exit-crossing;
+  animation-fill-mode: both, none, none;
+  animation-range: exit-crossing, contain, contain;
 }
 
 /* animation always wins over :hover, so hover needs !important here */
@@ -131,13 +159,25 @@ nav a[data-section]:hover > span {
   background-color: var(--color-gold-100) !important;
 }
 
+nav a[data-section="schedule"] {
+  animation-name: nav-link-active, nav-link-on, nav-link-off;
+}
+nav a[data-section="schedule"] > span {
+  animation-name: nav-dot-active, nav-dot-on, nav-dot-off;
+}
 nav a[data-section="schedule"],
 nav a[data-section="schedule"] > span {
-  animation-timeline: --schedule-visible;
+  animation-timeline: --schedule-visible, --schedule-visible, --join-visible;
+}
+nav a[data-section="join"] {
+  animation-name: nav-link-active, nav-link-on;
+}
+nav a[data-section="join"] > span {
+  animation-name: nav-dot-active, nav-dot-on;
 }
 nav a[data-section="join"],
 nav a[data-section="join"] > span {
-  animation-timeline: --join-visible;
+  animation-timeline: --join-visible, --join-visible;
 }
 
 /*
