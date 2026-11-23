@@ -36,9 +36,9 @@ export default async function Join() {
         allowFullScreen
         // Greyscale with a light sepia warmth, multiplied onto the paper
         // background so the map's whites take the page colour. Desktop
-        // sizing: see side-media in globals.css; lower than the Hero video,
-        // as the text beside it is shorter.
-        className="xl:side-media xl:side-media-short order-last aspect-video w-full max-w-160 rounded-2xl border-0 mix-blend-multiply contrast-90 grayscale sepia-[.1] xl:order-first"
+        // sizing: see side-media in globals.css - the same frame as the Hero
+        // video.
+        className="xl:side-media order-last aspect-video w-full max-w-160 rounded-2xl border-0 mix-blend-multiply contrast-90 grayscale sepia-[.1] xl:order-first"
       />
 
       <div className="flex w-full max-w-160 flex-col gap-6">
