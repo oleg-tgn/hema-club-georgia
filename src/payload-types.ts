@@ -207,25 +207,6 @@ export interface Weapon {
    */
   slug: string;
   name: string;
-  label?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  /**
-   * Controls display order in the weapons panel.
-   */
-  order?: number | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -611,8 +592,6 @@ export interface MediaSelect<T extends boolean = true> {
 export interface WeaponsSelect<T extends boolean = true> {
   slug?: T;
   name?: T;
-  label?: T;
-  order?: T;
   updatedAt?: T;
   createdAt?: T;
 }
