@@ -80,13 +80,13 @@ function Nav({
             href={href}
             section={section}
             isHome={isHome}
-            className={`group relative w-full text-center text-xl leading-5 font-medium text-black/40 hover:text-black xl:w-auto xl:text-base xl:leading-6 xl:font-semibold ${
+            className={`group relative w-full text-center text-xl leading-7 font-medium text-black/40 hover:text-black xl:w-auto xl:text-base xl:leading-6 xl:font-semibold ${
               isActive ? "text-night" : ""
             }`}
           >
             {t(labelKey)}
             <span
-              className={`absolute -bottom-1 left-1/2 h-px w-5 -translate-x-1/2 ${
+              className={`absolute -bottom-1.5 left-1/2 h-px xl:-bottom-1 w-5 -translate-x-1/2 ${
                 isActive
                   ? "bg-gold-100"
                   : "group-hover:bg-gold-100 bg-transparent"
@@ -126,7 +126,7 @@ function MobileNav({
             <Nav
               pathname={pathname}
               isHome={isHome}
-              className="flex flex-col items-center gap-6"
+              className="flex flex-col items-center gap-4"
             />
           </div>
 
