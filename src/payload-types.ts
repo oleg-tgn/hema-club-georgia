@@ -73,7 +73,6 @@ export interface Config {
     'schedule-groups': ScheduleGroup;
     instructors: Instructor;
     'gallery-photos': GalleryPhoto;
-    'social-links': SocialLink;
     tournaments: Tournament;
     posts: Post;
     'payload-kv': PayloadKv;
@@ -89,7 +88,6 @@ export interface Config {
     'schedule-groups': ScheduleGroupsSelect<false> | ScheduleGroupsSelect<true>;
     instructors: InstructorsSelect<false> | InstructorsSelect<true>;
     'gallery-photos': GalleryPhotosSelect<false> | GalleryPhotosSelect<true>;
-    'social-links': SocialLinksSelect<false> | SocialLinksSelect<true>;
     tournaments: TournamentsSelect<false> | TournamentsSelect<true>;
     posts: PostsSelect<false> | PostsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
@@ -102,13 +100,13 @@ export interface Config {
   };
   fallbackLocale: ('false' | 'none' | 'null') | false | null | ('en' | 'ka' | 'ru') | ('en' | 'ka' | 'ru')[];
   globals: {
-    address: Address;
+    contacts: Contact;
     'welcome-section': WelcomeSection;
     'faq-section': FaqSection;
     join: Join;
   };
   globalsSelect: {
-    address: AddressSelect<false> | AddressSelect<true>;
+    contacts: ContactsSelect<false> | ContactsSelect<true>;
     'welcome-section': WelcomeSectionSelect<false> | WelcomeSectionSelect<true>;
     'faq-section': FaqSectionSelect<false> | FaqSectionSelect<true>;
     join: JoinSelect<false> | JoinSelect<true>;
@@ -322,22 +320,6 @@ export interface GalleryPhoto {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "social-links".
- */
-export interface SocialLink {
-  id: string;
-  platform: 'instagram' | 'telegram' | 'facebook' | 'youtube' | 'tiktok' | 'website';
-  url: string;
-  /**
-   * Account name shown in the footer, e.g. @st.george_hema_school. Leave empty to show the platform name.
-   */
-  label?: string | null;
-  order?: number | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "tournaments".
  */
 export interface Tournament {
@@ -475,10 +457,6 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'gallery-photos';
         value: string | GalleryPhoto;
-      } | null)
-    | ({
-        relationTo: 'social-links';
-        value: string | SocialLink;
       } | null)
     | ({
         relationTo: 'tournaments';
@@ -651,18 +629,6 @@ export interface GalleryPhotosSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "social-links_select".
- */
-export interface SocialLinksSelect<T extends boolean = true> {
-  platform?: T;
-  url?: T;
-  label?: T;
-  order?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "tournaments_select".
  */
 export interface TournamentsSelect<T extends boolean = true> {
@@ -742,9 +708,9 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "address".
+ * via the `definition` "contacts".
  */
-export interface Address {
+export interface Contact {
   id: string;
   addressLine: string;
   googleMap: string;
@@ -752,6 +718,22 @@ export interface Address {
    * International format, shown as written, e.g. +995 591 01 59 07. Leave empty to hide.
    */
   phone?: string | null;
+  /**
+   * Profile URL. Leave empty to hide.
+   */
+  instagram?: string | null;
+  /**
+   * Account name shown in the footer. Leave empty to show “Instagram”.
+   */
+  instagramLabel?: string | null;
+  /**
+   * Page URL. Leave empty to hide.
+   */
+  facebook?: string | null;
+  /**
+   * Page name shown in the footer. Leave empty to show “Facebook”.
+   */
+  facebookLabel?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -831,12 +813,16 @@ export interface Join {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "address_select".
+ * via the `definition` "contacts_select".
  */
-export interface AddressSelect<T extends boolean = true> {
+export interface ContactsSelect<T extends boolean = true> {
   addressLine?: T;
   googleMap?: T;
   phone?: T;
+  instagram?: T;
+  instagramLabel?: T;
+  facebook?: T;
+  facebookLabel?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

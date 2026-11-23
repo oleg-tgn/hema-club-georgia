@@ -14,13 +14,12 @@ import { Weapons } from "./collections/Weapons";
 import { ScheduleGroups } from "./collections/ScheduleGroups";
 import { Instructors } from "./collections/Instructors";
 import { GalleryPhotos } from "./collections/GalleryPhotos";
-import { SocialLinks } from "./collections/SocialLinks";
 import { Tournaments } from "./collections/Tournaments";
 import { Posts } from "./collections/Posts";
 import { WelcomeSection } from "./globals/WelcomeSection";
 import { FaqSection } from "./globals/FaqSection";
 import { JoinSection } from "./globals/JoinSection";
-import { Address } from "./globals/Address";
+import { Contacts } from "./globals/Contacts";
 import { seedUsers } from "./seed";
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -42,12 +41,11 @@ export default buildConfig({
     ScheduleGroups,
     Instructors,
     GalleryPhotos,
-    SocialLinks,
     Tournaments,
     Posts,
   ],
   globals: [
-    Address,
+    Contacts,
     WelcomeSection,
     FaqSection,
     JoinSection,
