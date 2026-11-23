@@ -44,12 +44,7 @@ export default buildConfig({
     Tournaments,
     Posts,
   ],
-  globals: [
-    Contacts,
-    WelcomeSection,
-    FaqSection,
-    JoinSection,
-  ],
+  globals: [Contacts, WelcomeSection, FaqSection, JoinSection],
   editor: lexicalEditor(),
   graphQL: {
     disable: true,

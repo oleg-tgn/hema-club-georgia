@@ -1,7 +1,5 @@
-
 Saint Geoge Hema Club
 Tbilisi, Geogia
 
 Demo
-https://hema-club-georgia.vercel.app/
-
+https://dev2.hemageorgia.com/

@@ -14,13 +14,10 @@
   --font-text: var(--font-serif);
 
   --color-paper-100: #efebe2;
-  --color-paper-200: #dbd6ca;
   --color-asphalt: #777571;
   --color-night: #0f0f0e;
-  --color-night-hover: color-mix(in srgb, var(--color-night) 5%, transparent);
   --color-gold-100: #c4a043;
   --color-gold-200: #9d7d2b;
-  --color-off-white: #e4e4e4;
 
   /* Serif type sizes: headings per breakpoint (base / sm / lg) and running
      text. The same on every locale: Noto Serif Georgian runs about the size
@@ -43,9 +40,6 @@
      a book sets its contents */
   --text-table: 1rem;
   --text-table--line-height: 1.625rem;
-  /* a caption under or above running text, a step below it */
-  --text-caption: 0.875rem;
-  --text-caption--line-height: 1.375rem;
 }
 
 html {
@@ -168,32 +162,6 @@ nav a[data-section="join"] > span {
 }
 
 /*
- * Aged-paper surface on a base between paper-100 (the page background) and
- * paper-200 - light for text contrast, but still distinct from the page.
- * On top: a fine fibre grain, soft
- * large blotches (both SVG turbulence noise, with alpha driven by the noise
- * value so it reads as texture rather than a flat tint) and slightly
- * darker, warmer edges. Kept light so dark text stays high-contrast.
- */
-@utility bg-old-paper {
-  background-color: #eae6db;
-  background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.3 0 0 0 0 0.22 0 0 0 0 0.1 0.7 0 0 0 -0.3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E"),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1000' height='1000' preserveAspectRatio='none'%3E%3Cfilter id='b'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.006' numOctaves='4' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 0.45 0 0 0 0 0.33 0 0 0 0 0.12 0.4 0 0 0 -0.2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23b)'/%3E%3C/svg%3E"),
-    radial-gradient(
-      ellipse at center,
-      transparent 55%,
-      rgb(120 90 40 / 0.08) 100%
-    );
-  /* the grain tiles; the blotches are stretched over the whole block so
-     there's no visible seam between repeats */
-  background-size:
-    auto,
-    100% 100%,
-    auto;
-}
-
-/*
  * Carved frieze for the margins beside a narrow block: the Bedia church
  * frieze (10th-11th c.), rings threaded by zigzag straps, drawn in pale
  * grey like a printed book ornament. The 48 x 97 tile is set at 90% and repeats
@@ -291,7 +259,7 @@ nav a[data-section="join"] > span {
   letter-spacing: -0.025em;
 }
 .post-body h2 {
-  font-size: var(--text-h3-lg);
+  font-size: var(--text-h3-xl);
 }
 .post-body h3,
 .post-body h4 {

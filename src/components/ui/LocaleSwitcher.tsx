@@ -40,10 +40,10 @@ export default function LocaleSwitcher() {
                 onClick={() =>
                   router.replace(pathname, { locale: loc, scroll: false })
                 }
-                className={`cursor-pointer text-base font-semibold outline-none transition-colors py-2 px-3 ${
+                className={`cursor-pointer px-3 py-2 text-base font-semibold transition-colors outline-none ${
                   loc === locale
-                    ? "text-black bg-night/10 hover:bg-night/10"
-                    : "text-black/40 hover:text-black/60 hover:bg-night/5"
+                    ? "bg-night/10 hover:bg-night/10 text-black"
+                    : "hover:bg-night/5 text-black/40 hover:text-black/60"
                 }`}
               >
                 {labels[loc]}
