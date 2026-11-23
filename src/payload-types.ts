@@ -103,19 +103,13 @@ export interface Config {
   fallbackLocale: ('false' | 'none' | 'null') | false | null | ('en' | 'ka' | 'ru') | ('en' | 'ka' | 'ru')[];
   globals: {
     address: Address;
-    hero: Hero;
     'welcome-section': WelcomeSection;
-    about: About;
-    'weapons-section': WeaponsSection;
     'faq-section': FaqSection;
     join: Join;
   };
   globalsSelect: {
     address: AddressSelect<false> | AddressSelect<true>;
-    hero: HeroSelect<false> | HeroSelect<true>;
     'welcome-section': WelcomeSectionSelect<false> | WelcomeSectionSelect<true>;
-    about: AboutSelect<false> | AboutSelect<true>;
-    'weapons-section': WeaponsSectionSelect<false> | WeaponsSectionSelect<true>;
     'faq-section': FaqSectionSelect<false> | FaqSectionSelect<true>;
     join: JoinSelect<false> | JoinSelect<true>;
   };
@@ -774,7 +768,6 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 export interface Address {
   id: string;
   addressLine: string;
-  description: string;
   googleMap: string;
   /**
    * International format, shown as written, e.g. +995 591 01 59 07. Leave empty to hide.
@@ -785,21 +778,10 @@ export interface Address {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "hero".
- */
-export interface Hero {
-  id: string;
-  description: string;
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "welcome-section".
  */
 export interface WelcomeSection {
   id: string;
-  title: string;
   description: {
     root: {
       type: string;
@@ -815,58 +797,6 @@ export interface WelcomeSection {
     };
     [k: string]: unknown;
   };
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "about".
- */
-export interface About {
-  id: string;
-  title: string;
-  description: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  };
-  /**
-   * Teaser block shown inside the About section, linking to the Join section further down the page.
-   */
-  join: {
-    title: string;
-    text: string;
-    buttonLabel?: string | null;
-  };
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "weapons-section".
- */
-export interface WeaponsSection {
-  id: string;
-  /**
-   * 1-2 lines shown in the Weapons section, e.g. training steel and protective gear. The second row is optional.
-   */
-  provisions?:
-    | {
-        intro: string;
-        highlight: string;
-        id?: string | null;
-      }[]
-    | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -917,18 +847,6 @@ export interface Join {
     };
     [k: string]: unknown;
   };
-  /**
-   * For example: 180 GEL/Month
-   */
-  topLeftText?: string | null;
-  /**
-   * For example: Classes in RU/EN/GE
-   */
-  topRightText?: string | null;
-  /**
-   * For example: We provide training gear and steel weapons
-   */
-  bottomText?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -938,19 +856,8 @@ export interface Join {
  */
 export interface AddressSelect<T extends boolean = true> {
   addressLine?: T;
-  description?: T;
   googleMap?: T;
   phone?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "hero_select".
- */
-export interface HeroSelect<T extends boolean = true> {
-  description?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -960,42 +867,7 @@ export interface HeroSelect<T extends boolean = true> {
  * via the `definition` "welcome-section_select".
  */
 export interface WelcomeSectionSelect<T extends boolean = true> {
-  title?: T;
   description?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "about_select".
- */
-export interface AboutSelect<T extends boolean = true> {
-  title?: T;
-  description?: T;
-  join?:
-    | T
-    | {
-        title?: T;
-        text?: T;
-        buttonLabel?: T;
-      };
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "weapons-section_select".
- */
-export interface WeaponsSectionSelect<T extends boolean = true> {
-  provisions?:
-    | T
-    | {
-        intro?: T;
-        highlight?: T;
-        id?: T;
-      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -1023,9 +895,6 @@ export interface FaqSectionSelect<T extends boolean = true> {
 export interface JoinSelect<T extends boolean = true> {
   title?: T;
   description?: T;
-  topLeftText?: T;
-  topRightText?: T;
-  bottomText?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

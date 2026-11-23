@@ -15,13 +15,6 @@ export const Address: GlobalConfig = {
       defaultValue: "",
     },
     {
-      name: "description",
-      type: "text",
-      required: true,
-      localized: true,
-      defaultValue: "",
-    },
-    {
       name: "googleMap",
       type: "text",
       required: true,

@@ -22,29 +22,5 @@ export const JoinSection: GlobalConfig = {
       required: true,
       localized: true,
     },
-    {
-      name: "topLeftText",
-      type: "text",
-      localized: true,
-      admin: {
-        description: "For example: 180 GEL/Month",
-      },
-    },
-    {
-      name: "topRightText",
-      type: "text",
-      localized: true,
-      admin: {
-        description: "For example: Classes in RU/EN/GE",
-      },
-    },
-    {
-      name: "bottomText",
-      type: "text",
-      localized: true,
-      admin: {
-        description: "For example: We provide training gear and steel weapons ",
-      },
-    },
   ],
 };
