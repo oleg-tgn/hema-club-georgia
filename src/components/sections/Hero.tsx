@@ -10,7 +10,14 @@ import Tailpiece from "../ui/Tailpiece";
 // The school name leads as the page's h1; the welcome text sits beside a
 // modest video instead of under a full-screen one, so the schedule heading
 // already shows on the first screen.
-export default async function Hero() {
+export default async function Hero({
+  video = {
+    src: "/videos/fencing.mp4",
+    className: "[filter:sepia(0.35)_saturate(0.75)]",
+  },
+}: {
+  video?: { src: string; className?: string; overlayClassName?: string };
+}) {
   const locale = await getLocale();
   const payload = await getPayload({ config });
 
@@ -36,7 +43,11 @@ export default async function Hero() {
 
       {/* Sizing on desktop: see side-media in globals.css. */}
       <div className="xl:side-media aspect-video w-full max-w-160 overflow-hidden rounded-2xl">
-        <PausableVideo src="/videos/hema-intro.webm" />
+        <PausableVideo
+          src={video.src}
+          className={video.className}
+          overlayClassName={video.overlayClassName}
+        />
       </div>
     </div>
   );

@@ -6,7 +6,16 @@ import { useTranslations } from "next-intl";
 // Looping muted video that pauses/resumes on click anywhere on it. The icon
 // shows on hover and stays while paused, so a stopped video reads as
 // stopped rather than broken. Starts paused for prefers-reduced-motion.
-export default function PausableVideo({ src }: { src: string }) {
+export default function PausableVideo({
+  src,
+  className = "",
+  overlayClassName,
+}: {
+  src: string;
+  className?: string;
+  // Optional layer over the video (e.g. a vignette); ignores clicks.
+  overlayClassName?: string;
+}) {
   const t = useTranslations("Hero");
   const ref = useRef<HTMLVideoElement>(null);
   const [paused, setPaused] = useState(false);
@@ -38,7 +47,7 @@ export default function PausableVideo({ src }: { src: string }) {
     >
       <video
         ref={ref}
-        className="h-full w-full object-cover"
+        className={`h-full w-full object-cover ${className}`}
         src={src}
         autoPlay
         muted
@@ -47,6 +56,12 @@ export default function PausableVideo({ src }: { src: string }) {
         onPlay={() => setPaused(false)}
         onPause={() => setPaused(true)}
       />
+      {overlayClassName && (
+        <span
+          aria-hidden
+          className={`pointer-events-none absolute inset-0 ${overlayClassName}`}
+        />
+      )}
       <span
         className={`absolute top-1/2 left-1/2 flex size-16 -translate-1/2 items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-sm transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100 ${
           paused ? "opacity-100" : "opacity-0"
