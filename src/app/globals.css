@@ -239,9 +239,10 @@ nav a[data-section="join"] > span {
 }
 
 /*
- * The old-photograph look: a toned, slightly darkened image (media-tone,
- * shared by the Hero video and the Join map) and, on the video only, a warm
- * dark vignette (media-vignette, a separate layer over the media).
+ * The old-photograph look of the Hero video: a toned, slightly darkened image
+ * (media-tone) under a dark vignette (media-vignette, a separate layer over
+ * the video). The vignette is the page's night darkened with a little gold,
+ * so its shadow has the hue of the sepia and the gold accents.
  */
 @utility media-tone {
   filter: grayscale(0.7) sepia(0.5) saturate(1.3) contrast(1.1) brightness(0.75);
@@ -251,7 +252,12 @@ nav a[data-section="join"] > span {
   background: radial-gradient(
     ellipse at center,
     transparent 45%,
-    rgb(30 18 8 / 0.55) 100%
+    color-mix(
+        in oklab,
+        color-mix(in oklab, var(--color-night) 80%, var(--color-gold-200)) 55%,
+        transparent
+      )
+      100%
   );
 }
 
