@@ -22,7 +22,14 @@ const SHARE: Record<Size, number> = { full: 1, medium: 0.6, small: 0.4 };
 // An image in a blog post, set like an illustration in a book: full column
 // width, or narrower - centred, or to one side with the text running
 // around it - with an optional caption under it.
-export default function PostImage({ node }: { node: SerializedUploadNode }) {
+export default function PostImage({
+  node,
+  preload = false,
+}: {
+  node: SerializedUploadNode;
+  // Load at once: the image is on the first screen.
+  preload?: boolean;
+}) {
   const media = node.value as Media | number | string;
   if (typeof media !== "object" || !media.url) return null;
 
@@ -40,6 +47,7 @@ export default function PostImage({ node }: { node: SerializedUploadNode }) {
         alt={media.alt ?? ""}
         width={media.width ?? 1600}
         height={media.height ?? 1200}
+        preload={preload}
         sizes={`(min-width: 640px) ${Math.round(COLUMN * SHARE[size])}px, 100vw`}
       />
       {caption && <figcaption>{caption}</figcaption>}

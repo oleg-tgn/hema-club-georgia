@@ -1,9 +1,17 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getPost, previewOf } from "@/lib/posts";
+import { getPost, getPostSlugs, previewOf } from "@/lib/posts";
 import Post from "@/components/sections/Post";
 
 export const revalidate = 60;
+
+// Without this list the route is rendered on every request and never
+// cached. With it, published posts are built ahead (and refreshed every
+// minute); a post published later is built on its first visit and cached
+// from then on.
+export async function generateStaticParams() {
+  return (await getPostSlugs()).map((slug) => ({ slug }));
+}
 
 export async function generateMetadata({
   params,

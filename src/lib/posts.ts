@@ -21,6 +21,20 @@ export const getPost = cache(async (slug: string, locale: string) => {
   return docs[0] ?? null;
 });
 
+// The addresses of all published posts. A post has one address in every
+// language, so this is not per language.
+export async function getPostSlugs(): Promise<string[]> {
+  const payload = await getPayload({ config });
+  const { docs } = await payload.find({
+    collection: "posts",
+    depth: 0,
+    pagination: false,
+    select: { slug: true },
+    where: { _status: { equals: "published" } },
+  });
+  return docs.flatMap((post) => (post.slug ? [post.slug] : []));
+}
+
 // "7 October 2026" / "7 октября 2026 г." in the page's language. The date is
 // picked as a whole day in Tbilisi, so it is read there too.
 export function formatPostDate(post: Post, locale: string): string {

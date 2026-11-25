@@ -17,7 +17,10 @@ type Content = PostDoc["content"];
 
 // Subheadings get the ids from the outline, so the contents (and anyone
 // sharing a link to a section) can point at them.
-function convertersWith(ids: Map<object, string>): JSXConvertersFunction {
+function convertersWith(
+  ids: Map<object, string>,
+  eager: object | undefined,
+): JSXConvertersFunction {
   return ({ defaultConverters }) => ({
     ...defaultConverters,
     heading: ({ node, nodesToJSX }) => {
@@ -26,8 +29,17 @@ function convertersWith(ids: Map<object, string>): JSXConvertersFunction {
         <Tag id={ids.get(node)}>{nodesToJSX({ nodes: node.children })}</Tag>
       );
     },
-    upload: ({ node }) => <PostImage node={node} />,
+    upload: ({ node }) => <PostImage node={node} preload={node === eager} />,
   });
+}
+
+// An image among the first few blocks of the text is likely on the first
+// screen: it is loaded at once rather than when scrolled to. Images further
+// down stay lazy, so they do not compete with the text.
+function firstScreenImage(content: Content): object | undefined {
+  return content.root.children
+    .slice(0, 3)
+    .find((node) => node.type === "upload");
 }
 
 // The text cut before each outlined heading: the opening (before the first
@@ -53,7 +65,10 @@ export default async function Post({ post }: { post: PostDoc }) {
   const t = await getTranslations("Blog");
 
   const outline = outlineOf(post);
-  const converters = convertersWith(outline.ids);
+  const converters = convertersWith(
+    outline.ids,
+    firstScreenImage(post.content),
+  );
   const showContents = post.showContents && outline.items.length >= 2;
 
   const heading = (
