@@ -262,6 +262,74 @@ nav a[data-section="join"] > span {
 }
 
 /*
+ * Old film, on top of the vignette layer: grain (::before, an SVG noise tile
+ * jumping about at the projector's pace) and a faint flicker of the light
+ * (::after). Kept in CSS, not baked into the video - noise compresses badly.
+ * Both stand still while the video is paused (the button's aria-pressed) and
+ * for reduced motion.
+ */
+@utility media-film {
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+  }
+
+  &::before {
+    inset: -50%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0.33 0.33 0.33 0 0 0.33 0.33 0.33 0 0 0.33 0.33 0.33 0 0 0 0 0 0 1'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='3' intercept='-1'/%3E%3CfeFuncG type='linear' slope='3' intercept='-1'/%3E%3CfeFuncB type='linear' slope='3' intercept='-1'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url%28%23n%29'/%3E%3C/svg%3E");
+    mix-blend-mode: overlay;
+    opacity: 0.25;
+    animation: film-grain 0.5s steps(1) infinite;
+  }
+
+  &::after {
+    inset: 0;
+    background: var(--color-night);
+    opacity: 0;
+    animation: film-flicker 1.3s steps(1) infinite;
+  }
+
+  [aria-pressed="true"] &::before,
+  [aria-pressed="true"] &::after {
+    animation-play-state: paused;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &::before,
+    &::after {
+      animation: none;
+    }
+  }
+}
+
+@keyframes film-grain {
+  0% { transform: translate(0, 0); }
+  11% { transform: translate(-7%, 4%); }
+  22% { transform: translate(5%, -9%); }
+  33% { transform: translate(-11%, -3%); }
+  44% { transform: translate(8%, 7%); }
+  55% { transform: translate(-3%, 10%); }
+  66% { transform: translate(12%, -5%); }
+  77% { transform: translate(-9%, -8%); }
+  88% { transform: translate(3%, 6%); }
+}
+
+@keyframes film-flicker {
+  0% { opacity: 0; }
+  9% { opacity: 0.05; }
+  17% { opacity: 0.01; }
+  31% { opacity: 0.07; }
+  38% { opacity: 0; }
+  52% { opacity: 0.04; }
+  66% { opacity: 0.02; }
+  74% { opacity: 0.08; }
+  81% { opacity: 0.01; }
+  93% { opacity: 0.04; }
+}
+
+/*
  * FAQ: a short centred hairline between question/answer pairs - the
  * tailpiece's line. A pseudo-element, since a <dl> takes only <dt>/<dd>
  * groups, so the rule can't be an element of its own.
