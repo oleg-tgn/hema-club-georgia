@@ -13,7 +13,7 @@ export default function VideoTunePage() {
       <section className={`pt-2.5 md:pt-5 ${sectionGap}`}>
         <Hero
           video={{
-            src: "/videos/fencing.mp4",
+            src: "/videos/fencing.webm",
             className: "[filter:var(--video-filter)]",
             overlayClassName: "[background:var(--video-overlay)]",
           }}

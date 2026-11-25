@@ -12,8 +12,9 @@ import Tailpiece from "../ui/Tailpiece";
 // already shows on the first screen.
 export default async function Hero({
   video = {
-    src: "/videos/fencing.mp4",
-    className: "[filter:sepia(0.35)_saturate(0.75)]",
+    src: "/videos/fencing.webm",
+    className: "media-tone",
+    overlayClassName: "media-vignette",
   },
 }: {
   video?: { src: string; className?: string; overlayClassName?: string };
