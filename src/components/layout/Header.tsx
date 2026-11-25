@@ -86,7 +86,7 @@ function Nav({
           >
             {t(labelKey)}
             <span
-              className={`absolute -bottom-1.5 left-1/2 h-px xl:-bottom-1 w-5 -translate-x-1/2 ${
+              className={`absolute -bottom-1.5 left-1/2 h-px w-5 -translate-x-1/2 xl:-bottom-1 ${
                 isActive
                   ? "bg-gold-100"
                   : "group-hover:bg-gold-100 bg-transparent"

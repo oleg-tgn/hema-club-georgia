@@ -34,11 +34,10 @@ export default async function Join() {
         loading="lazy"
         referrerPolicy="strict-origin-when-cross-origin"
         allowFullScreen
-        // Greyscale with a light sepia warmth, multiplied onto the paper
-        // background so the map's whites take the page colour. Desktop
-        // sizing: see side-media in globals.css - the same frame as the Hero
-        // video.
-        className="xl:side-media order-last aspect-video w-full max-w-160 rounded-2xl border-0 mix-blend-multiply contrast-90 grayscale sepia-[.1] xl:order-first"
+        // The same tone as the Hero video (see media-tone in globals.css),
+        // without its vignette, which looks odd on a map. Desktop sizing: see
+        // side-media - the same frame as the video.
+        className="xl:side-media media-tone order-last aspect-video w-full max-w-160 rounded-2xl border-0 xl:order-first"
       />
 
       <div className="flex w-full max-w-160 flex-col gap-6">

@@ -239,6 +239,23 @@ nav a[data-section="join"] > span {
 }
 
 /*
+ * The old-photograph look: a toned, slightly darkened image (media-tone,
+ * shared by the Hero video and the Join map) and, on the video only, a warm
+ * dark vignette (media-vignette, a separate layer over the media).
+ */
+@utility media-tone {
+  filter: grayscale(0.7) sepia(0.5) saturate(1.3) contrast(1.1) brightness(0.75);
+}
+
+@utility media-vignette {
+  background: radial-gradient(
+    ellipse at center,
+    transparent 45%,
+    rgb(30 18 8 / 0.55) 100%
+  );
+}
+
+/*
  * FAQ: a short centred hairline between question/answer pairs - the
  * tailpiece's line. A pseudo-element, since a <dl> takes only <dt>/<dd>
  * groups, so the rule can't be an element of its own.
