@@ -12,14 +12,14 @@ export default function Tailpiece() {
   return (
     <div
       aria-hidden
-      className="text-gold-200 flex max-w-160 items-center justify-center gap-4"
+      className="text-gold-200 flex max-w-160 items-center justify-center gap-3 md:gap-4"
     >
-      <span className="bg-gold-200/60 h-px w-16" />
-      <svg viewBox="0 0 32 32" className="h-8 w-auto">
+      <span className="bg-gold-200/60 h-px w-10 md:w-16" />
+      <svg viewBox="0 0 32 32" className="h-6 w-auto md:h-8">
         {sword}
         <g transform="matrix(-1 0 0 1 32 0)">{sword}</g>
       </svg>
-      <span className="bg-gold-200/60 h-px w-16" />
+      <span className="bg-gold-200/60 h-px w-10 md:w-16" />
     </div>
   );
 }
