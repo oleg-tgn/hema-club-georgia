@@ -1,4 +1,4 @@
-import Hero from "@/components/sections/Hero";
+import Welcome from "@/components/sections/Welcome";
 import Schedule from "@/components/sections/Schedule";
 import Join from "@/components/sections/Join";
 
@@ -12,7 +12,7 @@ export default function HomePage() {
   return (
     <div className="flex flex-col">
       <section className={`pt-2.5 md:pt-5 ${sectionGap}`}>
-        <Hero />
+        <Welcome />
       </section>
 
       <section id="schedule" className={sectionGap}>

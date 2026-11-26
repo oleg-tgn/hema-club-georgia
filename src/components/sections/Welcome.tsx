@@ -1,0 +1,40 @@
+import config from "@payload-config";
+import { getLocale } from "next-intl/server";
+import { getPayload } from "payload";
+import { RichText } from "@payloadcms/richtext-lexical/react";
+import type { Locale } from "@/i18n/routing";
+import Heading from "../ui/Heading";
+import WelcomeVideo from "./WelcomeVideo";
+import Tailpiece from "../ui/Tailpiece";
+
+export default async function Welcome() {
+  const locale = await getLocale();
+  const payload = await getPayload({ config });
+
+  const welcome = await payload.findGlobal({
+    slug: "welcome-section",
+    locale: locale as Locale,
+  });
+
+  return (
+    <div className="text-night @container flex w-full flex-col items-center gap-6 lg:gap-12 xl:flex-row 2xl:gap-16">
+      <div className="flex w-full max-w-160 flex-col gap-6">
+        <Heading as="h1" className="text-center xl:text-left">
+          St. George HEMA School
+        </Heading>
+        {welcome.description && (
+          <RichText
+            data={welcome.description}
+            className="[&_a]:text-gold-200 [&_a]:hover:text-gold-100 text-night/85 font-text text-body flex max-w-160 flex-col gap-4 [&_a]:transition-colors"
+          />
+        )}
+        <Tailpiece />
+      </div>
+
+      {/* Sizing on desktop: see side-media in globals.css. */}
+      <div className="xl:side-media aspect-video w-full max-w-160 overflow-hidden rounded-2xl">
+        <WelcomeVideo />
+      </div>
+    </div>
+  );
+}

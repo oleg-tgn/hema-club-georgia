@@ -81,10 +81,6 @@ export default async function Schedule() {
 
   return (
     <div className="relative flex w-full flex-col items-center gap-6">
-      {/* The friezes stand at the edges of the text measure (max-w-160, as
-          in the hero and Join), so they line up with the blocks around
-          them. From lg those blocks widen, so the box keeps the friezes
-          at a set distance from the column instead. */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 mx-auto hidden w-full max-w-160 select-none sm:block"
