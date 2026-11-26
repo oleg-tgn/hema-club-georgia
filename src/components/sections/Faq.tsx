@@ -1,6 +1,7 @@
 import config from "@payload-config";
 import { getLocale, getTranslations } from "next-intl/server";
 import { getPayload } from "payload";
+import { RichText } from "@payloadcms/richtext-lexical/react";
 import type { Locale } from "@/i18n/routing";
 import Heading from "../ui/Heading";
 import Tailpiece from "../ui/Tailpiece";
@@ -34,8 +35,11 @@ export default async function Faq() {
         {items.map((item) => (
           <div key={item.id}>
             <dt className="text-night font-medium">{item.question}</dt>
-            <dd className="text-night/85 mt-2 whitespace-pre-line">
-              {item.answer}
+            <dd className="mt-2">
+              <RichText
+                data={item.answer}
+                className="[&_a]:text-gold-200 [&_a]:hover:text-gold-100 text-night/85 flex flex-col gap-2 [&_a]:transition-colors"
+              />
             </dd>
           </div>
         ))}

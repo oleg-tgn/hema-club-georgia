@@ -27,12 +27,9 @@ export const FaqSection: GlobalConfig = {
         },
         {
           name: "answer",
-          type: "textarea",
+          type: "richText",
           required: true,
           localized: true,
-          admin: {
-            description: "Line breaks are kept.",
-          },
         },
       ],
     },
