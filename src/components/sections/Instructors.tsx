@@ -89,7 +89,7 @@ export default async function Instructors() {
                 {instructor.description && (
                   <RichText
                     data={instructor.description}
-                    className="text-night/85 font-text text-table"
+                    className="text-night/85 font-text text-body"
                   />
                 )}
 

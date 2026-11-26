@@ -25,7 +25,7 @@ function ScheduleCard({ doc, t }: { doc: ScheduleGroup; t: TFunc }) {
   const sections = doc.sections ?? [];
 
   return (
-    <div className="px-1 pt-4 pb-5 sm:px-3">
+    <div className="px-1 sm:px-3">
       <div className="flex items-center justify-between gap-3 pb-2">
         <Heading as="h3" className="shrink-0 whitespace-nowrap">
           {weapon?.name ?? doc.title}
@@ -94,7 +94,7 @@ export default async function Schedule() {
       </Heading>
       <div className="relative flex w-full justify-center">
         {/* Narrow, so each time stays close to its day. */}
-        <div className="text-night font-text text-table relative flex w-full max-w-112.5 flex-col">
+        <div className="text-night font-text text-body relative flex w-full max-w-112.5 flex-col gap-6 xl:leading-7">
           {groups.map((doc) => (
             <ScheduleCard key={doc.id} doc={doc} t={t} />
           ))}
