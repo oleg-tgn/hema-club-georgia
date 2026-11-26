@@ -33,7 +33,7 @@ export default async function Join() {
         className="xl:side-media order-last aspect-video w-full max-w-160 rounded-2xl border-0 mix-blend-multiply contrast-90 grayscale sepia-[.1] xl:order-first"
       />
 
-      <div className="flex w-full max-w-160 flex-col gap-6">
+      <div className="flex w-full max-w-160 flex-col gap-4 xl:gap-6">
         <Heading as="h2" className="text-center xl:text-left">
           {join.title}
         </Heading>

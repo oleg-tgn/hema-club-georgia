@@ -80,7 +80,7 @@ export default async function Schedule() {
   });
 
   return (
-    <div className="relative flex w-full flex-col items-center gap-6">
+    <div className="relative flex w-full flex-col items-center gap-4 xl:gap-6">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 mx-auto hidden w-full max-w-160 select-none sm:block"

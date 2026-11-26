@@ -18,7 +18,7 @@ export default async function Welcome() {
 
   return (
     <div className="text-night @container flex w-full flex-col items-center gap-6 lg:gap-12 xl:flex-row 2xl:gap-16">
-      <div className="flex w-full max-w-160 flex-col gap-6">
+      <div className="flex w-full max-w-160 flex-col gap-4 xl:gap-6">
         <Heading as="h1" className="text-center xl:text-left">
           St. George HEMA School
         </Heading>
