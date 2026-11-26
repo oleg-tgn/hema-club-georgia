@@ -55,8 +55,8 @@ function splitAt(content: Content, ids: Map<object, string>): Content[] {
   }));
 }
 
-// Set like a book chapter in one narrow column: title, dateline, the lead
-// a step larger than the text, the text, and a tailpiece to close it.
+// Set like a book chapter in one narrow column: title, dateline, the text,
+// and a tailpiece to close it. The lead is only the blog list's preview.
 // A long post can also show its contents: in the margin left of the text
 // on wide screens, staying in view while reading; on narrower ones, where
 // there is no margin, behind a button in the header.
@@ -72,19 +72,14 @@ export default async function Post({ post }: { post: PostDoc }) {
   const showContents = post.showContents && outline.items.length >= 2;
 
   const heading = (
-    <>
-      <header className="flex flex-col items-center gap-4 text-center">
-        <Heading as="h1">{post.title}</Heading>
-        <PostDateline post={post} locale={locale} />
-      </header>
-      {post.lead && (
-        <p className="text-night font-text text-lead">{post.lead}</p>
-      )}
-    </>
+    <header className="flex flex-col items-center gap-4 text-center">
+      <Heading as="h1">{post.title}</Heading>
+      <PostDateline post={post} locale={locale} />
+    </header>
   );
 
   // With contents the post is cut into back-to-back parts, each a
-  // view-timeline for its contents link: the opening (title, lead and the
+  // view-timeline for its contents link: the opening (title and the
   // text before the first subheading), then one <section> per subheading.
   const [opening, ...sections] = showContents
     ? splitAt(post.content, outline.ids)

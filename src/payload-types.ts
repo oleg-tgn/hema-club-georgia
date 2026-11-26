@@ -388,7 +388,7 @@ export interface Post {
    */
   showContents?: boolean | null;
   /**
-   * A short opening paragraph: what the post is about. Shown in the blog list and at the top of the post. Leave empty to use the post's first paragraph in the list.
+   * A short preview: what the post is about. Shown only in the blog list, not in the post itself. Leave empty to use the post's first paragraph.
    */
   lead?: string | null;
   content: {
