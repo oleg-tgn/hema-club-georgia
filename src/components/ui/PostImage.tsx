@@ -14,8 +14,9 @@ type ImageSettings = {
   caption?: string | null;
 };
 
-// Rendered width on a wide screen as a share of the 640px column, so the
-// browser picks a file of the right size.
+// Largest rendered width, as a share of the 640px column (the same limits
+// as .post-figure-* in globals.css), so the browser picks a file of the
+// right size.
 const COLUMN = 640;
 const SHARE: Record<Size, number> = { full: 1, medium: 0.6, small: 0.4 };
 
@@ -37,6 +38,7 @@ export default function PostImage({
   const size = settings.size ?? "full";
   const position = size === "full" ? "center" : (settings.position ?? "center");
   const caption = settings.caption?.trim();
+  const maxWidth = Math.round(COLUMN * SHARE[size]);
 
   return (
     <figure
@@ -48,7 +50,7 @@ export default function PostImage({
         width={media.width ?? 1600}
         height={media.height ?? 1200}
         preload={preload}
-        sizes={`(min-width: 640px) ${Math.round(COLUMN * SHARE[size])}px, 100vw`}
+        sizes={`(min-width: ${maxWidth}px) ${maxWidth}px, 100vw`}
       />
       {caption && <figcaption>{caption}</figcaption>}
     </figure>

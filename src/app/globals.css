@@ -378,18 +378,22 @@ nav a[data-section="join"] > span {
   font-style: italic;
   text-align: center;
 }
-/* On phones every image takes the column: beside it the text would be a
-   few words a line. */
+/* Medium and small images never grow past their size (60% and 40% of the
+   40rem column) on any screen; on a narrower screen they shrink to fit. */
+.post-body .post-figure-medium {
+  max-width: 24rem;
+}
+.post-body .post-figure-small {
+  max-width: 16rem;
+}
+.post-body .post-figure-medium,
+.post-body .post-figure-small {
+  width: 100%;
+  margin-inline: auto;
+}
+/* On phones no image floats: beside it the text would be a few words a
+   line. */
 @media (min-width: 40rem) {
-  .post-body .post-figure-medium {
-    width: 60%;
-  }
-  .post-body .post-figure-small {
-    width: 40%;
-  }
-  .post-body .post-figure-center {
-    margin-inline: auto;
-  }
   .post-body .post-figure-left,
   .post-body .post-figure-right {
     /* top in line with the text that wraps around it */
