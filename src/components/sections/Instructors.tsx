@@ -68,7 +68,7 @@ export default async function Instructors() {
               <div className="relative aspect-square w-full overflow-hidden rounded-md">
                 <Image
                   src={photoUrl!}
-                  alt={photo.alt || instructor.name}
+                  alt={instructor.name}
                   fill
                   sizes="(min-width: 640px) 320px, min(448px, calc(100vw - 24px))"
                   className="object-cover"
