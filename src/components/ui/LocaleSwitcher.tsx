@@ -1,6 +1,6 @@
 "use client";
 
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Menu } from "@base-ui/react/menu";
 import { routing } from "@/i18n/routing";
 import { usePathname, useRouter } from "@/i18n/navigation";
@@ -13,6 +13,7 @@ const labels: Record<string, string> = {
 
 export default function LocaleSwitcher() {
   const locale = useLocale();
+  const t = useTranslations("Nav");
   const pathname = usePathname();
   const router = useRouter();
 
@@ -20,7 +21,7 @@ export default function LocaleSwitcher() {
     <Menu.Root>
       <Menu.Trigger
         className="flex items-center gap-1 text-base font-semibold text-black/40 outline-none hover:text-black"
-        aria-label="Change language"
+        aria-label={t("changeLanguage")}
       >
         {labels[locale]}
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">

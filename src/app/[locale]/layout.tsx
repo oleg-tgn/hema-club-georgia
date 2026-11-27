@@ -6,6 +6,7 @@ import {
   Noto_Serif_Georgian,
 } from "next/font/google";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import Header from "@/components/layout/Header";
@@ -37,10 +38,17 @@ const notoSerifGeorgian = Noto_Serif_Georgian({
   subsets: ["georgian"],
 });
 
-export const metadata: Metadata = {
-  title: "Saint George's HEMA School",
-  description: "Historical European Martial Arts (HEMA) school in Tbilisi",
-};
+export async function generateMetadata({
+  params,
+}: LayoutProps<"/[locale]">): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "Home" });
+
+  return {
+    title: "Saint George's HEMA School",
+    description: t("metaDescription"),
+  };
+}
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));

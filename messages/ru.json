@@ -8,11 +8,15 @@
     "blog": "Блог",
     "join": "Присоединиться",
     "openMenu": "Открыть меню",
-    "closeMenu": "Закрыть меню"
+    "closeMenu": "Закрыть меню",
+    "changeLanguage": "Сменить язык"
   },
   "Video": {
     "pauseVideo": "Поставить видео на паузу",
     "playVideo": "Воспроизвести видео"
+  },
+  "Home": {
+    "metaDescription": "Школа исторических европейских боевых искусств (HEMA) в Тбилиси"
   },
   "Schedule": {
     "title": "Расписание",
@@ -31,15 +35,15 @@
   },
   "Faq": {
     "title": "Часто задаваемые вопросы",
-    "metaDescription": "Ответы на частые вопросы о тренировках в школе HEMA Святого Георгия"
+    "metaDescription": "Ответы на частые вопросы о тренировках в Saint George's HEMA School"
   },
   "Instructors": {
     "title": "Инструкторы",
-    "metaDescription": "Инструкторы школы HEMA Святого Георгия в Тбилиси"
+    "metaDescription": "Инструкторы Saint George's HEMA School в Тбилиси"
   },
   "Gallery": {
     "title": "Галерея",
-    "metaDescription": "Фото с тренировок и турниров школы HEMA Святого Георгия",
+    "metaDescription": "Фото с тренировок и турниров Saint George's HEMA School",
     "openPhoto": "Открыть фото {index}",
     "close": "Закрыть",
     "previous": "Предыдущее фото",
@@ -49,12 +53,12 @@
   },
   "Tournaments": {
     "title": "Турниры",
-    "metaDescription": "Турниры школы HEMA Святого Георгия в Тбилиси",
+    "metaDescription": "Турниры Saint George's HEMA School в Тбилиси",
     "upcoming": "Предстоящий"
   },
   "Blog": {
     "title": "Блог",
-    "metaDescription": "Заметки и статьи школы HEMA Святого Георгия в Тбилиси",
+    "metaDescription": "Заметки и статьи Saint George's HEMA School в Тбилиси",
     "allPosts": "Все заметки",
     "contents": "Содержание",
     "empty": "Заметок пока нет.",

@@ -8,11 +8,15 @@
     "blog": "ბლოგი",
     "join": "შემოგვიერთდით",
     "openMenu": "მენიუს გახსნა",
-    "closeMenu": "მენიუს დახურვა"
+    "closeMenu": "მენიუს დახურვა",
+    "changeLanguage": "ენის შეცვლა"
   },
   "Video": {
     "pauseVideo": "ვიდეოს დაპაუზება",
     "playVideo": "ვიდეოს ჩართვა"
+  },
+  "Home": {
+    "metaDescription": "ისტორიული ევროპული საბრძოლო ხელოვნების (HEMA) სკოლა თბილისში"
   },
   "Schedule": {
     "title": "განრიგი",
@@ -31,15 +35,15 @@
   },
   "Faq": {
     "title": "ხშირად დასმული კითხვები",
-    "metaDescription": "პასუხები ხშირად დასმულ კითხვებზე წმინდა გიორგის HEMA სკოლაში ვარჯიშის შესახებ"
+    "metaDescription": "პასუხები ხშირად დასმულ კითხვებზე Saint George's HEMA School-ში ვარჯიშის შესახებ"
   },
   "Instructors": {
     "title": "ინსტრუქტორები",
-    "metaDescription": "წმინდა გიორგის HEMA სკოლის ინსტრუქტორები თბილისში"
+    "metaDescription": "Saint George's HEMA School-ის ინსტრუქტორები თბილისში"
   },
   "Gallery": {
     "title": "გალერეა",
-    "metaDescription": "ფოტოები წმინდა გიორგის HEMA სკოლის ვარჯიშებიდან და ტურნირებიდან",
+    "metaDescription": "ფოტოები Saint George's HEMA School-ის ვარჯიშებიდან და ტურნირებიდან",
     "openPhoto": "ფოტო {index}-ის გახსნა",
     "close": "დახურვა",
     "previous": "წინა ფოტო",
@@ -49,12 +53,12 @@
   },
   "Tournaments": {
     "title": "ტურნირები",
-    "metaDescription": "წმინდა გიორგის HEMA სკოლის ტურნირები თბილისში",
+    "metaDescription": "Saint George's HEMA School-ის ტურნირები თბილისში",
     "upcoming": "მომავალი"
   },
   "Blog": {
     "title": "ბლოგი",
-    "metaDescription": "წმინდა გიორგის HEMA სკოლის ჩანაწერები და სტატიები თბილისში",
+    "metaDescription": "Saint George's HEMA School-ის ჩანაწერები და სტატიები თბილისში",
     "allPosts": "ყველა ჩანაწერი",
     "contents": "სარჩევი",
     "empty": "ჩანაწერები ჯერ არ არის.",

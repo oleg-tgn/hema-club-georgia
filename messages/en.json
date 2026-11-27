@@ -8,11 +8,15 @@
     "blog": "Blog",
     "join": "Join",
     "openMenu": "Open menu",
-    "closeMenu": "Close menu"
+    "closeMenu": "Close menu",
+    "changeLanguage": "Change language"
   },
   "Video": {
     "pauseVideo": "Pause video",
     "playVideo": "Play video"
+  },
+  "Home": {
+    "metaDescription": "Historical European Martial Arts (HEMA) school in Tbilisi"
   },
   "Schedule": {
     "title": "Schedule",
