@@ -54,16 +54,16 @@ export default function WelcomeVideo() {
         className="media-vignette pointer-events-none absolute inset-0"
       />
       <span
-        className={`absolute top-1/2 left-1/2 flex size-16 -translate-1/2 items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-sm transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100 ${
+        className={`absolute top-1/2 left-1/2 flex size-12 -translate-1/2 items-center justify-center rounded-full bg-black/40 md:size-16 text-white backdrop-blur-sm transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100 ${
           paused ? "opacity-100" : "opacity-0"
         }`}
       >
         {paused ? (
-          <svg viewBox="0 0 24 24" className="ml-1 size-7" aria-hidden>
+          <svg viewBox="0 0 24 24" className="ml-0.5 size-5 md:ml-1 md:size-7" aria-hidden>
             <path d="M7 4.5v15l12-7.5z" fill="currentColor" />
           </svg>
         ) : (
-          <svg viewBox="0 0 24 24" className="size-7" aria-hidden>
+          <svg viewBox="0 0 24 24" className="size-5 md:size-7" aria-hidden>
             <path d="M6 4h4v16H6zM14 4h4v16h-4z" fill="currentColor" />
           </svg>
         )}
