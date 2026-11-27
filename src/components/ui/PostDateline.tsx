@@ -16,7 +16,7 @@ export default function PostDateline({
 
   return (
     <p
-      className={`text-night text-sm font-semibold tracking-wider uppercase ${className}`}
+      className={`text-night text-base font-semibold ${className}`}
     >
       {formatPostDate(post, locale)}
       {author && <span className="text-asphalt"> · {author}</span>}
